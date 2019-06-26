@@ -60,11 +60,12 @@ class UMineViewController: UBaseViewController {
         tableView.parallaxHeader.minimumHeight = navigationBarY
         tableView.parallaxHeader.mode = .fill
         tableView.separatorColor = UIColor.clear
-
     }
 
-    @objc func okTapFinancialAction() {
-        NSLog("图片被点击了")
+    func goToGoodsManageMent(){
+        let vc = UGoodsManagementController()
+        vc.title = "商品管理"
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -103,6 +104,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.subscribeGoodsManagementAction = {
                 NSLog("商品管理被点击了")
+                self.goToGoodsManageMent()
             }
             cell.subscribeStoreSettingsAction = {
                 NSLog("店铺设置被点击了")

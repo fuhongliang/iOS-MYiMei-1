@@ -25,6 +25,16 @@ class APIErrorModel {
     }
 }
 
+//返回空数组
+class APIListModel: Codable {
+
+    var code: Int?
+
+    var msg: String?
+
+    var data: [String]?
+}
+
 //MARK:登录返回的Json数据
 class APILoginResponseModel: Codable {
 

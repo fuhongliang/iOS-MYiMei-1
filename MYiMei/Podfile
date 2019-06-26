@@ -26,6 +26,6 @@ pod 'MJRefresh'
 pod 'MBProgressHUD'
 pod 'Reusable'
 pod 'IQKeyboardManagerSwift'
-
+pod 'EmptyDataSet-Swift'
 
 end

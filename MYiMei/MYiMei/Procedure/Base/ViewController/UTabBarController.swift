@@ -60,6 +60,5 @@ extension UTabBarController {
         guard let select = selectedViewController else { return .lightContent }
         return select.preferredStatusBarStyle
     }
-
 }
 

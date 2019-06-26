@@ -61,5 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func showLoginView() -> Void {
+        APIUser.shared.cleanUser()
+        let loginVC = ULoginViewController()
+        let loginNav = UINavigationController.init(rootViewController: loginVC)
+        self.window?.rootViewController = loginNav
+    }
+
 }
 

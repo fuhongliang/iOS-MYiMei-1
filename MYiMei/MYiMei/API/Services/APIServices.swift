@@ -41,7 +41,10 @@ let TimeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<NetApi>.Request
 //MARK: 接口函数
 enum NetApi {
     case login(user: [String:String])
+    case getLoginMsg(user: [String:String])
     case logout(userId: String)
+    case getCategory(param: [String:String])
+    case getGoodsList(param: [String:String])
 }
 
 //MARK: 请求对象的封装
@@ -59,14 +62,20 @@ extension NetApi: TargetType {
         switch self {
         case .login:
             return "/login"
+        case .getLoginMsg:
+            return "/get_captcha_login"
         case .logout(let userId):
             return "/tokens/" + userId + "/"
+        case .getCategory:
+            return "/list_cats"
+        case .getGoodsList:
+            return "/list_goods"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login,.logout:
+        case .login,.logout,.getCategory,.getLoginMsg,.getGoodsList:
             return .post
         }
     }
@@ -77,10 +86,16 @@ extension NetApi: TargetType {
 
     var task: Task {
         switch self {
+        case .getLoginMsg(let user):
+            return .requestParameters(parameters: user, encoding: JSONEncoding.default)
         case .login(let user):
             return .requestParameters(parameters: user, encoding: JSONEncoding.default)
+        case .getCategory(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .logout(let userId):
             return .requestParameters(parameters: ["userid":userId], encoding: JSONEncoding.default)
+        case .getGoodsList(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
 
@@ -130,6 +145,8 @@ class APIService {
                                 if let code = mapData["code"] as? Int {
                                     if code == 0 {
                                         success(data)
+                                    }else if code == 10000 {//token过期
+                                        (UIApplication.shared.delegate as! AppDelegate).showLoginView()
                                     }
                                     else {
                                         let msg: String = mapData["msg"] as? String ?? "Error message"
