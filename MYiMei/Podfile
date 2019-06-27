@@ -27,5 +27,7 @@ pod 'MBProgressHUD'
 pod 'Reusable'
 pod 'IQKeyboardManagerSwift'
 pod 'EmptyDataSet-Swift'
+pod 'KMPlaceholderTextView', '~> 1.4.0'
+pod 'BSImagePicker', '~> 2.10.0'
 
 end

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		51CC7D5C866E47D8F00CFD1A /* Pods_MYiMeiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31701B64D1B6B80CEF3E67 /* Pods_MYiMeiUITests.framework */; };
 		7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94322C3348F003D9121 /* UGoodsCell.swift */; };
+		7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */; };
+		7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */; };
+		7B9EB94A22C4988E003D9121 /* UGoodsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94922C4988E003D9121 /* UGoodsDetailView.swift */; };
 		7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */; };
 		7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB34F022C0AE1200154D36 /* ViewController.swift */; };
 		7BAB34F422C0AE1200154D36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB34F222C0AE1200154D36 /* Main.storyboard */; };
@@ -77,6 +80,9 @@
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
 		6A31701B64D1B6B80CEF3E67 /* Pods_MYiMeiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMeiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9EB94322C3348F003D9121 /* UGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsCell.swift; sourceTree = "<group>"; };
+		7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsDetailsController.swift; sourceTree = "<group>"; };
+		7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsDetailModel.swift; sourceTree = "<group>"; };
+		7B9EB94922C4988E003D9121 /* UGoodsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsDetailView.swift; sourceTree = "<group>"; };
 		7BAB34EB22C0AE1200154D36 /* MYiMei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MYiMei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BAB34F022C0AE1200154D36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 				7BAB352622C0C89A00154D36 /* APIResponseModels.swift */,
 				7BAB356E22C2461A00154D36 /* CategoryModel.swift */,
 				7BAB357622C24BEB00154D36 /* GoodsResponeModel.swift */,
+				7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +421,7 @@
 				7BAB356C22C2257B00154D36 /* UBottomTab.swift */,
 				7BAB357A22C2555300154D36 /* UCategoryCell.swift */,
 				7B9EB94322C3348F003D9121 /* UGoodsCell.swift */,
+				7B9EB94922C4988E003D9121 /* UGoodsDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -422,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				7BAB356822C224E800154D36 /* UGoodsManagementController.swift */,
+				7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -665,6 +674,7 @@
 			files = (
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
+				7B9EB94A22C4988E003D9121 /* UGoodsDetailView.swift in Sources */,
 				7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */,
 				7BAB354022C0D1BB00154D36 /* UIColorExtension.swift in Sources */,
 				7BAB353922C0D12E00154D36 /* UManagerOrdersController.swift in Sources */,
@@ -674,6 +684,7 @@
 				7BAB356F22C2461A00154D36 /* CategoryModel.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,
+				7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */,
 				7BAB355222C1B37100154D36 /* UBaseTableViewCell.swift in Sources */,
 				7BAB354C22C0FAF400154D36 /* APIUserServices.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
@@ -696,6 +707,7 @@
 				7BAB352D22C0D00400154D36 /* BaseView.swift in Sources */,
 				7BAB355622C1B8BF00154D36 /* ParallaxHeaderMode.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
+				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
 				7BAB356022C1F2CD00154D36 /* UMenuCell.swift in Sources */,
 				7BAB357522C24B5600154D36 /* UEmptyDataSet.swift in Sources */,
 				7BAB355A22C1B90600154D36 /* ParallaxHeader.swift in Sources */,

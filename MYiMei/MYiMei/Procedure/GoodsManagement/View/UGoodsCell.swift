@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UGoodsCell: UBaseTableViewCell {
+    var subscribeGoodsPopupAction : (() -> ())?
+    var subscribeGoodsEditAction : (() -> ())?
+    var subscribeGoodsDeleteAction : (() -> ())?
+
     //商品名称
     var goodsTitleLabel = UILabel()
     //商品价格
@@ -17,6 +22,9 @@ class UGoodsCell: UBaseTableViewCell {
     var goodsAmountLabel = UILabel()
     //商品图片
     var goodsImageView = UIImageView()
+    //商品状态
+    var goodsStatusLabel = UILabel()
+
     //商品上下架按钮
     var goodsPopupBtn = UIButton()
     //商品编辑按钮
@@ -33,6 +41,19 @@ class UGoodsCell: UBaseTableViewCell {
             ConstraintMaker.width.equalTo(76)
             ConstraintMaker.height.equalTo(76)
             ConstraintMaker.top.equalToSuperview().offset(15)
+        }
+
+        goodsStatusLabel.backgroundColor = UIColor.hex(hexString: "#F77A27")
+        goodsStatusLabel.text = "已下架"
+        goodsStatusLabel.textColor = UIColor.white
+        goodsStatusLabel.font = UIFont.systemFont(ofSize: 12)
+        goodsStatusLabel.textAlignment = .center
+        self.addSubview(goodsStatusLabel)
+        goodsStatusLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.width.equalTo(76)
+            ConstraintMaker.height.equalTo(20)
+            ConstraintMaker.bottom.equalTo(goodsImageView.snp.bottom)
         }
 
         goodsTitleLabel.font = UIFont.systemFont(ofSize: 16)
@@ -62,7 +83,7 @@ class UGoodsCell: UBaseTableViewCell {
         self.addSubview(goodsAmountLabel)
         goodsAmountLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(goodsImageView.snp.right).offset(15)
-            ConstraintMaker.top.equalTo(goodsPriceLabel.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(goodsPriceLabel.snp.bottom).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(15)
         }
 
@@ -114,14 +135,43 @@ class UGoodsCell: UBaseTableViewCell {
             ConstraintMaker.top.equalTo(goodsEditBtn.snp.top)
         }
 
+        goodsPopupBtn.addTarget(self, action: #selector(tapGoodsPopupAction), for: UIControl.Event.touchDown)
+        goodsEditBtn.addTarget(self, action: #selector(tapGoodsEdittAction), for: UIControl.Event.touchDown)
+        goodsDeleteBtn.addTarget(self, action: #selector(tapGoodsDeleteAction), for: UIControl.Event.touchDown)
     }
+
+    @objc func tapGoodsPopupAction() {
+        subscribeGoodsPopupAction?()
+    }
+
+    @objc func tapGoodsEdittAction() {
+        subscribeGoodsEditAction?()
+    }
+
+    @objc func tapGoodsDeleteAction() {
+        subscribeGoodsDeleteAction?()
+    }
+
 
     var model: GoodsModel? {
         didSet {
             guard let model = model else { return }
             goodsTitleLabel.text = model.name
             goodsPriceLabel.text = model.price
-            goodsAmountLabel.text = String(1)
+            goodsAmountLabel.text = "当前库存" + String(model.goods_num!)
+            let url = URL(string: model.cover_pic!)
+            goodsImageView.kf.setImage(with: url)
+            if(model.status == 0){
+                self.addSubview(goodsStatusLabel)
+                goodsStatusLabel.snp.makeConstraints { (ConstraintMaker) in
+                    ConstraintMaker.left.equalToSuperview().offset(15)
+                    ConstraintMaker.width.equalTo(76)
+                    ConstraintMaker.height.equalTo(20)
+                    ConstraintMaker.bottom.equalTo(goodsImageView.snp.bottom)
+                }
+            }else{
+                goodsStatusLabel.removeFromSuperview()
+            }
         }
     }
 }

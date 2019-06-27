@@ -45,6 +45,8 @@ enum NetApi {
     case logout(userId: String)
     case getCategory(param: [String:String])
     case getGoodsList(param: [String:String])
+    case deleteGoods(param: [String:String])
+    case modifyGoodsStatus(param: [String:String])
 }
 
 //MARK: 请求对象的封装
@@ -70,12 +72,17 @@ extension NetApi: TargetType {
             return "/list_cats"
         case .getGoodsList:
             return "/list_goods"
+        case .deleteGoods:
+            return "/delete_goods"
+        case .modifyGoodsStatus:
+            return "/modify_goods_status"
+
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login,.logout,.getCategory,.getLoginMsg,.getGoodsList:
+        case .login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus:
             return .post
         }
     }
@@ -96,6 +103,11 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: ["userid":userId], encoding: JSONEncoding.default)
         case .getGoodsList(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .deleteGoods(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyGoodsStatus(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+
        }
     }
 
@@ -135,6 +147,7 @@ class APIService {
             switch result {
             case let .success(moyaResponse):
                 do {
+                    print("--- \(moyaResponse) -----")
                     let anyData = try moyaResponse.mapJSON()
                     let data =  moyaResponse.data
                     let statusCode =  moyaResponse.statusCode

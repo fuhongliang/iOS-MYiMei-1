@@ -181,7 +181,6 @@ class ULoginView: BaseView {
             ConstraintMaker.height.equalTo(44)
         }
 
-
         if (passWordLogin){
             titleLabel.text = "密码登录"
             pwdLabel.text = "密   码"

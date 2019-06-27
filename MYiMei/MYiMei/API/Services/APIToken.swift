@@ -19,6 +19,7 @@ public func cleanToken() {
 public func getToken() -> String {
     if let token = UserDefaults.standard.object(forKey: "API_TOKEN") as? String {
         if token.count > 0 {
+             print(" token--- \(token)")
             return token
         }
     }
