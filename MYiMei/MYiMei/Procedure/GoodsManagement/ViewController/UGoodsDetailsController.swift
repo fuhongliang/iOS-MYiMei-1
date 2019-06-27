@@ -53,7 +53,7 @@ class UGoodsDetailsController: UBaseViewController {
             ConstraintMaker.right.equalToSuperview()
         }
 
-        scrollView.contentSize = CGSize(width: screenWidth, height: 1125) // ContentSize属性
+        scrollView.contentSize = CGSize(width: screenWidth, height: 1125)
 
         view.addSubview(scrollView)
 
