@@ -36,42 +36,65 @@ class UGoodsDetailView: BaseView {
     //白色的背景
     var categoryBgWhite = UIImageView()
 
-
     //平台分类
+    var platformClassLabel = UILabel()
+    //分割线
+    var classLine = UIImageView()
+    //选择平台分类
+    var choosePlatformClassLabel = UILabel()
 
+    var arrowRight = UIImageView()
 
     //商品分类
+    var goodsClassLabel = UILabel()
 
+    //选择商品分类
+    var choosegoodsClassLabel = UILabel()
+
+    var goodsArrowRight = UIImageView()
 
     //白色的背景
     var unitBgWhite = UIImageView()
 
     //单位
-
+    var unitClassLabel = UILabel()
 
     //虚拟销量
+    var virtualSalesLabel = UILabel()
+
     //重量
+    var weightLabel = UILabel()
+
     //原价
+    var originalPriceLabel = UILabel()
+
     //售价
+    var goodsPriceLabel = UILabel()
+
     //库存
+    var amountLabel = UILabel()
 
     //白色的背景
     var piecesBgWhite = UIImageView()
 
     //单品满件包邮
-
+    var piecesDesrcLabel = UILabel()
+    var piecesLabel = UILabel()
 
     //白色的背景
     var foreheadBgWhite = UIImageView()
 
     //单品满额包邮
+    var foreheadDesrcLabel = UILabel()
+    var foreDesrcLabel = UILabel()
 
     //白色的背景
     var tagsBgWhite = UIImageView()
+
     //服务标签
+    var servicesDesrcLabel = UILabel()
 
-
-    var sortCategoryBtn = UIButton()
+    var saveBtn = UIButton()
 
 
     weak var delegate: UGoodsDetailViewDelegate?
@@ -93,6 +116,7 @@ class UGoodsDetailView: BaseView {
         goodsNameTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
+            ConstraintMaker.width.equalTo(screenWidth)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalToSuperview()
         }
@@ -124,7 +148,7 @@ class UGoodsDetailView: BaseView {
         goodsDescr.placeholderFont = UIFont.systemFont(ofSize: 17)
         self.addSubview(goodsDescr)
         goodsDescr.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview().offset(12)
+            ConstraintMaker.left.equalToSuperview().offset(10)
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(110)
             ConstraintMaker.top.equalTo(goodsNameTF.snp.bottom).offset(1)
@@ -209,6 +233,85 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(123)
             ConstraintMaker.top.equalTo(foreheadBgWhite.snp.bottom).offset(44)
         }
+
+        platformClassLabel.text = "平台分类"
+        platformClassLabel.font = UIFont.systemFont(ofSize: 17)
+        platformClassLabel.textColor = UIColor.black
+
+        self.addSubview(platformClassLabel)
+        platformClassLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(categoryBgWhite.snp.top).offset(14)
+        }
+        //分类输入
+
+        choosePlatformClassLabel.text = "请选择平台分类"
+        choosePlatformClassLabel.font = UIFont.systemFont(ofSize: 17)
+        choosePlatformClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
+        choosePlatformClassLabel.textAlignment = .right
+
+        self.addSubview(choosePlatformClassLabel)
+        choosePlatformClassLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(platformClassLabel).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-34)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.top.equalTo(categoryBgWhite.snp.top)
+        }
+        arrowRight.image = UIImage.init(named: "right_arrow")
+        self.addSubview(arrowRight)
+        arrowRight.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(choosePlatformClassLabel.snp.right).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(13)
+            ConstraintMaker.width.equalTo(8)
+            ConstraintMaker.top.equalTo(categoryBgWhite.snp.top).offset(15)
+        }
+        //分割线
+        classLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        self.addSubview(classLine)
+        classLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(categoryBgWhite.snp.top).offset(44)
+        }
+
+
+        goodsClassLabel.text = "商品分类"
+        goodsClassLabel.font = UIFont.systemFont(ofSize: 17)
+        goodsClassLabel.textColor = UIColor.black
+
+        self.addSubview(goodsClassLabel)
+        goodsClassLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(classLine.snp.top).offset(14)
+        }
+        //商品分类输入
+        choosegoodsClassLabel.text = "请选择商品分类"
+        choosegoodsClassLabel.font = UIFont.systemFont(ofSize: 17)
+        choosegoodsClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
+        choosegoodsClassLabel.textAlignment = .right
+
+        self.addSubview(choosegoodsClassLabel)
+        choosegoodsClassLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(goodsClassLabel).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-34)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.top.equalTo(classLine.snp.top)
+        }
+        goodsArrowRight.image = UIImage.init(named: "right_arrow")
+        self.addSubview(goodsArrowRight)
+        goodsArrowRight.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(choosegoodsClassLabel.snp.right).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(13)
+            ConstraintMaker.width.equalTo(8)
+            ConstraintMaker.top.equalTo(classLine.snp.top).offset(15)
+        }
+
+
     }
 
     @objc func tapChooseGoodsSLTAction() {

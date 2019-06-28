@@ -39,33 +39,20 @@ class UGoodsDetailsController: UBaseViewController {
     override func configUI() {
         goodsDetailView.configUI()
         goodsDetailView.delegate = self
-
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
-
         scrollView.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
-
         scrollView.addSubview(goodsDetailView)
-
-        goodsDetailView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.top.equalToSuperview()
-            ConstraintMaker.bottom.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
+        scrollView.showsVerticalScrollIndicator = false
+        goodsDetailView.snp.updateConstraints { (make) -> Void in
+            make.width.equalTo(screenWidth)
+            make.height.equalTo(1125)
+            make.top.equalTo(scrollView)
+            make.leading.equalTo(scrollView)
+            make.trailing.equalTo(scrollView)
+            make.bottom.equalTo(scrollView)
         }
-
         scrollView.contentSize = CGSize(width: screenWidth, height: 1125)
-
         view.addSubview(scrollView)
-
-
-        //
-        //        goodsDetailView.snp.makeConstraints { (ConstraintMaker) in
-        //            ConstraintMaker.left.equalToSuperview()
-        //            ConstraintMaker.top.equalToSuperview()
-        //            ConstraintMaker.bottom.equalToSuperview()
-        //            ConstraintMaker.right.equalToSuperview()
-        //        }
-
     }
 }
 
