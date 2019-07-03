@@ -118,7 +118,7 @@ extension ULoginViewController: ULoginViewDelegate {
 
     func tapApplyAction() {
         let rootVC = UIApplication.shared.delegate as! AppDelegate
-        rootVC.window?.rootViewController = UMechJoinController()
+        rootVC.window?.rootViewController = UMechJoinViewController()
     }
 
     func okTapAction(phoneNumber: String, password: String) {
