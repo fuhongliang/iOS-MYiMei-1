@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //self.window?.rootViewController = nav
           
             //测试
-            let vc = UMechJoinViewController()
+            let vc = UOrdersViewController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
             
