@@ -19,6 +19,7 @@ class ULoginView: BaseView {
     var titleLabel = UILabel()
     //字段说明
     var phoneLabel = UILabel()
+    
     var pwdLabel = UILabel()
     //手机号和密码
     var phoneNumberEdit = UITextField()
@@ -26,21 +27,21 @@ class ULoginView: BaseView {
     //分割线
     var phoneLine = UIImageView()
     var pwdLine = UIImageView()
-
+    
     //说明
     var descrLabel = UILabel()
-
+    
     //登录按钮
     var loginBtn = UIButton()
-
+    
     //申请入驻按钮
     var applyBtn = UIButton()
-
+    
     //获取验证码按钮
     var getMsgBtn = UIButton()
-
+    
     weak var delegate: ULoginViewDelegate?
-
+    
     func setLoginView(passWordLogin:Bool){
         self.backgroundColor = UIColor.white
         //标题
@@ -53,7 +54,7 @@ class ULoginView: BaseView {
             ConstraintMaker.centerX.equalToSuperview()
             ConstraintMaker.height.equalTo(27)
         }
-
+        
         //手机号
         phoneLabel.tintColor = UIColor.black
         phoneLabel.text = "手机号"
@@ -64,7 +65,7 @@ class ULoginView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.height.equalTo(50)
         }
-
+        
         phoneNumberEdit.tintColor = UIColor.hex(hexString: "#999999")
         phoneNumberEdit.textColor = UIColor.black
         phoneNumberEdit.placeholder = "请输入手机号"
@@ -77,7 +78,7 @@ class ULoginView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(63)
             ConstraintMaker.height.equalTo(50)
         }
-
+        
         //分割线
         phoneLine.backgroundColor = UIColor.hex(hexString: "#CCCCCC")
         self.addSubview(phoneLine)
@@ -87,10 +88,10 @@ class ULoginView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.height.equalTo(1)
         }
-
-
+        
+        
         //密码
-
+        
         pwdLabel.text = "密   码"
         pwdLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(pwdLabel)
@@ -99,7 +100,7 @@ class ULoginView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.height.equalTo(50)
         }
-
+        
         //获取验证码按钮
         getMsgBtn.backgroundColor = UIColor.white
         getMsgBtn.setTitleColor(UIColor.theme, for: UIControl.State.normal)
@@ -125,8 +126,8 @@ class ULoginView: BaseView {
             ConstraintMaker.right.equalTo(getMsgBtn.snp.left)
             ConstraintMaker.height.equalTo(50)
         }
-
-
+        
+        
         //分割线
         pwdLine.backgroundColor = UIColor.hex(hexString: "#CCCCCC")
         self.addSubview(pwdLine)
@@ -136,7 +137,7 @@ class ULoginView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.height.equalTo(1)
         }
-
+        
         //说明
         descrLabel.tintColor = UIColor.hex(hexString: "#666666")
         descrLabel.text = "点击登录及表示同意商户端平台管理协议"
@@ -148,9 +149,9 @@ class ULoginView: BaseView {
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(14)
         }
-
+        
         //登录按钮
-
+        
         loginBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
         loginBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
         loginBtn.setTitle("登录", for: UIControl.State.normal)
@@ -164,9 +165,9 @@ class ULoginView: BaseView {
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(44)
         }
-
+        
         //申请入驻按钮
-
+        
         applyBtn.backgroundColor = UIColor.hex(hexString: "#F0F0F0")
         applyBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
         applyBtn.setTitle("申请入驻", for: UIControl.State.normal)
@@ -180,7 +181,7 @@ class ULoginView: BaseView {
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(44)
         }
-
+        
         if (passWordLogin){
             titleLabel.text = "密码登录"
             pwdLabel.text = "密   码"
@@ -192,23 +193,23 @@ class ULoginView: BaseView {
             pwdEdit.placeholder = "请输入验证码"
             getMsgBtn.setTitle("获取验证码", for: UIControl.State.normal)
         }
-
+        
         loginBtn.addTarget(self, action: #selector(okTapAction), for: UIControl.Event.touchDown)
-
+        
         getMsgBtn.addTarget(self, action: #selector(tapGetMsgAction), for: UIControl.Event.touchDown)
-
+        
         applyBtn.addTarget(self, action: #selector(tapApplyAction), for: UIControl.Event.touchDown)
-
+        
     }
-
+    
     @objc func okTapAction() {
         delegate?.okTapAction(phoneNumber: phoneNumberEdit.text!,password:pwdEdit.text!)
     }
-
+    
     @objc func tapGetMsgAction() {
         delegate?.tapGetMsgAction(phoneNumber: phoneNumberEdit.text!)
     }
-
+    
     @objc func tapApplyAction() {
         delegate?.tapApplyAction()
     }
