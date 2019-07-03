@@ -416,7 +416,6 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(whiteBgone.snp.bottom).offset(49)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview().offset(-15)
-//            ConstraintMaker.bottom.equalToSuperview().offset(32)
             ConstraintMaker.height.equalTo(44)
         }
         

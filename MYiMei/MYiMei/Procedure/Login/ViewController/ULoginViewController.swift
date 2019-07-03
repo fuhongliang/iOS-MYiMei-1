@@ -30,7 +30,7 @@ class ULoginViewController: UBaseViewController {
         super.viewDidLoad()
 
     }
-
+    //MARK:重写顶部导航栏
     override func configNavigationBar() {
         guard let navi = navigationController else { return }
         if navi.visibleViewController == self {
@@ -42,7 +42,7 @@ class ULoginViewController: UBaseViewController {
             navigationItem.rightBarButtonItem = btnItem
         }
     }
-
+    //MARK:初始化视图
     override func configUI() {
         
         loginView.setLoginView(passWordLogin: passWordLogin)
@@ -55,7 +55,7 @@ class ULoginViewController: UBaseViewController {
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
     }
-
+    //MARK:切换登录方式
     @objc func tapChangeLoginStyleAction() {
         passWordLogin = !passWordLogin
         if(passWordLogin){
@@ -67,6 +67,7 @@ class ULoginViewController: UBaseViewController {
         configUI()
     }
 
+    //MARK:倒计时
     func startTimer() {
         var timeCount = 60
         // 在global线程里创建一个时间源
@@ -116,7 +117,8 @@ extension ULoginViewController: ULoginViewDelegate {
     }
 
     func tapApplyAction() {
-
+        let rootVC = UIApplication.shared.delegate as! AppDelegate
+        rootVC.window?.rootViewController = UMechJoinController()
     }
 
     func okTapAction(phoneNumber: String, password: String) {
