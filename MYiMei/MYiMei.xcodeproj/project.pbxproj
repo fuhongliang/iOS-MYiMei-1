@@ -11,6 +11,8 @@
 		0A0FF6C822CA013C003F4B53 /* UMechJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */; };
 		0A0FF6CA22CB004B003F4B53 /* UReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6C922CB004B003F4B53 /* UReviewView.swift */; };
 		0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */; };
+		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
+		0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */; };
 		51CC7D5C866E47D8F00CFD1A /* Pods_MYiMeiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31701B64D1B6B80CEF3E67 /* Pods_MYiMeiUITests.framework */; };
 		7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */; };
 		7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */; };
@@ -26,7 +28,6 @@
 		7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */; };
 		7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB34F022C0AE1200154D36 /* ViewController.swift */; };
 		7BAB34F422C0AE1200154D36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB34F222C0AE1200154D36 /* Main.storyboard */; };
-		7BAB34F622C0AE1400154D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB34F522C0AE1400154D36 /* Assets.xcassets */; };
 		7BAB34F922C0AE1400154D36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB34F722C0AE1400154D36 /* LaunchScreen.storyboard */; };
 		7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB351F22C0C3D300154D36 /* APIServices.swift */; };
 		7BAB352222C0C56400154D36 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB352122C0C56400154D36 /* Global.swift */; };
@@ -83,6 +84,8 @@
 		0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMechJoinViewController.swift; sourceTree = "<group>"; };
 		0A0FF6C922CB004B003F4B53 /* UReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UReviewView.swift; sourceTree = "<group>"; };
 		0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UReviewControiller.swift; sourceTree = "<group>"; };
+		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
+		0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F6F330D409A31D0712434E /* Pods-MYiMeiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiTests.release.xcconfig"; path = "Target Support Files/Pods-MYiMeiTests/Pods-MYiMeiTests.release.xcconfig"; sourceTree = "<group>"; };
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,7 +105,6 @@
 		7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BAB34F022C0AE1200154D36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7BAB34F322C0AE1200154D36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7BAB34F522C0AE1400154D36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BAB34F822C0AE1400154D36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BAB34FA22C0AE1400154D36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BAB34FF22C0AE1400154D36 /* MYiMeiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MYiMeiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AD5FC5822CC95D1008CE6CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AD5FC6022CCA195008CE6CF /* UOderCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AD5FC5922CC95E8008CE6CF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BAB353622C0D0D300154D36 /* UOrdersViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		736C3AC62BE336028E979974 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +251,7 @@
 		7BAB351C22C0B51900154D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7BAB34F522C0AE1400154D36 /* Assets.xcassets */,
+				0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */,
 				7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */,
 			);
 			path = "Supporting Files";
@@ -325,7 +343,8 @@
 		7BAB353322C0D09D00154D36 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				7BAB353622C0D0D300154D36 /* UOrdersViewController.swift */,
+				0AD5FC5922CC95E8008CE6CF /* ViewController */,
+				0AD5FC5822CC95D1008CE6CF /* View */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -572,7 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAB34F922C0AE1400154D36 /* LaunchScreen.storyboard in Resources */,
-				7BAB34F622C0AE1400154D36 /* Assets.xcassets in Resources */,
+				0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */,
 				7BAB34F422C0AE1200154D36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,6 +763,7 @@
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
 				7BAB354A22C0D87100154D36 /* ULoginView.swift in Sources */,
 				7BAB352722C0C89A00154D36 /* APIResponseModels.swift in Sources */,
+				0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */,
 				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,
 				7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */,
 				0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */,
