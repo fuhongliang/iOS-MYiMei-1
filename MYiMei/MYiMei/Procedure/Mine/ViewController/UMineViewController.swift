@@ -67,6 +67,12 @@ class UMineViewController: UBaseViewController {
         vc.title = "商品管理"
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func goToAccountSafe() {
+        let vc = UAccountSafeController()
+        vc.title = "账号与安全"
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
