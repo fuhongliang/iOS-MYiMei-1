@@ -10,6 +10,7 @@ import UIKit
 
 class UAccountSafe: BaseView {
     
-    lazy var backgroundView = UIView()
+    var bindPhone = 
+    
     
 }
