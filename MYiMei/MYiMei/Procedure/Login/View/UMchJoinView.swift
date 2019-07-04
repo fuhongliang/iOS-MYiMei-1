@@ -56,7 +56,7 @@ class UMchJoinView: BaseView {
     
     func setView(){
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
-        //店铺信息
+        //MARK:店铺信息
         titleLabel.text = "店铺基本信息"
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = UIColor.hex(hexString: "#808080")
@@ -69,7 +69,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.width.equalToSuperview()
         }
         
-        //白色背景
+        //MARK:白色背景
         whiteBg.backgroundColor = UIColor.white
         self.addSubview(whiteBg)
         whiteBg.snp.makeConstraints { (ConstraintMaker) in
@@ -80,7 +80,7 @@ class UMchJoinView: BaseView {
         }
         
         
-        //联系人
+        //MARK:联系人
         contactLabel.tintColor = UIColor.black
         contactLabel.text = "联系人"
         contactLabel.font = UIFont.systemFont(ofSize: 17)
@@ -114,7 +114,7 @@ class UMchJoinView: BaseView {
         }
         
         
-        //手机号
+        //MARK:手机号
         phoneNumberLabel.tintColor = UIColor.black
         phoneNumberLabel.text = "手机号"
         phoneNumberLabel.font = UIFont.systemFont(ofSize: 17)
@@ -147,7 +147,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(phoneNumberEdit.snp.bottom)
         }
         
-        //店铺名称
+        //MARK:店铺名称
         storeNameLebel.text = "店铺名称"
         storeNameLebel.tintColor = UIColor.black
         storeNameLebel.font = UIFont.systemFont(ofSize: 17)
@@ -180,7 +180,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeNameEdit.snp.bottom)
         }
         
-        //店铺分类
+        //MARK:店铺分类
         storeCategoryLebel.text = "店铺分类"
         storeCategoryLebel.textColor = UIColor.black
         storeCategoryLebel.font = UIFont.systemFont(ofSize: 17)
@@ -223,7 +223,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeCategoryDialog.snp.bottom)
         }
         
-        //店铺地址
+        //MARK:店铺地址
         storeAddressLebel.text = "店铺地址"
         storeAddressLebel.textColor = UIColor.black
         storeAddressLebel.font = UIFont.systemFont(ofSize: 17)
@@ -287,7 +287,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeAddressEdit.snp.bottom)
         }
         
-        //客服电话
+        //MARK:客服电话
         consumerPhoneLeber.text = "客服电话"
         consumerPhoneLeber.textColor = UIColor.black
         consumerPhoneLeber.font = UIFont.systemFont(ofSize: 17)
@@ -318,7 +318,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(consumerPhoneEdit.snp.bottom)
         }
-        //店铺照片
+        //MARK:店铺照片
         storePhotoLebel.text = "店铺照片"
         storePhotoLebel.textColor = UIColor.hex(hexString: "#808080")
         self.addSubview(storePhotoLebel)
@@ -326,7 +326,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(consumerPhoneLine.snp.bottom).offset(19)
         }
-        //第二块白色背景图
+        //MARK:第二块白色背景图
         whiteBgone.backgroundColor = UIColor.white
         self.addSubview(whiteBgone)
         whiteBgone.snp.makeConstraints { (ConstraintMaker) in
@@ -336,7 +336,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview()
         }
         
-        //店铺背景
+        //MARK:店铺背景
         storeBgLebel.text = "店铺背景"
         storeBgLebel.textColor = UIColor.black
         storeBgLebel.font = UIFont.systemFont(ofSize: 17)
@@ -375,7 +375,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview()
         }
         
-        //店铺login
+        //MARK:店铺login
         storeLoginLebel.text = "店铺LOGO"
         storeLoginLebel.textColor = UIColor.black
         storeLoginLebel.font = UIFont.systemFont(ofSize: 17)
@@ -416,7 +416,6 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(whiteBgone.snp.bottom).offset(49)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview().offset(-15)
-//            ConstraintMaker.bottom.equalToSuperview().offset(32)
             ConstraintMaker.height.equalTo(44)
         }
         
