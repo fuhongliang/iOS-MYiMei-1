@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+protocol UMchJoinViewDelegate: AnyObject {
+    func tapChooseStoreLogoPicAction()
+    func tapChooseStoreBgPicAction()
+}
+
 class UMchJoinView: BaseView {
     //标题
     var titleLabel =  UILabel()
@@ -48,12 +54,13 @@ class UMchJoinView: BaseView {
     //小图标
     var storeCategoryIcon = UIImageView()
     var storeAddressIcon = UIImageView()
-    var storeBgIcon = UIImageView()
-    var storeLoginIcon = UIImageView()
+    var storeBgBtn = UIButton()
+    var storeLogoBtn = UIButton()
     
     //按钮
     var joinButton = UIButton()
-    
+    weak var delegate: UMchJoinViewDelegate?
+
     func setView(){
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         //MARK:店铺信息
@@ -346,9 +353,9 @@ class UMchJoinView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         
-        storeBgIcon.image = UIImage.init(named: "add")
-        self.addSubview(storeBgIcon)
-        storeBgIcon.snp.makeConstraints { (ConstraintMaker) in
+        storeBgBtn.setBackgroundImage(UIImage.init(named: "add"), for: UIControl.State.normal)
+        self.addSubview(storeBgBtn)
+        storeBgBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.size.equalTo(60)
             ConstraintMaker.left.equalTo(storeBgLabel.snp.right).offset(55)
             ConstraintMaker.right.equalTo(-171)
@@ -362,7 +369,7 @@ class UMchJoinView: BaseView {
         self.addSubview(storeBgDescriptionLabel)
         storeBgDescriptionLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(whiteBgone.snp.top).offset(19)
-            ConstraintMaker.left.equalTo(storeBgIcon.snp.right).offset(12)
+            ConstraintMaker.left.equalTo(storeBgBtn.snp.right).offset(12)
             ConstraintMaker.right.equalToSuperview().offset(-13)
         }
         
@@ -370,12 +377,15 @@ class UMchJoinView: BaseView {
         self.addSubview(storeBgLebelLine)
         storeBgLebelLine.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.height.equalTo(1)
-            ConstraintMaker.top.equalTo(storeBgIcon.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(storeBgBtn.snp.bottom).offset(15)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview()
         }
-        
-        //MARK:店铺login
+
+
+        storeBgBtn.addTarget(self, action: #selector(chooseStoreLogoPicAction), for: UIControl.Event.touchDown)
+
+        //MARK:店铺logo
         storeLoginLabel.text = "店铺LOGO"
         storeLoginLabel.textColor = UIColor.black
         storeLoginLabel.font = UIFont.systemFont(ofSize: 17)
@@ -384,9 +394,9 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeBgLebelLine.snp.bottom).offset(37)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
-        storeLoginIcon.image = UIImage.init(named: "add")
-        self.addSubview(storeLoginIcon)
-        storeLoginIcon.snp.makeConstraints { (ConstraintMaker) in
+        storeLogoBtn.setBackgroundImage(UIImage.init(named: "add"), for: UIControl.State.normal)
+        self.addSubview(storeLogoBtn)
+        storeLogoBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeBgLebelLine.snp.bottom).offset(15)
             ConstraintMaker.left.equalTo(storeLoginLabel.snp.right).offset(40)
             ConstraintMaker.size.equalTo(60)
@@ -401,10 +411,15 @@ class UMchJoinView: BaseView {
         self.addSubview(storeLoginDescriptionLabel)
         storeLoginDescriptionLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeBgLebelLine.snp.top).offset(19)
-            ConstraintMaker.left.equalTo(storeLoginIcon.snp.right).offset(12)
+            ConstraintMaker.left.equalTo(storeLogoBtn.snp.right).offset(12)
             ConstraintMaker.right.equalToSuperview().offset(-13)
         }
-        
+        storeLogoBtn.addTarget(self, action: #selector(chooseStoreLogoPicAction), for: UIControl.Event.touchDown)
+
+
+
+
+         //MARK:提交审核
         joinButton.backgroundColor = UIColor.hex(hexString: "#1C98F6")
         joinButton.setTitle("提交审核", for: UIControl.State.normal)
         joinButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
@@ -418,6 +433,9 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
         }
-        
+    }
+
+    @objc func chooseStoreLogoPicAction() {
+        delegate?.tapChooseStoreLogoPicAction()
     }
 }
