@@ -63,8 +63,8 @@ class UAccountSafeView: BaseView {
         self.addSubview(phoneNumberLabel)
         phoneNumberLabel.snp.makeConstraints { (ConstraintMaker) in
            ConstraintMaker.top.equalTo(backgroundWhite.snp.top).offset(14)
-            ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.left.equalTo(bindPhoneLabel.snp.right).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
         }
         
         //MARK:绑定手机分割线
