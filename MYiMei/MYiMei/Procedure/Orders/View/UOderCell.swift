@@ -11,24 +11,24 @@ import UIKit
 class UOderCell : BaseView {
     
     //字段
-    var statusLeber = UILabel()
-    var userNameLeber = UILabel()
-    var userPhoneLeber = UILabel()
-    var addressLeber = UILabel()
-    var commodityLeber = UILabel()
-    var commodityNameLeber = UILabel()
-    var commoditySpecificationLeber = UILabel()
-    var commodityPriceLeber = UILabel()
-    var expandLeber = UILabel()
-    var commodityNumberLeber = UILabel()
-    var orderNumberLebel = UILabel()
-    var orderTimeLeber = UILabel()
-    var leaveCommentsLeber = UILabel()
-    var leaveCommentsRightLeber = UILabel()
-    var freightLeber = UILabel()
-    var freightPriceLeber = UILabel()
-    var totalLeber = UILabel()
-    var totalPriceLeber = UILabel()
+    var statusLaber = UILabel()
+    var userNameLaber = UILabel()
+    var userPhoneLaber = UILabel()
+    var addressLaber = UILabel()
+    var commodityLaber = UILabel()
+    var commodityNameLaber = UILabel()
+    var commoditySpecificationLaber = UILabel()
+    var commodityPriceLaber = UILabel()
+    var expandLaber = UILabel()
+    var commodityNumberLaber = UILabel()
+    var orderNumberLabel = UILabel()
+    var orderTimeLaber = UILabel()
+    var leaveCommentsLaber = UILabel()
+    var leaveCommentsRightLaber = UILabel()
+    var freightLaber = UILabel()
+    var freightPriceLaber = UILabel()
+    var totalLaber = UILabel()
+    var totalPriceLaber = UILabel()
     
     //背景
     var whiteBg = UIImageView()
@@ -50,11 +50,11 @@ class UOderCell : BaseView {
     func setView()  {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         //待处理
-        statusLeber.text = "待处理"
-        statusLeber.textColor = UIColor.hex(hexString: "#FF4444")
-        statusLeber.font = UIFont.systemFont(ofSize: 16)
-        self.addSubview(statusLeber)
-        statusLeber.snp.makeConstraints { (ConstraintMaker) in
+        statusLaber.text = "待处理"
+        statusLaber.textColor = UIColor.hex(hexString: "#FF4444")
+        statusLaber.font = UIFont.systemFont(ofSize: 16)
+        self.addSubview(statusLaber)
+        statusLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalToSuperview().offset(14)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
@@ -76,22 +76,22 @@ class UOderCell : BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //用户名称
-        userNameLeber.text = "张先生"
-        userNameLeber.textColor = UIColor.black
-        userNameLeber.font = UIFont.boldSystemFont(ofSize: 17)
-        self.addSubview(userNameLeber)
-        userNameLeber.snp.makeConstraints { (ConstraintMaker) in
+        userNameLaber.text = "张先生"
+        userNameLaber.textColor = UIColor.black
+        userNameLaber.font = UIFont.boldSystemFont(ofSize: 17)
+        self.addSubview(userNameLaber)
+        userNameLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(15)
             ConstraintMaker.left.equalTo(receiptIcon.snp.right).offset(8)
         }
         //用户电话号码
-        userPhoneLeber.text = "15743984389"
-        userPhoneLeber.textColor = UIColor.hex(hexString: "#1C98F6")
-        userPhoneLeber.font = UIFont.boldSystemFont(ofSize: 17)
-        self.addSubview(userPhoneLeber)
-        userPhoneLeber.snp.makeConstraints { (ConstraintMaker) in
+        userPhoneLaber.text = "15743984389"
+        userPhoneLaber.textColor = UIColor.hex(hexString: "#1C98F6")
+        userPhoneLaber.font = UIFont.boldSystemFont(ofSize: 17)
+        self.addSubview(userPhoneLaber)
+        userPhoneLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(16)
-            ConstraintMaker.left.equalTo(userNameLeber.snp.right).offset(24)
+            ConstraintMaker.left.equalTo(userNameLaber.snp.right).offset(24)
         }
         //拨打用户电话图标
         userPhoneIcon.image = UIImage.init(named: "phone")
@@ -111,13 +111,13 @@ class UOderCell : BaseView {
             ConstraintMaker.left.equalTo(whiteBg.snp.left).offset(15)
         }
         //地址
-        addressLeber.text = "地址: 广东省深圳市南山区松柏783号"
-        addressLeber.textColor = UIColor.hex(hexString: "#999999")
-        addressLeber.font = UIFont.systemFont(ofSize: 14)
-        self.addSubview(addressLeber)
-        addressLeber.snp.makeConstraints { (ConstraintMaker) in
+        addressLaber.text = "地址: 广东省深圳市南山区松柏783号"
+        addressLaber.textColor = UIColor.hex(hexString: "#999999")
+        addressLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(addressLaber)
+        addressLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(addressIcon.snp.right).offset(10)
-            ConstraintMaker.top.equalTo(userNameLeber.snp.bottom).offset(10)
+            ConstraintMaker.top.equalTo(userPhoneLaber.snp.bottom).offset(10)
         }
         //分割线
         userLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -129,11 +129,11 @@ class UOderCell : BaseView {
             ConstraintMaker.right.equalToSuperview()
         }
         //商品
-        commodityLeber.text = "商品"
-        commodityLeber.textColor = UIColor.black
-        commodityLeber.font = UIFont.boldSystemFont(ofSize: 17)
-        self.addSubview(commodityLeber)
-        commodityLeber.snp.makeConstraints { (ConstraintMaker) in
+        commodityLaber.text = "商品"
+        commodityLaber.textColor = UIColor.black
+        commodityLaber.font = UIFont.boldSystemFont(ofSize: 17)
+        self.addSubview(commodityLaber)
+        commodityLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(userLine.snp.bottom).offset(15)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview()
@@ -144,26 +144,26 @@ class UOderCell : BaseView {
         self.addSubview(commodityIcon)
         commodityIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.size.equalTo(61)
-            ConstraintMaker.top.equalTo(commodityLeber.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(15)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //商品名称
-        commodityNameLeber.text = "商品名称名称名称"
-        commodityNameLeber.textColor = UIColor.black
-        commodityNameLeber.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(commodityNameLeber)
-        commodityNameLeber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(commodityLeber.snp.bottom).offset(15)
+        commodityNameLaber.text = "商品名称名称名称"
+        commodityNameLaber.textColor = UIColor.black
+        commodityNameLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(commodityNameLaber)
+        commodityNameLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(15)
             ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
         }
         //展开
-        expandLeber.text = "展开"
-        expandLeber.textColor = UIColor.hex(hexString: "#999999")
-        expandLeber.font = UIFont.systemFont(ofSize: 14)
-        self.addSubview(expandLeber)
-        expandLeber.snp.makeConstraints { (ConstraintMaker) in
+        expandLaber.text = "展开"
+        expandLaber.textColor = UIColor.hex(hexString: "#999999")
+        expandLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(expandLaber)
+        expandLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-30)
-            ConstraintMaker.top.equalTo(commodityLeber.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(15)
         }
         //展开图标
         expandIcon.image = UIImage.init(named: "drop_down")
@@ -172,35 +172,35 @@ class UOderCell : BaseView {
             ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
             ConstraintMaker.height.equalTo(6)
             ConstraintMaker.width.equalTo(9)
-            ConstraintMaker.top.equalTo(commodityLeber.snp.bottom).offset(20)
+            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(20)
         }
         
         //商品规格
-        commoditySpecificationLeber.text = "规格: 默认"
-        commoditySpecificationLeber.textColor = UIColor.hex(hexString: "#999999")
-        commoditySpecificationLeber.font = UIFont.systemFont(ofSize: 13)
-        self.addSubview(commoditySpecificationLeber)
-        commoditySpecificationLeber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(commodityNameLeber.snp.bottom).offset(10)
+        commoditySpecificationLaber.text = "规格: 默认"
+        commoditySpecificationLaber.textColor = UIColor.hex(hexString: "#999999")
+        commoditySpecificationLaber.font = UIFont.systemFont(ofSize: 13)
+        self.addSubview(commoditySpecificationLaber)
+        commoditySpecificationLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commodityNameLaber.snp.bottom).offset(10)
             ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
         }
         //商品价格
-        commodityPriceLeber.text = "￥43843.00"
-        commodityPriceLeber.textColor = UIColor.black
-        commodityPriceLeber.font = UIFont.systemFont(ofSize: 14)
-        self.addSubview(commodityPriceLeber)
-        commodityPriceLeber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(commoditySpecificationLeber.snp.bottom).offset(10)
+        commodityPriceLaber.text = "￥43843.00"
+        commodityPriceLaber.textColor = UIColor.black
+        commodityPriceLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(commodityPriceLaber)
+        commodityPriceLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commoditySpecificationLaber.snp.bottom).offset(10)
             ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
         }
         //商品数量
-        commodityNumberLeber.text = "x2"
-        commodityNumberLeber.textColor = UIColor.hex(hexString: "#999999")
-        commodityNumberLeber.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(commodityNumberLeber)
-        commodityNumberLeber.snp.makeConstraints { (ConstraintMaker) in
+        commodityNumberLaber.text = "x2"
+        commodityNumberLaber.textColor = UIColor.hex(hexString: "#999999")
+        commodityNumberLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(commodityNumberLaber)
+        commodityNumberLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-            ConstraintMaker.top.equalTo(commodityLeber.snp.bottom).offset(65)
+            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(65)
         }
         //商品分割线
         commodityLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -209,24 +209,24 @@ class UOderCell : BaseView {
             ConstraintMaker.height.equalTo(1)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.top.equalTo(commodityPriceLeber.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(commodityPriceLaber.snp.bottom).offset(15)
         }
         //订单编号
-        orderNumberLebel.text = "订单编号：2000000000009301"
-        orderNumberLebel.textColor = UIColor.hex(hexString: "#999999")
-        orderNumberLebel.font = UIFont.systemFont(ofSize: 14)
-        self.addSubview(orderNumberLebel)
-        orderNumberLebel.snp.makeConstraints { (ConstraintMaker) in
+        orderNumberLabel.text = "订单编号：2000000000009301"
+        orderNumberLabel.textColor = UIColor.hex(hexString: "#999999")
+        orderNumberLabel.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(orderNumberLabel)
+        orderNumberLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(commodityLine.snp.bottom).offset(15)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //下单时间
-        orderTimeLeber.text = "下单时间：2019-06-11 10:39:46"
-        orderTimeLeber.textColor = UIColor.hex(hexString: "#999999")
-        orderTimeLeber.font = UIFont.systemFont(ofSize: 14)
-        self.addSubview(orderTimeLeber)
-        orderTimeLeber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(orderNumberLebel.snp.bottom).offset(11)
+        orderTimeLaber.text = "下单时间：2019-06-11 10:39:46"
+        orderTimeLaber.textColor = UIColor.hex(hexString: "#999999")
+        orderTimeLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(orderTimeLaber)
+        orderTimeLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(orderNumberLabel.snp.bottom).offset(11)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //买家留言上边分割线
@@ -236,25 +236,25 @@ class UOderCell : BaseView {
             ConstraintMaker.height.equalTo(1)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.top.equalTo(orderTimeLeber.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(orderTimeLaber.snp.bottom).offset(15)
         }
         //买家留言
-        leaveCommentsLeber.text = "买家留言 : "
-        leaveCommentsLeber.textColor = UIColor.hex(hexString: "#999999")
-        leaveCommentsLeber.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(leaveCommentsLeber)
-        leaveCommentsLeber.snp.makeConstraints { (ConstraintMaker) in
+        leaveCommentsLaber.text = "买家留言 : "
+        leaveCommentsLaber.textColor = UIColor.hex(hexString: "#999999")
+        leaveCommentsLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(leaveCommentsLaber)
+        leaveCommentsLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(leaveCommentsTopLine.snp.bottom).offset(14)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //买家留言右边内容
-        leaveCommentsRightLeber.text  = "需要商品订单发票抬头，谢谢"
-        leaveCommentsRightLeber.textColor = UIColor.black
-        leaveCommentsRightLeber.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(leaveCommentsRightLeber)
-        leaveCommentsRightLeber.snp.makeConstraints { (ConstraintMaker) in
+        leaveCommentsRightLaber.text  = "需要商品订单发票抬头，谢谢"
+        leaveCommentsRightLaber.textColor = UIColor.black
+        leaveCommentsRightLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(leaveCommentsRightLaber)
+        leaveCommentsRightLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(leaveCommentsTopLine.snp.bottom).offset(14)
-            ConstraintMaker.left.equalTo(leaveCommentsLeber.snp.right).offset(8)
+            ConstraintMaker.left.equalTo(leaveCommentsLaber.snp.right).offset(8)
         }
         //买家留言下边分割线
         leaveCommentsBottomLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -263,43 +263,43 @@ class UOderCell : BaseView {
             ConstraintMaker.height.equalTo(1)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.top.equalTo(leaveCommentsLeber.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(leaveCommentsLaber.snp.bottom).offset(15)
         }
         //运费
-        freightLeber.text = "运费:"
-        freightLeber.textColor = UIColor.hex(hexString: "#333333")
-        freightLeber.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(freightLeber)
-        freightLeber.snp.makeConstraints { (ConstraintMaker) in
+        freightLaber.text = "运费:"
+        freightLaber.textColor = UIColor.hex(hexString: "#333333")
+        freightLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(freightLaber)
+        freightLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(leaveCommentsBottomLine.snp.bottom).offset(14)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //运费价格
-        freightPriceLeber.text = "￥199.00"
-        freightPriceLeber.textColor = UIColor.hex(hexString: "#333333")
-        freightPriceLeber.font = UIFont.boldSystemFont(ofSize: 15)
-        self.addSubview(freightPriceLeber)
-        freightPriceLeber.snp.makeConstraints { (ConstraintMaker) in
+        freightPriceLaber.text = "￥199.00"
+        freightPriceLaber.textColor = UIColor.hex(hexString: "#333333")
+        freightPriceLaber.font = UIFont.boldSystemFont(ofSize: 15)
+        self.addSubview(freightPriceLaber)
+        freightPriceLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(leaveCommentsBottomLine.snp.bottom).offset(14)
-            ConstraintMaker.left.equalTo(freightLeber.snp.right).offset(8)
+            ConstraintMaker.left.equalTo(freightLaber.snp.right).offset(8)
         }
         //总计
-        totalLeber.text = "总计:"
-        totalLeber.textColor = UIColor.hex(hexString: "#333333")
-        totalLeber.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(totalLeber)
-        totalLeber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(freightLeber.snp.bottom).offset(10)
+        totalLaber.text = "总计:"
+        totalLaber.textColor = UIColor.hex(hexString: "#333333")
+        totalLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(totalLaber)
+        totalLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(freightLaber.snp.bottom).offset(10)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         //总计价格
-        totalPriceLeber.text = "￥199.00"
-        totalPriceLeber.textColor = UIColor.hex(hexString: "#FF4444")
-        totalPriceLeber.font = UIFont.boldSystemFont(ofSize: 15)
-        self.addSubview(totalPriceLeber)
-        totalPriceLeber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(freightPriceLeber.snp.bottom).offset(10)
-            ConstraintMaker.left.equalTo(totalLeber.snp.right).offset(8)
+        totalPriceLaber.text = "￥199.00"
+        totalPriceLaber.textColor = UIColor.hex(hexString: "#FF4444")
+        totalPriceLaber.font = UIFont.boldSystemFont(ofSize: 15)
+        self.addSubview(totalPriceLaber)
+        totalPriceLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(freightPriceLaber.snp.bottom).offset(10)
+            ConstraintMaker.left.equalTo(totalLaber.snp.right).offset(8)
         }
         //分割线
         totalLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -308,7 +308,7 @@ class UOderCell : BaseView {
             ConstraintMaker.height.equalTo(1)
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.top.equalTo(totalPriceLeber.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(totalPriceLaber.snp.bottom).offset(15)
         }
         //价格修改按钮
         priceModifyBg.backgroundColor = UIColor.hex(hexString: "#1C98F6")
