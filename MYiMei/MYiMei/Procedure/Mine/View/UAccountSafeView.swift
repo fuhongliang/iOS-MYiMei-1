@@ -135,7 +135,6 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.bottom.equalToSuperview().offset(-20)
             ConstraintMaker.height.equalTo(44)
         }
-
     }
     
 }

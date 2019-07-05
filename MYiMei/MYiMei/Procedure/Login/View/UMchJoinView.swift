@@ -20,15 +20,15 @@ class UMchJoinView: BaseView {
     //字段说明
     var contactLabel = UILabel()
     var phoneNumberLabel = UILabel()
-    var storeNameLebel = UILabel()
-    var storeCategoryLebel = UILabel()
-    var storeAddressLebel = UILabel()
-    var consumerPhoneLeber = UILabel()
-    var storePhotoLebel = UILabel()
-    var storeBgLebel = UILabel()
-    var storeBgDescriptionLebel = UILabel()
-    var storeLoginLebel = UILabel()
-    var storeLoginDescriptionLebel = UILabel()
+    var storeNameLabel = UILabel()
+    var storeCategoryLabel = UILabel()
+    var storeAddressLabel = UILabel()
+    var consumerPhoneLaber = UILabel()
+    var storePhotoLabel = UILabel()
+    var storeBgLabel = UILabel()
+    var storeBgDescriptionLabel = UILabel()
+    var storeLoginLabel = UILabel()
+    var storeLoginDescriptionLabel = UILabel()
     //输入框
     var contactEdit = UITextField()
     var phoneNumberEdit = UITextField()
@@ -155,11 +155,11 @@ class UMchJoinView: BaseView {
         }
         
         //MARK:店铺名称
-        storeNameLebel.text = "店铺名称"
-        storeNameLebel.tintColor = UIColor.black
-        storeNameLebel.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(storeNameLebel)
-        storeNameLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeNameLabel.text = "店铺名称"
+        storeNameLabel.tintColor = UIColor.black
+        storeNameLabel.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(storeNameLabel)
+        storeNameLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(phoneNumberLine.snp.bottom).offset(14)
         }
@@ -172,7 +172,7 @@ class UMchJoinView: BaseView {
         self.addSubview(storeNameEdit)
         storeNameEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(phoneNumberLine.snp.bottom)
-            ConstraintMaker.left.equalTo(storeNameLebel.snp.right).offset(30)
+            ConstraintMaker.left.equalTo(storeNameLabel.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.width.equalTo(280)
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -188,11 +188,11 @@ class UMchJoinView: BaseView {
         }
         
         //MARK:店铺分类
-        storeCategoryLebel.text = "店铺分类"
-        storeCategoryLebel.textColor = UIColor.black
-        storeCategoryLebel.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(storeCategoryLebel)
-        storeCategoryLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeCategoryLabel.text = "店铺分类"
+        storeCategoryLabel.textColor = UIColor.black
+        storeCategoryLabel.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(storeCategoryLabel)
+        storeCategoryLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(storeNameLine.snp.bottom).offset(14)
         }
@@ -231,11 +231,11 @@ class UMchJoinView: BaseView {
         }
         
         //MARK:店铺地址
-        storeAddressLebel.text = "店铺地址"
-        storeAddressLebel.textColor = UIColor.black
-        storeAddressLebel.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(storeAddressLebel)
-        storeAddressLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeAddressLabel.text = "店铺地址"
+        storeAddressLabel.textColor = UIColor.black
+        storeAddressLabel.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(storeAddressLabel)
+        storeAddressLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(storeCategoryLine.snp.bottom).offset(14)
         }
@@ -295,11 +295,11 @@ class UMchJoinView: BaseView {
         }
         
         //MARK:客服电话
-        consumerPhoneLeber.text = "客服电话"
-        consumerPhoneLeber.textColor = UIColor.black
-        consumerPhoneLeber.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(consumerPhoneLeber)
-        consumerPhoneLeber.snp.makeConstraints { (ConstraintMaker) in
+        consumerPhoneLaber.text = "客服电话"
+        consumerPhoneLaber.textColor = UIColor.black
+        consumerPhoneLaber.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(consumerPhoneLaber)
+        consumerPhoneLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeAddressEditLine.snp.bottom).offset(14)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
@@ -313,7 +313,7 @@ class UMchJoinView: BaseView {
         consumerPhoneEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeAddressEditLine.snp.bottom)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.left.equalTo(consumerPhoneLeber.snp.right).offset(30)
+            ConstraintMaker.left.equalTo(consumerPhoneLaber.snp.right).offset(30)
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
     
@@ -326,10 +326,10 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(consumerPhoneEdit.snp.bottom)
         }
         //MARK:店铺照片
-        storePhotoLebel.text = "店铺照片"
-        storePhotoLebel.textColor = UIColor.hex(hexString: "#808080")
-        self.addSubview(storePhotoLebel)
-        storePhotoLebel.snp.makeConstraints { (ConstraintMaker) in
+        storePhotoLabel.text = "店铺照片"
+        storePhotoLabel.textColor = UIColor.hex(hexString: "#808080")
+        self.addSubview(storePhotoLabel)
+        storePhotoLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(consumerPhoneLine.snp.bottom).offset(19)
         }
@@ -338,17 +338,17 @@ class UMchJoinView: BaseView {
         self.addSubview(whiteBgone)
         whiteBgone.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.height.equalTo(181)
-            ConstraintMaker.top.equalTo(storePhotoLebel.snp.bottom).offset(11)
+            ConstraintMaker.top.equalTo(storePhotoLabel.snp.bottom).offset(11)
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
         }
         
         //MARK:店铺背景
-        storeBgLebel.text = "店铺背景"
-        storeBgLebel.textColor = UIColor.black
-        storeBgLebel.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(storeBgLebel)
-        storeBgLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeBgLabel.text = "店铺背景"
+        storeBgLabel.textColor = UIColor.black
+        storeBgLabel.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(storeBgLabel)
+        storeBgLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(whiteBgone.snp.top).offset(37)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
@@ -357,17 +357,17 @@ class UMchJoinView: BaseView {
         self.addSubview(storeBgBtn)
         storeBgBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.size.equalTo(60)
-            ConstraintMaker.left.equalTo(storeBgLebel.snp.right).offset(55)
+            ConstraintMaker.left.equalTo(storeBgLabel.snp.right).offset(55)
             ConstraintMaker.right.equalTo(-171)
             ConstraintMaker.top.equalTo(whiteBgone.snp.top).offset(15)
         }
-        storeBgDescriptionLebel.text = "顶部店铺背景（支持jpg、jprg、png格式，大小不超过1mb尺寸建议750*300px"
-        storeBgDescriptionLebel.font = UIFont.systemFont(ofSize: 12)
-        storeBgDescriptionLebel.lineBreakMode = .byWordWrapping
-        storeBgDescriptionLebel.numberOfLines = 0
-        storeBgDescriptionLebel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        self.addSubview(storeBgDescriptionLebel)
-        storeBgDescriptionLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeBgDescriptionLabel.text = "顶部店铺背景（支持jpg、jprg、png格式，大小不超过1mb尺寸建议750*300px"
+        storeBgDescriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        storeBgDescriptionLabel.lineBreakMode = .byWordWrapping
+        storeBgDescriptionLabel.numberOfLines = 0
+        storeBgDescriptionLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
+        self.addSubview(storeBgDescriptionLabel)
+        storeBgDescriptionLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(whiteBgone.snp.top).offset(19)
             ConstraintMaker.left.equalTo(storeBgBtn.snp.right).offset(12)
             ConstraintMaker.right.equalToSuperview().offset(-13)
@@ -382,15 +382,15 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview()
         }
 
+
         storeBgBtn.addTarget(self, action: #selector(chooseStoreLogoPicAction), for: UIControl.Event.touchDown)
 
-
         //MARK:店铺logo
-        storeLoginLebel.text = "店铺LOGO"
-        storeLoginLebel.textColor = UIColor.black
-        storeLoginLebel.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(storeLoginLebel)
-        storeLoginLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeLoginLabel.text = "店铺LOGO"
+        storeLoginLabel.textColor = UIColor.black
+        storeLoginLabel.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(storeLoginLabel)
+        storeLoginLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeBgLebelLine.snp.bottom).offset(37)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
@@ -398,18 +398,18 @@ class UMchJoinView: BaseView {
         self.addSubview(storeLogoBtn)
         storeLogoBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeBgLebelLine.snp.bottom).offset(15)
-            ConstraintMaker.left.equalTo(storeLoginLebel.snp.right).offset(40)
+            ConstraintMaker.left.equalTo(storeLoginLabel.snp.right).offset(40)
             ConstraintMaker.size.equalTo(60)
             ConstraintMaker.right.equalTo(-171)
         }
         
-        storeLoginDescriptionLebel.text = "顶部店铺背景（支持jpg、jprg、png格式，大小不超过1mb尺寸建议750*300px"
-        storeLoginDescriptionLebel.font = UIFont.systemFont(ofSize: 12)
-        storeLoginDescriptionLebel.lineBreakMode = .byWordWrapping
-        storeLoginDescriptionLebel.numberOfLines = 0
-        storeLoginDescriptionLebel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        self.addSubview(storeLoginDescriptionLebel)
-        storeLoginDescriptionLebel.snp.makeConstraints { (ConstraintMaker) in
+        storeLoginDescriptionLabel.text = "顶部店铺背景（支持jpg、jprg、png格式，大小不超过1mb尺寸建议750*300px"
+        storeLoginDescriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        storeLoginDescriptionLabel.lineBreakMode = .byWordWrapping
+        storeLoginDescriptionLabel.numberOfLines = 0
+        storeLoginDescriptionLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
+        self.addSubview(storeLoginDescriptionLabel)
+        storeLoginDescriptionLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeBgLebelLine.snp.top).offset(19)
             ConstraintMaker.left.equalTo(storeLogoBtn.snp.right).offset(12)
             ConstraintMaker.right.equalToSuperview().offset(-13)
