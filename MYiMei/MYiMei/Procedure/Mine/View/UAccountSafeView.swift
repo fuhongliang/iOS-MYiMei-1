@@ -30,7 +30,6 @@ class UAccountSafeView: BaseView {
     var bindLine = UIView()
     var accountLine = UIView()
     
-    var submitButton = UIButton()
     
     //MARK:初始化试图控件
     func configUI() {
