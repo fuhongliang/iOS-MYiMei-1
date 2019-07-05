@@ -17,13 +17,10 @@ class UAccountSafeController: UBaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         accountSafeView.configUI()
-        
-        view.addSubview(accountSafeView)
-        accountSafeView.snp.makeConstraints {
-            $0.edges.equalTo(self.view.usnp.edges).priority(.low)
-            $0.top.equalToSuperview()
+        self.view.addSubview(accountSafeView)
+        accountSafeView.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
     }
-    
 
 }
