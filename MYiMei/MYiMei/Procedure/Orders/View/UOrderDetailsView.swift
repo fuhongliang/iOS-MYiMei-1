@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KMPlaceholderTextView
 
 class UOrderDetailsView: BaseView {
     
@@ -28,18 +29,35 @@ class UOrderDetailsView: BaseView {
     var orderAmountRightLaber = UILabel()
     var bgModifypPriceLeftLaber = UILabel()
     var bgModifypPriceRightLaber = UILabel()
+    var actualAmountLeftLaber = UILabel()
+    var actualAmountRightLaber = UILabel()
+    var shopInformationLaber = UILabel()
+    var commodityNameLaber = UILabel()
+    var commoditySpecificationLaber = UILabel()
+    var commodityPriceLaber = UILabel()
+    var commodityNumberLaber = UILabel()
+    var leaveCommentsLeftLaber = UILabel()
+    var leaveCommentsRightLaber = UILabel()
+    var sellerLaber = UILabel()
     //背景
     var headBg = UIImageView()
     var orderStatusBg = UIImageView()
     var orderDetailsBg = UIImageView()
+    var shopInformationBg = UIImageView()
     //分割线
     var orderDetailsLine = UILabel()
     var userLine = UILabel()
     var payLine = UILabel()
+    var shopInformationLine = UILabel()
+    var commodityLine = UILabel()
     //图标
     var receiptIcon = UIImageView()
     var addressIcon = UIImageView()
-    
+    var commodityIcon = UIImageView()
+    //描述
+    var sellerEdit = KMPlaceholderTextView()
+    //按钮
+    var orderButton = UIButton()
     
     func setView()  {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
@@ -76,7 +94,7 @@ class UOrderDetailsView: BaseView {
         orderDetailsBg.layer.cornerRadius = 4
         self.addSubview(orderDetailsBg)
         orderDetailsBg.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.height.equalTo(308)
+            ConstraintMaker.height.equalTo(348)
             ConstraintMaker.top.equalTo(orderStatusBg.snp.bottom).offset(15)
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -263,6 +281,164 @@ class UOrderDetailsView: BaseView {
         bgModifypPriceRightLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(orderAmountRightLaber.snp.bottom).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-30)
+        }
+        //MARK:实付金额
+        actualAmountLeftLaber.text = "实付金额"
+        actualAmountLeftLaber.textColor = UIColor.hex(hexString: "#999999")
+        actualAmountLeftLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(actualAmountLeftLaber)
+        actualAmountLeftLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(bgModifypPriceLeftLaber.snp.bottom).offset(10)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+        }
+        actualAmountRightLaber.text = "589.00元"
+        actualAmountRightLaber.textColor = UIColor.hex(hexString: "#FF4444")
+        actualAmountRightLaber.font = UIFont.boldSystemFont(ofSize: 14)
+        self.addSubview(actualAmountRightLaber)
+        actualAmountRightLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(bgModifypPriceRightLaber.snp.bottom).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-30)
+        }
+        //MARK:商品信息背景
+        shopInformationBg.backgroundColor = UIColor.white
+        shopInformationBg.layer.cornerRadius = 4
+        self.addSubview(shopInformationBg)
+        shopInformationBg.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(335)
+            ConstraintMaker.top.equalTo(orderDetailsBg.snp.bottom).offset(15)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+        }
+        //MARK:商品信息
+        shopInformationLaber.text = "商品信息"
+        shopInformationLaber.textColor = UIColor.black
+        shopInformationLaber.font = UIFont.boldSystemFont(ofSize: 18)
+        self.addSubview(shopInformationLaber)
+        shopInformationLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(shopInformationBg.snp.top).offset(15)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+        }
+         //MARK:商品分割线
+        shopInformationLine.backgroundColor = UIColor.hex(hexString: "#f2F2F2")
+        self.addSubview(shopInformationLine)
+        shopInformationLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(shopInformationLaber.snp.bottom).offset(12)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+        }
+        //MARK:商品图片
+        commodityIcon.image = UIImage.init(named: "apply_status")
+        self.addSubview(commodityIcon)
+        commodityIcon.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.size.equalTo(61)
+            ConstraintMaker.top.equalTo(shopInformationLine.snp.bottom).offset(15)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+        }
+        //MARK:商品名称
+        commodityNameLaber.text = "商品名称名称名称"
+        commodityNameLaber.textColor = UIColor.black
+        commodityNameLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(commodityNameLaber)
+        commodityNameLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(shopInformationLine.snp.bottom).offset(15)
+            ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
+        }
+        
+        //MARK:商品规格
+        commoditySpecificationLaber.text = "规格: 默认"
+        commoditySpecificationLaber.textColor = UIColor.hex(hexString: "#999999")
+        commoditySpecificationLaber.font = UIFont.systemFont(ofSize: 13)
+        self.addSubview(commoditySpecificationLaber)
+        commoditySpecificationLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commodityNameLaber.snp.bottom).offset(10)
+            ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
+        }
+        //MARK:商品价格
+        commodityPriceLaber.text = "￥43843.00"
+        commodityPriceLaber.textColor = UIColor.black
+        commodityPriceLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(commodityPriceLaber)
+        commodityPriceLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commoditySpecificationLaber.snp.bottom).offset(10)
+            ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
+        }
+        //MARK:商品数量
+        commodityNumberLaber.text = "x2"
+        commodityNumberLaber.textColor = UIColor.hex(hexString: "#999999")
+        commodityNumberLaber.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(commodityNumberLaber)
+        commodityNumberLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-30)
+            ConstraintMaker.top.equalTo(commodityNameLaber.snp.bottom).offset(37)
+        }
+        //MARK:商品分割线
+        commodityLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
+        self.addSubview(commodityLine)
+        commodityLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+            ConstraintMaker.right.equalToSuperview().offset(-30)
+            ConstraintMaker.top.equalTo(commodityPriceLaber.snp.bottom).offset(15)
+        }
+        //MARK:买家留言
+        leaveCommentsLeftLaber.text = "买家留言 : "
+        leaveCommentsLeftLaber.textColor = UIColor.hex(hexString: "#999999")
+        leaveCommentsLeftLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(leaveCommentsLeftLaber)
+        leaveCommentsLeftLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commodityLine.snp.bottom).offset(14)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+        }
+        //MARK:买家留言右边内容
+        leaveCommentsRightLaber.text  = "我这边比较着急，请快点配送"
+        leaveCommentsRightLaber.textColor = UIColor.hex(hexString: "#333333")
+        leaveCommentsRightLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(leaveCommentsRightLaber)
+        leaveCommentsRightLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(commodityLine.snp.bottom).offset(14)
+            ConstraintMaker.left.equalTo(leaveCommentsLeftLaber.snp.right).offset(8)
+        }
+        //MARK:卖家备注
+        sellerLaber.text = "卖家备注"
+        sellerLaber.textColor = UIColor.hex(hexString: "#999999")
+        sellerLaber.font = UIFont.systemFont(ofSize: 14)
+        self.addSubview(sellerLaber)
+        sellerLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(leaveCommentsLeftLaber.snp.bottom).offset(13)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+        }
+        
+        //MARK:备注描述
+        sellerEdit.textColor = UIColor.black
+        sellerEdit.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        sellerEdit.font = UIFont.systemFont(ofSize: 17)
+        sellerEdit.placeholder = "请输入 (选填)"
+        sellerEdit.layer.borderColor = UIColor.hex(hexString: "#F2F2F2").cgColor
+        sellerEdit.layer.borderWidth = 1
+        sellerEdit.layer.cornerRadius = 2
+        sellerEdit.placeholderFont = UIFont.systemFont(ofSize: 14)
+        self.addSubview(sellerEdit)
+        sellerEdit.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(30)
+            ConstraintMaker.right.equalToSuperview().offset(-30)
+            ConstraintMaker.height.equalTo(100)
+            ConstraintMaker.top.equalTo(sellerLaber.snp.bottom).offset(10)
+        }
+        //MARK:确定按钮
+        orderButton.setTitle("确定", for: UIControl.State.normal)
+        orderButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        orderButton.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        orderButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        orderButton.layer.masksToBounds = true
+        orderButton.layer.cornerRadius = 3
+        self.addSubview(orderButton)
+        orderButton.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.top.equalTo(shopInformationBg.snp.bottom).offset(31)
+//            ConstraintMaker.bottom.equalToSuperview().offset(-31)
         }
         
     }
