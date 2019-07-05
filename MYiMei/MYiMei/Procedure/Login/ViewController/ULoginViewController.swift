@@ -116,9 +116,11 @@ extension ULoginViewController: ULoginViewDelegate {
         })
     }
 
+    //MARK:申请入驻
     func tapApplyAction() {
-        let rootVC = UIApplication.shared.delegate as! AppDelegate
-        rootVC.window?.rootViewController = UMechJoinViewController()
+        let vc = UMechJoinViewController()
+        vc.title = "申请入驻"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func okTapAction(phoneNumber: String, password: String) {

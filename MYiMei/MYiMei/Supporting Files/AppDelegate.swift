@@ -24,15 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = UTabBarController()
         }
         else {
-            //let loginVC = ULoginViewController()
-            //let nav = UINavigationController.init(rootViewController: loginVC)
-            //self.window?.rootViewController = nav
+            let loginVC = ULoginViewController()
+            let nav = UINavigationController.init(rootViewController: loginVC)
+            self.window?.rootViewController = nav
           
             //测试
-            let vc = UOrdersViewController()
-            let nav = UINavigationController.init(rootViewController: vc)
-            self.window?.rootViewController = nav
-            
+//            let vc = UOrdersViewController()
+//            let nav = UINavigationController.init(rootViewController: vc)
+//            self.window?.rootViewController = nav
+
         }
         
         window?.makeKeyAndVisible()
