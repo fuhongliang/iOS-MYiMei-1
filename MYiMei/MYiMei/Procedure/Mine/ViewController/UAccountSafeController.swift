@@ -9,8 +9,18 @@
 import UIKit
 
 class UAccountSafeController: UBaseViewController{
-    let accountSafe = UAccountSafe()
     
+    let accountSafeView = UAccountSafeView()
     
+    var title：String = "账号与安全"
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        accountSafeView.configUI()
+        self.view.addSubview(accountSafeView)
+        accountSafeView.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        }
+    }
+
 }
