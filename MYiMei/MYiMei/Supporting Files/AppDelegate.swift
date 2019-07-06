@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         APIUser.shared.loadUserFromCache()
         if APIUser.shared.user != nil {
             self.window?.rootViewController = UTabBarController()
-        }
-        else {
+        }else {
             //测试
             let vc = UMechJoinViewController()
             let nav = UINavigationController.init(rootViewController: vc)

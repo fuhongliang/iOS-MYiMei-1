@@ -17,7 +17,6 @@
 		0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
 		0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */; };
-		51CC7D5C866E47D8F00CFD1A /* Pods_MYiMeiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31701B64D1B6B80CEF3E67 /* Pods_MYiMeiUITests.framework */; };
 		7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */; };
 		7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */; };
 		7B41456622C4DABE00BB61D0 /* GoodsResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */; };
@@ -62,8 +61,8 @@
 		7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB356322C1F62800154D36 /* UMenuStoreSettings.swift */; };
 		7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */; };
 		7BAB356922C224E800154D36 /* UGoodsManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB356822C224E800154D36 /* UGoodsManagementController.swift */; };
+		7BDCAB1322D07BF10002B7F1 /* CustomPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCAB1222D07BF10002B7F1 /* CustomPhotoPickerViewController.swift */; };
 		95A2174AE09F7C516201A271 /* Pods_MYiMei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */; };
-		CF7C06D130AC9F961049005E /* Pods_MYiMeiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62B6F92D429D5C8A8539BF5 /* Pods_MYiMeiTests.framework */; };
 		DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14816A22CD95A100018EED /* UAccountSafeView.swift */; };
 		DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */; };
 		DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */; };
@@ -105,9 +104,7 @@
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsViewController.swift; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		26F6F330D409A31D0712434E /* Pods-MYiMeiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiTests.release.xcconfig"; path = "Target Support Files/Pods-MYiMeiTests/Pods-MYiMeiTests.release.xcconfig"; sourceTree = "<group>"; };
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
-		6A31701B64D1B6B80CEF3E67 /* Pods_MYiMeiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMeiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGoodsServices.swift; sourceTree = "<group>"; };
 		7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsResponeModel.swift; sourceTree = "<group>"; };
@@ -156,9 +153,8 @@
 		7BAB356322C1F62800154D36 /* UMenuStoreSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMenuStoreSettings.swift; sourceTree = "<group>"; };
 		7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMenuBusinessData.swift; sourceTree = "<group>"; };
 		7BAB356822C224E800154D36 /* UGoodsManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsManagementController.swift; sourceTree = "<group>"; };
+		7BDCAB1222D07BF10002B7F1 /* CustomPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerViewController.swift; sourceTree = "<group>"; };
 		80184B4DF6FA1EBEDC3C8DC7 /* Pods-MYiMei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.debug.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.debug.xcconfig"; sourceTree = "<group>"; };
-		9CD7C361C6A839242521BFB7 /* Pods-MYiMeiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiUITests.release.xcconfig"; path = "Target Support Files/Pods-MYiMeiUITests/Pods-MYiMeiUITests.release.xcconfig"; sourceTree = "<group>"; };
-		DA0A1ADB4777B0C95F6DC620 /* Pods-MYiMeiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiUITests.debug.xcconfig"; path = "Target Support Files/Pods-MYiMeiUITests/Pods-MYiMeiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14816A22CD95A100018EED /* UAccountSafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeView.swift; sourceTree = "<group>"; };
 		DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordView.swift; sourceTree = "<group>"; };
 		DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordController.swift; sourceTree = "<group>"; };
@@ -169,8 +165,6 @@
 		DC221C8B22CF4462003A4053 /* UShopLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelCell.swift; sourceTree = "<group>"; };
 		DC221C8D22CF46D9003A4053 /* UShopLabelImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelImgCell.swift; sourceTree = "<group>"; };
 		DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeController.swift; sourceTree = "<group>"; };
-		E06B0B4CD916C06D8A31E45A /* Pods-MYiMeiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiTests.debug.xcconfig"; path = "Target Support Files/Pods-MYiMeiTests/Pods-MYiMeiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F62B6F92D429D5C8A8539BF5 /* Pods_MYiMeiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMeiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +180,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7C06D130AC9F961049005E /* Pods_MYiMeiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +187,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51CC7D5C866E47D8F00CFD1A /* Pods_MYiMeiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,10 +216,6 @@
 			children = (
 				80184B4DF6FA1EBEDC3C8DC7 /* Pods-MYiMei.debug.xcconfig */,
 				37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */,
-				E06B0B4CD916C06D8A31E45A /* Pods-MYiMeiTests.debug.xcconfig */,
-				26F6F330D409A31D0712434E /* Pods-MYiMeiTests.release.xcconfig */,
-				DA0A1ADB4777B0C95F6DC620 /* Pods-MYiMeiUITests.debug.xcconfig */,
-				9CD7C361C6A839242521BFB7 /* Pods-MYiMeiUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -236,8 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */,
-				F62B6F92D429D5C8A8539BF5 /* Pods_MYiMeiTests.framework */,
-				6A31701B64D1B6B80CEF3E67 /* Pods_MYiMeiUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -460,6 +446,7 @@
 		7BAB355322C1B3FD00154D36 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7BDCAB1122D07BDB0002B7F1 /* CustomPhotoPicker */,
 				7BAB357322C24B4700154D36 /* EmptyDataSet */,
 				7BAB357022C249BD00154D36 /* Refresh */,
 				7BAB355422C1B8AE00154D36 /* ParallaxHeader */,
@@ -524,6 +511,14 @@
 			path = EmptyDataSet;
 			sourceTree = "<group>";
 		};
+		7BDCAB1122D07BDB0002B7F1 /* CustomPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				7BDCAB1222D07BF10002B7F1 /* CustomPhotoPickerViewController.swift */,
+			);
+			path = CustomPhotoPicker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -550,7 +545,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BAB351622C0AE1400154D36 /* Build configuration list for PBXNativeTarget "MYiMeiTests" */;
 			buildPhases = (
-				070F4BCFB823BC540C681CFD /* [CP] Check Pods Manifest.lock */,
 				7BAB34FB22C0AE1400154D36 /* Sources */,
 				7BAB34FC22C0AE1400154D36 /* Frameworks */,
 				7BAB34FD22C0AE1400154D36 /* Resources */,
@@ -569,7 +563,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BAB351922C0AE1400154D36 /* Build configuration list for PBXNativeTarget "MYiMeiUITests" */;
 			buildPhases = (
-				6D964511138737FED22A765C /* [CP] Check Pods Manifest.lock */,
 				7BAB350622C0AE1400154D36 /* Sources */,
 				7BAB350722C0AE1400154D36 /* Frameworks */,
 				7BAB350822C0AE1400154D36 /* Resources */,
@@ -655,28 +648,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		070F4BCFB823BC540C681CFD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MYiMeiTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0AE738F0C2BAF6BF5411ADED /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -692,28 +663,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MYiMei/Pods-MYiMei-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6D964511138737FED22A765C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MYiMeiUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DB11778ADE98121142040A8E /* [CP] Check Pods Manifest.lock */ = {
@@ -793,6 +742,7 @@
 				7BAB352422C0C76400154D36 /* APIToken.swift in Sources */,
 				7BAB352D22C0D00400154D36 /* BaseView.swift in Sources */,
 				7BAB355622C1B8BF00154D36 /* ParallaxHeaderMode.swift in Sources */,
+				7BDCAB1322D07BF10002B7F1 /* CustomPhotoPickerViewController.swift in Sources */,
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
 				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
@@ -1016,7 +966,6 @@
 		};
 		7BAB351722C0AE1400154D36 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E06B0B4CD916C06D8A31E45A /* Pods-MYiMeiTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1038,7 +987,6 @@
 		};
 		7BAB351822C0AE1400154D36 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26F6F330D409A31D0712434E /* Pods-MYiMeiTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1060,7 +1008,6 @@
 		};
 		7BAB351A22C0AE1400154D36 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA0A1ADB4777B0C95F6DC620 /* Pods-MYiMeiUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1081,7 +1028,6 @@
 		};
 		7BAB351B22C0AE1400154D36 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CD7C361C6A839242521BFB7 /* Pods-MYiMeiUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

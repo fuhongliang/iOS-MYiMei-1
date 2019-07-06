@@ -12,6 +12,7 @@ import UIKit
 protocol UMchJoinViewDelegate: AnyObject {
     func tapChooseStoreLogoPicAction()
     func tapChooseStoreBgPicAction()
+    func tapPushApply()
 }
 
 class UMchJoinView: BaseView {
@@ -42,7 +43,7 @@ class UMchJoinView: BaseView {
     var storeCategoryLine = UILabel()
     var storeAddressLine = UILabel()
     var storeAddressEditLine = UILabel()
-    var consumerPhoneLine = UILabel()
+
     var storeBgLebelLine = UILabel()
     var storeLoginLine = UILabel()
     //背景
@@ -318,21 +319,14 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
     
-        consumerPhoneLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
-        self.addSubview(consumerPhoneLine)
-        consumerPhoneLine.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.height.equalTo(1)
-            ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalTo(consumerPhoneEdit.snp.bottom)
-        }
+
         //MARK:店铺照片
         storePhotoLabel.text = "店铺照片"
         storePhotoLabel.textColor = UIColor.hex(hexString: "#808080")
         self.addSubview(storePhotoLabel)
         storePhotoLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalTo(consumerPhoneLine.snp.bottom).offset(19)
+            ConstraintMaker.top.equalTo(whiteBg.snp.bottom).offset(19)
         }
         //MARK:第二块白色背景图
         whiteBgone.backgroundColor = UIColor.white
@@ -384,7 +378,7 @@ class UMchJoinView: BaseView {
         }
 
 
-        storeBgBtn.addTarget(self, action: #selector(chooseStoreLogoPicAction), for: UIControl.Event.touchDown)
+        storeBgBtn.addTarget(self, action: #selector(chooseStoreBgPicAction), for: UIControl.Event.touchDown)
 
         //MARK:店铺logo
         storeLoginLabel.text = "店铺LOGO"
@@ -403,7 +397,8 @@ class UMchJoinView: BaseView {
             ConstraintMaker.size.equalTo(60)
             ConstraintMaker.right.equalTo(-171)
         }
-        
+        storeLogoBtn.addTarget(self, action: #selector(chooseStoreLogoPicAction), for: UIControl.Event.touchDown)
+
         storeLoginDescriptionLabel.text = "顶部店铺背景（支持jpg、jprg、png格式，大小不超过1mb尺寸建议750*300px"
         storeLoginDescriptionLabel.font = UIFont.systemFont(ofSize: 12)
         storeLoginDescriptionLabel.lineBreakMode = .byWordWrapping
@@ -416,9 +411,6 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-13)
         }
         storeLogoBtn.addTarget(self, action: #selector(chooseStoreLogoPicAction), for: UIControl.Event.touchDown)
-
-
-
 
          //MARK:提交审核
         joinButton.backgroundColor = UIColor.hex(hexString: "#1C98F6")
@@ -434,9 +426,18 @@ class UMchJoinView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
         }
+        joinButton.addTarget(self, action: #selector(pushAppyAction), for: UIControl.Event.touchDown)
     }
 
     @objc func chooseStoreLogoPicAction() {
         delegate?.tapChooseStoreLogoPicAction()
+    }
+
+    @objc func chooseStoreBgPicAction() {
+        delegate?.tapChooseStoreBgPicAction()
+    }
+
+    @objc func pushAppyAction() {
+        delegate?.tapPushApply()
     }
 }
