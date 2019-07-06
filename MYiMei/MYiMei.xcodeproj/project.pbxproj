@@ -10,6 +10,9 @@
 		0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6C522C9AF09003F4B53 /* UMchJoinView.swift */; };
 		0A0FF6C822CA013C003F4B53 /* UMechJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */; };
 		0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */; };
+		0AB057A522D098AC002B7E40 /* UmanagementClassificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057A422D098AC002B7E40 /* UmanagementClassificationCell.swift */; };
+		0AB057A722D09924002B7E40 /* UManagementClassificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057A622D09924002B7E40 /* UManagementClassificationController.swift */; };
+		0AB057A922D09BCA002B7E40 /* UReiviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057A822D09BCA002B7E40 /* UReiviewView.swift */; };
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
 		0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
@@ -94,6 +97,9 @@
 		0A0FF6C522C9AF09003F4B53 /* UMchJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMchJoinView.swift; sourceTree = "<group>"; };
 		0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMechJoinViewController.swift; sourceTree = "<group>"; };
 		0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UReviewControiller.swift; sourceTree = "<group>"; };
+		0AB057A422D098AC002B7E40 /* UmanagementClassificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmanagementClassificationCell.swift; sourceTree = "<group>"; };
+		0AB057A622D09924002B7E40 /* UManagementClassificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UManagementClassificationController.swift; sourceTree = "<group>"; };
+		0AB057A822D09BCA002B7E40 /* UReiviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UReiviewView.swift; sourceTree = "<group>"; };
 		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
 		0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -404,6 +410,7 @@
 			children = (
 				7BAB354922C0D87100154D36 /* ULoginView.swift */,
 				0A0FF6C522C9AF09003F4B53 /* UMchJoinView.swift */,
+				0AB057A822D09BCA002B7E40 /* UReiviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,6 +493,7 @@
 				7B41456B22C4DB3700BB61D0 /* UBottomTab.swift */,
 				7B9EB94322C3348F003D9121 /* UGoodsCell.swift */,
 				7B9EB94922C4988E003D9121 /* UGoodsDetailView.swift */,
+				0AB057A422D098AC002B7E40 /* UmanagementClassificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -494,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				7BAB356822C224E800154D36 /* UGoodsManagementController.swift */,
+				0AB057A622D09924002B7E40 /* UManagementClassificationController.swift */,
 				7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */,
 			);
 			path = ViewController;
@@ -750,6 +759,7 @@
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,
 				7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */,
 				7BAB355222C1B37100154D36 /* UBaseTableViewCell.swift in Sources */,
+				0AB057A722D09924002B7E40 /* UManagementClassificationController.swift in Sources */,
 				7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */,
 				7BAB354C22C0FAF400154D36 /* APIUserServices.swift in Sources */,
 				DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */,
@@ -765,9 +775,11 @@
 				0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */,
 				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
+				0AB057A522D098AC002B7E40 /* UmanagementClassificationCell.swift in Sources */,
 				7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */,
 				0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */,
 				7BAB356222C1F5EF00154D36 /* UMenuGoodsManagement.swift in Sources */,
+				0AB057A922D09BCA002B7E40 /* UReiviewView.swift in Sources */,
 				DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */,
 				7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */,
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,

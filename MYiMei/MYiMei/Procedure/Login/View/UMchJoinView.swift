@@ -107,7 +107,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(whiteBg.snp.top)
             ConstraintMaker.left.equalTo(contactLabel.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(280)
+            ConstraintMaker.width.equalTo(240)
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
         
@@ -141,7 +141,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(contactLine.snp.top)
             ConstraintMaker.left.equalTo(phoneNumberLabel.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(280)
+            ConstraintMaker.width.equalTo(240)
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
 
@@ -174,7 +174,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(phoneNumberLine.snp.bottom)
             ConstraintMaker.left.equalTo(storeNameLabel.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(280)
+            ConstraintMaker.width.equalTo(240)
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
         
@@ -207,7 +207,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeNameLine.snp.bottom)
             ConstraintMaker.left.equalTo(storeCategoryDialog.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(260)
+            ConstraintMaker.width.equalTo(240)
             ConstraintMaker.right.equalToSuperview().offset(-33)
         }
         
@@ -250,7 +250,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeCategoryLine.snp.bottom)
             ConstraintMaker.left.equalTo(storeAddressDialog.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(260)
+            ConstraintMaker.width.equalTo(240)
             ConstraintMaker.right.equalToSuperview().offset(-33)
         }
 
@@ -313,6 +313,7 @@ class UMchJoinView: BaseView {
         consumerPhoneEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeAddressEditLine.snp.bottom)
             ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(240)
             ConstraintMaker.left.equalTo(consumerPhoneLaber.snp.right).offset(30)
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
