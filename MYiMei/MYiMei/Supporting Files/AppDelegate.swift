@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
             //测试
-            let vc = UAccountSafeController()
+            let vc = USetUpShopController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
         }

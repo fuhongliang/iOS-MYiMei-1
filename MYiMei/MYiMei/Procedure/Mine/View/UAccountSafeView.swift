@@ -30,6 +30,7 @@ class UAccountSafeView: BaseView {
     var bindLine = UIView()
     var accountLine = UIView()
     
+    var submitButton = UIButton()
     
     //MARK:初始化试图控件
     func configUI() {
@@ -42,7 +43,7 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(134)
+            ConstraintMaker.height.equalTo(145)
         }
         
         //MARK:绑定手机
@@ -56,14 +57,14 @@ class UAccountSafeView: BaseView {
         }
         
         //MARK:手机号
-        phoneNumberLabel.text = "13265345992"
+        phoneNumberLabel.text = "132****5992"
         phoneNumberLabel.textColor = UIColor.hex(hexString: "#666666")
         phoneNumberLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(phoneNumberLabel)
         phoneNumberLabel.snp.makeConstraints { (ConstraintMaker) in
            ConstraintMaker.top.equalTo(backgroundWhite.snp.top).offset(14)
-            ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.left.equalTo(bindPhoneLabel.snp.right).offset(10)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
         }
         
         //MARK:绑定手机分割线
@@ -71,7 +72,7 @@ class UAccountSafeView: BaseView {
         self.addSubview(bindLine)
         bindLine.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalToSuperview().offset(44)
+            ConstraintMaker.top.equalTo(phoneNumberLabel.snp.bottom).offset(14)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(1)
         }
@@ -85,7 +86,7 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.top.equalTo(bindLine.snp.bottom).offset(14)
         }
 
-        accountNameLabel.text = "yuyixin123456"
+        accountNameLabel.text = "yuy****456"
         accountNameLabel.textColor = UIColor.hex(hexString: "#666666")
         accountNameLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(accountNameLabel)
@@ -99,7 +100,7 @@ class UAccountSafeView: BaseView {
         self.addSubview(accountLine)
         accountLine.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalToSuperview().offset(88)
+            ConstraintMaker.top.equalTo(loginAccountLabel.snp.bottom).offset(14)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(1)
         }
@@ -125,7 +126,7 @@ class UAccountSafeView: BaseView {
         submitButton.setTitle("退出登录", for: .normal)
         submitButton.titleLabel?.textColor = UIColor.white
         submitButton.clipsToBounds = true
-        submitButton.layer.cornerRadius = 3
+        submitButton.layer.cornerRadius = 4
         submitButton.backgroundColor = UIColor.hex(hexString: "#1C98F6")
         self.addSubview(submitButton)
         submitButton.snp.makeConstraints { (ConstraintMaker) in
