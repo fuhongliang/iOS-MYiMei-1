@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol UAccountSafeViewDelegate: AnyObject {
+    func tapLogoutAction()
+}
+
 class UAccountSafeView: BaseView {
     //MARK:申明各种控件变量
-    
+    weak var delegate: UAccountSafeViewDelegate?
+
     //白色背景
     var backgroundWhite = UIImageView()
     
@@ -135,6 +140,11 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.bottom.equalToSuperview().offset(-20)
             ConstraintMaker.height.equalTo(44)
         }
+        submitButton.addTarget(self, action: #selector(logoutAction), for: UIControl.Event.touchDown)
     }
-    
+
+    @objc func logoutAction() {
+        delegate?.tapLogoutAction()
+    }
 }
+

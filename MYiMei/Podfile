@@ -1,21 +1,12 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
+platform :ios, '9.1'
 
 target 'MYiMei' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  inhibit_all_warnings!
   # Pods for MYiMei
-
-  target 'MYiMeiTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'MYiMeiUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
 pod 'Then'
 pod 'SnapKit', '~> 5.0.0'
@@ -29,5 +20,5 @@ pod 'IQKeyboardManagerSwift'
 pod 'EmptyDataSet-Swift'
 pod 'KMPlaceholderTextView', '~> 1.4.0'
 pod 'BSImagePicker', '~> 2.10.0'
-
+pod 'TLPhotoPicker', '~> 1.8.9'
 end

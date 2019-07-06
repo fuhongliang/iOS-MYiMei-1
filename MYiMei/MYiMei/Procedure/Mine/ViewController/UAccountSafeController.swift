@@ -16,6 +16,7 @@ class UAccountSafeController: UBaseViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        accountSafeView.delegate = self
         accountSafeView.configUI()
         self.view.addSubview(accountSafeView)
         accountSafeView.snp.makeConstraints { (ConstraintMaker) in
@@ -23,4 +24,26 @@ class UAccountSafeController: UBaseViewController{
         }
     }
 
+    func showAlertControllerStyle() {
+        let alertController = UIAlertController(title: "温馨提示", message: "是否确定退出登录？", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+            (action: UIAlertAction!) -> Void in
+            self.logout()
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func logout() -> Void {
+        APIUser.shared.cleanUser()
+        (UIApplication.shared.delegate as! AppDelegate).showLoginView()
+    }
+}
+
+extension UAccountSafeController: UAccountSafeViewDelegate {
+    func tapLogoutAction() {
+        self.showAlertControllerStyle()
+    }
 }
