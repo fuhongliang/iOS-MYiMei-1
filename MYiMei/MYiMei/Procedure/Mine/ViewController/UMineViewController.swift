@@ -118,6 +118,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             cell.subscribeBusinessDataAction = {
                 NSLog("经营数据被点击了")
             }
+            
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UBaseTableViewCell.self)
@@ -135,9 +136,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
-            let vc = UAccountSafeController()
-            vc.title = "账号与安全"
-            navigationController?.pushViewController(vc, animated: true)
+            self.goToAccountSafe()
         }else if indexPath.row == 0{
             //            let vc = UModifyProfileViewController()
             //            let sectionArray = myArray[indexPath.section]
