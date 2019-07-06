@@ -63,6 +63,8 @@
 		95A2174AE09F7C516201A271 /* Pods_MYiMei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */; };
 		CF7C06D130AC9F961049005E /* Pods_MYiMeiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62B6F92D429D5C8A8539BF5 /* Pods_MYiMeiTests.framework */; };
 		DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14816A22CD95A100018EED /* UAccountSafeView.swift */; };
+		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
+		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
 		DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */; };
 		DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */; };
 		DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8122CF02FE003A4053 /* UFeedBackView.swift */; };
@@ -156,6 +158,8 @@
 		9CD7C361C6A839242521BFB7 /* Pods-MYiMeiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiUITests.release.xcconfig"; path = "Target Support Files/Pods-MYiMeiUITests/Pods-MYiMeiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DA0A1ADB4777B0C95F6DC620 /* Pods-MYiMeiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMeiUITests.debug.xcconfig"; path = "Target Support Files/Pods-MYiMeiUITests/Pods-MYiMeiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14816A22CD95A100018EED /* UAccountSafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeView.swift; sourceTree = "<group>"; };
+		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
+		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
 		DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordView.swift; sourceTree = "<group>"; };
 		DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordController.swift; sourceTree = "<group>"; };
 		DC221C8122CF02FE003A4053 /* UFeedBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFeedBackView.swift; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 				7B41456B22C4DB3700BB61D0 /* UBottomTab.swift */,
 				7B9EB94322C3348F003D9121 /* UGoodsCell.swift */,
 				7B9EB94922C4988E003D9121 /* UGoodsDetailView.swift */,
+				DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 			children = (
 				7BAB356822C224E800154D36 /* UGoodsManagementController.swift */,
 				7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */,
+				DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -760,6 +766,7 @@
 				0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */,
 				7B41456622C4DABE00BB61D0 /* GoodsResponeModel.swift in Sources */,
 				7B41456C22C4DB3700BB61D0 /* UBottomTab.swift in Sources */,
+				DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
 				7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */,
 				7BAB356922C224E800154D36 /* UGoodsManagementController.swift in Sources */,
@@ -778,6 +785,7 @@
 				0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */,
 				7BAB355022C1AF4600154D36 /* UMineHead.swift in Sources */,
 				7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */,
+				DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */,
 				7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */,
 				7BAB355C22C1C93000154D36 /* UStoreEventsCell.swift in Sources */,
 				7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */,

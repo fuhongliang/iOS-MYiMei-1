@@ -45,7 +45,7 @@ class UGoodsDetailsController: UBaseViewController {
         scrollView.showsVerticalScrollIndicator = false
         goodsDetailView.snp.updateConstraints { (make) -> Void in
             make.width.equalTo(screenWidth)
-            make.height.equalTo(1125)
+            make.height.equalTo(1202)
             make.top.equalTo(scrollView)
             make.leading.equalTo(scrollView)
             make.trailing.equalTo(scrollView)

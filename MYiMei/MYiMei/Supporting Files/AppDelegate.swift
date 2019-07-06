@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
             //测试
-            let vc = USetUpShopController()
+            let vc = UClassEditController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
         }
