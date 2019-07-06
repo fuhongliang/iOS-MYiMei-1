@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import KMPlaceholderTextView
 
 class UOrderDetailsView: BaseView {
@@ -59,6 +60,26 @@ class UOrderDetailsView: BaseView {
     //按钮
     var orderButton = UIButton()
     
+    //订单字段
+    var orderPushLaber = UILabel()
+    var orderPayLaber = UILabel()
+    var orderShippingLaber = UILabel()
+    var orderFinishLaber = UILabel()
+    
+    var orderPushTimeLaber = UILabel()
+    var orderPayTimeLaber = UILabel()
+    var orderShippingTimeLaber = UILabel()
+    var orderFinishTimeLaber = UILabel()
+    
+    //订单图标
+    var orderPushIcon = UIImageView()
+    var orderPayIcon = UIImageView()
+    var orderShippiingIcon = UIImageView()
+    var orderFinishIcon = UIImageView()
+    //订单进度条
+     var orderPushLiner = UILabel()
+    var orderPayLine = UILabel()
+    var orderShippingLine = UILabel()
     func setView()  {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         //MARK:头部背景
@@ -79,6 +100,8 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.top.equalTo(headBg.snp.top).offset(19)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
+        
+        
         //MARK:订单状态背景
         orderStatusBg.backgroundColor = UIColor.white
         orderStatusBg.layer.cornerRadius = 4
@@ -89,6 +112,161 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.top.equalTo(orderStatusLaber.snp.bottom).offset(15)
         }
+        
+     
+        //MARK:提交订单
+        orderPushLaber.text = "提交订单"
+        orderPushLaber.textColor = UIColor.black
+        orderPushLaber.font = UIFont.systemFont(ofSize: 12)
+        orderPushLaber.textAlignment = .center
+        self.addSubview(orderPushLaber)
+        orderPushLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(orderStatusBg.snp.left)
+            ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
+            ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
+        }
+        
+        orderPushIcon.image = UIImage.init(named: "order_status")
+        self.addSubview(orderPushIcon)
+        orderPushIcon.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.bottom.equalTo(orderPushLaber.snp.top).offset(-12)
+            ConstraintMaker.width.height.equalTo(20)
+            ConstraintMaker.centerX.equalTo(orderPushLaber)
+        }
+        
+        orderPushTimeLaber.text = "2019.06.11 10:22"
+        orderPushTimeLaber.textColor = UIColor.hex(hexString: "#999999")
+        orderPushTimeLaber.font = UIFont.systemFont(ofSize: 11)
+        orderPushTimeLaber.textAlignment = .center
+        orderPushTimeLaber.numberOfLines = 2
+        self.addSubview(orderPushTimeLaber)
+        orderPushTimeLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(orderPushLaber.snp.bottom).offset(11)
+            ConstraintMaker.centerX.equalTo(orderPushLaber)
+            ConstraintMaker.width.equalTo(56)
+        }
+        
+        
+        //MARK:支付订单
+        orderPayLaber.text = "支付订单"
+        orderPayLaber.textColor = UIColor.black
+        orderPayLaber.font = UIFont.systemFont(ofSize: 12)
+        orderPayLaber.textAlignment = .center
+        self.addSubview(orderPayLaber)
+        orderPayLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(orderPushLaber.snp.right)
+            ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
+            ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
+        }
+        orderPayIcon.image = UIImage.init(named: "order_status")
+        self.addSubview(orderPayIcon)
+        orderPayIcon.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.bottom.equalTo(orderPayLaber.snp.top).offset(-12)
+            ConstraintMaker.width.height.equalTo(20)
+            ConstraintMaker.centerX.equalTo(orderPayLaber)
+        }
+        orderPayTimeLaber.text = "2019.06.11 10:33"
+        orderPayTimeLaber.textColor = UIColor.hex(hexString: "#999999")
+        orderPayTimeLaber.font = UIFont.systemFont(ofSize: 11)
+        orderPayTimeLaber.textAlignment = .center
+        orderPayTimeLaber.numberOfLines = 2
+        self.addSubview(orderPayTimeLaber)
+        orderPayTimeLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(orderPayLaber.snp.bottom).offset(11)
+            ConstraintMaker.centerX.equalTo(orderPayLaber)
+            ConstraintMaker.width.equalTo(56)
+        }
+        
+        //MARK:商家发货
+        orderShippingLaber.text = "商家发货"
+        orderShippingLaber.textColor = UIColor.black
+        orderShippingLaber.font = UIFont.systemFont(ofSize: 12)
+        orderShippingLaber.textAlignment = .center
+        self.addSubview(orderShippingLaber)
+        orderShippingLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(orderPayLaber.snp.right)
+            ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
+            ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
+        }
+        
+        orderShippiingIcon.image = UIImage.init(named: "order_status")
+        self.addSubview(orderShippiingIcon)
+        orderShippiingIcon.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.bottom.equalTo(orderShippingLaber.snp.top).offset(-12)
+            ConstraintMaker.width.height.equalTo(20)
+            ConstraintMaker.centerX.equalTo(orderShippingLaber)
+        }
+        orderShippingTimeLaber.text = "2019.06.11 10:44"
+        orderShippingTimeLaber.textColor = UIColor.hex(hexString: "#999999")
+        orderShippingTimeLaber.font = UIFont.systemFont(ofSize: 11)
+        orderShippingTimeLaber.textAlignment = .center
+        orderShippingTimeLaber.numberOfLines = 3
+        self.addSubview(orderShippingTimeLaber)
+        orderShippingTimeLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(orderShippingLaber.snp.bottom).offset(11)
+            ConstraintMaker.centerX.equalTo(orderShippingLaber)
+            ConstraintMaker.width.equalTo(56)
+        }
+        
+        //MARK:确认收货
+        orderFinishLaber.text = "确认收货"
+        orderFinishLaber.textColor = UIColor.black
+        orderFinishLaber.font = UIFont.systemFont(ofSize: 12)
+        orderFinishLaber.textAlignment = .center
+        self.addSubview(orderFinishLaber)
+        orderFinishLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(orderShippingLaber.snp.right)
+            ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
+            ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
+        }
+        orderFinishIcon.image = UIImage.init(named: "order_status")
+        self.addSubview(orderFinishIcon)
+        orderFinishIcon.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.bottom.equalTo(orderFinishLaber.snp.top).offset(-12)
+            ConstraintMaker.width.height.equalTo(20)
+            ConstraintMaker.centerX.equalTo(orderFinishLaber)
+        }
+        orderFinishTimeLaber.text = "2019.06.11 10:55"
+        orderFinishTimeLaber.textColor = UIColor.hex(hexString: "#999999")
+        orderFinishTimeLaber.font = UIFont.systemFont(ofSize: 11)
+        orderFinishTimeLaber.textAlignment = .center
+        orderFinishTimeLaber.numberOfLines = 2
+        self.addSubview(orderFinishTimeLaber)
+        orderFinishTimeLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(orderFinishLaber.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(56)
+            ConstraintMaker.centerX.equalTo(orderFinishLaber)
+        }
+        
+        //MARK:订单进度条
+        orderPushLiner.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        orderPushLiner.layer.cornerRadius = 3
+        self.addSubview(orderPushLiner)
+        orderPushLiner.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(5)
+            ConstraintMaker.left.equalTo(orderPushIcon.snp.right)
+            ConstraintMaker.right.equalTo(orderPayIcon.snp.left)
+            ConstraintMaker.bottom.equalTo(orderPushLaber.snp.top).offset(-19)
+        }
+        orderPayLine.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        orderPushLiner.layer.cornerRadius = 3
+        self.addSubview(orderPayLine)
+        orderPayLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(5)
+            ConstraintMaker.left.equalTo(orderPayIcon.snp.right)
+            ConstraintMaker.right.equalTo(orderShippiingIcon.snp.left)
+            ConstraintMaker.bottom.equalTo(orderPushLaber.snp.top).offset(-19)
+        }
+        orderShippingLine.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        orderPushLiner.layer.cornerRadius = 3
+        self.addSubview(orderShippingLine)
+        orderShippingLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(5)
+            ConstraintMaker.left.equalTo(orderShippiingIcon.snp.right)
+            ConstraintMaker.right.equalTo(orderFinishIcon.snp.left)
+            ConstraintMaker.bottom.equalTo(orderPushLaber.snp.top).offset(-19)
+        }
+        
         //MARK:订单详情背景
         orderDetailsBg.backgroundColor = UIColor.white
         orderDetailsBg.layer.cornerRadius = 4
@@ -319,7 +497,7 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(30)
         }
          //MARK:商品分割线
-        shopInformationLine.backgroundColor = UIColor.hex(hexString: "#f2F2F2")
+        shopInformationLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
         self.addSubview(shopInformationLine)
         shopInformationLine.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.height.equalTo(1)
