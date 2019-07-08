@@ -33,6 +33,7 @@ class USetUpShopController: UBaseViewController {
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
+        tw.separatorInset = UIEdgeInsets.init(top: 0, left: 15, bottom: 0, right: 0)
         tw.delegate = self
         tw.dataSource = self
         tw.register(cellType: UShopLabelCell.self)
@@ -61,7 +62,7 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(indexPath.section == 2 || indexPath.section == 8){
+        if(indexPath.section == 2 || indexPath.section == 1 && indexPath.row == 0){
             return 55
         }else{
             return 44
@@ -89,38 +90,35 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
             
             if(indexPath.row == 0){
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelImgCell.self)
-                cell.accessoryType = .disclosureIndicator
+//                cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
                 let sectionArray = myArray[indexPath.section]
                 let dict: [String: String] = sectionArray[indexPath.row]
                 cell.instructionsLabel.text = dict["instructions"]
                 //店铺地址、分类数据没写
                 return cell
-            }else if(indexPath.row == 4){
+            } else if(indexPath.row == 4) {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelNotArrowCell.self)
-                cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
                 let sectionArray = myArray[indexPath.section]
                 let dict: [String: String] = sectionArray[indexPath.row]
                 cell.instructionsLabel.text = dict["instructions"]
                 //店铺地址、分类数据没写
                 return cell
-            }else{
-                
+            } else{
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
-                cell.accessoryType = .disclosureIndicator
+//                cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
                 let sectionArray = myArray[indexPath.section]
                 let dict: [String: String] = sectionArray[indexPath.row]
                 cell.instructionsLabel.text = dict["instructions"]
                 //店铺地址、分类数据没写
                 return cell
-                
             }
           
         } else if (indexPath.section == 2){
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelImgCell.self)
-            cell.accessoryType = .disclosureIndicator
+//            cell.accessoryType = .disclosureIndicator
             cell.selectionStyle = .default
             let sectionArray = myArray[indexPath.section]
             let dict: [String: String] = sectionArray[indexPath.row]
@@ -128,14 +126,25 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
             //图片数据对应没写
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
-            cell.accessoryType = .disclosureIndicator
-            cell.selectionStyle = .default
-            let sectionArray = myArray[indexPath.section]
-            let dict: [String: String] = sectionArray[indexPath.row]
-            cell.instructionsLabel.text = dict["instructions"]
-            //店铺信息没写
-            return cell
+            if (indexPath.row == 1) {
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelNotArrowCell.self)
+                //cell.accessoryType = .disclosureIndicator
+                cell.selectionStyle = .default
+                let sectionArray = myArray[indexPath.section]
+                let dict: [String: String] = sectionArray[indexPath.row]
+                cell.instructionsLabel.text = dict["instructions"]
+                //店铺信息没写
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
+//                cell.accessoryType = .disclosureIndicator
+                cell.selectionStyle = .default
+                let sectionArray = myArray[indexPath.section]
+                let dict: [String: String] = sectionArray[indexPath.row]
+                cell.instructionsLabel.text = dict["instructions"]
+                //店铺信息没写
+                return cell
+            }
         }
         
     }

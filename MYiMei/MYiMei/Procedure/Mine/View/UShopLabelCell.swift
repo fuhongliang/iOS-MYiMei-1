@@ -26,7 +26,7 @@ class UShopLabelCell: UBaseTableViewCell {
     
     var contentLabel: UILabel = {
         let tl = UILabel()
-        tl.font = UIFont.systemFont(ofSize: 12)
+        tl.font = UIFont.systemFont(ofSize: 17)
         tl.textColor = UIColor.black
         tl.text = "陆丰箭牌卫浴旗舰店"
         return tl
@@ -49,13 +49,12 @@ class UShopLabelCell: UBaseTableViewCell {
         contentView.addSubview(layerView)
         layerView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.top.left.equalToSuperview()
+            ConstraintMaker.top.left.right.equalToSuperview()
         }
         
         layerView.addSubview(instructionsLabel)
         instructionsLabel.snp.makeConstraints { (ConstraintMaker) in
-            //            ConstraintMaker.leftMargin.equalTo(15)
-            //            ConstraintMaker.topMargin.equalTo(15)
+            
             ConstraintMaker.centerY.equalToSuperview()
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
@@ -72,13 +71,13 @@ class UShopLabelCell: UBaseTableViewCell {
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.equalToSuperview()
             ConstraintMaker.right.equalTo(arrowImg.snp.left).offset(-10)
-            
+//            ConstraintMaker.right.equalToSuperview()
         }
         
-        layerView.addSubview(line)
-        line.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.bottom.equalToSuperview()
-            ConstraintMaker.left.equalToSuperview().offset(15)
-        }
+//        layerView.addSubview(line)
+//        line.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.bottom.equalToSuperview()
+//            ConstraintMaker.left.equalToSuperview().offset(15)
+//        }
     }
 }
