@@ -9,7 +9,7 @@
 import UIKit
 class UManagementClassificationController: UBaseViewController {
     
-    let mManagementClassificationController = UmanagementClassificationCell()
+    let mManagementClassificationController = UManagementClassificationCell()
     
     override func configUI() {
         mManagementClassificationController.setView()
@@ -18,5 +18,6 @@ class UManagementClassificationController: UBaseViewController {
         mManagementClassificationController.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
+        
     }
 }

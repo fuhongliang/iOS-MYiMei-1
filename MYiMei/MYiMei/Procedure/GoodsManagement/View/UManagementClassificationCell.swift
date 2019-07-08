@@ -1,5 +1,5 @@
 //
-//  UmanagementClassificationCell.swift
+//  UManagementClassificationCell.swift
 //  MYiMei
 //
 //  Created by KevinFu on 2019/7/6.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UmanagementClassificationCell: BaseView {
+class UManagementClassificationCell: BaseView {
     //白色背景
     var whiteBg = UIImageView()
     //字段说明
