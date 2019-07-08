@@ -27,7 +27,7 @@ class UShopLabelNotArrowCell: UBaseTableViewCell {
     
     var contentLabel: UILabel = {
         let tl = UILabel()
-        tl.font = UIFont.systemFont(ofSize: 12)
+        tl.font = UIFont.systemFont(ofSize: 17)
         tl.textColor = UIColor.hex(hexString: "#999999")
         tl.text = "全屋定制"
         return tl
@@ -59,10 +59,10 @@ class UShopLabelNotArrowCell: UBaseTableViewCell {
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
         
-        layerView.addSubview(line)
-        line.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.bottom.equalToSuperview()
-        }
+//        layerView.addSubview(line)
+//        line.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalToSuperview().offset(15)
+//            ConstraintMaker.bottom.equalToSuperview()
+//        }
     }
 }
