@@ -74,6 +74,7 @@
 		DC221C8A22CF3CDE003A4053 /* UShopLabelNotArrowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8922CF3CDE003A4053 /* UShopLabelNotArrowCell.swift */; };
 		DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8B22CF4462003A4053 /* UShopLabelCell.swift */; };
 		DC221C8E22CF46D9003A4053 /* UShopLabelImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8D22CF46D9003A4053 /* UShopLabelImgCell.swift */; };
+		DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */; };
 		DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +169,7 @@
 		DC221C8922CF3CDE003A4053 /* UShopLabelNotArrowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelNotArrowCell.swift; sourceTree = "<group>"; };
 		DC221C8B22CF4462003A4053 /* UShopLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelCell.swift; sourceTree = "<group>"; };
 		DC221C8D22CF46D9003A4053 /* UShopLabelImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelImgCell.swift; sourceTree = "<group>"; };
+		DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSettingModel.swift; sourceTree = "<group>"; };
 		DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,6 +309,7 @@
 				7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */,
 				7BAB352622C0C89A00154D36 /* APIResponseModels.swift */,
 				7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */,
+				DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				7BAB355A22C1B90600154D36 /* ParallaxHeader.swift in Sources */,
 				0A0FF6C822CA013C003F4B53 /* UMechJoinViewController.swift in Sources */,
 				DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */,
+				DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
 				DC221C8A22CF3CDE003A4053 /* UShopLabelNotArrowCell.swift in Sources */,
 				0AB057AD22D2D68D002B7E40 /* UManagementClassificationCell.swift in Sources */,
