@@ -9,7 +9,7 @@
 import UIKit
 class UManagementClassificationController: UBaseViewController {
     
-    let mManagementClassificationController = UmanagementClassificationCell()
+    let mManagementClassificationController = UManagementClassificationCell()
     
     override func configUI() {
         mManagementClassificationController.setView()

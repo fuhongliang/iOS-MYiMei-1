@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import TLPhotoPickerlkk
+import TLPhotoPicker
 
 class CustomPhotoPickerViewController: TLPhotosPickerViewController {
     override func makeUI() {
