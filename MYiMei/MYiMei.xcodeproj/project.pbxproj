@@ -75,6 +75,8 @@
 		DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8B22CF4462003A4053 /* UShopLabelCell.swift */; };
 		DC221C8E22CF46D9003A4053 /* UShopLabelImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8D22CF46D9003A4053 /* UShopLabelImgCell.swift */; };
 		DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */; };
+		DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */; };
+		DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC264EEB22D3266B001FDAD6 /* USettingDeliveryController.swift */; };
 		DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +172,8 @@
 		DC221C8B22CF4462003A4053 /* UShopLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelCell.swift; sourceTree = "<group>"; };
 		DC221C8D22CF46D9003A4053 /* UShopLabelImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UShopLabelImgCell.swift; sourceTree = "<group>"; };
 		DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSettingModel.swift; sourceTree = "<group>"; };
+		DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USettingDeliveryView.swift; sourceTree = "<group>"; };
+		DC264EEB22D3266B001FDAD6 /* USettingDeliveryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USettingDeliveryController.swift; sourceTree = "<group>"; };
 		DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +208,7 @@
 			children = (
 				0AD5FC6022CCA195008CE6CF /* UOderCell.swift */,
 				0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */,
+				DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			children = (
 				7BAB353622C0D0D300154D36 /* UOrdersViewController.swift */,
 				0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */,
+				DC264EEB22D3266B001FDAD6 /* USettingDeliveryController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -713,9 +719,11 @@
 				7BAB353922C0D12E00154D36 /* UManagerOrdersController.swift in Sources */,
 				7BAB355822C1B8E900154D36 /* UIScrollView+ParallaxHeader.swift in Sources */,
 				7BAB352222C0C56400154D36 /* Global.swift in Sources */,
+				DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */,
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
+				DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */,
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,
 				7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */,
 				7BAB355222C1B37100154D36 /* UBaseTableViewCell.swift in Sources */,
