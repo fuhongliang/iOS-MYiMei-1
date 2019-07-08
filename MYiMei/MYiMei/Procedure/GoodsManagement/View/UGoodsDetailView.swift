@@ -15,92 +15,110 @@ protocol UGoodsDetailViewDelegate: AnyObject {
 }
 
 class UGoodsDetailView: BaseView {
-    //商品名称
+    //MARK:商品名称
     var goodsNameTF = UITextField()
-    //分割线
+    //MARK:分割线
     var line = UIImageView()
 
-    //白色的背景
-
+    //MARK:白色的背景
     var bgWhite = UIImageView()
 
-    //商品描述
+    //MARK:商品描述
     var goodsDescr = KMPlaceholderTextView()
 
-    //商品缩略图
+    //MARK:商品缩略图
     var addGoodsCoverPic = UIButton()
 
-    //商品主图
+    //MARK:商品主图
     var addGoodsPic = UIButton()
 
-    //白色的背景
+    //MARK:分类的白色的背景
     var categoryBgWhite = UIImageView()
 
-    //平台分类
+    //MARK:平台、商品分类
     var platformClassLabel = UILabel()
-    //分割线
     var classLine = UIImageView()
     //选择平台分类
     var choosePlatformClassLabel = UILabel()
-
     var arrowRight = UIImageView()
-
     //商品分类
     var goodsClassLabel = UILabel()
-
     //选择商品分类
     var choosegoodsClassLabel = UILabel()
-
     var goodsArrowRight = UIImageView()
 
-    //白色的背景
+    //MARK:单位白色的背景
     var unitBgWhite = UIImageView()
 
-    //单位
+    //MARK:单位
     var unitClassLabel = UILabel()
-
-    //虚拟销量
+    //单位输入
+    var unitClassTF = UITextField()
+    var unitLine = UIImageView()
+    
+    //MARK:虚拟销量
     var virtualSalesLabel = UILabel()
+    var virtualSalesTF = UITextField()
+    var virtualLine = UIImageView()
+    
 
-    //重量
+    //MARK:重量
     var weightLabel = UILabel()
+    var weightTF = UITextField()
+    var weightUnitLabel = UILabel()
+    var weightLine = UIImageView()
 
-    //原价
+    //MARK:原价
     var originalPriceLabel = UILabel()
+    var originalPriceTF = UITextField()
+    var originalPriceUnitLabel = UILabel()
+    var originalPriceLine = UIImageView()
 
-    //售价
+    //MARK:售价
     var goodsPriceLabel = UILabel()
+    var goodsPriceTF = UITextField()
+    var goodsPriceUnitLabel = UILabel()
+    var goodsPriceLine = UILabel()
 
-    //库存
+    //MARK:库存
     var amountLabel = UILabel()
+    var amountTF = UITextField()
 
-    //白色的背景
+    //MARK:单品满件包邮
     var piecesBgWhite = UIImageView()
-
-    //单品满件包邮
+    var piecesHeadDesrcLabel = UILabel()
     var piecesDesrcLabel = UILabel()
-    var piecesLabel = UILabel()
+    var piecesDesrcTF = UITextField()
+    var piecesDesrcLine = UIImageView()
 
-    //白色的背景
+    //MARK:单品满额包邮
     var foreheadBgWhite = UIImageView()
-
-    //单品满额包邮
-    var foreheadDesrcLabel = UILabel()
+    var foreHeadDesrcLabel = UILabel()
     var foreDesrcLabel = UILabel()
+    var foreDesrcTF = UITextField()
+    var foreDesrcLine = UIImageView()
 
-    //白色的背景
+    //MARK:服务标签
     var tagsBgWhite = UIImageView()
-
-    //服务标签
     var servicesDesrcLabel = UILabel()
-
+    var recommendTagsLabel = UILabel()
+    
+    //MARK:标签按钮
+    var doorDeliveryTagBtn = UIButton()
+    var professionalInstallationTagBtn = UIButton()
+    var doorReturnTagBtn = UIButton()
+    var qualityAssuranceCommitmentTagBtn = UIButton()
+    var realThingReleasedTagBtn = UIButton()
+    var newPreferentialTagBtn = UIButton()
+    var restAssuredBuyTagBtn = UIButton()
+    
+    //MARK:保存
     var saveBtn = UIButton()
-
 
     weak var delegate: UGoodsDetailViewDelegate?
 
     func configUI() {
-        //商品名称
+        //MARK:商品名称
         goodsNameTF.backgroundColor = UIColor.white
         goodsNameTF.textColor = UIColor.black
         goodsNameTF.tintColor = UIColor.hex(hexString: "#CCCCCC")
@@ -120,7 +138,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalToSuperview()
         }
-        //白色背景
+        //MARK:白色背景
         bgWhite.backgroundColor = UIColor.white
         self.addSubview(bgWhite)
         bgWhite.snp.makeConstraints { (ConstraintMaker) in
@@ -130,7 +148,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(goodsNameTF.snp.bottom)
         }
 
-        //分割线
+        //MARK:分割线
         line.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
         self.addSubview(line)
         line.snp.makeConstraints { (ConstraintMaker) in
@@ -140,7 +158,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(goodsNameTF.snp.bottom)
         }
 
-        //描述
+        //MARK:描述
         goodsDescr.textColor = UIColor.black
         goodsDescr.tintColor = UIColor.hex(hexString: "#CCCCCC")
         goodsDescr.font = UIFont.systemFont(ofSize: 17)
@@ -155,7 +173,7 @@ class UGoodsDetailView: BaseView {
         }
 
 
-        //添加缩略图
+        //MARK:添加缩略图
         addGoodsCoverPic.backgroundColor = UIColor.white
         addGoodsCoverPic.setBackgroundImage(UIImage.init(named: "add_goods_slt"), for: UIControl.State.normal)
         addGoodsCoverPic.layer.masksToBounds = true
@@ -168,7 +186,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.width.equalTo(70)
         }
 
-        //添加商品图
+        //MARK:添加商品图
         addGoodsPic.backgroundColor = UIColor.white
         addGoodsPic.setBackgroundImage(UIImage.init(named: "add_goods_pic"), for: UIControl.State.normal)
         addGoodsPic.layer.masksToBounds = true
@@ -184,7 +202,7 @@ class UGoodsDetailView: BaseView {
         addGoodsPic.addTarget(self, action: #selector(tapChooseGoodsPicAction), for: UIControl.Event.touchDown)
 
 
-        //白色背景
+        //MARK:白色背景
         categoryBgWhite.backgroundColor = UIColor.white
         self.addSubview(categoryBgWhite)
         categoryBgWhite.snp.makeConstraints { (ConstraintMaker) in
@@ -194,13 +212,13 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(bgWhite.snp.bottom).offset(15)
         }
 
-        //白色背景
+        //MARK:单位的白色背景
         unitBgWhite.backgroundColor = UIColor.white
         self.addSubview(unitBgWhite)
         unitBgWhite.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(269)
+            ConstraintMaker.height.equalTo(272)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.bottom).offset(15)
         }
 
@@ -244,8 +262,8 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(16)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.top).offset(14)
         }
-        //分类输入
-
+        
+        //MARK:平台分类选择
         choosePlatformClassLabel.text = "请选择平台分类"
         choosePlatformClassLabel.font = UIFont.systemFont(ofSize: 17)
         choosePlatformClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
@@ -267,7 +285,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.width.equalTo(8)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.top).offset(15)
         }
-        //分割线
+        //MARK:分类的分割线
         classLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
         self.addSubview(classLine)
         classLine.snp.makeConstraints { (ConstraintMaker) in
@@ -288,7 +306,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(16)
             ConstraintMaker.top.equalTo(classLine.snp.top).offset(14)
         }
-        //商品分类输入
+        //MARK:选择商品分类
         choosegoodsClassLabel.text = "请选择商品分类"
         choosegoodsClassLabel.font = UIFont.systemFont(ofSize: 17)
         choosegoodsClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
@@ -301,6 +319,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(classLine.snp.top)
         }
+        
         goodsArrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(goodsArrowRight)
         goodsArrowRight.snp.makeConstraints { (ConstraintMaker) in
@@ -310,8 +329,411 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.width.equalTo(8)
             ConstraintMaker.top.equalTo(classLine.snp.top).offset(15)
         }
+        
+        //MARK:单位
+        unitClassLabel.text = "单位"
+        unitClassLabel.font = UIFont.systemFont(ofSize: 17)
+        unitClassLabel.textColor = UIColor.black
+        self.addSubview(unitClassLabel)
+        unitClassLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.top.equalTo(unitBgWhite.snp.top).offset(14)
+        }
+        
+        unitClassTF.placeholder = "请填写单位，如：个、件"
+        unitClassTF.font = UIFont.systemFont(ofSize: 17)
+        unitClassTF.textAlignment = .right
+        self.addSubview(unitClassTF)
+        unitClassTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+            ConstraintMaker.top.equalTo(unitBgWhite.snp.top).offset(1)
+        }
+        
+        unitLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        self.addSubview(unitLine)
+        unitLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(unitClassTF.snp.bottom)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+        }
+        
+        //MARK:虚拟销量
+        virtualSalesLabel.text = "虚拟销量"
+        virtualSalesLabel.font = UIFont.systemFont(ofSize: 17)
+        virtualSalesLabel.textColor = UIColor.black
+        self.addSubview(virtualSalesLabel)
+        virtualSalesLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(unitLine.snp.bottom).offset(14)
+        }
+        
+        virtualSalesTF.placeholder = "展示的销量=实际销量+虚拟销量"
+        virtualSalesTF.font = UIFont.systemFont(ofSize: 17)
+        virtualSalesTF.textAlignment = .right
+        self.addSubview(virtualSalesTF)
+        virtualSalesTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(250)
+            ConstraintMaker.top.equalTo(unitLine.snp.bottom)
+        }
+        
+        virtualLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        self.addSubview(virtualLine)
+        virtualLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(virtualSalesTF.snp.bottom)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+        }
+        
+        //MARK:重量
+        weightLabel.text = "重量"
+        weightLabel.font = UIFont.systemFont(ofSize: 17)
+        weightLabel.textColor = UIColor.black
+        self.addSubview(weightLabel)
+        weightLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(virtualLine.snp.bottom).offset(14)
+        }
+        
+        weightUnitLabel.text = "克"
+        weightUnitLabel.font = UIFont.systemFont(ofSize: 17)
+        weightUnitLabel.textColor = UIColor.black
+        self.addSubview(weightUnitLabel)
+        weightUnitLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.top.equalTo(virtualLine.snp.top).offset(13)
+        }
+        
+        weightTF.placeholder = "请输入"
+        weightTF.font = UIFont.systemFont(ofSize: 17)
+        weightTF.textAlignment = .right
+        self.addSubview(weightTF)
+        weightTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalTo(weightUnitLabel.snp.left).offset(-10)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+            ConstraintMaker.top.equalTo(virtualLine.snp.bottom)
+        }
+        
+        weightLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        self.addSubview(weightLine)
+        weightLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(weightTF.snp.bottom)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+        }
+        
+        //MARK:原价
+        originalPriceLabel.text = "原价"
+        originalPriceLabel.font = UIFont.systemFont(ofSize: 17)
+        originalPriceLabel.textColor = UIColor.black
+        self.addSubview(originalPriceLabel)
+        originalPriceLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(weightLine.snp.bottom).offset(14)
+        }
+        
+        originalPriceUnitLabel.text = "元"
+        originalPriceUnitLabel.font = UIFont.systemFont(ofSize: 17)
+        originalPriceUnitLabel.textColor = UIColor.black
+        self.addSubview(originalPriceUnitLabel)
+        originalPriceUnitLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.top.equalTo(weightLine.snp.top).offset(13)
+            
+        }
+        
+        originalPriceTF.placeholder = "请输入"
+        originalPriceTF.font = UIFont.systemFont(ofSize: 17)
+        originalPriceTF.textAlignment = .right
+        self.addSubview(originalPriceTF)
+        originalPriceTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalTo(originalPriceUnitLabel.snp.left).offset(-10)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+            ConstraintMaker.top.equalTo(weightLine.snp.bottom)
+        }
+        
+        originalPriceLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        self.addSubview(originalPriceLine)
+        originalPriceLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(originalPriceTF.snp.bottom)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+        }
+        
+        //MARK:售价
+        goodsPriceLabel.text = "售价"
+        goodsPriceLabel.font = UIFont.systemFont(ofSize: 17)
+        goodsPriceLabel.textColor = UIColor.black
+        self.addSubview(goodsPriceLabel)
+        goodsPriceLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(originalPriceLine.snp.bottom).offset(14)
+        }
 
+        goodsPriceUnitLabel.text = "元"
+        goodsPriceUnitLabel.font = UIFont.systemFont(ofSize: 17)
+        goodsPriceUnitLabel.textColor = UIColor.black
+        self.addSubview(goodsPriceUnitLabel)
+        goodsPriceUnitLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.top.equalTo(originalPriceLine.snp.top).offset(13)
+        }
 
+        goodsPriceTF.placeholder = "请输入"
+        goodsPriceTF.font = UIFont.systemFont(ofSize: 17)
+        goodsPriceTF.textAlignment = .right
+        self.addSubview(goodsPriceTF)
+        goodsPriceTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalTo(goodsPriceUnitLabel.snp.left).offset(-10)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+            ConstraintMaker.top.equalTo(originalPriceLine.snp.bottom)
+        }
+        
+        goodsPriceLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        self.addSubview(goodsPriceLine)
+        goodsPriceLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(goodsPriceTF.snp.bottom)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+        }
+        
+        //MARK:商品库存
+        amountLabel.text = "商品库存"
+        amountLabel.font = UIFont.systemFont(ofSize: 17)
+        amountLabel.textColor = UIColor.black
+        self.addSubview(amountLabel)
+        amountLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.height.equalTo(16)
+            ConstraintMaker.top.equalTo(goodsPriceLine.snp.bottom).offset(14)
+        }
+      
+        amountTF.placeholder = "请填写库存"
+        amountTF.font = UIFont.systemFont(ofSize: 17)
+        amountTF.textAlignment = .right
+        self.addSubview(amountTF)
+        amountTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+            ConstraintMaker.top.equalTo(goodsPriceLine.snp.bottom)
+        }
+        
+        //MARK:单品满件包邮
+        piecesHeadDesrcLabel.text = "如果设置0或空，则不支持满额包邮"
+        piecesHeadDesrcLabel.font = UIFont.systemFont(ofSize: 14)
+        piecesHeadDesrcLabel.textColor = UIColor.hex(hexString: "#808080")
+        self.addSubview(piecesHeadDesrcLabel)
+        piecesHeadDesrcLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(14)
+            ConstraintMaker.top.equalTo(unitBgWhite.snp.bottom).offset(20)
+        }
+        
+        piecesDesrcLabel.text = "单品满件包邮"
+        piecesDesrcLabel.font = UIFont.systemFont(ofSize: 17)
+        piecesDesrcLabel.textColor = UIColor.black
+        self.addSubview(piecesDesrcLabel)
+        piecesDesrcLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.top.equalTo(piecesBgWhite.snp.top).offset(12)
+        }
+        
+        piecesDesrcTF.placeholder = "请输入"
+        piecesDesrcTF.textAlignment = .right
+        piecesDesrcTF.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(piecesDesrcTF)
+        piecesDesrcTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.top.equalTo(piecesBgWhite)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+        }
+        
+        //MARK:单品满额包邮
+        foreHeadDesrcLabel.text = "如果设置0或空，则不支持满额包邮"
+        foreHeadDesrcLabel.font = UIFont.systemFont(ofSize: 14)
+        foreHeadDesrcLabel.textColor = UIColor.hex(hexString: "#808080")
+        self.addSubview(foreHeadDesrcLabel)
+        foreHeadDesrcLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(14)
+            ConstraintMaker.top.equalTo(piecesBgWhite.snp.bottom).offset(20)
+        }
+        
+        foreDesrcLabel.text = "单品满额包邮"
+        foreDesrcLabel.font = UIFont.systemFont(ofSize: 17)
+        foreDesrcLabel.textColor = UIColor.black
+        self.addSubview(foreDesrcLabel)
+        foreDesrcLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.top.equalTo(foreheadBgWhite.snp.top).offset(12)
+        }
+        
+        foreDesrcTF.placeholder = "请输入"
+        foreDesrcTF.textAlignment = .right
+        foreDesrcTF.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(foreDesrcTF)
+        foreDesrcTF.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.top.equalTo(foreheadBgWhite)
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.width.equalTo(200)
+        }
+        
+        //MARK:服务标签
+        servicesDesrcLabel.text = "服务标签，最多可添加4个服务类型"
+        servicesDesrcLabel.font = UIFont.systemFont(ofSize: 14)
+        servicesDesrcLabel.textColor = UIColor.hex(hexString: "#808080")
+        self.addSubview(servicesDesrcLabel)
+        servicesDesrcLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(14)
+            ConstraintMaker.top.equalTo(foreheadBgWhite.snp.bottom).offset(20)
+        }
+        
+        recommendTagsLabel.text = "推荐标签"
+        recommendTagsLabel.font = UIFont.systemFont(ofSize: 14)
+        recommendTagsLabel.textColor = UIColor.hex(hexString: "#666666")
+        self.addSubview(recommendTagsLabel)
+        recommendTagsLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(14)
+            ConstraintMaker.top.equalTo(tagsBgWhite.snp.top).offset(15)
+        }
+        
+        //MARK:标签按钮
+        doorDeliveryTagBtn.setTitle("送货入户", for: .normal)
+        doorDeliveryTagBtn.setTitleColor(UIColor.black, for: .normal)
+        doorDeliveryTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        doorDeliveryTagBtn.clipsToBounds = true
+        doorDeliveryTagBtn.layer.cornerRadius = 4
+        doorDeliveryTagBtn.layer.borderWidth = 0.5
+        doorDeliveryTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        doorDeliveryTagBtn.backgroundColor = UIColor.white
+        self.addSubview(doorDeliveryTagBtn)
+        doorDeliveryTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(tagsBgWhite.snp.left).offset(11)
+            ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        professionalInstallationTagBtn.setTitle("专业安装", for: .normal)
+        professionalInstallationTagBtn.setTitleColor(UIColor.black, for: .normal)
+        professionalInstallationTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        professionalInstallationTagBtn.clipsToBounds = true
+        professionalInstallationTagBtn.layer.cornerRadius = 4
+        professionalInstallationTagBtn.layer.borderWidth = 0.5
+        professionalInstallationTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        professionalInstallationTagBtn.backgroundColor = UIColor.white
+        self.addSubview(professionalInstallationTagBtn)
+        professionalInstallationTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(doorDeliveryTagBtn.snp.right).offset(11)
+            ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        doorReturnTagBtn.setTitle("上门退换", for: .normal)
+        doorReturnTagBtn.setTitleColor(UIColor.black, for: .normal)
+        doorReturnTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        doorReturnTagBtn.clipsToBounds = true
+        doorReturnTagBtn.layer.cornerRadius = 4
+        doorReturnTagBtn.layer.borderWidth = 0.5
+        doorReturnTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        doorReturnTagBtn.backgroundColor = UIColor.white
+        self.addSubview(doorReturnTagBtn)
+        doorReturnTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(professionalInstallationTagBtn.snp.right).offset(11)
+            ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        qualityAssuranceCommitmentTagBtn.setTitle("质保承诺", for: .normal)
+        qualityAssuranceCommitmentTagBtn.setTitleColor(UIColor.black, for: .normal)
+        qualityAssuranceCommitmentTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        qualityAssuranceCommitmentTagBtn.clipsToBounds = true
+        qualityAssuranceCommitmentTagBtn.layer.cornerRadius = 4
+        qualityAssuranceCommitmentTagBtn.layer.borderWidth = 0.5
+        qualityAssuranceCommitmentTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        qualityAssuranceCommitmentTagBtn.backgroundColor = UIColor.white
+        self.addSubview(qualityAssuranceCommitmentTagBtn)
+        qualityAssuranceCommitmentTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(doorReturnTagBtn.snp.right).offset(11)
+            ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        realThingReleasedTagBtn.setTitle("正品行货", for: .normal)
+        realThingReleasedTagBtn.setTitleColor(UIColor.black, for: .normal)
+        realThingReleasedTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        realThingReleasedTagBtn.clipsToBounds = true
+        realThingReleasedTagBtn.layer.cornerRadius = 4
+        realThingReleasedTagBtn.layer.borderWidth = 0.5
+        realThingReleasedTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        realThingReleasedTagBtn.backgroundColor = UIColor.white
+        self.addSubview(realThingReleasedTagBtn)
+        realThingReleasedTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(tagsBgWhite.snp.left).offset(11)
+            ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        newPreferentialTagBtn.setTitle("新品特惠", for: .normal)
+        newPreferentialTagBtn.setTitleColor(UIColor.black, for: .normal)
+        newPreferentialTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        newPreferentialTagBtn.clipsToBounds = true
+        newPreferentialTagBtn.layer.cornerRadius = 4
+        newPreferentialTagBtn.layer.borderWidth = 0.5
+        newPreferentialTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        newPreferentialTagBtn.backgroundColor = UIColor.white
+        self.addSubview(newPreferentialTagBtn)
+        newPreferentialTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(realThingReleasedTagBtn.snp.right).offset(11)
+            ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        restAssuredBuyTagBtn.setTitle("放心购买", for: .normal)
+        restAssuredBuyTagBtn.setTitleColor(UIColor.black, for: .normal)
+        restAssuredBuyTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        restAssuredBuyTagBtn.clipsToBounds = true
+        restAssuredBuyTagBtn.layer.cornerRadius = 4
+        restAssuredBuyTagBtn.layer.borderWidth = 0.5
+        restAssuredBuyTagBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        restAssuredBuyTagBtn.backgroundColor = UIColor.white
+        self.addSubview(restAssuredBuyTagBtn)
+        restAssuredBuyTagBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(newPreferentialTagBtn.snp.right).offset(11)
+            ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
+            ConstraintMaker.width.equalTo(79)
+        }
+        
+        //MARK:保存按钮
+        saveBtn.setTitle("保存", for: .normal)
+        saveBtn.setTitleColor(UIColor.white, for: .normal)
+        saveBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        saveBtn.clipsToBounds = true
+        saveBtn.layer.cornerRadius = 4
+        saveBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        self.addSubview(saveBtn)
+        saveBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(tagsBgWhite.snp.bottom).offset(31)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(44)
+        }
+        
     }
 
     @objc func tapChooseGoodsSLTAction() {
