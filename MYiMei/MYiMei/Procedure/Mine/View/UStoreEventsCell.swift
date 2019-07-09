@@ -125,6 +125,9 @@ class UStoreEventsCell: UBaseTableViewCell {
 
     var businessData = UMenuBusinessData()
     var businessDataBtn = UIButton()
+    
+    var margin = UMenuMargin()
+    var marginBtn = UIButton()
 
 
     override func configUI() {
@@ -296,6 +299,20 @@ class UStoreEventsCell: UBaseTableViewCell {
         contentView.addSubview(businessDataBtn)
         businessDataBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(storeSettings.snp.right)
+            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
+            ConstraintMaker.width.equalToSuperview().dividedBy(4)
+        }
+        //保证金
+        margin.configUI()
+        contentView.addSubview(margin)
+        margin.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(businessData.snp.right)
+            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
+            ConstraintMaker.width.equalToSuperview().dividedBy(4)
+        }
+        contentView.addSubview(marginBtn)
+        marginBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(businessData.snp.right)
             ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
             ConstraintMaker.width.equalToSuperview().dividedBy(4)
         }
