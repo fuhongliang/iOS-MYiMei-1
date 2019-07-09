@@ -1,5 +1,5 @@
 //
-//  UMenuMargin.swift
+//  UMenuDepost.swift
 //  MYiMei
 //
 //  Created by KevinFu on 2019/7/9.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UMenuMargin: BaseView {
+class UMenuDepost: BaseView {
     var menuIcon: UIImageView = {
         let iv = UIImageView()
         iv.isUserInteractionEnabled = true

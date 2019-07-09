@@ -114,7 +114,7 @@ class UStoreEventsCell: UBaseTableViewCell {
     var line = UIImageView()
 
     //功能菜单
-    var financial = UMenuCell()
+    var financial = UMenuDepost()
     var financialBtn = UIButton()
 
     var goodsManagement = UMenuGoodsManagement()
@@ -125,10 +125,6 @@ class UStoreEventsCell: UBaseTableViewCell {
 
     var businessData = UMenuBusinessData()
     var businessDataBtn = UIButton()
-    
-    var margin = UMenuMargin()
-    var marginBtn = UIButton()
-
 
     override func configUI() {
         contentView.addSubview(bluebgView)
@@ -239,36 +235,20 @@ class UStoreEventsCell: UBaseTableViewCell {
             ConstraintMaker.height.equalTo(1)
         }
 
-        //财务结算
-        financial.configUI()
-        contentView.addSubview(financial)
-        financial.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
-            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
-        }
-
-        contentView.addSubview(financialBtn)
-        financialBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
-            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
-        }
-
         //商品管理
         goodsManagement.configUI()
         contentView.addSubview(goodsManagement)
         goodsManagement.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(financial.snp.right)
-             ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
+            ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.width.equalToSuperview().dividedBy(4)
+            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
         }
 
         contentView.addSubview(goodsManagementBtn)
         goodsManagementBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(financial.snp.right)
-            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
+            ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.width.equalToSuperview().dividedBy(4)
+            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
         }
 
 
@@ -302,21 +282,24 @@ class UStoreEventsCell: UBaseTableViewCell {
             ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
             ConstraintMaker.width.equalToSuperview().dividedBy(4)
         }
+        
         //保证金
-        margin.configUI()
-        contentView.addSubview(margin)
-        margin.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(businessData.snp.right)
-            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
-        }
-        contentView.addSubview(marginBtn)
-        marginBtn.snp.makeConstraints { (ConstraintMaker) in
+        financial.configUI()
+        contentView.addSubview(financial)
+        financial.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(businessData.snp.right)
             ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
             ConstraintMaker.width.equalToSuperview().dividedBy(4)
         }
         
+        contentView.addSubview(financialBtn)
+        financialBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(businessData.snp.right)
+            ConstraintMaker.top.equalTo(line.snp.bottom).offset(17)
+            ConstraintMaker.width.equalToSuperview().dividedBy(4)
+        }
+        
+
         goodsManagementBtn.addTarget(self, action: #selector(tapGoodsManagementAction), for: UIControl.Event.touchDown)
         storeSettingsBtn.addTarget(self, action: #selector(tapStoreSettingsAction), for: UIControl.Event.touchDown)
         financialBtn.addTarget(self, action: #selector(okTapFinancialAction), for: UIControl.Event.touchDown)
