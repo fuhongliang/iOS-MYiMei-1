@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = UTabBarController()
         }else {
             //测试
-            let vc = UMineViewController()
+            let vc = UDepostController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
         }
