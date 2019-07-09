@@ -78,6 +78,8 @@
 		DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */; };
 		DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC264EEB22D3266B001FDAD6 /* USettingDeliveryController.swift */; };
 		DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */; };
+		DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */; };
+		DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,8 @@
 		DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USettingDeliveryView.swift; sourceTree = "<group>"; };
 		DC264EEB22D3266B001FDAD6 /* USettingDeliveryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USettingDeliveryController.swift; sourceTree = "<group>"; };
 		DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeController.swift; sourceTree = "<group>"; };
+		DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepositAgreementView.swift; sourceTree = "<group>"; };
+		DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepositAgreementController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,6 +444,7 @@
 				DC221C8922CF3CDE003A4053 /* UShopLabelNotArrowCell.swift */,
 				DC221C8B22CF4462003A4053 /* UShopLabelCell.swift */,
 				DC221C8D22CF46D9003A4053 /* UShopLabelImgCell.swift */,
+				DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */,
 				DC221C8322CF033C003A4053 /* UFeedBackController.swift */,
 				DC221C8722CF32CF003A4053 /* USetUpShopController.swift */,
+				DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -741,12 +747,14 @@
 				7BAB354A22C0D87100154D36 /* ULoginView.swift in Sources */,
 				7BAB352722C0C89A00154D36 /* APIResponseModels.swift in Sources */,
 				0AB057AB22D2D676002B7E40 /* UManagementClassificationController.swift in Sources */,
+				DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */,
 				0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */,
 				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
 				7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */,
 				0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */,
 				7BAB356222C1F5EF00154D36 /* UMenuGoodsManagement.swift in Sources */,
+				DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */,
 				DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */,
 				7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */,
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,
