@@ -33,6 +33,7 @@ class USetUpShopController: UBaseViewController {
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
+        tw.separatorInset = UIEdgeInsets.init(top: 0, left: 15, bottom: 0, right: 0)
         tw.delegate = self
         tw.dataSource = self
         tw.register(cellType: UShopLabelCell.self)
@@ -61,7 +62,7 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(indexPath.section == 2 || indexPath.section == 8){
+        if(indexPath.section == 2 || indexPath.section == 1 && indexPath.row == 0){
             return 55
         }else{
             return 44
@@ -86,56 +87,34 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
     //MARK:返回每个cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.section == 1){
-            
             if(indexPath.row == 0){
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelImgCell.self)
-                cell.accessoryType = .disclosureIndicator
-                cell.selectionStyle = .default
-                let sectionArray = myArray[indexPath.section]
-                let dict: [String: String] = sectionArray[indexPath.row]
-                cell.instructionsLabel.text = dict["instructions"]
+                let cell = getImgCell(cellForRowAt: indexPath)
                 //店铺地址、分类数据没写
                 return cell
-            }else if(indexPath.row == 4){
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelNotArrowCell.self)
-                cell.accessoryType = .disclosureIndicator
-                cell.selectionStyle = .default
-                let sectionArray = myArray[indexPath.section]
-                let dict: [String: String] = sectionArray[indexPath.row]
-                cell.instructionsLabel.text = dict["instructions"]
+            } else if(indexPath.row == 4) {
+                let cell = getLabelNotArrowCell(cellForRowAt: indexPath)
                 //店铺地址、分类数据没写
                 return cell
-            }else{
-                
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
-                cell.accessoryType = .disclosureIndicator
-                cell.selectionStyle = .default
-                let sectionArray = myArray[indexPath.section]
-                let dict: [String: String] = sectionArray[indexPath.row]
-                cell.instructionsLabel.text = dict["instructions"]
+            } else{
+                let cell = getLabelCell(cellForRowAt: indexPath)
                 //店铺地址、分类数据没写
                 return cell
-                
             }
           
         } else if (indexPath.section == 2){
-            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelImgCell.self)
-            cell.accessoryType = .disclosureIndicator
-            cell.selectionStyle = .default
-            let sectionArray = myArray[indexPath.section]
-            let dict: [String: String] = sectionArray[indexPath.row]
-            cell.instructionsLabel.text = dict["instructions"]
+            let cell = getImgCell(cellForRowAt: indexPath)
             //图片数据对应没写
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
-            cell.accessoryType = .disclosureIndicator
-            cell.selectionStyle = .default
-            let sectionArray = myArray[indexPath.section]
-            let dict: [String: String] = sectionArray[indexPath.row]
-            cell.instructionsLabel.text = dict["instructions"]
-            //店铺信息没写
-            return cell
+            if (indexPath.row == 1) {
+                let cell = getLabelNotArrowCell(cellForRowAt: indexPath)
+                //店铺信息没写
+                return cell
+            } else {
+                let cell = getLabelCell(cellForRowAt: indexPath)
+                //店铺信息没写
+                return cell
+            }
         }
         
     }
@@ -162,11 +141,54 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        return section==1 ? 44 : 20
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if (section == 1) {
+            let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+            let tipLabel = UILabel()
+            tipView.addSubview(tipLabel)
+            tipLabel.text = "店铺背景建议尺寸750*300px"
+            tipLabel.textColor = UIColor.hex(hexString: "#808080")
+            tipLabel.font = UIFont.systemFont(ofSize: 14)
+            tipLabel.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.top.equalToSuperview().offset(20)
+                ConstraintMaker.left.equalToSuperview().offset(15)
+            }
+            return tipView
+        }
         return nil
+    }
+    
+    //MARK:获取带箭头的文本cell
+    func getLabelCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
+        cell.selectionStyle = .default
+        let sectionArray = myArray[indexPath.section]
+        let dict: [String: String] = sectionArray[indexPath.row]
+        cell.instructionsLabel.text = dict["instructions"]
+        return cell
+    }
+    
+    //MARK:获取不带箭头的文本cell
+    func getLabelNotArrowCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelNotArrowCell.self)
+        cell.selectionStyle = .default
+        let sectionArray = myArray[indexPath.section]
+        let dict: [String: String] = sectionArray[indexPath.row]
+        cell.instructionsLabel.text = dict["instructions"]
+        return cell
+    }
+    
+    //MARK:获取带图片和箭头的文本cell
+    func getImgCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelImgCell.self)
+        cell.selectionStyle = .default
+        let sectionArray = myArray[indexPath.section]
+        let dict: [String: String] = sectionArray[indexPath.row]
+        cell.instructionsLabel.text = dict["instructions"]
+        return cell
     }
    
 }
