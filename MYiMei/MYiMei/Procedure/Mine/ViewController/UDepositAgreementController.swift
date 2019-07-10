@@ -14,9 +14,9 @@ protocol UDepositAgreementViewDelegate: AnyObject {
 
 class UDepositAgreementController: UBaseViewController {
     
-    let depositAgreementView = UDepositAgreementView()
+    fileprivate let service = APIDepositServices()
     
-    var title：String = "保证金协议声明"
+    let depositAgreementView = UDepositAgreementView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,23 +25,23 @@ class UDepositAgreementController: UBaseViewController {
     override func configUI() {
         depositAgreementView.configUI()
         depositAgreementView.delegate = self
+        loadUrl()
         self.view.addSubview(depositAgreementView)
-        if let request = getUrl() {
-            depositAgreementView.wkWebView.load(request)
-        }
-        
         depositAgreementView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
     }
     
-    //MARK:网络请求
-    func getUrl() -> URLRequest? {
-        
-        if let url = URL(string:"http://www.baidu.com") {
-            return URLRequest(url: url)
+    //MARK:请求保证金协议
+    func loadUrl() {
+        service.getDepositAgreement({ (DepositAgreementResponsModel) in
+            self.title = DepositAgreementResponsModel.data?.title
+            if let url = URL(string:DepositAgreementResponsModel.data?.content ?? "") {
+                self.depositAgreementView.wkWebView.load(URLRequest(url: url))
+            }
+        }) { (APIErrorModel) in
+            
         }
-        return nil
     }
     
     func showAlert() {

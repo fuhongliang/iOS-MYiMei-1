@@ -48,6 +48,7 @@ enum NetApi {
     case getGoodsList(param: [String:String])
     case deleteGoods(param: [String:String])
     case modifyGoodsStatus(param: [String:String])
+    case getDepositAgreement(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -79,13 +80,15 @@ extension NetApi: TargetType {
             return "/modify_goods_status"
         case .uploadPic:
             return "/upload_pic"
+        case .getDepositAgreement:
+            return "/mch_deposit/agreement"
 
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login,.uploadPic,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus:
+        case .login,.uploadPic,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getDepositAgreement:
             return .post
         }
     }
@@ -111,6 +114,8 @@ extension NetApi: TargetType {
         case .modifyGoodsStatus(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .uploadPic(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getDepositAgreement(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
