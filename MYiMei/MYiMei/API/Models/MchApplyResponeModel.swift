@@ -42,7 +42,7 @@ class ApplyInfoModel: Codable {
 
     var longitude: String?
 
-    var mch_common_cat_id: Int?
+    var mch_common_cat_id: String?
 
     var name: String?
 
@@ -60,9 +60,9 @@ class ApplyInfoModel: Codable {
 
     var access_token: String?
 
-     var business_license: String?
+    var business_license: String?
 
-    var is_debug: Int?
+    var is_debug: String?
 
     var mch_id: String?
 }
@@ -71,6 +71,5 @@ class ApplyResultModel: Codable {
     var apply_status: Int?
 
     var apply_result: String?
-
 
 }
