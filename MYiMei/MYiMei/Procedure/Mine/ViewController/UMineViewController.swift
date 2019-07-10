@@ -73,6 +73,11 @@ class UMineViewController: UBaseViewController {
         vc.title = "账号与安全"
         navigationController?.pushViewController(vc, animated: true)
     }
+    func goToSetUpShop() {
+        let vc = USetUpShopController()
+        vc.title = "店铺设置"
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
@@ -114,6 +119,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.subscribeStoreSettingsAction = {
                 NSLog("店铺设置被点击了")
+                self.goToSetUpShop()
             }
             cell.subscribeBusinessDataAction = {
                 NSLog("经营数据被点击了")

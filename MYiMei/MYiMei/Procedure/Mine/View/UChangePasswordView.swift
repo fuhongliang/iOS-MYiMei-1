@@ -8,13 +8,23 @@
 
 import UIKit
 
+protocol UChangePasswordViewDelegate: AnyObject {
+    func tapGetVerificationCodeAction()
+    
+    func tapConfirmChangeCodeAction(code:String,newPassword:String,newPasswordAgain:String)
+}
+
+
+
 class UChangePasswordView: BaseView {
     //MARK:申明各种控件变量
+    weak var delegate: UChangePasswordViewDelegate?
     
     var backgroundWhite = UIView()
     
     var phoneNumberLabel = UILabel()
     var getVerificationCodeBtn = UIButton()
+    
     var inputVerificationCodeEdit = UITextField()
     var inputPasswordEdit = UITextField()
     var inputPasswordAgainEdit = UITextField()
@@ -68,6 +78,7 @@ class UChangePasswordView: BaseView {
             ConstraintMaker.height.equalTo(30)
             ConstraintMaker.width.equalTo(87)
         }
+        getVerificationCodeBtn.addTarget(self, action: #selector(getVerification), for:  UIControl.Event.touchDown)
         
         //MARK:手机号分割线
         phoneLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -171,7 +182,17 @@ class UChangePasswordView: BaseView {
             ConstraintMaker.top.equalTo(passwordTip.snp.bottom).offset(31)
             ConstraintMaker.height.equalTo(44)
         }
+        confirmChange.addTarget(self, action: #selector(ConfirmChange), for: UIControl.Event.touchDown)
         
     }
+    
+    @objc func getVerification() {
+        delegate?.tapGetVerificationCodeAction()
+    }
+    
+    @objc func ConfirmChange() {
+        delegate?.tapConfirmChangeCodeAction(code: inputVerificationCodeEdit.text!, newPassword: inputPasswordEdit.text!, newPasswordAgain: inputPasswordAgainEdit.text!)
+    }
+    
     
 }

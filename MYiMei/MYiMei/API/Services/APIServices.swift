@@ -47,6 +47,8 @@ enum NetApi {
     case getGoodsList(param: [String:String])
     case deleteGoods(param: [String:String])
     case modifyGoodsStatus(param: [String:String])
+    case getChangePasswordVerificationCode(param: [String:Any])
+    case modifyPwd(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -76,13 +78,16 @@ extension NetApi: TargetType {
             return "/delete_goods"
         case .modifyGoodsStatus:
             return "/modify_goods_status"
-
+        case .getChangePasswordVerificationCode:
+            return "/get_captcha_modify_pwd"
+        case .modifyPwd:
+            return "/modify_pwd"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus:
+        case .login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
             return .post
         }
     }
@@ -106,6 +111,10 @@ extension NetApi: TargetType {
         case .deleteGoods(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyGoodsStatus(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getChangePasswordVerificationCode(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyPwd(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
        }

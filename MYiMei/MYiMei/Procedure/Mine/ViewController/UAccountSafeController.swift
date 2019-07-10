@@ -40,10 +40,21 @@ class UAccountSafeController: UBaseViewController{
         APIUser.shared.cleanUser()
         (UIApplication.shared.delegate as! AppDelegate).showLoginView()
     }
+    
+    func jumpToChangePassword() {
+        let vc = UChangePasswordController()
+        vc.title = "修改密码"
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension UAccountSafeController: UAccountSafeViewDelegate {
+    func tapModifyPasswordAction() {
+        jumpToChangePassword()
+    }
+    
     func tapLogoutAction() {
         self.showAlertControllerStyle()
     }
+    
 }

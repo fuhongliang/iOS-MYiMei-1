@@ -20,6 +20,7 @@ protocol APIGoodsServicesProtocol {
 
     //上下架商品
      func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+   
 }
 
 class APIGoodsServices: APIGoodsServicesProtocol {
