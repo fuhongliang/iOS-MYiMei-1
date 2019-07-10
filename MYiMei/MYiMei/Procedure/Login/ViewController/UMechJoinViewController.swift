@@ -13,20 +13,44 @@ import TLPhotoPicker
 class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerDelegate{
     var selectedAssets = [TLPHAsset]()
     let mMchJoinView = UMchJoinView()
-    var isChoosingLogo = Bool()
+    var choosePicType = Int()
     var logoPath = String()
     var storeBgPath = String()
-
-
-    fileprivate var service: APIUserServices = APIUserServices()
+    var storeLicensePath = String()
+    var service: APIUserServices = APIUserServices()
+    var curLocation = LocationInfo()
+    var categoryList = [CatModel]()
+    var curCatId = 0
 
     override func configUI() {
         mMchJoinView.delegate = self
         mMchJoinView.setView()
-        self.view.addSubview(mMchJoinView)
-        mMchJoinView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        scrollView.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
+        scrollView.addSubview(mMchJoinView)
+        scrollView.showsVerticalScrollIndicator = false
+        mMchJoinView.snp.updateConstraints { (make) -> Void in
+            make.width.equalTo(screenWidth)
+            make.height.equalTo(1000)
+            make.top.equalTo(scrollView)
+            make.leading.equalTo(scrollView)
+            make.trailing.equalTo(scrollView)
+            make.bottom.equalTo(scrollView)
         }
+        scrollView.contentSize = CGSize(width: screenWidth, height: 1200)
+        view.addSubview(scrollView)
+        self.getApplyCat()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        LocationHelper.shared.loadLocationFromCache()
+        if(LocationHelper.shared.location != nil){
+            curLocation = LocationHelper.shared.location!
+            let mStringAddress = curLocation.province! + curLocation.city! + curLocation.district!
+            self.mMchJoinView.storeAddressBtn.setTitle(mStringAddress, for: UIControl.State.normal)
+            self.mMchJoinView.storeAddressEdit.text = curLocation.addresss
+        }
+        configNavigationBar()
     }
 
     func tapChoosePicAction() {
@@ -73,13 +97,17 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
     func getFirstSelectedImage() {
         if let asset = self.selectedAssets.first {
             if let image = asset.fullResolutionImage {
-                print(image)
-                if(isChoosingLogo){
+
+                switch choosePicType {
+                case 0:
                     self.mMchJoinView.storeLogoBtn.setBackgroundImage(image, for: UIControl.State.normal)
-                }else{
+                case 1:
                     self.mMchJoinView.storeBgBtn.setBackgroundImage(image, for: UIControl.State.normal)
+                default:
+                    self.mMchJoinView.storeLicenseBtn.setBackgroundImage(image, for: UIControl.State.normal)
                 }
-               self.uploadPic()
+
+                self.uploadPic()
             }else {
                 print("Can't get image at local storage, try download image")
                 asset.cloudImageDownload(progressBlock: { [weak self] (progress) in
@@ -90,11 +118,15 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
                         if let image = image {
                             //use image
                             DispatchQueue.main.async {
-                                if(self!.isChoosingLogo){
-                                    self?.mMchJoinView.storeLogoBtn.setBackgroundImage(image, for: UIControl.State.normal)
-                                }else{
-                                    self?.mMchJoinView.storeBgBtn.setBackgroundImage(image, for: UIControl.State.normal)
+                                switch self!.choosePicType {
+                                case 0:
+                                    self!.mMchJoinView.storeLogoBtn.setBackgroundImage(image, for: UIControl.State.normal)
+                                case 1:
+                                    self!.mMchJoinView.storeBgBtn.setBackgroundImage(image, for: UIControl.State.normal)
+                                default:
+                                    self!.mMchJoinView.storeLicenseBtn.setBackgroundImage(image, for: UIControl.State.normal)
                                 }
+
                                 self!.uploadPic()
                             }
                         }
@@ -103,35 +135,52 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
         }
     }
 
+    func getApplyCat(){
+        service.getApplyCat({ (ApplyCatModel) in
+            self.categoryList = ApplyCatModel.data!
+            self.curCatId = self.categoryList[0].id ?? 0
+            self.mMchJoinView.storeCategoryBtn.setTitle(self.categoryList[0].name ?? "", for: UIControl.State.normal)
+
+        }, { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+        })
+    }
+
     func uploadPic(){
-        if(isChoosingLogo){
+        switch choosePicType {
+        case 0:
             // 获取图片
             let image = ImagePressHelper.init().resizeImage(originalImg: self.mMchJoinView.storeLogoBtn.backgroundImage(for: UIControl.State.normal)!)
-
             // 将图片转化成Data
             let imageData = ImagePressHelper.init().compressImageSize(image: image)
-
             // 将Data转化成 base64的字符串
             let imageBase64String = imageData.base64EncodedString()
-
             service.uploadPic(ext: "jpg", type: "image", size:imageData.count , image: imageBase64String , { (UploadFileResponeModel) in
                 self.logoPath =  UploadFileResponeModel.data?.url ?? ""
             }) { (APIErrorModel) in
                 showHUDInView(text: APIErrorModel.msg!, inView: self.view)
             }
-
-
-        }else{
+        case 1:
             // 获取图片
             let image = ImagePressHelper.init().resizeImage(originalImg: self.mMchJoinView.storeBgBtn.backgroundImage(for: UIControl.State.normal)!)
             // 将图片转化成Data
             let imageData = ImagePressHelper.init().compressImageSize(image: image)
-
             // 将Data转化成 base64的字符串s
             let imageBase64String = imageData.base64EncodedString()
-
             service.uploadPic(ext: "jpg", type: "image", size:imageData.count , image: imageBase64String , { (UploadFileResponeModel) in
                 self.storeBgPath =  UploadFileResponeModel.data?.url ?? ""
+            }) { (APIErrorModel) in
+                showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+            }
+        default:
+            // 获取图片
+            let image = ImagePressHelper.init().resizeImage(originalImg: self.mMchJoinView.storeLicenseBtn.backgroundImage(for: UIControl.State.normal)!)
+            // 将图片转化成Data
+            let imageData = ImagePressHelper.init().compressImageSize(image: image)
+            // 将Data转化成 base64的字符串s
+            let imageBase64String = imageData.base64EncodedString()
+            service.uploadPic(ext: "jpg", type: "image", size:imageData.count , image: imageBase64String , { (UploadFileResponeModel) in
+                self.storeLicensePath =  UploadFileResponeModel.data?.url ?? ""
             }) { (APIErrorModel) in
                 showHUDInView(text: APIErrorModel.msg!, inView: self.view)
             }
@@ -141,6 +190,21 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
 
 
 extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegate {
+
+    func tapChooseStoreClassAction() {
+        // Simple Option Picker
+        var dummyList = [String]()
+        for item in categoryList{
+            dummyList.append(item.name!)
+        }
+        // Simple Option Picker with selected index
+
+        RPicker.selectOption(title: "", hideCancel: true, dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
+            self.curCatId = self.categoryList[atIndex].id ?? 0
+            self.mMchJoinView.storeCategoryBtn.setTitle(selctedText, for: UIControl.State.normal)
+        }
+    }
+
     func tapChooseStoreAddressAction() {
         let vc = UChooseAddressFromMap()
         vc.title = "店铺地址"
@@ -153,8 +217,8 @@ extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegat
             return
         }
 
-        guard phoneNumber.count > 0 else {
-            showHUDInView(text: "请输入手机号码", inView: view)
+        guard phoneNumber.count == 11 else {
+            showHUDInView(text: "请输入有效手机号码", inView: view)
             return
         }
 
@@ -168,8 +232,13 @@ extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegat
             return
         }
 
+//        guard self.mMchJoinView.storeAddressBtn.currentTitle!.count > 0 else {
+//            showHUDInView(text: "请选择店铺地址", inView: view)
+//            return
+//        }
+
         guard storeAddress.count > 0 else {
-            showHUDInView(text: "请选择店铺地址", inView: view)
+            showHUDInView(text: "请选择填写店铺详细地址", inView: view)
             return
         }
 
@@ -188,6 +257,37 @@ extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegat
             return
         }
 
+        guard storeLicensePath.count > 0 else {
+            showHUDInView(text: "请选择营业执照", inView: view)
+            return
+        }
+
+        let mchApply = MchApplyModel()
+        mchApply.username = phoneNumber
+        mchApply.password = String(phoneNumber.suffix(6))
+        mchApply.tel = phoneNumber
+        mchApply.realname = contactName
+        mchApply.name = storeName
+
+        mchApply.province = curLocation.province ?? "广东省"
+        mchApply.city = curLocation.city ?? "深圳市"
+        mchApply.district = curLocation.district ?? "宝安区"
+        mchApply.longitude = curLocation.longitude
+        mchApply.latitude = curLocation.latitude
+        mchApply.mch_common_cat_id = String(curCatId)
+        mchApply.address = storeAddress
+        mchApply.service_tel = serviceTel
+        mchApply.logo = logoPath
+        mchApply.header_bg = storeBgPath
+        mchApply.business_license = storeLicensePath
+
+        service.applyJoin(mchApplyModel: mchApply, { (MchApplyResponeModel) in
+            let vc = UReviewControiller()
+            vc.title = "资料审核"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }) { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg ?? "提交失败", inView: self.view)
+        }
 
     }
 
@@ -209,12 +309,17 @@ extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegat
     }
 
     func tapChooseStoreLogoPicAction() {
-        isChoosingLogo = true
+        choosePicType = 0
         self.tapChoosePicAction()
     }
 
     func tapChooseStoreBgPicAction() {
-        isChoosingLogo = false
+        choosePicType = 1
+        self.tapChoosePicAction()
+    }
+
+    func tapChooseLicensePicAction() {
+        choosePicType = 2
         self.tapChoosePicAction()
     }
 }

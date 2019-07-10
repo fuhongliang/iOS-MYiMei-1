@@ -50,6 +50,8 @@ enum NetApi {
     case modifyGoodsStatus(param: [String:String])
     case getChangePasswordVerificationCode(param: [String:Any])
     case modifyPwd(param: [String:Any])
+    case getMchCommonCatId(param: [String:Any])
+    case applyJoin(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -85,12 +87,16 @@ extension NetApi: TargetType {
             return "/modify_pwd"
         case .uploadPic:
             return "/upload_pic"
+        case .applyJoin:
+            return "/mch_apply"
+        case .getMchCommonCatId:
+            return "/apply_cat"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
+        case .getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
             return .post
         }
     }
@@ -120,6 +126,10 @@ extension NetApi: TargetType {
         case .modifyPwd(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .uploadPic(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getMchCommonCatId(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .applyJoin(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

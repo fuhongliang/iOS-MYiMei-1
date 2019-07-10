@@ -70,4 +70,14 @@ class MchInfo: Codable {
     var review_time: Int?
 
     var realname: String?
+
+    var tel: String?
+
+    var mch_name: String?
+
+    var service_tel: String?
+
+    var logo: String?
+
+
 }
