@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol APIUserServicesProtocol {
     //登录协议
@@ -21,10 +22,69 @@ protocol APIUserServicesProtocol {
     func uploadPic(ext:String,type:String,size:Int,image:String,_ success: @escaping(((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //提交申请
+    func applyJoin(mchApplyModel: MchApplyModel, _ success: @escaping(((MchApplyResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
+    func getApplyCat(_ success: @escaping(((ApplyCatModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
 }
 
 class APIUserServices: APIUserServicesProtocol {
+    func getApplyCat(_ success: @escaping (((ApplyCatModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        var params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+
+        APIService.shared.request(.getMchCommonCatId(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(ApplyCatModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+
+    }
+
+
+    func applyJoin(mchApplyModel: MchApplyModel, _ success: @escaping (((MchApplyResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+
+        var params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+
+        let mirror: Mirror = Mirror(reflecting:mchApplyModel)
+
+        for p in mirror.children {
+             //属性名使用!，因为label是optional类型
+            let propertyNameString = p.label!
+            //属性的值
+            let value = p.value
+            params.updateValue(value, forKey: propertyNameString)
+        }
+
+
+        APIService.shared.request(.applyJoin(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(MchApplyResponeModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+    }
+
     func uploadPic(ext: String, type: String, size: Int, image: String, _ success: @escaping (((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "mch_id":APIUser.shared.user?.mch_id as Any,
