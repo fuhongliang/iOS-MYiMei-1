@@ -17,10 +17,40 @@ protocol APIUserServicesProtocol {
 
     //获取登录验证码
     func getLoginMsg(phoneNumber:String,_ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    //上传图片专用
+    func uploadPic(ext:String,type:String,size:Int,image:String,_ success: @escaping(((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
+    //提交申请
 
 }
 
 class APIUserServices: APIUserServicesProtocol {
+    func uploadPic(ext: String, type: String, size: Int, image: String, _ success: @escaping (((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "ext":ext,
+            "type":type,
+            "size":size,
+            "image":image,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.uploadPic(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(UploadFileResponeModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+    }
+
+
+
     func getLoginMsg(phoneNumber: String, _ success: @escaping (((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "username":phoneNumber,

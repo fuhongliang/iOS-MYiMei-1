@@ -106,7 +106,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UStoreEventsCell.self)
             cell.subscribeFinancialAction = {
-                NSLog("财务结算被点击了")
+              
             }
             cell.subscribeGoodsManagementAction = {
                 NSLog("商品管理被点击了")
