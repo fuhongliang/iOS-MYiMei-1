@@ -16,6 +16,9 @@
 		0AB057AF22D427B2002B7E40 /* UMenuDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057AE22D427B2002B7E40 /* UMenuDepost.swift */; };
 		0AB057B122D43828002B7E40 /* UDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057B022D43828002B7E40 /* UDepost.swift */; };
 		0AB057B322D43992002B7E40 /* UDepostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057B222D43992002B7E40 /* UDepostController.swift */; };
+		0AB057B522D46C52002B7E40 /* UMeDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057B422D46C52002B7E40 /* UMeDepost.swift */; };
+		0AB057B722D46C92002B7E40 /* UMeDepostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057B622D46C92002B7E40 /* UMeDepostController.swift */; };
+		0AB057B922D48C61002B7E40 /* UMeDepostcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057B822D48C61002B7E40 /* UMeDepostcell.swift */; };
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
 		0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
@@ -110,6 +113,9 @@
 		0AB057AE22D427B2002B7E40 /* UMenuDepost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMenuDepost.swift; sourceTree = "<group>"; };
 		0AB057B022D43828002B7E40 /* UDepost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepost.swift; sourceTree = "<group>"; };
 		0AB057B222D43992002B7E40 /* UDepostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepostController.swift; sourceTree = "<group>"; };
+		0AB057B422D46C52002B7E40 /* UMeDepost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMeDepost.swift; sourceTree = "<group>"; };
+		0AB057B622D46C92002B7E40 /* UMeDepostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMeDepostController.swift; sourceTree = "<group>"; };
+		0AB057B822D48C61002B7E40 /* UMeDepostcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMeDepostcell.swift; sourceTree = "<group>"; };
 		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
 		0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; };
@@ -439,7 +445,9 @@
 				7BAB355F22C1F2CD00154D36 /* UMenuCell.swift */,
 				7BAB356122C1F5EF00154D36 /* UMenuGoodsManagement.swift */,
 				7BAB356322C1F62800154D36 /* UMenuStoreSettings.swift */,
+				0AB057B822D48C61002B7E40 /* UMeDepostcell.swift */,
 				7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */,
+				0AB057B422D46C52002B7E40 /* UMeDepost.swift */,
 				DC14816A22CD95A100018EED /* UAccountSafeView.swift */,
 				DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */,
 				DC221C8122CF02FE003A4053 /* UFeedBackView.swift */,
@@ -459,6 +467,7 @@
 				0AB057B222D43992002B7E40 /* UDepostController.swift */,
 				DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */,
 				DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */,
+				0AB057B622D46C92002B7E40 /* UMeDepostController.swift */,
 				DC221C8322CF033C003A4053 /* UFeedBackController.swift */,
 				DC221C8722CF32CF003A4053 /* USetUpShopController.swift */,
 			);
@@ -718,6 +727,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AB057B922D48C61002B7E40 /* UMeDepostcell.swift in Sources */,
+				0AB057B522D46C52002B7E40 /* UMeDepost.swift in Sources */,
 				7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */,
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
@@ -731,6 +742,7 @@
 				DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */,
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
+				0AB057B722D46C92002B7E40 /* UMeDepostController.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
 				DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */,
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,
