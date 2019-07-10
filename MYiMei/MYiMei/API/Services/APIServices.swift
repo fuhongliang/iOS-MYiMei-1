@@ -40,6 +40,7 @@ let TimeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<NetApi>.Request
 
 //MARK: 接口函数
 enum NetApi {
+    case uploadPic(param: [String:Any])
     case login(user: [String:String])
     case getLoginMsg(user: [String:String])
     case logout(userId: String)
@@ -82,12 +83,14 @@ extension NetApi: TargetType {
             return "/get_captcha_modify_pwd"
         case .modifyPwd:
             return "/modify_pwd"
+        case .uploadPic:
+            return "/upload_pic"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
+        case .uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
             return .post
         }
     }
@@ -116,7 +119,8 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyPwd(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
-
+        case .uploadPic(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
 

@@ -11,7 +11,8 @@ import UIKit
 class UBottomTab: BaseView {
 
     var line = UIImageView()
-
+    
+    
     var addCategoryBtn = UIButton()
 
     var addGoodsBtn = UIButton()
