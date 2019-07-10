@@ -12,8 +12,6 @@ class USettingDeliveryController: UBaseViewController {
     
     let settingDelivery = USettingDeliveryView()
     
-    var choose:Int = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,33 +26,12 @@ class USettingDeliveryController: UBaseViewController {
     }
     
     func chooseCourierDelivery() {
-        if (!settingDelivery.courierSwitch.isOn) {
-            settingDelivery.logisticNotSwitch.isOn = true
-            settingDelivery.logisticNotMessageLayer.isHidden = false
-//            settingDelivery.courierOrderNoLayer.isHidden = true
-        }else{
-            settingDelivery.logisticNotSwitch.isOn = false
-            settingDelivery.logisticNotMessageLayer.isHidden = true
-//            settingDelivery.courierOrderNoLayer.isHidden = false
-        }
-        print(settingDelivery.courierSwitch.isOn)
-    }
-    
-    func chooseLogisticNot() {
-        if (!settingDelivery.logisticNotSwitch.isOn) {
-            settingDelivery.courierSwitch.isOn = true
-        }else{
-            settingDelivery.courierSwitch.isOn = false
-        }
-        
+        //MARK:请求按钮
     }
 }
 
 extension USettingDeliveryController: USettingDeliveryViewDelegate {
     func checkCourierDeliverySwitch() {
         chooseCourierDelivery()
-    }
-    func checkLogisticNotSwitch() {
-        chooseLogisticNot()
     }
 }

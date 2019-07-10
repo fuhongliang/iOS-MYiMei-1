@@ -80,6 +80,7 @@
 		DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */; };
 		DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */; };
 		DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */; };
+		DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77E9AA22D571D400E92E25 /* APIDepositService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,7 @@
 		DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeController.swift; sourceTree = "<group>"; };
 		DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepositAgreementView.swift; sourceTree = "<group>"; };
 		DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepositAgreementController.swift; sourceTree = "<group>"; };
+		DC77E9AA22D571D400E92E25 /* APIDepositService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDepositService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +334,7 @@
 				7BAB352322C0C76400154D36 /* APIToken.swift */,
 				7BAB354B22C0FAF400154D36 /* APIUserServices.swift */,
 				7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */,
+				DC77E9AA22D571D400E92E25 /* APIDepositService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */,
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
+				DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */,
 				7B9EB94A22C4988E003D9121 /* UGoodsDetailView.swift in Sources */,
 				7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */,
 				7BAB354022C0D1BB00154D36 /* UIColorExtension.swift in Sources */,
