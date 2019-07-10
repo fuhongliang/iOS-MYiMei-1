@@ -141,10 +141,56 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
 
 
 extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegate {
-    func tapPushApply() {
+    func tapChooseStoreAddressAction() {
+        let vc = UChooseAddressFromMap()
+        vc.title = "店铺地址"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func tapPushApply(contactName: String, phoneNumber: String, storeName: String, storeClass: String, storeAddress: String, serviceTel: String) {
+        guard contactName.count > 0 else {
+            showHUDInView(text: "请输入联系人", inView: view)
+            return
+        }
+
+        guard phoneNumber.count > 0 else {
+            showHUDInView(text: "请输入手机号码", inView: view)
+            return
+        }
+
+        guard storeName.count > 0 else {
+            showHUDInView(text: "请输入店铺名称", inView: view)
+            return
+        }
+
+        guard storeClass.count > 0 else {
+            showHUDInView(text: "请选择店铺分类", inView: view)
+            return
+        }
+
+        guard storeAddress.count > 0 else {
+            showHUDInView(text: "请选择店铺地址", inView: view)
+            return
+        }
+
+        guard serviceTel.count > 0 else {
+            showHUDInView(text: "请输入客服电话", inView: view)
+            return
+        }
+
+        guard logoPath.count > 0 else {
+            showHUDInView(text: "请选择店铺Logo", inView: view)
+            return
+        }
+
+        guard storeBgPath.count > 0 else {
+            showHUDInView(text: "请选择店铺背景图", inView: view)
+            return
+        }
 
 
     }
+
 
     func selectedCameraCell(picker: TLPhotosPickerViewController) {
 

@@ -20,6 +20,8 @@ protocol APIUserServicesProtocol {
     //上传图片专用
     func uploadPic(ext:String,type:String,size:Int,image:String,_ success: @escaping(((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
+    //提交申请
+
 }
 
 class APIUserServices: APIUserServicesProtocol {

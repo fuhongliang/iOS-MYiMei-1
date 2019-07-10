@@ -20,6 +20,8 @@
 		0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */; };
 		7B263AFA22D46DD60051C1AB /* UploadFileResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B263AF922D46DD60051C1AB /* UploadFileResponeModel.swift */; };
 		7B2DE2A122D481C800AD6FDD /* ImagePressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A022D481C800AD6FDD /* ImagePressHelper.swift */; };
+		7B2DE2A322D48EEB00AD6FDD /* UChooseAddressFromMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A222D48EEB00AD6FDD /* UChooseAddressFromMap.swift */; };
+		7B2DE2A522D48F1200AD6FDD /* UPlaceAroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A422D48F1200AD6FDD /* UPlaceAroundTableView.swift */; };
 		7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */; };
 		7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */; };
 		7B41456622C4DABE00BB61D0 /* GoodsResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */; };
@@ -116,6 +118,9 @@
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
 		7B263AF922D46DD60051C1AB /* UploadFileResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileResponeModel.swift; sourceTree = "<group>"; };
 		7B2DE2A022D481C800AD6FDD /* ImagePressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePressHelper.swift; sourceTree = "<group>"; };
+		7B2DE2A222D48EEB00AD6FDD /* UChooseAddressFromMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChooseAddressFromMap.swift; sourceTree = "<group>"; };
+		7B2DE2A422D48F1200AD6FDD /* UPlaceAroundTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPlaceAroundTableView.swift; sourceTree = "<group>"; };
+		7B2DE2A622D48F4F00AD6FDD /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swift-Bridging-Header.h"; path = "Procedure/Login/ViewController/Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGoodsServices.swift; sourceTree = "<group>"; };
 		7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsResponeModel.swift; sourceTree = "<group>"; };
@@ -277,6 +282,7 @@
 		7BAB34ED22C0AE1200154D36 /* MYiMei */ = {
 			isa = PBXGroup;
 			children = (
+				7B2DE2A622D48F4F00AD6FDD /* Swift-Bridging-Header.h */,
 				7B263AFB22D4814F0051C1AB /* Helper */,
 				7BAB355322C1B3FD00154D36 /* Component */,
 				7BAB353E22C0D1AD00154D36 /* Extension */,
@@ -423,6 +429,7 @@
 		7BAB354722C0D85500154D36 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7B2DE2A422D48F1200AD6FDD /* UPlaceAroundTableView.swift */,
 				7BAB354922C0D87100154D36 /* ULoginView.swift */,
 				0A0FF6C522C9AF09003F4B53 /* UMchJoinView.swift */,
 				0A0FF6C922CB004B003F4B53 /* UReviewView.swift */,
@@ -436,6 +443,7 @@
 				7BAB354522C0D7D500154D36 /* ULoginViewController.swift */,
 				0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */,
 				0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */,
+				7B2DE2A222D48EEB00AD6FDD /* UChooseAddressFromMap.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -563,6 +571,7 @@
 				7BAB34E822C0AE1200154D36 /* Frameworks */,
 				7BAB34E922C0AE1200154D36 /* Resources */,
 				0AE738F0C2BAF6BF5411ADED /* [CP] Embed Pods Frameworks */,
+				19A24A2A4406AF38C912C2ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -697,6 +706,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MYiMei/Pods-MYiMei-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		19A24A2A4406AF38C912C2ED /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MYiMei/Pods-MYiMei-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MYiMei/Pods-MYiMei-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MYiMei/Pods-MYiMei-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DB11778ADE98121142040A8E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -738,6 +764,7 @@
 				7BAB352222C0C56400154D36 /* Global.swift in Sources */,
 				DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */,
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
+				7B2DE2A522D48F1200AD6FDD /* UPlaceAroundTableView.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
 				DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */,
@@ -781,6 +808,7 @@
 				7BAB352422C0C76400154D36 /* APIToken.swift in Sources */,
 				7BAB352D22C0D00400154D36 /* BaseView.swift in Sources */,
 				7BAB355622C1B8BF00154D36 /* ParallaxHeaderMode.swift in Sources */,
+				7B2DE2A322D48EEB00AD6FDD /* UChooseAddressFromMap.swift in Sources */,
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
 				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
@@ -979,6 +1007,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xfigo.MYiMei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -999,6 +1028,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xfigo.MYiMei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

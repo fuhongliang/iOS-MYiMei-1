@@ -12,7 +12,9 @@ import UIKit
 protocol UMchJoinViewDelegate: AnyObject {
     func tapChooseStoreLogoPicAction()
     func tapChooseStoreBgPicAction()
-    func tapPushApply()
+    func tapChooseStoreAddressAction()
+
+    func tapPushApply(contactName: String, phoneNumber: String,storeName: String, storeClass: String,storeAddress: String, serviceTel: String)
 }
 
 class UMchJoinView: BaseView {
@@ -51,7 +53,7 @@ class UMchJoinView: BaseView {
     var whiteBgone = UIImageView()
     //选择对话框
     var storeCategoryDialog = UILabel()
-    var storeAddressDialog = UILabel()
+    var storeAddressBtn = UIButton()
     //小图标
     var storeCategoryIcon = UIImageView()
     var storeAddressIcon = UIImageView()
@@ -241,26 +243,29 @@ class UMchJoinView: BaseView {
             ConstraintMaker.top.equalTo(storeCategoryLine.snp.bottom).offset(14)
         }
 
-        storeAddressDialog.text = "请选择"
-        storeAddressDialog.tintColor = UIColor.hex(hexString: "#CCCCCC")
-        storeAddressDialog.textColor = UIColor.hex(hexString: "#CCCCCC")
-        storeAddressDialog.font = UIFont.systemFont(ofSize: 17)
-        storeAddressDialog.textAlignment = .right
-        self.addSubview(storeAddressDialog)
-        storeAddressDialog.snp.makeConstraints { (ConstraintMaker) in
+        storeAddressBtn.setTitle("请选择", for: UIControl.State.normal)
+        storeAddressBtn.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        storeAddressBtn.titleLabel?.textColor = UIColor.hex(hexString: "#CCCCCC")
+        storeAddressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        storeAddressBtn.titleLabel?.textAlignment = .right
+        self.addSubview(storeAddressBtn)
+        storeAddressBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(storeCategoryLine.snp.bottom)
-            ConstraintMaker.left.equalTo(storeAddressDialog.snp.right).offset(30)
+            ConstraintMaker.left.equalTo(storeAddressLabel.snp.right).offset(30)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.width.equalTo(240)
             ConstraintMaker.right.equalToSuperview().offset(-33)
         }
+
+        storeAddressBtn.addTarget(self, action: #selector(tapChooseStoreAddressAction), for: UIControl.Event.touchDown)
+
 
         storeAddressIcon.image = UIImage.init(named: "notice")
         self.addSubview(storeAddressIcon)
         storeAddressIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.height.equalTo(14)
             ConstraintMaker.width.equalTo(9)
-            ConstraintMaker.left.equalTo(storeAddressDialog.snp.right).offset(9)
+            ConstraintMaker.left.equalTo(storeAddressBtn.snp.right).offset(9)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.top.equalTo(storeCategoryLine.snp.bottom).offset(15)
         }
@@ -271,7 +276,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.height.equalTo(1)
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalTo(storeAddressDialog.snp.bottom)
+            ConstraintMaker.top.equalTo(storeAddressBtn.snp.bottom)
         }
         
         storeAddressEdit.tintColor = UIColor.hex(hexString: "#CCCCCC")
@@ -429,6 +434,10 @@ class UMchJoinView: BaseView {
         joinButton.addTarget(self, action: #selector(pushAppyAction), for: UIControl.Event.touchDown)
     }
 
+    @objc func tapChooseStoreAddressAction() {
+        delegate?.tapChooseStoreAddressAction()
+    }
+
     @objc func chooseStoreLogoPicAction() {
         delegate?.tapChooseStoreLogoPicAction()
     }
@@ -438,6 +447,7 @@ class UMchJoinView: BaseView {
     }
 
     @objc func pushAppyAction() {
-        delegate?.tapPushApply()
+        delegate?.tapPushApply(contactName: contactEdit.text!, phoneNumber: phoneNumberEdit.text!, storeName: storeNameEdit.text!, storeClass: storeCategoryDialog.text!, storeAddress: storeAddressLabel.text! + storeAddressEdit.text!, serviceTel: consumerPhoneEdit.text!)
     }
+
 }
