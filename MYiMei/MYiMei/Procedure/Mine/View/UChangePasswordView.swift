@@ -52,7 +52,7 @@ class UChangePasswordView: BaseView {
         }
         
         //MARK:手机号
-        phoneNumberLabel.text = "188****8877"
+        phoneNumberLabel.text = APIUser.shared.user?.tel ?? ""
         phoneNumberLabel.textColor = UIColor.black
         phoneNumberLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(phoneNumberLabel)
@@ -139,7 +139,7 @@ class UChangePasswordView: BaseView {
         //MARK:确认密码输入框
         inputPasswordAgainEdit.placeholder = "请再次输入密码"
         inputPasswordAgainEdit.font = UIFont.systemFont(ofSize: 17)
-        inputPasswordEdit.textColor = UIColor.hex(hexString: "#999999")
+        inputPasswordAgainEdit.textColor = UIColor.hex(hexString: "#999999")
         self.addSubview(inputPasswordAgainEdit)
         inputPasswordAgainEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.width.equalToSuperview()

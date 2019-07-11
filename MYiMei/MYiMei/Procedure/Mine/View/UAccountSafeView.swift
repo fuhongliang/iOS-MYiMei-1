@@ -54,7 +54,7 @@ class UAccountSafeView: BaseView {
         }
         
         //MARK:绑定手机
-        bindPhoneLabel.text = "绑定手机"
+        bindPhoneLabel.text = "联系电话"
         bindPhoneLabel.textColor = UIColor.black
         bindPhoneLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(bindPhoneLabel)
@@ -64,7 +64,7 @@ class UAccountSafeView: BaseView {
         }
         
         //MARK:手机号
-        phoneNumberLabel.text = "132****5992"
+        phoneNumberLabel.text = APIUser.shared.user?.tel ?? ""
         phoneNumberLabel.textColor = UIColor.hex(hexString: "#666666")
         phoneNumberLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(phoneNumberLabel)
@@ -84,7 +84,7 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.height.equalTo(1)
         }
 
-        loginAccountLabel.text = "登录账号"
+        loginAccountLabel.text = "联系人"
         loginAccountLabel.textColor = UIColor.black
         loginAccountLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(loginAccountLabel)
@@ -93,7 +93,7 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.top.equalTo(bindLine.snp.bottom).offset(14)
         }
 
-        accountNameLabel.text = "yuy****456"
+        accountNameLabel.text = APIUser.shared.user?.realname ?? ""
         accountNameLabel.textColor = UIColor.hex(hexString: "#666666")
         accountNameLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(accountNameLabel)

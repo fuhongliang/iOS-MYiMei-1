@@ -27,10 +27,10 @@ class UChangePasswordController: UBaseViewController {
     }
     
     func getVerification() {
-        service.getVerification(username: "13763016638", { (CategoryResponeModel) in
+        service.getVerification(username: APIUser.shared.user?.tel ?? "", { () in
             self.startTimer()
         }) { (APIErrorModel) in
-            
+           showHUDInView(text: APIErrorModel.msg!, inView: self.view)
         }
         
     }
@@ -72,7 +72,7 @@ class UChangePasswordController: UBaseViewController {
 extension UChangePasswordController: UChangePasswordViewDelegate {
     func tapConfirmChangeCodeAction(code: String, newPassword: String, newPasswordAgain: String) {
         guard code.count > 0 else {
-            showHUDInView(text: "请输入4位数验证码", inView: view)
+            showHUDInView(text: "请输入6位数验证码", inView: view)
             return
         }
         
@@ -80,18 +80,25 @@ extension UChangePasswordController: UChangePasswordViewDelegate {
             showHUDInView(text: "请输入新密码", inView: view)
             return
         }
-        guard newPasswordAgain.count > 0 else {
-            showHUDInView(text: "请再次输入密码", inView: view)
+        
+        guard newPassword == newPasswordAgain else {
+            showHUDInView(text: "密码和确认密码要一致", inView: view)
             return
         }
+    
+        service.modifyPwd(mch_id: APIUser.shared.user?.mch_id! ?? 0, access_token: APIUser.shared.user?.access_token! ?? "", phone: APIUser.shared.user?.tel ?? "", code: code, password: newPassword, {
+            showHUDInView(text: "修改成功", inView: self.view)
+            Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.getBack), userInfo: nil, repeats: false)
         
-//        service.modifyPwd(mch_id: APIUser.shared.user?.mch_id!, access_token: APIUser.shared.user?.access_token!, phone: APIUser.shared.user?., code: code, password: passwd, {
-//
-//        }) { (APIErrorModel) in
-//
-//        }
+        }) { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+        }
     }
     
+    @objc func getBack() {
+        self.pressBack()
+    }
+
     
     func tapGetVerificationCodeAction() {
         getVerification()
