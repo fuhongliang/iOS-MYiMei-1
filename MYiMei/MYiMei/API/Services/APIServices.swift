@@ -148,8 +148,13 @@ extension NetApi: TargetType {
 class APIService {
 
     private init(needMBProgressHUD:Bool) {
-        let APIProvider = MoyaProvider<NetApi>(plugins: [loadingPlugin])
-        apiProvider = APIProvider
+        if (needMBProgressHUD) {
+            let APIProvider = MoyaProvider<NetApi>(plugins: [loadingPlugin,NetworkLoggerPlugin(verbose: true, cURL: true)])
+            apiProvider = APIProvider
+        }else {
+            let APIProvider = MoyaProvider<NetApi>(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true)])
+            apiProvider = APIProvider
+        }
     }
 
     public static let shared: APIService = APIService(needMBProgressHUD: true)
