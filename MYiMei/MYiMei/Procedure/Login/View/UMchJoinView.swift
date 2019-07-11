@@ -312,6 +312,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(storeAddressLine.snp.bottom)
             ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
         }
 
         storeAddressEditLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -338,6 +339,7 @@ class UMchJoinView: BaseView {
         consumerPhoneEdit.textColor = UIColor.black
         consumerPhoneEdit.font = UIFont.systemFont(ofSize: 17)
         consumerPhoneEdit.textAlignment = .right
+        consumerPhoneEdit.keyboardType = UIKeyboardType.numberPad
         self.addSubview(consumerPhoneEdit)
         consumerPhoneEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(consumerPhoneLaber.snp.right).offset(30)
