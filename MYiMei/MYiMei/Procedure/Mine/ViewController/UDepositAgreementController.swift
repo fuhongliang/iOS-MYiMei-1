@@ -17,15 +17,17 @@ class UDepositAgreementController: UBaseViewController {
     fileprivate let service = APIDepositServices()
     
     let depositAgreementView = UDepositAgreementView()
-    
+
+    var agreementContent = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadUrl()
     }
     
     override func configUI() {
         depositAgreementView.configUI()
         depositAgreementView.delegate = self
-        loadUrl()
         self.view.addSubview(depositAgreementView)
         depositAgreementView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
@@ -36,11 +38,11 @@ class UDepositAgreementController: UBaseViewController {
     func loadUrl() {
         service.getDepositAgreement({ (DepositAgreementResponsModel) in
             self.title = DepositAgreementResponsModel.data?.title
-            if let url = URL(string:DepositAgreementResponsModel.data?.content ?? "") {
-                self.depositAgreementView.wkWebView.load(URLRequest(url: url))
-            }
+            self.agreementContent = DepositAgreementResponsModel.data?.content ?? "暂无保证金协议"
+            self.depositAgreementView.wkWebView.loadHTMLString(self.agreementContent, baseURL: URL(string:"http://yiwuyimei-test.oss-cn-beijing.aliyuncs.com"))
+
         }) { (APIErrorModel) in
-            
+            showHUDInView(text: APIErrorModel.msg ?? "获取保证金协议失败", inView: self.view)
         }
     }
 }
@@ -51,11 +53,10 @@ extension UDepositAgreementController: UDepositAgreementViewDelegate {
         if (!depositAgreementView.checkButton.isSelected) {
             showHUDInView(text: "请勾选我已阅读并同意保证金协议", inView: view)
         } else {
-            let vc = UMechJoinViewController()
+            let vc = UDepostPostController()
             vc.title = "缴纳保证金"
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-   
 }
 

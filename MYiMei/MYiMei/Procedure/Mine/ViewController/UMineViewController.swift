@@ -70,6 +70,7 @@ class UMineViewController: UBaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         getStoreData()
+        getStoreDepost()
         super.configNavigationBar()
     }
     
@@ -82,12 +83,13 @@ class UMineViewController: UBaseViewController {
     //MARK:跳转保证金协议
     func goToDepositAgreement(){
         if(depostPass){
-//            let vc = UDepositAgreementController()
-//            vc.title = "保证金协议"
-//            navigationController?.pushViewController(vc, animated: true)
+            let vc = UMyDepostController()
+            vc.title = "我的保证金"
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if(depostReview){
-
-
+            let vc = UMyDepostController()
+            vc.title = "我的保证金"
+            self.navigationController?.pushViewController(vc, animated: true)
         }else{
             //未交保证金时跳转
             let vc = UDepositAgreementController()

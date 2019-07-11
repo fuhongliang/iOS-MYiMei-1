@@ -20,12 +20,12 @@ class StoreDepostReponseModel: Codable {
 
 
 class StoreDepostDataModel: Codable {
-    var pass: [PassModel]?
-    var review: [ReviewModel]?
+    var pass: [DepostModel]?
+    var review: [DepostModel]?
 }
 
 
-class PassModel: Codable {
+class DepostModel: Codable {
 
     var mch_id = Int()
 
@@ -35,22 +35,6 @@ class PassModel: Codable {
 
     var store_id = Int()
 
-    var status = String()
-
-}
-
-
-class ReviewModel: Codable {
-
-
-    var mch_id = Int()
-
-    var price = String()
-
-    var image_url = String()
-
-    var store_id = Int()
-
-    var status = String()
+    var status = Int()
 
 }

@@ -20,14 +20,11 @@ class UMeDepost: UBaseTableViewCell {
     var depostBg = UIImageView()
     var certificateBg = UIImageView()
     var certificatePhotoBg = UMeDepostcell ()
-    
     var tableView = UITableView()
-    
     var webView = WKWebView()
-    
+
     func setView(){
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
-        
         //MARK:保证金审核图标
         depostIcon.image = UIImage.init(named: "review")
         self.addSubview(depostIcon)
@@ -99,14 +96,6 @@ class UMeDepost: UBaseTableViewCell {
             ConstraintMaker.top.equalTo(certificateBg.snp.bottom)
             ConstraintMaker.height.equalTo(331)
         }
-        
-//        certificatePhotoBg.configUI()
-//        contentView.addSubview(certificatePhotoBg)
-//        certificatePhotoBg.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.left.equalToSuperview()
-//            ConstraintMaker.right.equalToSuperview()
-//            ConstraintMaker.top.equalTo(certificateBg.snp.bottom)
-//        }
         
         self.addSubview(webView)
         webView.frame = self.frame

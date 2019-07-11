@@ -9,6 +9,7 @@
 import UIKit
 
 class UMeDepostcell: UBaseTableViewCell {
+
     var depostBg: UIImageView = {
         let iv = UIImageView()
         iv.isUserInteractionEnabled = true
@@ -20,6 +21,7 @@ class UMeDepostcell: UBaseTableViewCell {
         tl.isUserInteractionEnabled = true
         return tl
     }()
+
     override func configUI() {
         
         depostBg.backgroundColor = UIColor.white
@@ -30,6 +32,7 @@ class UMeDepostcell: UBaseTableViewCell {
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
         }
+        
         depostPhoto.backgroundColor = UIColor.black
         self.addSubview(depostPhoto)
         depostPhoto.snp.makeConstraints { (ConstraintMaker) in
