@@ -175,7 +175,6 @@ class APIService {
                     let anyData = try moyaResponse.mapJSON()
                     let data =  moyaResponse.data
                     let statusCode =  moyaResponse.statusCode
-                    print("\(data) --- \(statusCode) ----- \(anyData)")
                     if statusCode == 200 {
                         if let mapData: [String:Any] = anyData as? [String:Any] {
                             if mapData.keys.contains("code") {
