@@ -50,6 +50,7 @@ enum NetApi {
     case modifyGoodsStatus(param: [String:String])
     case getMchCommonCatId(param: [String:Any])
     case applyJoin(param: [String:Any])
+    case getStoreOperateData(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -85,13 +86,14 @@ extension NetApi: TargetType {
             return "/mch_apply"
         case .getMchCommonCatId:
             return "/apply_cat"
-
+        case .getStoreOperateData:
+            return "/store_operate_data"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .applyJoin,.login,.uploadPic,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getMchCommonCatId:
+        case .applyJoin,.login,.uploadPic,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getMchCommonCatId,.getStoreOperateData:
             return .post
         }
     }
@@ -122,6 +124,9 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .applyJoin(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getStoreOperateData(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+
        }
     }
 

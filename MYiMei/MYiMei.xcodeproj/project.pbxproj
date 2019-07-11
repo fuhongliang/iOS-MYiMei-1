@@ -29,6 +29,8 @@
 		7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456922C4DB2300BB61D0 /* URefresh.swift */; };
 		7B41456C22C4DB3700BB61D0 /* UBottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456B22C4DB3700BB61D0 /* UBottomTab.swift */; };
 		7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456D22C4DB4000BB61D0 /* UCategoryCell.swift */; };
+		7B7B15CB22D6DED50082F227 /* StoreDashBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */; };
+		7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */; };
 		7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94322C3348F003D9121 /* UGoodsCell.swift */; };
 		7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */; };
 		7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */; };
@@ -135,6 +137,8 @@
 		7B41456922C4DB2300BB61D0 /* URefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URefresh.swift; sourceTree = "<group>"; };
 		7B41456B22C4DB3700BB61D0 /* UBottomTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBottomTab.swift; sourceTree = "<group>"; };
 		7B41456D22C4DB4000BB61D0 /* UCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UCategoryCell.swift; sourceTree = "<group>"; };
+		7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDashBoardModel.swift; sourceTree = "<group>"; };
+		7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStoreServices.swift; sourceTree = "<group>"; };
 		7B9EB94322C3348F003D9121 /* UGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsCell.swift; sourceTree = "<group>"; };
 		7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsDetailsController.swift; sourceTree = "<group>"; };
 		7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsDetailModel.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */,
 				7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */,
 				7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */,
+				7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,12 +361,13 @@
 		7BAB352822C0CDCF00154D36 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				7BAB352922C0CDF500154D36 /* APIUser.swift */,
 				7BAB351F22C0C3D300154D36 /* APIServices.swift */,
-				7BAB352322C0C76400154D36 /* APIToken.swift */,
+				7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */,
 				7BAB354B22C0FAF400154D36 /* APIUserServices.swift */,
 				7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */,
 				DC77E9AA22D571D400E92E25 /* APIDepositService.swift */,
+				7BAB352322C0C76400154D36 /* APIToken.swift */,
+				7BAB352922C0CDF500154D36 /* APIUser.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -811,6 +817,7 @@
 				7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */,
 				0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */,
 				7BAB356222C1F5EF00154D36 /* UMenuGoodsManagement.swift in Sources */,
+				7B7B15CB22D6DED50082F227 /* StoreDashBoardModel.swift in Sources */,
 				DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */,
 				DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */,
 				7B2DE2AF22D5B5C000AD6FDD /* RPicker.swift in Sources */,
@@ -841,6 +848,7 @@
 				DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */,
 				DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
+				7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */,
 				DC7E298022D5764700AC3F21 /* UPlaceAroundTableView.swift in Sources */,
 				7B2DE2AD22D5995200AD6FDD /* LocationHelper.swift in Sources */,
 				DC221C8A22CF3CDE003A4053 /* UShopLabelNotArrowCell.swift in Sources */,

@@ -20,7 +20,7 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
     var service: APIUserServices = APIUserServices()
     var curLocation = LocationInfo()
     var categoryList = [CatModel]()
-    var curCatId = 0
+    var curCatIndex = 0
 
     override func configUI() {
         mMchJoinView.delegate = self
@@ -138,9 +138,6 @@ class UMechJoinViewController: UBaseViewController,TLPhotosPickerViewControllerD
     func getApplyCat(){
         service.getApplyCat({ (ApplyCatModel) in
             self.categoryList = ApplyCatModel.data!
-            self.curCatId = self.categoryList[0].id ?? 0
-            self.mMchJoinView.storeCategoryBtn.setTitle(self.categoryList[0].name ?? "", for: UIControl.State.normal)
-
         }, { (APIErrorModel) in
             showHUDInView(text: APIErrorModel.msg!, inView: self.view)
         })
@@ -200,7 +197,7 @@ extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegat
         // Simple Option Picker with selected index
 
         RPicker.selectOption(title: "", hideCancel: true, dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
-            self.curCatId = self.categoryList[atIndex].id ?? 0
+            self.curCatIndex = atIndex
             self.mMchJoinView.storeCategoryBtn.setTitle(selctedText, for: UIControl.State.normal)
         }
     }
@@ -274,7 +271,7 @@ extension UMechJoinViewController: UMchJoinViewDelegate,TLPhotosPickerLogDelegat
         mchApply.district = curLocation.district ?? "宝安区"
         mchApply.longitude = curLocation.longitude
         mchApply.latitude = curLocation.latitude
-        mchApply.mch_common_cat_id = String(curCatId)
+        mchApply.mch_common_cat_id = String(categoryList[curCatIndex].id)
         mchApply.address = storeAddress
         mchApply.service_tel = serviceTel
         mchApply.logo = logoPath

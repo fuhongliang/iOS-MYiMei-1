@@ -18,6 +18,7 @@ protocol APIUserServicesProtocol {
 
     //获取登录验证码
     func getLoginMsg(phoneNumber:String,_ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
     //上传图片专用
     func uploadPic(ext:String,type:String,size:Int,image:String,_ success: @escaping(((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
