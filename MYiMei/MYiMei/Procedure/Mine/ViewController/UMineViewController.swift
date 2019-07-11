@@ -10,7 +10,7 @@ import UIKit
 
 class UMineViewController: UBaseViewController {
     
-    fileprivate var service: APIUserServices = APIUserServices()
+    fileprivate var service: APIStoreServices = APIStoreServices()
     
     private lazy var myArray: Array = {
         return [
@@ -20,12 +20,14 @@ class UMineViewController: UBaseViewController {
             [
                 ["icon":"account_security", "title": "账号与安全"],
                 ["icon":"notice_settings", "title": "消息管理"],
-                ["icon":"feedback", "title": "意见反馈"],
-                ["icon":"about_us", "title": "关于我们"]
+                ["icon":"feedback", "title": "联系平台"],
+                ["icon":"about_us", "title": "关于平台"]
             ]
         ]
     }()
-    
+
+    var storeData = StoreDashBoardResponeDataModel()
+
     private lazy var head: UMineHead = {
         return UMineHead(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 2))
     }()
@@ -61,6 +63,11 @@ class UMineViewController: UBaseViewController {
         tableView.parallaxHeader.mode = .fill
         tableView.separatorColor = UIColor.clear
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        getStoreData()
+        super.configNavigationBar()
+    }
     
     func goToGoodsManageMent(){
         let vc = UGoodsManagementController()
@@ -77,6 +84,18 @@ class UMineViewController: UBaseViewController {
         let vc = USetUpShopController()
         vc.title = "店铺设置"
         navigationController?.pushViewController(vc, animated: true)
+    }
+   //MARK:获取店铺经营数据
+    func getStoreData() {
+        service.getStoreOperateData({ (StoreDashBoardModel) in
+            self.storeData = StoreDashBoardModel.data!
+            if(self.storeData.store != nil){
+                self.tableView.reloadData()
+            }
+
+        }) { (APIErrorModel) in
+           showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+        }
     }
 }
 
@@ -114,7 +133,6 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
               
             }
             cell.subscribeGoodsManagementAction = {
-                NSLog("商品管理被点击了")
                 self.goToGoodsManageMent()
             }
             cell.subscribeStoreSettingsAction = {
@@ -124,7 +142,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             cell.subscribeBusinessDataAction = {
                 NSLog("经营数据被点击了")
             }
-            
+            cell.model = storeData.store
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UBaseTableViewCell.self)
