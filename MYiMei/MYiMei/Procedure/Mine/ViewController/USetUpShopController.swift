@@ -10,26 +10,28 @@ import UIKit
 
 class USetUpShopController: UBaseViewController {
     
-    
+    fileprivate var services = APIUserServices()
     private lazy var myArray: Array = {
         return [
             [
-                ["instructions":"店铺名字"],
-                ["instructions":"店铺分类"]
+                ["instructions":"店铺名字","content":mchModel.name],
+                ["instructions":"店铺分类","content":mchModel.cat_name]
             ],
             [
-                ["instructions":"店铺头像"],
-                ["instructions":"联系人"],
-                ["instructions":"联系电话"],
-                ["instructions":"客服电话"],
-                ["instructions":"所在地区"],
-                ["instructions":"详细地址"]
+                ["instructions":"店铺头像","content":mchModel.Logo],
+                ["instructions":"联系人","content":mchModel.realname],
+                ["instructions":"联系电话","content":mchModel.tel],
+                ["instructions":"客服电话","content":mchModel.service_tel],
+                ["instructions":"所在地区","content":mchModel.region],
+                ["instructions":"详细地址","content":mchModel.address]
             ],
             [
-                ["instructions":"店铺背景（顶部）"]
+                ["instructions":"店铺背景（顶部）","content":mchModel.header_bg]
             ]
         ]
     }()
+    
+    var mchModel = MchModel()
     
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
@@ -48,9 +50,36 @@ class USetUpShopController: UBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(tableView)
+        services.storeInfo({ (StoreInfoModel) in
+            self.myArray = self.getArrayData(mchModel: StoreInfoModel.data.mch!)
+            self.tableView.reloadData()
+        }) { (APIErrorModel) in
+            
+        }
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
+    }
+    
+    func getArrayData(mchModel: MchModel) -> Array<Array<Dictionary<String, String>>>{
+        
+        return [
+            [
+                ["instructions":"店铺名字","content":mchModel.name ?? ""],
+                ["instructions":"店铺分类","content":mchModel.cat_name ?? ""]
+            ],
+            [
+                ["instructions":"店铺头像","content":mchModel.Logo ?? ""],
+                ["instructions":"联系人","content":mchModel.realname ?? ""],
+                ["instructions":"联系电话","content":mchModel.tel ?? ""],
+                ["instructions":"客服电话","content":mchModel.service_tel ?? ""],
+                ["instructions":"所在地区","content":mchModel.region ?? ""],
+                ["instructions":"详细地址","content":mchModel.address ?? ""]
+            ],
+            [
+                ["instructions":"店铺背景（顶部）","content":mchModel.header_bg]
+            ]
+        ]
     }
     
 }
@@ -91,6 +120,7 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
             if(indexPath.row == 0){
                 let cell = getImgCell(cellForRowAt: indexPath)
                 //店铺地址、分类数据没写
+               
                 return cell
             } else if(indexPath.row == 4) {
                 let cell = getLabelNotArrowCell(cellForRowAt: indexPath)
@@ -99,6 +129,7 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
             } else{
                 let cell = getLabelCell(cellForRowAt: indexPath)
                 //店铺地址、分类数据没写
+                
                 return cell
             }
           
@@ -167,8 +198,9 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelCell.self)
         cell.selectionStyle = .default
         let sectionArray = myArray[indexPath.section]
-        let dict: [String: String] = sectionArray[indexPath.row]
-        cell.instructionsLabel.text = dict["instructions"]
+        let dict = sectionArray[indexPath.row]
+        cell.instructionsLabel.text = dict["instructions"] ?? ""
+        cell.contentLabel.text = dict["content"] ?? ""
         return cell
     }
     
@@ -177,8 +209,9 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelNotArrowCell.self)
         cell.selectionStyle = .default
         let sectionArray = myArray[indexPath.section]
-        let dict: [String: String] = sectionArray[indexPath.row]
-        cell.instructionsLabel.text = dict["instructions"]
+        let dict = sectionArray[indexPath.row]
+        cell.instructionsLabel.text = dict["instructions"] ?? ""
+        cell.contentLabel.text = dict["content"] ?? ""
         return cell
     }
     
@@ -187,9 +220,16 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UShopLabelImgCell.self)
         cell.selectionStyle = .default
         let sectionArray = myArray[indexPath.section]
-        let dict: [String: String] = sectionArray[indexPath.row]
-        cell.instructionsLabel.text = dict["instructions"]
+        let dict = sectionArray[indexPath.row]
+        cell.instructionsLabel.text = dict["instructions"] ?? ""
+        if let uul = dict["content"] {
+            let url = URL(string: uul ?? "")
+            cell.shopImg.kf.setImage(with: url)
+        }
         return cell
     }
    
+  
+    //MARK:获取店铺信息接口
+    
 }

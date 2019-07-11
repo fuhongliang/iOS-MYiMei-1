@@ -116,7 +116,7 @@ class UChangePasswordView: BaseView {
         //MARK:密码输入框
         inputPasswordEdit.placeholder = "请输入新密码"
         inputPasswordEdit.font = UIFont.systemFont(ofSize: 17)
-        inputPasswordEdit.textColor = UIColor.hex(hexString: "#999999")
+        inputPasswordEdit.textColor = UIColor.black
         self.addSubview(inputPasswordEdit)
         inputPasswordEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.width.equalToSuperview()
@@ -139,7 +139,7 @@ class UChangePasswordView: BaseView {
         //MARK:确认密码输入框
         inputPasswordAgainEdit.placeholder = "请再次输入密码"
         inputPasswordAgainEdit.font = UIFont.systemFont(ofSize: 17)
-        inputPasswordAgainEdit.textColor = UIColor.hex(hexString: "#999999")
+        inputPasswordAgainEdit.textColor = UIColor.black
         self.addSubview(inputPasswordAgainEdit)
         inputPasswordAgainEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.width.equalToSuperview()

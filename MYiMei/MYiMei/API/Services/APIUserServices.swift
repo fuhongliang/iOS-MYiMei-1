@@ -31,9 +31,33 @@ protocol APIUserServicesProtocol {
     
     //修改密码
     func modifyPwd(mch_id: Int, access_token: String, phone: String, code: String, password: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    //获取店铺信息
+    func storeInfo( _ success: @escaping(((StoreInfoModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
 }
 
 class APIUserServices: APIUserServicesProtocol {
+    func storeInfo( _ success: @escaping (((StoreInfoModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.self.user?.mch_id as Any,
+            "access_token":APIUser.shared.self.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.storeInfo(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(StoreInfoModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+
+    }
+    
     func getLoginMsg(phoneNumber: String, _ success: @escaping (((APIObjectModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "username":phoneNumber,
