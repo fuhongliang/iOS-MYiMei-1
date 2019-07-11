@@ -15,6 +15,13 @@ class UTabBarController: UITabBarController {
 
         tabBar.isTranslucent = false
 
+        /// 我的店铺
+        let mineVC = UMineViewController()
+        addChildViewController(mineVC,
+                               title: "我的店铺",
+                               image: UIImage(named: "tab_mine"),
+                               selectedImage: UIImage(named: "tab_mine_S"))
+
         /// 待处理
         let onePageVC = UOrdersViewController()
         addChildViewController(onePageVC,
@@ -31,12 +38,7 @@ class UTabBarController: UITabBarController {
                                selectedImage: UIImage(named: "tab_manager_orders_S"))
 
 
-        /// 我的店铺
-        let mineVC = UMineViewController()
-        addChildViewController(mineVC,
-                               title: "我的店铺",
-                               image: UIImage(named: "tab_mine"),
-                               selectedImage: UIImage(named: "tab_mine_S"))
+
     }
 
     func addChildViewController(_ childController: UIViewController, title:String?, image:UIImage? ,selectedImage:UIImage?) {

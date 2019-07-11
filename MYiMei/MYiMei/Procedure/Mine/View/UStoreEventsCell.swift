@@ -46,7 +46,7 @@ class UStoreEventsCell: UBaseTableViewCell {
         let ll = UILabel()
         ll.font = UIFont.systemFont(ofSize: 18)
         ll.textColor = UIColor.black
-        ll.text = "1700"
+        ll.text = "0"
         return ll
     }()
     var storeOrdersAmountDescrLabel: UILabel = {
@@ -63,7 +63,7 @@ class UStoreEventsCell: UBaseTableViewCell {
         let ll = UILabel()
         ll.font = UIFont.systemFont(ofSize: 18)
         ll.textColor = UIColor.black
-        ll.text = "430"
+        ll.text = "0"
         return ll
     }()
     var storeGoodsAmountDescrLabel: UILabel = {
@@ -81,7 +81,7 @@ class UStoreEventsCell: UBaseTableViewCell {
         let ll = UILabel()
         ll.font = UIFont.systemFont(ofSize: 18)
         ll.textColor = UIColor.black
-        ll.text = "1235"
+        ll.text = "0"
         return ll
     }()
     var thirtyDaysOrderAmountDescrLabel: UILabel = {
@@ -98,7 +98,7 @@ class UStoreEventsCell: UBaseTableViewCell {
         let ll = UILabel()
         ll.font = UIFont.systemFont(ofSize: 18)
         ll.textColor = UIColor.black
-        ll.text = "18890"
+        ll.text = "0"
         return ll
     }()
     var thirtyDaysIncomeAmountDescrLabel: UILabel = {
@@ -322,10 +322,15 @@ class UStoreEventsCell: UBaseTableViewCell {
     }
 
 
-    var model: MchInfo? {
+    var model: DashBoardModel? {
         didSet {
             guard let model = model else { return }
-            //            titleLabel.text =  model.realname
+            todayIncome.dataLabel.text = String(model.total_income_day)
+            todayOrders.dataLabel.text = String(model.order_num_day)
+            storeOrdersAmountLabel.text = String(model.total_order_count)
+            storeGoodsAmountLabel.text = String(model.total_goods_count)
+            thirtyDaysOrderAmountLabel.text = String(model.order_num_thirty)
+            thirtyDaysIncomeAmountLabel.text = String(model.total_income_thirty)
         }
     }
 }

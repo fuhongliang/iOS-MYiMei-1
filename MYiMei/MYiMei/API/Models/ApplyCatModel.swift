@@ -21,7 +21,7 @@ class ApplyCatModel: Codable {
 
 // MARK:返回分类对象
 class CatModel: Codable {
-    var id: Int?
+    var id =  Int()
 
     var name: String?
 }

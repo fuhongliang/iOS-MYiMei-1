@@ -53,6 +53,7 @@ enum NetApi {
     case getMchCommonCatId(param: [String:Any])
     case applyJoin(param: [String:Any])
     case storeInfo(param: [String:Any])
+    case getStoreOperateData(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -94,12 +95,14 @@ extension NetApi: TargetType {
             return "/apply_cat"
         case .storeInfo:
             return "/store_info"
+        case .getStoreOperateData:
+            return "/store_operate_data"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .storeInfo,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
+        case .getStoreOperateData,.storeInfo,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
             return .post
         }
     }
@@ -136,6 +139,8 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .storeInfo(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getStoreOperateData(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
 
@@ -157,8 +162,13 @@ extension NetApi: TargetType {
 class APIService {
 
     private init(needMBProgressHUD:Bool) {
-        let APIProvider = MoyaProvider<NetApi>(plugins: [loadingPlugin])
-        apiProvider = APIProvider
+        if (needMBProgressHUD) {
+            let APIProvider = MoyaProvider<NetApi>(plugins: [loadingPlugin,NetworkLoggerPlugin(verbose: true, cURL: true)])
+            apiProvider = APIProvider
+        }else {
+            let APIProvider = MoyaProvider<NetApi>(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true)])
+            apiProvider = APIProvider
+        }
     }
 
     public static let shared: APIService = APIService(needMBProgressHUD: true)
@@ -179,7 +189,6 @@ class APIService {
                     let anyData = try moyaResponse.mapJSON()
                     let data =  moyaResponse.data
                     let statusCode =  moyaResponse.statusCode
-                    print("\(data) --- \(statusCode) ----- \(anyData)")
                     if statusCode == 200 {
                         if let mapData: [String:Any] = anyData as? [String:Any] {
                             if mapData.keys.contains("code") {
