@@ -43,21 +43,13 @@ class UDepositAgreementController: UBaseViewController {
             
         }
     }
-    
-    func showAlert() {
-        let alertController = UIAlertController(title: "温馨提示", message: "您还未同意保证金协议", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default,handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }
 
 extension UDepositAgreementController: UDepositAgreementViewDelegate {
     //MARK:申请入驻
     func agree() {
         if (!depositAgreementView.checkButton.isSelected) {
-            showAlert()
+            showHUDInView(text: "请勾选我已阅读并同意保证金协议", inView: view)
         } else {
             let vc = UMechJoinViewController()
             vc.title = "缴纳保证金"

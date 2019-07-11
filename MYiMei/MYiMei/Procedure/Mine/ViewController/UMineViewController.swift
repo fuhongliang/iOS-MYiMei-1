@@ -35,7 +35,11 @@ class UMineViewController: UBaseViewController {
     private lazy var navigationBarY: CGFloat = {
         return navigationController?.navigationBar.frame.maxY ?? 0
     }()
-    
+
+    var depostPass = false
+
+    var depostReview = false
+
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
@@ -74,24 +78,39 @@ class UMineViewController: UBaseViewController {
         vc.title = "商品管理"
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+
+    //MARK:跳转保证金协议
     func goToDepositAgreement(){
-        //未交保证金时跳转
-        let vc = UDepositAgreementController()
-//        vc.title = "保证金协议"
-        navigationController?.pushViewController(vc, animated: true)
+        if(depostPass){
+//            let vc = UDepositAgreementController()
+//            vc.title = "保证金协议"
+//            navigationController?.pushViewController(vc, animated: true)
+        }else if(depostReview){
+
+
+        }else{
+            //未交保证金时跳转
+            let vc = UDepositAgreementController()
+            vc.title = "保证金协议"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
-    
+
+    //MARK:跳转账号与安全
     func goToAccountSafe() {
         let vc = UAccountSafeController()
         vc.title = "账号与安全"
         navigationController?.pushViewController(vc, animated: true)
     }
+
+    //MARK:跳转店铺设置
     func goToSetUpShop() {
         let vc = USetUpShopController()
         vc.title = "店铺设置"
         navigationController?.pushViewController(vc, animated: true)
     }
+
    //MARK:获取店铺经营数据
     func getStoreData() {
         service.getStoreOperateData({ (StoreDashBoardModel) in
@@ -103,6 +122,25 @@ class UMineViewController: UBaseViewController {
         }) { (APIErrorModel) in
            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
         }
+    }
+
+    //MARK:获取店铺保证金
+    func getStoreDepost() {
+        service.getStoreDepostData({ (StoreDepostReponseModel) in
+            if(StoreDepostReponseModel.data?.pass?.count ?? 0>0){
+                self.depostPass = true
+            }else{
+                self.depostPass = false
+            }
+            if(StoreDepostReponseModel.data?.review?.count ?? 0>0){
+                self.depostReview = true
+            }else{
+                self.depostReview = false
+            }
+
+        }, { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+        })
     }
 }
 
@@ -136,15 +174,18 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UStoreEventsCell.self)
+            if(depostPass){
+                cell.financial.menuIcon.image = UIImage.init(named: "menu_margin")
+            }else{
+                cell.financial.menuIcon.image = UIImage.init(named: "depost_empty")
+            }
             cell.subscribeFinancialAction = {
-                NSLog("保证金被点击了")
                 self.goToDepositAgreement()
             }
             cell.subscribeGoodsManagementAction = {
                 self.goToGoodsManageMent()
             }
             cell.subscribeStoreSettingsAction = {
-                NSLog("店铺设置被点击了")
                 self.goToSetUpShop()
             }
             cell.subscribeBusinessDataAction = {
