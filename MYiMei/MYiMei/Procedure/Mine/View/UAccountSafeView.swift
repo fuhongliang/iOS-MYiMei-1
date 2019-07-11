@@ -10,6 +10,7 @@ import UIKit
 
 protocol UAccountSafeViewDelegate: AnyObject {
     func tapLogoutAction()
+    func tapModifyPasswordAction()
 }
 
 class UAccountSafeView: BaseView {
@@ -28,6 +29,7 @@ class UAccountSafeView: BaseView {
     var accountNameLabel = UILabel()
     
     //修改密码
+    var modifyPasswordBtn = UIButton()
     var changePasswordLabel = UILabel()
     var rightArrow = UIImageView()
     
@@ -52,7 +54,7 @@ class UAccountSafeView: BaseView {
         }
         
         //MARK:绑定手机
-        bindPhoneLabel.text = "绑定手机"
+        bindPhoneLabel.text = "联系电话"
         bindPhoneLabel.textColor = UIColor.black
         bindPhoneLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(bindPhoneLabel)
@@ -62,7 +64,7 @@ class UAccountSafeView: BaseView {
         }
         
         //MARK:手机号
-        phoneNumberLabel.text = "132****5992"
+        phoneNumberLabel.text = APIUser.shared.user?.tel ?? ""
         phoneNumberLabel.textColor = UIColor.hex(hexString: "#666666")
         phoneNumberLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(phoneNumberLabel)
@@ -82,7 +84,7 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.height.equalTo(1)
         }
 
-        loginAccountLabel.text = "登录账号"
+        loginAccountLabel.text = "联系人"
         loginAccountLabel.textColor = UIColor.black
         loginAccountLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(loginAccountLabel)
@@ -91,7 +93,7 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.top.equalTo(bindLine.snp.bottom).offset(14)
         }
 
-        accountNameLabel.text = "yuy****456"
+        accountNameLabel.text = APIUser.shared.user?.realname ?? ""
         accountNameLabel.textColor = UIColor.hex(hexString: "#666666")
         accountNameLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(accountNameLabel)
@@ -109,7 +111,16 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(1)
         }
+    
         
+        modifyPasswordBtn.backgroundColor = UIColor.white
+        self.addSubview(modifyPasswordBtn)
+        modifyPasswordBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.right.equalToSuperview()
+            ConstraintMaker.top.equalTo(accountLine.snp.bottom)
+            
+        }
+        modifyPasswordBtn.addTarget(self, action: #selector(modifyPasswordAction), for: UIControl.Event.touchDown)
         changePasswordLabel.text = "修改密码"
         changePasswordLabel.textColor = UIColor.black
         changePasswordLabel.font = UIFont.systemFont(ofSize: 17)
@@ -117,8 +128,10 @@ class UAccountSafeView: BaseView {
         changePasswordLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(accountLine.snp.bottom).offset(14)
+            ConstraintMaker.width.equalTo(80)
         }
-
+        
+        
         rightArrow.image = UIImage.init(named: "notice")
         self.addSubview(rightArrow)
         rightArrow.snp.makeConstraints { (ConstraintMaker) in
@@ -141,10 +154,14 @@ class UAccountSafeView: BaseView {
             ConstraintMaker.height.equalTo(44)
         }
         submitButton.addTarget(self, action: #selector(logoutAction), for: UIControl.Event.touchDown)
+        
     }
 
     @objc func logoutAction() {
         delegate?.tapLogoutAction()
+    }
+    @objc func modifyPasswordAction() {
+        delegate?.tapModifyPasswordAction()
     }
 }
 

@@ -8,13 +8,23 @@
 
 import UIKit
 
+protocol UChangePasswordViewDelegate: AnyObject {
+    func tapGetVerificationCodeAction()
+    
+    func tapConfirmChangeCodeAction(code:String,newPassword:String,newPasswordAgain:String)
+}
+
+
+
 class UChangePasswordView: BaseView {
     //MARK:申明各种控件变量
+    weak var delegate: UChangePasswordViewDelegate?
     
     var backgroundWhite = UIView()
     
     var phoneNumberLabel = UILabel()
     var getVerificationCodeBtn = UIButton()
+    
     var inputVerificationCodeEdit = UITextField()
     var inputPasswordEdit = UITextField()
     var inputPasswordAgainEdit = UITextField()
@@ -42,7 +52,7 @@ class UChangePasswordView: BaseView {
         }
         
         //MARK:手机号
-        phoneNumberLabel.text = "188****8877"
+        phoneNumberLabel.text = APIUser.shared.user?.tel ?? ""
         phoneNumberLabel.textColor = UIColor.black
         phoneNumberLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(phoneNumberLabel)
@@ -68,6 +78,7 @@ class UChangePasswordView: BaseView {
             ConstraintMaker.height.equalTo(30)
             ConstraintMaker.width.equalTo(87)
         }
+        getVerificationCodeBtn.addTarget(self, action: #selector(getVerification), for:  UIControl.Event.touchDown)
         
         //MARK:手机号分割线
         phoneLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
@@ -128,7 +139,7 @@ class UChangePasswordView: BaseView {
         //MARK:确认密码输入框
         inputPasswordAgainEdit.placeholder = "请再次输入密码"
         inputPasswordAgainEdit.font = UIFont.systemFont(ofSize: 17)
-        inputPasswordEdit.textColor = UIColor.hex(hexString: "#999999")
+        inputPasswordAgainEdit.textColor = UIColor.hex(hexString: "#999999")
         self.addSubview(inputPasswordAgainEdit)
         inputPasswordAgainEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.width.equalToSuperview()
@@ -171,7 +182,17 @@ class UChangePasswordView: BaseView {
             ConstraintMaker.top.equalTo(passwordTip.snp.bottom).offset(31)
             ConstraintMaker.height.equalTo(44)
         }
+        confirmChange.addTarget(self, action: #selector(ConfirmChange), for: UIControl.Event.touchDown)
         
     }
+    
+    @objc func getVerification() {
+        delegate?.tapGetVerificationCodeAction()
+    }
+    
+    @objc func ConfirmChange() {
+        delegate?.tapConfirmChangeCodeAction(code: inputVerificationCodeEdit.text!, newPassword: inputPasswordEdit.text!, newPasswordAgain: inputPasswordAgainEdit.text!)
+    }
+    
     
 }

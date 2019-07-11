@@ -80,8 +80,12 @@ class UMineViewController: UBaseViewController {
         vc.title = "账号与安全"
         navigationController?.pushViewController(vc, animated: true)
     }
-
-    //MARK:获取店铺经营数据
+    func goToSetUpShop() {
+        let vc = USetUpShopController()
+        vc.title = "店铺设置"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+   //MARK:获取店铺经营数据
     func getStoreData() {
         service.getStoreOperateData({ (StoreDashBoardModel) in
             self.storeData = StoreDashBoardModel.data!
@@ -133,6 +137,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.subscribeStoreSettingsAction = {
                 NSLog("店铺设置被点击了")
+                self.goToSetUpShop()
             }
             cell.subscribeBusinessDataAction = {
                 NSLog("经营数据被点击了")

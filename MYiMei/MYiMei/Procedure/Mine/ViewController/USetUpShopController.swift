@@ -10,6 +10,7 @@ import UIKit
 
 class USetUpShopController: UBaseViewController {
     
+    
     private lazy var myArray: Array = {
         return [
             [

@@ -25,6 +25,20 @@ class APIErrorModel {
     }
 }
 
+//返回空对象
+class APIObjectModel: Codable{
+    
+    var code: Int?
+    
+    var msg: String?
+    
+    var data: ObjectModel?
+}
+
+class ObjectModel: Codable{
+    
+}
+
 //返回空数组
 class APIListModel: Codable {
 

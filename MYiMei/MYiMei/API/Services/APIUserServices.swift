@@ -17,7 +17,8 @@ protocol APIUserServicesProtocol {
     func logout(userId: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //获取登录验证码
-    func getLoginMsg(phoneNumber:String,_ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
+    func getLoginMsg(phoneNumber:String,_ success: @escaping(((APIObjectModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //上传图片专用
     func uploadPic(ext:String,type:String,size:Int,image:String,_ success: @escaping(((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
@@ -27,9 +28,65 @@ protocol APIUserServicesProtocol {
 
     func getApplyCat(_ success: @escaping(((ApplyCatModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
+    //获取验证码
+    func getVerification(username: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
+    //修改密码
+    func modifyPwd(mch_id: Int, access_token: String, phone: String, code: String, password: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 }
 
 class APIUserServices: APIUserServicesProtocol {
+    func getLoginMsg(phoneNumber: String, _ success: @escaping (((APIObjectModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:String] = [
+            "username":phoneNumber,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.getLoginMsg(user: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(APIObjectModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+        
+    }
+    
+    func getVerification(username: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "username":username,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.getChangePasswordVerificationCode(param: params), { (data) in
+            success()
+        }) { (error) in
+            fail(error)
+        }
+    }
+    
+    func modifyPwd(mch_id: Int, access_token: String, phone: String, code: String, password: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":String(mch_id),
+            "is_debug":"1",
+            "access_token":access_token,
+            "phone":phone,
+            "code":code,
+            "password":password
+        ]
+        
+        APIService.shared.request(.modifyPwd(param: params), { (data) in
+            success()
+        }) { (error) in
+            fail(error)
+        }
+        
+    }
     func getApplyCat(_ success: @escaping (((ApplyCatModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         var params: [String:Any] = [
             "mch_id":APIUser.shared.user?.mch_id as Any,
@@ -85,7 +142,7 @@ class APIUserServices: APIUserServicesProtocol {
             fail(error)
         }
     }
-
+                
     func uploadPic(ext: String, type: String, size: Int, image: String, _ success: @escaping (((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "mch_id":APIUser.shared.user?.mch_id as Any,
@@ -108,28 +165,6 @@ class APIUserServices: APIUserServicesProtocol {
         }) { (error) in
             fail(error)
         }
-    }
-
-
-
-    func getLoginMsg(phoneNumber: String, _ success: @escaping (((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
-        let params: [String:String] = [
-            "username":phoneNumber,
-            "is_debug":"1"
-        ]
-        APIService.shared.request(.getLoginMsg(user: params), { (data) in
-            do {
-                let model = try JSONDecoder().decode(APIListModel.self, from: data)
-                success(model)
-            }
-            catch {
-                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
-                fail(errorModel)
-            }
-        }) { (error) in
-            fail(error)
-        }
-
     }
 
     //登录实现

@@ -48,6 +48,8 @@ enum NetApi {
     case getGoodsList(param: [String:String])
     case deleteGoods(param: [String:String])
     case modifyGoodsStatus(param: [String:String])
+    case getChangePasswordVerificationCode(param: [String:Any])
+    case modifyPwd(param: [String:Any])
     case getMchCommonCatId(param: [String:Any])
     case applyJoin(param: [String:Any])
     case getStoreOperateData(param: [String:Any])
@@ -80,6 +82,10 @@ extension NetApi: TargetType {
             return "/delete_goods"
         case .modifyGoodsStatus:
             return "/modify_goods_status"
+        case .getChangePasswordVerificationCode:
+            return "/get_captcha_modify_pwd"
+        case .modifyPwd:
+            return "/modify_pwd"
         case .uploadPic:
             return "/upload_pic"
         case .applyJoin:
@@ -93,8 +99,8 @@ extension NetApi: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .applyJoin,.login,.uploadPic,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getMchCommonCatId,.getStoreOperateData:
-            return .post
+        case .getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
+          return .post
         }
     }
 
@@ -117,6 +123,10 @@ extension NetApi: TargetType {
         case .deleteGoods(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyGoodsStatus(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getChangePasswordVerificationCode(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyPwd(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .uploadPic(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
