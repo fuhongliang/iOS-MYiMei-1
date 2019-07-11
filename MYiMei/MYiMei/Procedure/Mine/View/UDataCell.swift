@@ -11,11 +11,11 @@ import UIKit
 class UDataCell: UBaseTableViewCell {
 
 
-    private lazy var dataLabel: UILabel = {
+    var dataLabel: UILabel = {
         let tl = UILabel()
         tl.font = UIFont.systemFont(ofSize: 21)
         tl.textColor = UIColor.white
-        tl.text = "2787.88"
+        tl.text = "0.00"
         return tl
     }()
 

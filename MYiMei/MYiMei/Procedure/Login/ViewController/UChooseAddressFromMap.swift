@@ -29,29 +29,35 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
     var isMapViewRegionChangedFromTableView: Bool = false
     var isLocated: Bool = false
     var searchPage: Int = 0
+    var curLocation = LocationInfo()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.view.backgroundColor = UIColor.gray
-
         AMapServices.shared().apiKey = "25a2a5ea58db98f339e672d49e74f4d7"
-
+        initMapView()
         initTableView()
         initSearch()
-        initMapView()
+        let btnItem = UIBarButtonItem.init(title: "完成", style: .plain, target: self, action: #selector(tapFinish))
+        btnItem.tintColor = UIColor.white
+        btnItem.width = 80
+        navigationItem.rightBarButtonItem = btnItem
     }
+
+    @objc func tapFinish() {
+        LocationHelper.shared.location = curLocation
+        LocationHelper.shared.saveLocationToCache()
+        pressBack()
+    }
+
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         initCenterView()
         initLocationButton()
         initSearchTypeView()
-
         self.mapView.zoomLevel = 17
         self.mapView.showsUserLocation = true
-
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -64,10 +70,8 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
     }
 
     func initTableView() {
-
-        self.tableView = UPlaceAroundTableView(frame: CGRect(x: 0, y: screenHeight / 2.0, width: self.view.bounds.width, height: screenHeight / 2.0))
+        self.tableView = UPlaceAroundTableView(frame: CGRect(x: 0, y: CGFloat(self.mapView.bounds.height - 100), width: self.view.bounds.width, height: screenHeight/2 + 20))
         self.tableView.delegate = self;
-
         self.view.addSubview(self.tableView)
     }
 
@@ -107,7 +111,6 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
     }
 
     func initSearchTypeView() {
-
         self.searchTypes = ["住宅", "学校", "楼宇", "商场"]
         self.currentType = self.searchTypes.first!
         self.searchTypeSegment = UISegmentedControl(items: self.searchTypes)
@@ -189,6 +192,13 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
         self.isMapViewRegionChangedFromTableView = true
         let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(selectedPOI.location.latitude), longitude: CLLocationDegrees(selectedPOI.location.longitude))
         self.mapView.setCenter(location, animated: true)
+
+        curLocation.city = selectedPOI.city
+        curLocation.province = selectedPOI.province
+        curLocation.district = selectedPOI.businessArea
+        curLocation.addresss = selectedPOI.address
+        curLocation.longitude = String(location.longitude)
+        curLocation.latitude = String(location.latitude)
     }
 
     func didLoadMorePOIButtonTapped() {

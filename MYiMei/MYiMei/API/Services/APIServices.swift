@@ -50,6 +50,11 @@ enum NetApi {
     case modifyGoodsStatus(param: [String:String])
     case getDepositAgreement(param: [String:Any])
     case getOrderList(param: [String:Any])
+    case getChangePasswordVerificationCode(param: [String:Any])
+    case modifyPwd(param: [String:Any])
+    case getMchCommonCatId(param: [String:Any])
+    case applyJoin(param: [String:Any])
+    case getStoreOperateData(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -79,19 +84,29 @@ extension NetApi: TargetType {
             return "/delete_goods"
         case .modifyGoodsStatus:
             return "/modify_goods_status"
+        case .getChangePasswordVerificationCode:
+            return "/get_captcha_modify_pwd"
+        case .modifyPwd:
+            return "/modify_pwd"
         case .uploadPic:
             return "/upload_pic"
         case .getDepositAgreement:
             return "/mch_deposit/agreement"
         case .getOrderList:
             return "/list_order"
+        case .applyJoin:
+            return "/mch_apply"
+        case .getMchCommonCatId:
+            return "/apply_cat"
+        case .getStoreOperateData:
+            return "/store_operate_data"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login,.uploadPic,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getDepositAgreement,.getOrderList:
-            return .post
+        case .getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
+          return .post
         }
     }
 
@@ -115,11 +130,21 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyGoodsStatus(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getChangePasswordVerificationCode(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyPwd(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .uploadPic(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getDepositAgreement(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getOrderList(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getMchCommonCatId(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .applyJoin(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getStoreOperateData(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
@@ -142,8 +167,13 @@ extension NetApi: TargetType {
 class APIService {
 
     private init(needMBProgressHUD:Bool) {
-        let APIProvider = MoyaProvider<NetApi>(plugins: [loadingPlugin])
-        apiProvider = APIProvider
+        if (needMBProgressHUD) {
+            let APIProvider = MoyaProvider<NetApi>(plugins: [loadingPlugin,NetworkLoggerPlugin(verbose: true, cURL: true)])
+            apiProvider = APIProvider
+        }else {
+            let APIProvider = MoyaProvider<NetApi>(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true)])
+            apiProvider = APIProvider
+        }
     }
 
     public static let shared: APIService = APIService(needMBProgressHUD: true)
@@ -164,7 +194,6 @@ class APIService {
                     let anyData = try moyaResponse.mapJSON()
                     let data =  moyaResponse.data
                     let statusCode =  moyaResponse.statusCode
-                    print("\(data) --- \(statusCode) ----- \(anyData)")
                     if statusCode == 200 {
                         if let mapData: [String:Any] = anyData as? [String:Any] {
                             if mapData.keys.contains("code") {
