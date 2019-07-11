@@ -210,22 +210,13 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            self.goToAccountSafe()
-        }else if indexPath.row == 0{
-            //            let vc = UModifyProfileViewController()
-            //            let sectionArray = myArray[indexPath.section]
-            //            let dict: [String: String] = sectionArray[indexPath.row]
-            //            vc.title = dict["title"]
-            //            navigationController?.pushViewController(vc, animated: true)
-        }else {
-            //            let vc = UModifyPasswordViewController()
-            //            let sectionArray = myArray[indexPath.section]
-            //            let dict: [String: String] = sectionArray[indexPath.row]
-            //            vc.title = dict["title"]
-            //            navigationController?.pushViewController(vc, animated: true)
+        if(indexPath.section == 1){
+            if indexPath.row == 0 {
+                self.goToAccountSafe()
+            }else if(indexPath.row == 2){
+                showAlertControllerStyle()
+            }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -237,30 +228,18 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    //    func showAlertControllerStyle() {
-    //        let alertController = UIAlertController(title: "温馨提示", message: "是否确定退出登录？", preferredStyle: UIAlertController.Style.alert)
-    //        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
-    //            (action: UIAlertAction!) -> Void in
-    //            self.logout()
-    //        }
-    //        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
-    //        alertController.addAction(okAction)
-    //        alertController.addAction(cancelAction)
-    //        self.present(alertController, animated: true, completion: nil)
-    //    }
-    
-    //    func logout() -> Void {
-    //        let userId: String = U17User.shared.user?.userid ?? ""
-    //        service.logout(userId: userId, {
-    //            JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
-    //                print("退出注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
-    //            }, seq: 0)
-    //            (UIApplication.shared.delegate as! AppDelegate).showLoginView()
-    //        }) { (FAPIErrorModel) in
-    //            //            print(FAPIErrorModel.error?.localizedDescription ?? "退出失败")
-    //            (UIApplication.shared.delegate as! AppDelegate).showLoginView()
-    //        }
-    //    }
+
+    func showAlertControllerStyle() {
+            let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+                (action: UIAlertAction!) -> Void in
+
+            }
+            let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+
 }
 
