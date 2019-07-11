@@ -516,14 +516,14 @@ class UOderCell : UBaseTableViewCell {
         didSet {
             guard let model = model else { return }
             if (model.is_pay==0) {
-               statusLaber.text = "待付款"
-               statusLaber.textColor = UIColor.hex(hexString: "#FF4444")
-               priceModifyBg.setTitle("价格修改", for: .normal)
+                statusLaber.text = "待付款"
+                statusLaber.textColor = UIColor.hex(hexString: "#FF4444")
+                priceModifyBg.setTitle("价格修改", for: .normal)
                 priceModifyBg.addTarget(self, action: #selector(tapModifyPrice), for:  UIControl.Event.touchDown)
             } else {
-               statusLaber.text = "待发货"
-               statusLaber.textColor = UIColor.hex(hexString: "#1C98F6")
-               priceModifyBg.setTitle("发货", for: .normal)
+                statusLaber.text = "待发货"
+                statusLaber.textColor = UIColor.hex(hexString: "#1C98F6")
+                priceModifyBg.setTitle("发货", for: .normal)
                 priceModifyBg.addTarget(self, action: #selector(tapDeliveryGoods), for:  UIControl.Event.touchDown)
             }
             userNameLaber.text = model.name
@@ -531,17 +531,13 @@ class UOderCell : UBaseTableViewCell {
             addressLaber.text = model.address
 //            if (model.goods_list.count != 0){
             commodityNameLaber.text = model.goods_list?[0].name
-                var label:String = ""
+            var label:String = ""
             for attr in (model.goods_list?[0].attr ?? []){
                     label = label + attr.attr_name
                 }
-                commoditySpecificationLaber.text = label
-//            } else {
-//                commodityNameLaber.text = "默认商品"
-//                commoditySpecificationLaber.text = "规格：默认"
-//            }
+            commoditySpecificationLaber.text = label
             commodityPriceLaber.text = "￥" + (model.goods_list?[0].total_price ?? "0")
-            //            commodityNumberLaber.text = "x\(String(model.goods_list?[0].num as! String))"
+            commodityNumberLaber.text = "x" + String(model.goods_list?[0].num ?? 0)
             orderNumberLabel.text = "订单编号：" + String(model.order_no)
             orderTimeLaber.text = "下单时间：" + String(model.addtime)
             leaveCommentsRightLaber.text = model.remark

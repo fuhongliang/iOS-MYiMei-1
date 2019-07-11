@@ -35,7 +35,7 @@ class Order : Codable{
     var express : String!
     var express_no : String!
     var express_price : String!
-    var goods_list : [GoodsList]?
+    var goods_list : [GoodsList]!
     var is_confirm : Int!
     var is_delete : Int!
     var is_pay : Int!
@@ -60,7 +60,7 @@ class GoodsList: Codable{
     var name : String!
     var pic : String!
     var total_price : String!
-    var num : Int!
+    var num = Int()
 }
 
 //MARK:商品的商品规格
