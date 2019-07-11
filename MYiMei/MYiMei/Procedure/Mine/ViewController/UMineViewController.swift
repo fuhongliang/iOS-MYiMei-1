@@ -75,6 +75,13 @@ class UMineViewController: UBaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func goToDepositAgreement(){
+        //未交保证金时跳转
+        let vc = UDepositAgreementController()
+//        vc.title = "保证金协议"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func goToAccountSafe() {
         let vc = UAccountSafeController()
         vc.title = "账号与安全"
@@ -130,7 +137,8 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UStoreEventsCell.self)
             cell.subscribeFinancialAction = {
-              
+                NSLog("保证金被点击了")
+                self.goToDepositAgreement()
             }
             cell.subscribeGoodsManagementAction = {
                 self.goToGoodsManageMent()

@@ -11,24 +11,24 @@ import Foundation
 protocol APIDepositServicesProtocol {
 
     //MARK:获取保证金协议URL
-    func getDepositAgreement(mch_id: Int,cat_id: Int, access_token: String, _ success: @escaping(((GoodsResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    func getDepositAgreement(_ success: @escaping(((DepositAgreementResponsModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
    
 }
 
 class APIDepositServices: APIDepositServicesProtocol {
  
     //MARK:获取保证金协议URL
-    func getDepositAgreement(mch_id: Int, cat_id: Int, access_token: String, _ success: @escaping (((GoodsResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
-        let params: [String:String] = [
-            "mch_id":String(mch_id),
-            "cat_id":String(cat_id),
-            "access_token":access_token,
+    func getDepositAgreement(_ success: @escaping (((DepositAgreementResponsModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id": APIUser.shared.user?.mch_id as Any,
+            "store_id":APIUser.shared.user?.store_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
             "is_debug":"1"
         ]
         
-        APIService.shared.request(.getGoodsList(param: params), { (data) in
+        APIService.shared.request(.getDepositAgreement(param: params), { (data) in
             do {
-                let model = try JSONDecoder().decode(GoodsResponeModel.self, from: data)
+                let model = try JSONDecoder().decode(DepositAgreementResponsModel.self, from: data)
                 success(model)
             }
             catch {

@@ -93,6 +93,9 @@
 		DC7E297922D575B700AC3F21 /* ImagePressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297822D575B700AC3F21 /* ImagePressHelper.swift */; };
 		DC7E297B22D575E200AC3F21 /* UChooseAddressFromMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */; };
 		DC7E298022D5764700AC3F21 /* UPlaceAroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297F22D5764700AC3F21 /* UPlaceAroundTableView.swift */; };
+		DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */; };
+		DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */; };
+		DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +209,9 @@
 		DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UChooseAddressFromMap.swift; sourceTree = "<group>"; };
 		DC7E297E22D5762700AC3F21 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC7E297F22D5764700AC3F21 /* UPlaceAroundTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPlaceAroundTableView.swift; sourceTree = "<group>"; };
+		DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositAgreementResponsModel.swift; sourceTree = "<group>"; };
+		DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOrderServices.swift; sourceTree = "<group>"; };
+		DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +356,8 @@
 				7BAB352622C0C89A00154D36 /* APIResponseModels.swift */,
 				7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */,
 				DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */,
+				DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */,
+				DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */,
 				7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */,
 				7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */,
 				7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */,
@@ -366,6 +374,7 @@
 				7BAB354B22C0FAF400154D36 /* APIUserServices.swift */,
 				7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */,
 				DC77E9AA22D571D400E92E25 /* APIDepositService.swift */,
+				DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */,
 				7BAB352322C0C76400154D36 /* APIToken.swift */,
 				7BAB352922C0CDF500154D36 /* APIUser.swift */,
 			);
@@ -473,8 +482,8 @@
 				DC7E297622D5754500AC3F21 /* UMenuDepost.swift */,
 				7BAB354F22C1AF4600154D36 /* UMineHead.swift */,
 				7BAB355B22C1C93000154D36 /* UStoreEventsCell.swift */,
-				7BAB355D22C1DE0000154D36 /* UDataCell.swift */,
 				7BAB355F22C1F2CD00154D36 /* UMenuCell.swift */,
+				7BAB355D22C1DE0000154D36 /* UDataCell.swift */,
 				7BAB356122C1F5EF00154D36 /* UMenuGoodsManagement.swift */,
 				7BAB356322C1F62800154D36 /* UMenuStoreSettings.swift */,
 				7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */,
@@ -807,6 +816,7 @@
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
 				7BAB354A22C0D87100154D36 /* ULoginView.swift in Sources */,
 				7BAB352722C0C89A00154D36 /* APIResponseModels.swift in Sources */,
+				DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */,
 				0AB057AB22D2D676002B7E40 /* UManagementClassificationController.swift in Sources */,
 				DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */,
 				0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */,
@@ -828,6 +838,7 @@
 				7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */,
 				DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */,
 				7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */,
+				DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */,
 				7BAB355C22C1C93000154D36 /* UStoreEventsCell.swift in Sources */,
 				7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */,
 				7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */,
@@ -847,6 +858,7 @@
 				0A0FF6C822CA013C003F4B53 /* UMechJoinViewController.swift in Sources */,
 				DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */,
 				DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */,
+				DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
 				7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */,
 				DC7E298022D5764700AC3F21 /* UPlaceAroundTableView.swift in Sources */,

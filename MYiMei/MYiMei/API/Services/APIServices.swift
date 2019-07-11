@@ -48,6 +48,8 @@ enum NetApi {
     case getGoodsList(param: [String:String])
     case deleteGoods(param: [String:String])
     case modifyGoodsStatus(param: [String:String])
+    case getDepositAgreement(param: [String:Any])
+    case getOrderList(param: [String:Any])
     case getChangePasswordVerificationCode(param: [String:Any])
     case modifyPwd(param: [String:Any])
     case getMchCommonCatId(param: [String:Any])
@@ -88,6 +90,10 @@ extension NetApi: TargetType {
             return "/modify_pwd"
         case .uploadPic:
             return "/upload_pic"
+        case .getDepositAgreement:
+            return "/mch_deposit/agreement"
+        case .getOrderList:
+            return "/list_order"
         case .applyJoin:
             return "/mch_apply"
         case .getMchCommonCatId:
@@ -99,7 +105,7 @@ extension NetApi: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
+        case .getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
           return .post
         }
     }
@@ -130,13 +136,16 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .uploadPic(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getDepositAgreement(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getOrderList(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getMchCommonCatId(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .applyJoin(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getStoreOperateData(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
-
        }
     }
 
