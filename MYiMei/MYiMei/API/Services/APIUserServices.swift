@@ -35,10 +35,26 @@ protocol APIUserServicesProtocol {
     func modifyPwd(mch_id: Int, access_token: String, phone: String, code: String, password: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
     //获取店铺信息
     func storeInfo( _ success: @escaping(((StoreInfoModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    //店铺设置
+    func modifyStoreInfo(param: String,paramValue: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
 }
 
 class APIUserServices: APIUserServicesProtocol {
+    func modifyStoreInfo(param: String,paramValue: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.self.user?.mch_id as Any,
+            "access_token":APIUser.shared.self.user?.access_token as Any,
+            "is_debug":"1",
+            param:paramValue
+        ]
+        APIService.shared.request(.modifyStoreInfo(param: params), { (data) in
+                success()
+        }) { (error) in
+            fail(error)
+        }
+    }
+    
     func storeInfo( _ success: @escaping (((StoreInfoModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "mch_id":APIUser.shared.self.user?.mch_id as Any,

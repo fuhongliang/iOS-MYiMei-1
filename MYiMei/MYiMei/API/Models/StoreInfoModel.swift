@@ -20,18 +20,18 @@ class StoreInfoModel: Codable {
     
 }
 
-// MARK:商品列表返回Data对象
+// MARK:获取店铺信息返回Data对象
 class StoreInfoDataModel: Codable {
     var mch: MchModel?
 }
 
-// MARK:返回商品对象
+// MARK:获取店铺信息返回商品对象
 class MchModel: Codable {
     var name: String!
     
     var cat_name: String!
     
-    var Logo: String!
+    var logo: String!
     
     var province_id: Int?
     
