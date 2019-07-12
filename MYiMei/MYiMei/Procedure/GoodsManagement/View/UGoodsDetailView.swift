@@ -10,8 +10,20 @@ import UIKit
 import KMPlaceholderTextView
 
 protocol UGoodsDetailViewDelegate: AnyObject {
+    //选择商品缩略图
     func tapChooseGoodsSLTAction()
+    //选择商品主图
     func tapChooseGoodsPicAction()
+    //选择平台分类
+    func tapChooseCateAction()
+    //选择商品分类
+    func tapChooseGoodsCateAction()
+    //点击选择标签
+    func tapChooseGoodsTagAction(tag:UIButton)
+    //点击保存按钮
+    func tapSaveAction(name:String,detail:String,
+                       unit:String,weight:String,original_price:String,
+                       price:String,pieces:String,forehead:String,goods_num:String)
 }
 
 class UGoodsDetailView: BaseView {
@@ -39,12 +51,12 @@ class UGoodsDetailView: BaseView {
     var platformClassLabel = UILabel()
     var classLine = UIImageView()
     //选择平台分类
-    var choosePlatformClassLabel = UILabel()
+    var choosePlatformClassBtn = UIButton()
     var arrowRight = UIImageView()
     //商品分类
     var goodsClassLabel = UILabel()
     //选择商品分类
-    var choosegoodsClassLabel = UILabel()
+    var choosegoodsClassBtn = UIButton()
     var goodsArrowRight = UIImageView()
 
     //MARK:单位白色的背景
@@ -264,13 +276,14 @@ class UGoodsDetailView: BaseView {
         }
         
         //MARK:平台分类选择
-        choosePlatformClassLabel.text = "请选择平台分类"
-        choosePlatformClassLabel.font = UIFont.systemFont(ofSize: 17)
-        choosePlatformClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        choosePlatformClassLabel.textAlignment = .right
-
-        self.addSubview(choosePlatformClassLabel)
-        choosePlatformClassLabel.snp.makeConstraints { (ConstraintMaker) in
+        choosePlatformClassBtn.setTitle("请选择平台分类", for: UIControl.State.normal)
+        choosePlatformClassBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        choosePlatformClassBtn.titleLabel?.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        choosePlatformClassBtn.titleLabel?.textColor = UIColor.black
+        choosePlatformClassBtn.contentHorizontalAlignment = .right
+        choosePlatformClassBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        self.addSubview(choosePlatformClassBtn)
+        choosePlatformClassBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(platformClassLabel).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-34)
             ConstraintMaker.height.equalTo(44)
@@ -279,7 +292,7 @@ class UGoodsDetailView: BaseView {
         arrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(arrowRight)
         arrowRight.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(choosePlatformClassLabel.snp.right).offset(10)
+            ConstraintMaker.left.equalTo(choosePlatformClassBtn.snp.right).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(13)
             ConstraintMaker.width.equalTo(8)
@@ -307,23 +320,26 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(classLine.snp.top).offset(14)
         }
         //MARK:选择商品分类
-        choosegoodsClassLabel.text = "请选择商品分类"
-        choosegoodsClassLabel.font = UIFont.systemFont(ofSize: 17)
-        choosegoodsClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        choosegoodsClassLabel.textAlignment = .right
-
-        self.addSubview(choosegoodsClassLabel)
-        choosegoodsClassLabel.snp.makeConstraints { (ConstraintMaker) in
+        choosegoodsClassBtn.setTitle("请选择商品分类", for: UIControl.State.normal)
+        choosegoodsClassBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        choosegoodsClassBtn.titleLabel?.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        choosegoodsClassBtn.titleLabel?.textColor = UIColor.black
+        choosegoodsClassBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        choosegoodsClassBtn.contentHorizontalAlignment = .right
+        self.addSubview(choosegoodsClassBtn)
+        choosegoodsClassBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(goodsClassLabel).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-34)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(classLine.snp.top)
         }
+        choosegoodsClassBtn.addTarget(self, action: #selector(chooseTag2Action), for: UIControl.Event.touchDown)
+
         
         goodsArrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(goodsArrowRight)
         goodsArrowRight.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(choosegoodsClassLabel.snp.right).offset(10)
+            ConstraintMaker.left.equalTo(choosegoodsClassBtn.snp.right).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(13)
             ConstraintMaker.width.equalTo(8)
@@ -616,6 +632,7 @@ class UGoodsDetailView: BaseView {
         //MARK:标签按钮
         doorDeliveryTagBtn.setTitle("送货入户", for: .normal)
         doorDeliveryTagBtn.setTitleColor(UIColor.black, for: .normal)
+        doorDeliveryTagBtn.setTitleColor(UIColor.white, for: .selected)
         doorDeliveryTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         doorDeliveryTagBtn.clipsToBounds = true
         doorDeliveryTagBtn.layer.cornerRadius = 4
@@ -628,9 +645,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
+          doorDeliveryTagBtn.addTarget(self, action: #selector(chooseTag1Action), for: UIControl.Event.touchDown)
         
         professionalInstallationTagBtn.setTitle("专业安装", for: .normal)
         professionalInstallationTagBtn.setTitleColor(UIColor.black, for: .normal)
+        professionalInstallationTagBtn.setTitleColor(UIColor.white, for: .selected)
         professionalInstallationTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         professionalInstallationTagBtn.clipsToBounds = true
         professionalInstallationTagBtn.layer.cornerRadius = 4
@@ -643,9 +662,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
+         professionalInstallationTagBtn.addTarget(self, action: #selector(chooseTag2Action), for: UIControl.Event.touchDown)
         
         doorReturnTagBtn.setTitle("上门退换", for: .normal)
         doorReturnTagBtn.setTitleColor(UIColor.black, for: .normal)
+         doorReturnTagBtn.setTitleColor(UIColor.white, for: .selected)
         doorReturnTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         doorReturnTagBtn.clipsToBounds = true
         doorReturnTagBtn.layer.cornerRadius = 4
@@ -658,9 +679,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
+           doorReturnTagBtn.addTarget(self, action: #selector(chooseTag3Action), for: UIControl.Event.touchDown)
         
         qualityAssuranceCommitmentTagBtn.setTitle("质保承诺", for: .normal)
         qualityAssuranceCommitmentTagBtn.setTitleColor(UIColor.black, for: .normal)
+        qualityAssuranceCommitmentTagBtn.setTitleColor(UIColor.white, for: .selected)
         qualityAssuranceCommitmentTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         qualityAssuranceCommitmentTagBtn.clipsToBounds = true
         qualityAssuranceCommitmentTagBtn.layer.cornerRadius = 4
@@ -673,9 +696,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+          qualityAssuranceCommitmentTagBtn.addTarget(self, action: #selector(chooseTag4Action), for: UIControl.Event.touchDown)
+
         realThingReleasedTagBtn.setTitle("正品行货", for: .normal)
         realThingReleasedTagBtn.setTitleColor(UIColor.black, for: .normal)
+        realThingReleasedTagBtn.setTitleColor(UIColor.white, for: .selected)
         realThingReleasedTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         realThingReleasedTagBtn.clipsToBounds = true
         realThingReleasedTagBtn.layer.cornerRadius = 4
@@ -688,9 +713,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+          realThingReleasedTagBtn.addTarget(self, action: #selector(chooseTag5Action), for: UIControl.Event.touchDown)
+
         newPreferentialTagBtn.setTitle("新品特惠", for: .normal)
         newPreferentialTagBtn.setTitleColor(UIColor.black, for: .normal)
+         newPreferentialTagBtn.setTitleColor(UIColor.white, for: .selected)
         newPreferentialTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         newPreferentialTagBtn.clipsToBounds = true
         newPreferentialTagBtn.layer.cornerRadius = 4
@@ -703,9 +730,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+        newPreferentialTagBtn.addTarget(self, action: #selector(chooseTag6Action), for: UIControl.Event.touchDown)
+
         restAssuredBuyTagBtn.setTitle("放心购买", for: .normal)
         restAssuredBuyTagBtn.setTitleColor(UIColor.black, for: .normal)
+        restAssuredBuyTagBtn.setTitleColor(UIColor.white, for: .selected)
         restAssuredBuyTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         restAssuredBuyTagBtn.clipsToBounds = true
         restAssuredBuyTagBtn.layer.cornerRadius = 4
@@ -718,7 +747,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+         restAssuredBuyTagBtn.addTarget(self, action: #selector(chooseTag7Action), for: UIControl.Event.touchDown)
         //MARK:保存按钮
         saveBtn.setTitle("保存", for: .normal)
         saveBtn.setTitleColor(UIColor.white, for: .normal)
@@ -733,7 +762,8 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
         }
-        
+
+          saveBtn.addTarget(self, action: #selector(saveAction), for: UIControl.Event.touchDown)
     }
 
     @objc func tapChooseGoodsSLTAction() {
@@ -743,6 +773,46 @@ class UGoodsDetailView: BaseView {
     @objc func tapChooseGoodsPicAction() {
         delegate?.tapChooseGoodsPicAction()
     }
+
+    @objc func chooseCateAction() {
+        delegate?.tapChooseCateAction()
+    }
+
+    @objc func chooseGoodsCateAction() {
+        delegate?.tapChooseGoodsCateAction()
+    }
+
+    @objc func chooseTag1Action() {
+        delegate?.tapChooseGoodsTagAction(tag:doorDeliveryTagBtn)
+    }
+    @objc func chooseTag2Action() {
+        delegate?.tapChooseGoodsTagAction(tag:professionalInstallationTagBtn)
+    }
+    @objc func chooseTag3Action() {
+        delegate?.tapChooseGoodsTagAction(tag:doorReturnTagBtn)
+    }
+    @objc func chooseTag4Action() {
+        delegate?.tapChooseGoodsTagAction(tag:qualityAssuranceCommitmentTagBtn)
+    }
+    @objc func chooseTag5Action() {
+        delegate?.tapChooseGoodsTagAction(tag:realThingReleasedTagBtn)
+    }
+    @objc func chooseTag6Action() {
+        delegate?.tapChooseGoodsTagAction(tag:newPreferentialTagBtn)
+    }
+    @objc func chooseTag7Action() {
+        delegate?.tapChooseGoodsTagAction(tag:restAssuredBuyTagBtn)
+    }
+
+    @objc func saveAction() {
+        delegate?.tapSaveAction(name:goodsNameTF.text!,detail:goodsDescr.text!,
+                                unit:unitClassTF.text!,weight:weightTF.text!,
+                                original_price:originalPriceTF.text!,price:goodsPriceTF.text!,
+                                pieces:piecesDesrcTF.text!,
+                                forehead:foreDesrcTF.text!,goods_num:amountTF.text!)
+    }
+
+
 }
 
 
