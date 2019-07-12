@@ -19,7 +19,7 @@ protocol APIGoodsServicesProtocol {
     func deleteGoods(mch_id: Int,goods_id: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //上下架商品
-     func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+     func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //发布商品
     func addGoods(name: String,
@@ -84,7 +84,7 @@ class APIGoodsServices: APIGoodsServicesProtocol {
         }
     }
 
-    func modifyGoodsStatus(mch_id: Int, goods_id: Int, status: Int, access_token: String, _ success: @escaping (((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+    func modifyGoodsStatus(mch_id: Int, goods_id: Int, status: Int, access_token: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "mch_id":String(mch_id),
             "goods_id":String(goods_id),
@@ -94,12 +94,7 @@ class APIGoodsServices: APIGoodsServicesProtocol {
         ]
         APIService.shared.request(.modifyGoodsStatus(param: params), { (data) in
             do {
-                let model = try JSONDecoder().decode(APIListModel.self, from: data)
-                success(model)
-            }
-            catch {
-                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
-                fail(errorModel)
+                success()
             }
         }) { (error) in
             fail(error)

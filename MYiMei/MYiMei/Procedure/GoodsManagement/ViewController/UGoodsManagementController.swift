@@ -161,7 +161,7 @@ class UGoodsManagementController: UBaseViewController {
     @objc private func popupGoods(goodsIndex:Int,status:Int) {
         let mch_id: Int = APIUser.shared.user!.mch_id ?? 0
         let access_token: String = getToken()
-        service.modifyGoodsStatus(mch_id: mch_id, goods_id: goodsList[goodsIndex].goods_id ?? 0, status: status, access_token: access_token, { (APIListModel) in
+        service.modifyGoodsStatus(mch_id: mch_id, goods_id: goodsList[goodsIndex].goods_id ?? 0, status: status, access_token: access_token, { () in
             self.goodsList[goodsIndex].status = status
             self.goodsTableView.reloadData()
         }, { (APIErrorModel) in

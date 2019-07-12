@@ -114,7 +114,7 @@ extension UMyDepostController: UITableViewDelegate, UITableViewDataSource {
         }else if(indexPath.section == 1){
             return 150
         }else {
-            return 300
+            return 350
         }
     }
 
