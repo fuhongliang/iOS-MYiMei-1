@@ -13,6 +13,9 @@
 		0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */; };
 		0AB057AB22D2D676002B7E40 /* UManagementClassificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057AA22D2D676002B7E40 /* UManagementClassificationController.swift */; };
 		0AB057AD22D2D68D002B7E40 /* UManagementClassificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057AC22D2D68D002B7E40 /* UManagementClassificationCell.swift */; };
+		0AB057BD22D71058002B7E40 /* StoreInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057BC22D71058002B7E40 /* StoreInfoModel.swift */; };
+		0AB057BF22D74074002B7E40 /* UModifySetUpShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */; };
+		0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057C022D745B6002B7E40 /* UModifySetUpShopController.swift */; };
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
 		0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
@@ -131,6 +134,9 @@
 		0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UReviewControiller.swift; sourceTree = "<group>"; };
 		0AB057AA22D2D676002B7E40 /* UManagementClassificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UManagementClassificationController.swift; sourceTree = "<group>"; };
 		0AB057AC22D2D68D002B7E40 /* UManagementClassificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UManagementClassificationCell.swift; sourceTree = "<group>"; };
+		0AB057BC22D71058002B7E40 /* StoreInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoModel.swift; sourceTree = "<group>"; };
+		0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UModifySetUpShopView.swift; sourceTree = "<group>"; };
+		0AB057C022D745B6002B7E40 /* UModifySetUpShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UModifySetUpShopController.swift; sourceTree = "<group>"; };
 		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
 		0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 				DC7E297422D5750600AC3F21 /* UploadFileResponeModel.swift */,
 				7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */,
 				7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */,
+				0AB057BC22D71058002B7E40 /* StoreInfoModel.swift */,
 				7BAB352622C0C89A00154D36 /* APIResponseModels.swift */,
 				7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */,
 				DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */,
@@ -498,6 +505,7 @@
 		7BAB354D22C1AF1300154D36 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */,
 				7B08931C22D7153700872136 /* UDepost.swift */,
 				7B08931822D7151000872136 /* UMeDepost.swift */,
 				7B08932222D728F300872136 /* UDepostStatusCell.swift */,
@@ -526,11 +534,12 @@
 		7BAB354E22C1AF2300154D36 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0AB057C022D745B6002B7E40 /* UModifySetUpShopController.swift */,
+				DC221C8722CF32CF003A4053 /* USetUpShopController.swift */,
 				7BAB353A22C0D14500154D36 /* UMineViewController.swift */,
 				DC26DE8522CCC32E009051B9 /* UAccountSafeController.swift */,
 				DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */,
 				DC221C8322CF033C003A4053 /* UFeedBackController.swift */,
-				DC221C8722CF32CF003A4053 /* USetUpShopController.swift */,
 				DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */,
 				7B08931E22D715CD00872136 /* UDepostPostController.swift */,
 				7B08932022D7258800872136 /* UMyDepostController.swift */,
@@ -814,6 +823,7 @@
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
 				DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */,
+				0AB057BF22D74074002B7E40 /* UModifySetUpShopView.swift in Sources */,
 				7B9EB94A22C4988E003D9121 /* UGoodsDetailView.swift in Sources */,
 				7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */,
 				7BAB354022C0D1BB00154D36 /* UIColorExtension.swift in Sources */,
@@ -830,6 +840,7 @@
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,
 				7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */,
 				7B2DE2AB22D57DDF00AD6FDD /* MchApplyResponeModel.swift in Sources */,
+				0AB057BD22D71058002B7E40 /* StoreInfoModel.swift in Sources */,
 				7BAB355222C1B37100154D36 /* UBaseTableViewCell.swift in Sources */,
 				7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */,
 				7BAB354C22C0FAF400154D36 /* APIUserServices.swift in Sources */,
@@ -839,6 +850,7 @@
 				7B41456C22C4DB3700BB61D0 /* UBottomTab.swift in Sources */,
 				DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
+				0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */,
 				7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */,
 				7BAB356922C224E800154D36 /* UGoodsManagementController.swift in Sources */,
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
