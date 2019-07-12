@@ -56,6 +56,8 @@ enum NetApi {
     case applyJoin(param: [String:Any])
     case storeInfo(param: [String:Any])
     case getStoreOperateData(param: [String:Any])
+    case modifyOrderPrice(param: [String:Any])
+    case deliveryGoods(param: [String:Any])
     case modifyStoreInfo(param: [String:Any])
     case getStoreDepostData(param: [String:Any])
     case pushDepost(param:[String:Any])
@@ -108,6 +110,10 @@ extension NetApi: TargetType {
             return "/store_info"
         case .getStoreOperateData:
             return "/store_operate_data"
+        case .modifyOrderPrice:
+            return "/modify_price"
+        case .deliveryGoods:
+            return "/delivery_goods"
         case .modifyStoreInfo:
             return "/modify_store_info"
         case .getStoreDepostData:
@@ -124,7 +130,7 @@ extension NetApi: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getMchPtCats,.getChangePasswordVerificationCode,.modifyPwd,.getStoreDepostData,.addGoods:
+        case .getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData:
           return .post
 
         }
@@ -167,6 +173,10 @@ extension NetApi: TargetType {
         case .storeInfo(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getStoreOperateData(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyOrderPrice(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .deliveryGoods(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyStoreInfo(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)

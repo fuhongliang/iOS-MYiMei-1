@@ -84,6 +84,7 @@
 		7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */; };
 		95A2174AE09F7C516201A271 /* Pods_MYiMei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */; };
 		DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14816A22CD95A100018EED /* UAccountSafeView.swift */; };
+		DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */; };
 		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
 		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
 		DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */; };
@@ -212,6 +213,7 @@
 		7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerViewController.swift; sourceTree = "<group>"; };
 		80184B4DF6FA1EBEDC3C8DC7 /* Pods-MYiMei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.debug.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14816A22CD95A100018EED /* UAccountSafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeView.swift; sourceTree = "<group>"; };
+		DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
 		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
 		DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordView.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				7BAB357022C249BD00154D36 /* Refresh */,
 				7BAB355422C1B8AE00154D36 /* ParallaxHeader */,
 				7B2DE2AE22D5B5C000AD6FDD /* RPicker.swift */,
+				DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */,
 				0AB057BF22D74074002B7E40 /* UModifySetUpShopView.swift in Sources */,
 				7B9EB94A22C4988E003D9121 /* UGoodsDetailView.swift in Sources */,
+				DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */,
 				7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */,
 				7BAB354022C0D1BB00154D36 /* UIColorExtension.swift in Sources */,
 				0A0FF6CA22CB004B003F4B53 /* UReviewView.swift in Sources */,
