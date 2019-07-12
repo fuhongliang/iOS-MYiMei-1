@@ -40,7 +40,7 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
         initSearch()
         let btnItem = UIBarButtonItem.init(title: "完成", style: .plain, target: self, action: #selector(tapFinish))
         btnItem.tintColor = UIColor.white
-        btnItem.width = 80
+        btnItem.width = 60
         navigationItem.rightBarButtonItem = btnItem
     }
 
@@ -97,10 +97,9 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
 
     func initLocationButton() {
 
-//        self.imageLocated = UIImage(named: "gpssearchbutton")!
-//        self.imageNotLocate = UIImage(named: "gpsnormal")!
-        self.imageLocated = UIImage(named: "add_category")!
-        self.imageNotLocate = UIImage(named: "add_category")!
+        self.imageLocated = UIImage(named: "gpssearchbutton")!
+        self.imageNotLocate = UIImage(named: "gpsnormal")!
+
         self.locationBtn = UIButton(frame: CGRect(x: CGFloat(self.mapView.bounds.width - 40), y: CGFloat(self.mapView.bounds.height - 50), width: CGFloat(32), height: CGFloat(32)))
         self.locationBtn.autoresizingMask = .flexibleTopMargin
         self.locationBtn.backgroundColor = UIColor.white
@@ -125,7 +124,6 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
 
 
     //MARK: - Action
-
     func actionSearchAround(at coordinate: CLLocationCoordinate2D) {
         self.searchReGeocode(withCoordinate: coordinate)
         self.searchPoi(withCoordinate: coordinate)
@@ -192,10 +190,9 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
         self.isMapViewRegionChangedFromTableView = true
         let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(selectedPOI.location.latitude), longitude: CLLocationDegrees(selectedPOI.location.longitude))
         self.mapView.setCenter(location, animated: true)
-
-        curLocation.city = selectedPOI.city
-        curLocation.province = selectedPOI.province
-        curLocation.district = selectedPOI.businessArea
+        curLocation.city = selectedPOI.city ?? "汕尾市"
+        curLocation.province = selectedPOI.province ?? "广东省"
+        curLocation.district = selectedPOI.district ?? "陆丰市"
         curLocation.addresss = selectedPOI.address
         curLocation.longitude = String(location.longitude)
         curLocation.latitude = String(location.latitude)

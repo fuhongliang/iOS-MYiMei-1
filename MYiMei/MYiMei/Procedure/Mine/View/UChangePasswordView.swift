@@ -93,7 +93,8 @@ class UChangePasswordView: BaseView {
         //MARK:验证码输入框
         inputVerificationCodeEdit.placeholder = "请输入6位数验证码"
         inputVerificationCodeEdit.font = UIFont.systemFont(ofSize: 17)
-        inputPasswordEdit.textColor = UIColor.hex(hexString: "#999999")
+        inputVerificationCodeEdit.textColor = UIColor.hex(hexString: "#999999")
+        inputVerificationCodeEdit.keyboardType = UIKeyboardType.numberPad
         self.addSubview(inputVerificationCodeEdit)
         inputVerificationCodeEdit.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.width.equalToSuperview()
@@ -159,7 +160,7 @@ class UChangePasswordView: BaseView {
         }
         
         //MARK:密码提示语
-        passwordTip.text = "新密码不能与原密码一样，密码：英文+数字+符号（大于6位）"
+        passwordTip.text = "新密码不能与原密码一样（大于6位）"
         passwordTip.font = UIFont.systemFont(ofSize: 12)
         passwordTip.textColor = UIColor.hex(hexString: "#999999")
         self.addSubview(passwordTip)

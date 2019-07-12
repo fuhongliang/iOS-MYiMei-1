@@ -48,6 +48,8 @@ enum NetApi {
     case getGoodsList(param: [String:String])
     case deleteGoods(param: [String:String])
     case modifyGoodsStatus(param: [String:String])
+    case getDepositAgreement(param: [String:Any])
+    case getOrderList(param: [String:Any])
     case getChangePasswordVerificationCode(param: [String:Any])
     case modifyPwd(param: [String:Any])
     case getMchCommonCatId(param: [String:Any])
@@ -55,6 +57,8 @@ enum NetApi {
     case storeInfo(param: [String:Any])
     case getStoreOperateData(param: [String:Any])
     case modifyStoreInfo(param: [String:Any])
+    case getStoreDepostData(param: [String:Any])
+    case pushDepost(param:[String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -90,6 +94,10 @@ extension NetApi: TargetType {
             return "/modify_pwd"
         case .uploadPic:
             return "/upload_pic"
+        case .getDepositAgreement:
+            return "/mch_deposit/agreement"
+        case .getOrderList:
+            return "/list_order"
         case .applyJoin:
             return "/mch_apply"
         case .getMchCommonCatId:
@@ -100,13 +108,18 @@ extension NetApi: TargetType {
             return "/store_operate_data"
         case .modifyStoreInfo:
             return "/modify_store_info"
+        case .getStoreDepostData:
+            return "/mch_deposit/depositlist"
+        case .pushDepost:
+            return "/mch_deposit/create"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .modifyStoreInfo,.getStoreOperateData,.storeInfo,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd:
-            return .post
+        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.getStoreDepostData:
+          return .post
+
         }
     }
 
@@ -136,6 +149,10 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .uploadPic(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getDepositAgreement(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getOrderList(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getMchCommonCatId(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .applyJoin(let param):
@@ -145,6 +162,10 @@ extension NetApi: TargetType {
         case .getStoreOperateData(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyStoreInfo(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getStoreDepostData(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .pushDepost(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
