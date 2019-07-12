@@ -41,6 +41,7 @@ class UBottomTab: BaseView {
         addCategoryBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.width.equalToSuperview().dividedBy(3)
+            ConstraintMaker.height.equalTo(48)
             ConstraintMaker.centerY.equalToSuperview()
         }
 
@@ -55,6 +56,7 @@ class UBottomTab: BaseView {
         addGoodsBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(addCategoryBtn.snp.right)
             ConstraintMaker.width.equalToSuperview().dividedBy(3)
+            ConstraintMaker.height.equalTo(48)
             ConstraintMaker.centerY.equalToSuperview()
 
         }
@@ -70,6 +72,7 @@ class UBottomTab: BaseView {
         addManageCategoryBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(addGoodsBtn.snp.right)
             ConstraintMaker.width.equalToSuperview().dividedBy(3)
+            ConstraintMaker.height.equalTo(48)
             ConstraintMaker.centerY.equalToSuperview()
 
         }

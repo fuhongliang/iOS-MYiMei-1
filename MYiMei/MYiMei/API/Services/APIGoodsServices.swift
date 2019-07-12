@@ -16,14 +16,74 @@ protocol APIGoodsServicesProtocol {
     func getGoodsList(mch_id: Int,cat_id: Int, access_token: String, _ success: @escaping(((GoodsResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //删除商品
-    func deleteGoods(mch_id: Int,goods_id: Int, access_token: String, _ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    func deleteGoods(mch_id: Int,goods_id: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //上下架商品
      func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping(((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
-   
+
+    //发布商品
+    func addGoods(name: String,
+                  detail: String,cover_pic: String,goods_pic: [String],pt_cat_id: Int,goods_cat_id: Int,unit: String,weight: String,original_price: String,price: String,
+                  pieces: String,forehead: String,service: String,goods_num: String,_ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
+    //获取平台分类
+    func getMchPtCats( _ success: @escaping(((PlatCateResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 }
 
 class APIGoodsServices: APIGoodsServicesProtocol {
+
+    func getMchPtCats(_ success: @escaping (((PlatCateResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+
+        APIService.shared.request(.getMchPtCats(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(PlatCateResponeModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+    }
+
+
+    func addGoods(name: String, detail: String, cover_pic: String, goods_pic: [String], pt_cat_id: Int,goods_cat_id:Int, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, service: String, goods_num: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "name":name,
+            "detail":detail,
+            "cover_pic":cover_pic,
+            "goods_pic":goods_pic,
+            "pt_cat_id":pt_cat_id,
+            "goods_cat_id":goods_cat_id,
+            "unit":unit,
+            "weight":weight,
+            "original_price":original_price,
+            "price":price,
+            "pieces":pieces,
+            "forehead":forehead,
+            "service":service,
+            "goods_num":goods_num,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+
+        APIService.shared.request(.addGoods(param: params), { (data) in
+            do {
+                success()
+            }
+        }) { (error) in
+            fail(error)
+        }
+    }
+
     func modifyGoodsStatus(mch_id: Int, goods_id: Int, status: Int, access_token: String, _ success: @escaping (((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "mch_id":String(mch_id),
@@ -46,7 +106,7 @@ class APIGoodsServices: APIGoodsServicesProtocol {
         }
     }
 
-    func deleteGoods(mch_id: Int, goods_id: Int, access_token: String, _ success: @escaping (((APIListModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+    func deleteGoods(mch_id: Int, goods_id: Int, access_token: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "mch_id":String(mch_id),
             "goods_id":String(goods_id),
@@ -55,12 +115,7 @@ class APIGoodsServices: APIGoodsServicesProtocol {
         ]
         APIService.shared.request(.deleteGoods(param: params), { (data) in
             do {
-                let model = try JSONDecoder().decode(APIListModel.self, from: data)
-                success(model)
-            }
-            catch {
-                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
-                fail(errorModel)
+                success()
             }
         }) { (error) in
             fail(error)
