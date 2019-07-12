@@ -59,6 +59,8 @@ enum NetApi {
     case modifyStoreInfo(param: [String:Any])
     case getStoreDepostData(param: [String:Any])
     case pushDepost(param:[String:Any])
+    case addGoods(param:[String:Any])
+    case getMchPtCats(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -112,12 +114,17 @@ extension NetApi: TargetType {
             return "/mch_deposit/depositlist"
         case .pushDepost:
             return "/mch_deposit/create"
+        case .addGoods:
+            return "/add_goods"
+        case .getMchPtCats:
+            return "/mch_pt_cats"
+
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.getStoreDepostData:
+        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getMchPtCats,.getChangePasswordVerificationCode,.modifyPwd,.getStoreDepostData,.addGoods:
           return .post
 
         }
@@ -167,6 +174,11 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .pushDepost(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .addGoods(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getMchPtCats(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+
        }
     }
 
