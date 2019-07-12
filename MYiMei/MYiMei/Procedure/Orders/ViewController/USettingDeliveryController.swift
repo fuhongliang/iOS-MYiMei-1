@@ -12,6 +12,14 @@ class USettingDeliveryController: UBaseViewController {
     
     let settingDelivery = USettingDeliveryView()
     
+    let service = APIOrderServices()
+    
+    var orderId = 0
+  
+    func setOrderId(){
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,6 +35,16 @@ class USettingDeliveryController: UBaseViewController {
     
     func chooseCourierDelivery() {
         //MARK:请求按钮
+        let express = settingDelivery.courierCompanyChoiceLabel.text ?? ""
+        let expressNo = settingDelivery.courierOrderNoLabel.text ?? ""
+        let words = settingDelivery.courierLeaveMessageTF.text ?? ""
+        service.deliveryGoods(order_id: orderId, is_express: 1, express: express, express_no: expressNo, words: words, {
+            print("发货成功")
+            showHUDInView(text: "发货成功", inView: self.view)
+        }) { (APIErrorModel) in
+            print("发货失败")
+            showHUDInView(text: "发货失败", inView: self.view)
+        }
     }
 }
 
