@@ -118,16 +118,16 @@ class UGoodsManagementController: UBaseViewController {
 
     //MARK:新建分类
     @objc func showAddCategoryView(){
-        let vc = UGoodsDetailsController()
-        vc.title = "新建分类"
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UGoodsDetailsController()
+//        vc.title = "新建分类"
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     //MARK:管理分类
     @objc func showManageCategoryView(){
-        let vc = UGoodsDetailsController()
-        vc.title = "管理分类"
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UGoodsDetailsController()
+//        vc.title = "管理分类"
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     //MARK: 提示框
