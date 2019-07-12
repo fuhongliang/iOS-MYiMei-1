@@ -224,7 +224,7 @@ class UGoodsDetailView: BaseView {
         unitBgWhite.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(272)
+            ConstraintMaker.height.equalTo(227)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.bottom).offset(15)
         }
 
