@@ -83,6 +83,15 @@ class UGoodsManagementController: UBaseViewController {
             ConstraintMaker.height.equalTo(67)
         }
 
+        //MARK:发布商品
+        bottomTab.addGoodsBtn.addTarget(self, action: #selector(showGoodDetailView), for: UIControl.Event.touchDown)
+        //MARK:新建分类
+        bottomTab.addCategoryBtn.addTarget(self, action: #selector(showAddCategoryView), for: UIControl.Event.touchDown)
+
+        //MARK:管理分类
+        bottomTab.addManageCategoryBtn.addTarget(self, action: #selector(showManageCategoryView), for: UIControl.Event.touchDown)
+
+
         self.view.addSubview(categoryTableView)
         categoryTableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
@@ -98,6 +107,27 @@ class UGoodsManagementController: UBaseViewController {
             ConstraintMaker.bottom.equalTo(bottomTab.snp.top)
             ConstraintMaker.right.equalToSuperview()
         }
+    }
+
+    //MARK:发布商品
+    @objc func showGoodDetailView(){
+        let vc = UGoodsDetailsController()
+        vc.title = "发布商品"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    //MARK:新建分类
+    @objc func showAddCategoryView(){
+        let vc = UGoodsDetailsController()
+        vc.title = "新建分类"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    //MARK:管理分类
+    @objc func showManageCategoryView(){
+        let vc = UGoodsDetailsController()
+        vc.title = "管理分类"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     //MARK: 提示框

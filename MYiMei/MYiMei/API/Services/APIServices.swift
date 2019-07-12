@@ -54,9 +54,13 @@ enum NetApi {
     case modifyPwd(param: [String:Any])
     case getMchCommonCatId(param: [String:Any])
     case applyJoin(param: [String:Any])
+    case storeInfo(param: [String:Any])
     case getStoreOperateData(param: [String:Any])
     case modifyOrderPrice(param: [String:Any])
     case deliveryGoods(param: [String:Any])
+    case modifyStoreInfo(param: [String:Any])
+    case getStoreDepostData(param: [String:Any])
+    case pushDepost(param:[String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -100,19 +104,28 @@ extension NetApi: TargetType {
             return "/mch_apply"
         case .getMchCommonCatId:
             return "/apply_cat"
+        case .storeInfo:
+            return "/store_info"
         case .getStoreOperateData:
             return "/store_operate_data"
         case .modifyOrderPrice:
             return "/modify_price"
         case .deliveryGoods:
             return "/delivery_goods"
+        case .modifyStoreInfo:
+            return "/modify_store_info"
+        case .getStoreDepostData:
+            return "/mch_deposit/depositlist"
+        case .pushDepost:
+            return "/mch_deposit/create"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods:
+        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData:
           return .post
+
         }
     }
 
@@ -150,11 +163,19 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .applyJoin(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .storeInfo(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getStoreOperateData(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .modifyOrderPrice(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .deliveryGoods(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyStoreInfo(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getStoreDepostData(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .pushDepost(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

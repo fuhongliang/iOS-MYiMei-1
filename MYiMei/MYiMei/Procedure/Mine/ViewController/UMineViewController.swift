@@ -35,7 +35,11 @@ class UMineViewController: UBaseViewController {
     private lazy var navigationBarY: CGFloat = {
         return navigationController?.navigationBar.frame.maxY ?? 0
     }()
-    
+
+    var depostPass = false
+
+    var depostReview = false
+
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
@@ -66,6 +70,7 @@ class UMineViewController: UBaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         getStoreData()
+        getStoreDepost()
         super.configNavigationBar()
     }
     
@@ -74,24 +79,40 @@ class UMineViewController: UBaseViewController {
         vc.title = "商品管理"
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+
+    //MARK:跳转保证金协议
     func goToDepositAgreement(){
-        //未交保证金时跳转
-        let vc = UDepositAgreementController()
-//        vc.title = "保证金协议"
-        navigationController?.pushViewController(vc, animated: true)
+        if(depostPass){
+            let vc = UMyDepostController()
+            vc.title = "我的保证金"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if(depostReview){
+            let vc = UMyDepostController()
+            vc.title = "我的保证金"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            //未交保证金时跳转
+            let vc = UDepositAgreementController()
+            vc.title = "保证金协议"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
-    
+
+    //MARK:跳转账号与安全
     func goToAccountSafe() {
         let vc = UAccountSafeController()
         vc.title = "账号与安全"
         navigationController?.pushViewController(vc, animated: true)
     }
+
+    //MARK:跳转店铺设置
     func goToSetUpShop() {
         let vc = USetUpShopController()
         vc.title = "店铺设置"
         navigationController?.pushViewController(vc, animated: true)
     }
+
    //MARK:获取店铺经营数据
     func getStoreData() {
         service.getStoreOperateData({ (StoreDashBoardModel) in
@@ -103,6 +124,25 @@ class UMineViewController: UBaseViewController {
         }) { (APIErrorModel) in
            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
         }
+    }
+
+    //MARK:获取店铺保证金
+    func getStoreDepost() {
+        service.getStoreDepostData({ (StoreDepostReponseModel) in
+            if(StoreDepostReponseModel.data?.pass?.count ?? 0>0){
+                self.depostPass = true
+            }else{
+                self.depostPass = false
+            }
+            if(StoreDepostReponseModel.data?.review?.count ?? 0>0){
+                self.depostReview = true
+            }else{
+                self.depostReview = false
+            }
+
+        }, { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+        })
     }
 }
 
@@ -136,15 +176,18 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UStoreEventsCell.self)
+            if(depostPass){
+                cell.financial.menuIcon.image = UIImage.init(named: "menu_margin")
+            }else{
+                cell.financial.menuIcon.image = UIImage.init(named: "depost_empty")
+            }
             cell.subscribeFinancialAction = {
-                NSLog("保证金被点击了")
                 self.goToDepositAgreement()
             }
             cell.subscribeGoodsManagementAction = {
                 self.goToGoodsManageMent()
             }
             cell.subscribeStoreSettingsAction = {
-                NSLog("店铺设置被点击了")
                 self.goToSetUpShop()
             }
             cell.subscribeBusinessDataAction = {
@@ -167,22 +210,13 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            self.goToAccountSafe()
-        }else if indexPath.row == 0{
-            //            let vc = UModifyProfileViewController()
-            //            let sectionArray = myArray[indexPath.section]
-            //            let dict: [String: String] = sectionArray[indexPath.row]
-            //            vc.title = dict["title"]
-            //            navigationController?.pushViewController(vc, animated: true)
-        }else {
-            //            let vc = UModifyPasswordViewController()
-            //            let sectionArray = myArray[indexPath.section]
-            //            let dict: [String: String] = sectionArray[indexPath.row]
-            //            vc.title = dict["title"]
-            //            navigationController?.pushViewController(vc, animated: true)
+        if(indexPath.section == 1){
+            if indexPath.row == 0 {
+                self.goToAccountSafe()
+            }else if(indexPath.row == 2){
+                showAlertControllerStyle()
+            }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -194,30 +228,18 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    //    func showAlertControllerStyle() {
-    //        let alertController = UIAlertController(title: "温馨提示", message: "是否确定退出登录？", preferredStyle: UIAlertController.Style.alert)
-    //        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
-    //            (action: UIAlertAction!) -> Void in
-    //            self.logout()
-    //        }
-    //        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
-    //        alertController.addAction(okAction)
-    //        alertController.addAction(cancelAction)
-    //        self.present(alertController, animated: true, completion: nil)
-    //    }
-    
-    //    func logout() -> Void {
-    //        let userId: String = U17User.shared.user?.userid ?? ""
-    //        service.logout(userId: userId, {
-    //            JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
-    //                print("退出注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
-    //            }, seq: 0)
-    //            (UIApplication.shared.delegate as! AppDelegate).showLoginView()
-    //        }) { (FAPIErrorModel) in
-    //            //            print(FAPIErrorModel.error?.localizedDescription ?? "退出失败")
-    //            (UIApplication.shared.delegate as! AppDelegate).showLoginView()
-    //        }
-    //    }
+
+    func showAlertControllerStyle() {
+            let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+                (action: UIAlertAction!) -> Void in
+
+            }
+            let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+
 }
 

@@ -79,5 +79,13 @@ class UShopLabelCell: UBaseTableViewCell {
 //            ConstraintMaker.bottom.equalToSuperview()
 //            ConstraintMaker.left.equalToSuperview().offset(15)
 //        }
+        
+       
+    }
+    var model: MchModel? {
+        didSet {
+            guard let model = model else { return }
+//            contentLabel.text = model.
+        }
     }
 }

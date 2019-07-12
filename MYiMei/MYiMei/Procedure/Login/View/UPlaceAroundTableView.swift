@@ -28,6 +28,7 @@ class UPlaceAroundTableView: UIView, UITableViewDataSource, UITableViewDelegate,
     var selectedIndexPath: IndexPath?
     var isFromMoreButton: Bool = false
     var moreButton: UIButton!
+    var selectPoi = AMapPOI()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,9 +45,7 @@ class UPlaceAroundTableView: UIView, UITableViewDataSource, UITableViewDelegate,
         tableView.delegate = self
         tableView.dataSource = self
         self.addSubview(tableView)
-
         initTableViewFooter()
-
     }
 
     func initTableViewFooter() {
@@ -105,11 +104,9 @@ class UPlaceAroundTableView: UIView, UITableViewDataSource, UITableViewDelegate,
         if response.count == 0 {
             self.moreButton.setTitle("没有数据了...", for: UIControl.State.normal)
             self.moreButton.isEnabled = false
-            self.moreButton.backgroundColor = UIColor.gray
+            self.moreButton.backgroundColor = UIColor.white
             self.selectedIndexPath = nil
-
             self.tableView.reloadData()
-
             return
         }
 
@@ -121,8 +118,13 @@ class UPlaceAroundTableView: UIView, UITableViewDataSource, UITableViewDelegate,
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
 
         if response.regeocode != nil {
-            self.currentAddress = response.regeocode.formattedAddress;
-            self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.none)
+            self.currentAddress = response.regeocode.formattedAddress
+            print(response.regeocode.addressComponent.province ?? "没有省")
+            print(response.regeocode.addressComponent.city  ?? "没有市")
+            print(response.regeocode.addressComponent.district ?? "没有区")
+            selectPoi.province = response.regeocode.addressComponent.province
+            selectPoi.city = response.regeocode.addressComponent.city
+            selectPoi.district = response.regeocode.addressComponent.district
         }
     }
 
@@ -147,30 +149,21 @@ class UPlaceAroundTableView: UIView, UITableViewDataSource, UITableViewDelegate,
             return
         }
 
-        if indexPath.section == 0 {
-            if self.delegate!.responds(to: #selector(PlaceAroundTableViewDeleagate.didPositionCellTapped)) {
-                self.delegate!.didPositionCellTapped()
-            }
-        }
-        else {
-            if self.delegate!.responds(to: #selector(PlaceAroundTableViewDeleagate.didTableViewSelectedChanged(selectedPOI:))) {
-                let seletedPOI = self.searchPoiArray[indexPath.row]
-                self.delegate!.didTableViewSelectedChanged(selectedPOI: seletedPOI)
-            }
+        if self.delegate!.responds(to: #selector(PlaceAroundTableViewDeleagate.didTableViewSelectedChanged(selectedPOI:))) {
+            let seletedPOI = self.searchPoiArray[indexPath.row]
+            seletedPOI.province = selectPoi.province
+            seletedPOI.city = selectPoi.city
+            seletedPOI.district = selectPoi.district
+            self.delegate!.didTableViewSelectedChanged(selectedPOI: seletedPOI)
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        else {
-            return searchPoiArray.count
-        }
+        return searchPoiArray.count
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     //MARK:- TableViewDataSource
@@ -186,16 +179,9 @@ class UPlaceAroundTableView: UIView, UITableViewDataSource, UITableViewDelegate,
             cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: cellIdentifier)
         }
 
-        if indexPath.section == 0 {
-            cell!.textLabel?.text = "[位置]";
-            cell!.detailTextLabel?.text = self.currentAddress
-
-        }
-        else {
-            let poi: AMapPOI = self.searchPoiArray[indexPath.row]
-            cell!.textLabel?.text = poi.name
-            cell!.detailTextLabel?.text = poi.address
-        }
+        let poi: AMapPOI = self.searchPoiArray[indexPath.row]
+        cell!.textLabel?.text = poi.name
+        cell!.detailTextLabel?.text = poi.city + poi.address
 
         if self.selectedIndexPath != nil && self.selectedIndexPath?.section == indexPath.section && self.selectedIndexPath?.row == indexPath.row {
             cell!.accessoryType = .checkmark

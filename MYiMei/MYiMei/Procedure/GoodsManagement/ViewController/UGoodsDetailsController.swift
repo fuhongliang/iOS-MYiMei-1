@@ -17,6 +17,10 @@ class UGoodsDetailsController: UBaseViewController {
 
     let goodsDetailView = UGoodsDetailView()
 
+    var tagBtnSet = [UIButton:String]()
+
+    var serviceTag = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .top
@@ -57,40 +61,43 @@ class UGoodsDetailsController: UBaseViewController {
 }
 
 extension UGoodsDetailsController: UGoodsDetailViewDelegate {
+    func tapChooseCateAction() {
+
+    }
+
+    func tapChooseGoodsCateAction() {
+
+    }
+
+    func tapChooseGoodsTagAction(tag: UIButton) {
+        tag.isSelected = !tag.isSelected
+        if(tag.isSelected){
+            tag.backgroundColor = UIColor.theme
+            tagBtnSet.updateValue((tag.titleLabel?.text!)! + ",", forKey: tag)
+        }else{
+            tag.backgroundColor = UIColor.white
+            tagBtnSet.updateValue("", forKey: tag)
+        }
+        self.getServiceTags()
+    }
+
+    func getServiceTags () {
+        serviceTag = ""
+        for tags in tagBtnSet{
+            serviceTag = serviceTag + tags.value
+        }
+    }
+
+    func tapSaveAction(name: String, detail: String, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, goods_num: String) {
+
+    }
+
     func tapChooseGoodsSLTAction() {
-        let vc = BSImagePickerViewController()
-        vc.maxNumberOfSelections = 1
-        bs_presentImagePickerController(vc, animated: true,
-                                        select: { (asset: PHAsset) -> Void in
-                                            // User selected an asset.
-                                            // Do something with it, start upload perhaps?
-        }, deselect: { (asset: PHAsset) -> Void in
-            print("Selected:")
-            print(asset)
-            // User deselected an assets.
-            // Do something, cancel upload?
-        }, cancel: { (assets: [PHAsset]) -> Void in
-            // User cancelled. And this where the assets currently selected.
-        }, finish: { (assets: [PHAsset]) -> Void in
-            // User finished with these assets
-        }, completion: nil)
+
     }
 
     func tapChooseGoodsPicAction() {
-        let vc = BSImagePickerViewController()
-        vc.maxNumberOfSelections = 1
-        bs_presentImagePickerController(vc, animated: true,
-                                        select: { (asset: PHAsset) -> Void in
-                                            // User selected an asset.
-                                            // Do something with it, start upload perhaps?
-        }, deselect: { (sasset: PHAsset) -> Void in
-            // User deselected an assets.
-            // Do something, cancel upload?
-        }, cancel: { (assets: [PHAsset]) -> Void in
-            // User cancelled. And this where the assets currently selected.
-        }, finish: { (assets: [PHAsset]) -> Void in
-            // User finished with these assets
-        }, completion: nil)
+
     }
 
 }
