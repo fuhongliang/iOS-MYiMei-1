@@ -162,13 +162,13 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
                 (action: UIAlertAction!) -> Void in
                 self.service.deliveryGoods(order_id: self.orderList.order[indexPath.section].order_id, is_express: 0, express: "", express_no: "", words: "", {
-                    
+                    showHUDInView(text: "发货成功", inView: self.view)
                 }, { (APIErrorModel) in
                     print(APIErrorModel.msg ?? "-----")
                 })
             }
             
-            let okAction = UIAlertAction(title: "物流快递", style: UIAlertAction.Style.default) {
+            let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
                 (action: UIAlertAction!) -> Void in
                 let vc = USettingDeliveryController()
                 vc.title = "设置发货"

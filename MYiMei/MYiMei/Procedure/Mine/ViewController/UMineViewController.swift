@@ -233,7 +233,11 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
                 (action: UIAlertAction!) -> Void in
-
+                // phoneStr:  电话号码
+                let phone = "telprompt://" + self.storeData.store!.contact_platform_tel! ?? "18825110997"
+                if UIApplication.shared.canOpenURL(URL(string: phone)!) {
+                    UIApplication.shared.openURL(URL(string: phone)!)
+                }
             }
             let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
             alertController.addAction(okAction)

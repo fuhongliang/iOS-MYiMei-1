@@ -28,6 +28,7 @@
 		7B08932322D728F300872136 /* UDepostStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932222D728F300872136 /* UDepostStatusCell.swift */; };
 		7B08932522D72BD200872136 /* UDepostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932422D72BD200872136 /* UDepostPhotoCell.swift */; };
 		7B08932722D72CE600872136 /* UWebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932622D72CE600872136 /* UWebViewCell.swift */; };
+		7B08932922D888B500872136 /* PlatCateResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932822D888B500872136 /* PlatCateResponeModel.swift */; };
 		7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */; };
 		7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */; };
 		7B2DE2AB22D57DDF00AD6FDD /* MchApplyResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */; };
@@ -152,6 +153,7 @@
 		7B08932222D728F300872136 /* UDepostStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepostStatusCell.swift; sourceTree = "<group>"; };
 		7B08932422D72BD200872136 /* UDepostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepostPhotoCell.swift; sourceTree = "<group>"; };
 		7B08932622D72CE600872136 /* UWebViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWebViewCell.swift; sourceTree = "<group>"; };
+		7B08932822D888B500872136 /* PlatCateResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatCateResponeModel.swift; sourceTree = "<group>"; };
 		7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCatModel.swift; sourceTree = "<group>"; };
 		7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyModel.swift; sourceTree = "<group>"; };
 		7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyResponeModel.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */,
 				7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */,
 				7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */,
+				7B08932822D888B500872136 /* PlatCateResponeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -839,6 +842,7 @@
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
+				7B08932922D888B500872136 /* PlatCateResponeModel.swift in Sources */,
 				7B08932722D72CE600872136 /* UWebViewCell.swift in Sources */,
 				DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */,
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,

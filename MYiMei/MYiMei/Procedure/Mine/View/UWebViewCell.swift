@@ -19,8 +19,8 @@ class UWebViewCell: UBaseTableViewCell {
         webView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalToSuperview().offset(15)
-            ConstraintMaker.right.equalToSuperview().offset(15)
-            ConstraintMaker.height.equalTo(300)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.height.equalTo(320)
         }
     }
 }

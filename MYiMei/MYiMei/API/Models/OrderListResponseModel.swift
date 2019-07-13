@@ -66,7 +66,7 @@ class GoodsList : Codable{
 //MARK:商品的商品规格
 class Attr : Codable{
     var attr_group_name : String!
-    var attr_id : String!
+    var attr_id : Int!
     var attr_name : String!
     var no : String!
 }
