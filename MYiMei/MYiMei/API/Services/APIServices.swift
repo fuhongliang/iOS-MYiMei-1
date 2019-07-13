@@ -61,6 +61,9 @@ enum NetApi {
     case modifyStoreInfo(param: [String:Any])
     case getStoreDepostData(param: [String:Any])
     case pushDepost(param:[String:Any])
+    case addGoodsCat(param:[String:String])
+    case deleteGoodsCat(param:[String:String])
+    case editGoodsCat(param:[String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -118,12 +121,18 @@ extension NetApi: TargetType {
             return "/mch_deposit/depositlist"
         case .pushDepost:
             return "/mch_deposit/create"
+        case .addGoodsCat:
+            return "/add_goods_cat"
+        case .deleteGoodsCat:
+            return "/delete_goods_cat"
+        case .editGoodsCat:
+            return "/modify_goods_cat"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData:
+        case .modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat:
           return .post
 
         }
@@ -177,6 +186,13 @@ extension NetApi: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .pushDepost(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .addGoodsCat(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .deleteGoodsCat(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .editGoodsCat(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+            
        }
     }
 

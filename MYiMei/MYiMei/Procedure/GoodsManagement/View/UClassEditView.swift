@@ -8,7 +8,14 @@
 
 import UIKit
 
+
+protocol UClassEditViewDelegate: AnyObject {
+    func tapSubmitAction(name: String, sort: String)
+}
+
 class UClassEditView: BaseView {
+    
+    weak var delegate: UClassEditViewDelegate?
     
     //MARK:分类名称
     var classNameLabel = UILabel()
@@ -104,6 +111,13 @@ class UClassEditView: BaseView {
             ConstraintMaker.top.equalTo(classSortBgWhite.snp.bottom).offset(40)
             ConstraintMaker.height.equalTo(44)
         }
+        saveBtn.addTarget(self, action: #selector(submitCatInfo), for: UIControl.Event.touchUpInside)
+    }
+    
+    @objc func submitCatInfo(){
+        let catName = classNameTF.text ?? ""
+        let catSort = classSortTF.text ?? ""
+        delegate?.tapSubmitAction(name: catName, sort: catSort)
     }
     
 }

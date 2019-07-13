@@ -113,10 +113,6 @@ class UOrdersViewController: UBaseViewController {
     }
     
 }
-//
-//extension UOrdersViewController: UModifyPriceAlertViewDelegate{
-//
-//}
 
 extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -153,7 +149,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //cell待更换
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
-        cell.selectionStyle = .default
+//        cell.selectionStyle = .default
         cell.modifyPrice = {
             NSLog("修改价格")
             self.mOrderId = self.orderList.order[indexPath.section].order_id
