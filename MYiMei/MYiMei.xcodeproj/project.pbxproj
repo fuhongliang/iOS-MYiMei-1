@@ -110,6 +110,7 @@
 		DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */; };
 		DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */; };
 		DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */; };
+		DC8708D122D9B22D009B92F2 /* ExpressListResponesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +241,7 @@
 		DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositAgreementResponsModel.swift; sourceTree = "<group>"; };
 		DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOrderServices.swift; sourceTree = "<group>"; };
 		DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListResponseModel.swift; sourceTree = "<group>"; };
+		DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressListResponesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +395,7 @@
 				7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */,
 				7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */,
 				7B08932822D888B500872136 /* PlatCateResponeModel.swift */,
+				DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				0AB057AB22D2D676002B7E40 /* UManagementClassificationController.swift in Sources */,
 				DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */,
 				0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */,
+				DC8708D122D9B22D009B92F2 /* ExpressListResponesModel.swift in Sources */,
 				DC7E297922D575B700AC3F21 /* ImagePressHelper.swift in Sources */,
 				7B08932522D72BD200872136 /* UDepostPhotoCell.swift in Sources */,
 				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,

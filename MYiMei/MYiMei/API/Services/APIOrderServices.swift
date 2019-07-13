@@ -19,9 +19,32 @@ protocol APIOrderServicesProtocol {
     //MARK:发货接口
     func deliveryGoods(order_id: Int,is_express: Int,express: String,express_no: String, words: String,_ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
     
+    //MARK:获取物流公司
+    func getExpressList(_ success: @escaping(((ExpressListResponesModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
 }
 
 class APIOrderServices: APIOrderServicesProtocol {
+    func getExpressList(_ success: @escaping (((ExpressListResponesModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id": APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.getExpressList(param: params), { (data) in
+            //提示是否成功
+            do{
+                let model = try JSONDecoder().decode(ExpressListResponesModel.self, from: data)
+                success(model)
+            } catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (APIErrorModel) in
+            fail(APIErrorModel)
+        }
+    }
+    
     func deliveryGoods(order_id: Int, is_express: Int, express: String, express_no: String, words: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "mch_id": APIUser.shared.user?.mch_id as Any,
