@@ -23,6 +23,14 @@
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
 		0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */; };
+		7B08931A22D7151000872136 /* UMeDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931822D7151000872136 /* UMeDepost.swift */; };
+		7B08931B22D7151000872136 /* UMeDepostcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931922D7151000872136 /* UMeDepostcell.swift */; };
+		7B08931D22D7153700872136 /* UDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931C22D7153700872136 /* UDepost.swift */; };
+		7B08931F22D715CD00872136 /* UDepostPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931E22D715CD00872136 /* UDepostPostController.swift */; };
+		7B08932122D7258800872136 /* UMyDepostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932022D7258800872136 /* UMyDepostController.swift */; };
+		7B08932322D728F300872136 /* UDepostStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932222D728F300872136 /* UDepostStatusCell.swift */; };
+		7B08932522D72BD200872136 /* UDepostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932422D72BD200872136 /* UDepostPhotoCell.swift */; };
+		7B08932722D72CE600872136 /* UWebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932622D72CE600872136 /* UWebViewCell.swift */; };
 		7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */; };
 		7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */; };
 		7B2DE2AB22D57DDF00AD6FDD /* MchApplyResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */; };
@@ -37,6 +45,7 @@
 		7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456D22C4DB4000BB61D0 /* UCategoryCell.swift */; };
 		7B7B15CB22D6DED50082F227 /* StoreDashBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */; };
 		7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */; };
+		7B7B15CF22D70EB50082F227 /* StoreDepostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */; };
 		7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94322C3348F003D9121 /* UGoodsCell.swift */; };
 		7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */; };
 		7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */; };
@@ -99,6 +108,9 @@
 		DC7E297922D575B700AC3F21 /* ImagePressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297822D575B700AC3F21 /* ImagePressHelper.swift */; };
 		DC7E297B22D575E200AC3F21 /* UChooseAddressFromMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */; };
 		DC7E298022D5764700AC3F21 /* UPlaceAroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297F22D5764700AC3F21 /* UPlaceAroundTableView.swift */; };
+		DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */; };
+		DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */; };
+		DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +149,14 @@
 		0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsViewController.swift; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
+		7B08931822D7151000872136 /* UMeDepost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMeDepost.swift; sourceTree = "<group>"; };
+		7B08931922D7151000872136 /* UMeDepostcell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMeDepostcell.swift; sourceTree = "<group>"; };
+		7B08931C22D7153700872136 /* UDepost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDepost.swift; sourceTree = "<group>"; };
+		7B08931E22D715CD00872136 /* UDepostPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepostPostController.swift; sourceTree = "<group>"; };
+		7B08932022D7258800872136 /* UMyDepostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMyDepostController.swift; sourceTree = "<group>"; };
+		7B08932222D728F300872136 /* UDepostStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepostStatusCell.swift; sourceTree = "<group>"; };
+		7B08932422D72BD200872136 /* UDepostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepostPhotoCell.swift; sourceTree = "<group>"; };
+		7B08932622D72CE600872136 /* UWebViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWebViewCell.swift; sourceTree = "<group>"; };
 		7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCatModel.swift; sourceTree = "<group>"; };
 		7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyModel.swift; sourceTree = "<group>"; };
 		7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyResponeModel.swift; sourceTree = "<group>"; };
@@ -151,6 +171,7 @@
 		7B41456D22C4DB4000BB61D0 /* UCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UCategoryCell.swift; sourceTree = "<group>"; };
 		7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDashBoardModel.swift; sourceTree = "<group>"; };
 		7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStoreServices.swift; sourceTree = "<group>"; };
+		7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDepostModel.swift; sourceTree = "<group>"; };
 		7B9EB94322C3348F003D9121 /* UGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsCell.swift; sourceTree = "<group>"; };
 		7B9EB94522C4946D003D9121 /* UGoodsDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsDetailsController.swift; sourceTree = "<group>"; };
 		7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsDetailModel.swift; sourceTree = "<group>"; };
@@ -218,6 +239,9 @@
 		DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UChooseAddressFromMap.swift; sourceTree = "<group>"; };
 		DC7E297E22D5762700AC3F21 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC7E297F22D5764700AC3F21 /* UPlaceAroundTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPlaceAroundTableView.swift; sourceTree = "<group>"; };
+		DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositAgreementResponsModel.swift; sourceTree = "<group>"; };
+		DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOrderServices.swift; sourceTree = "<group>"; };
+		DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,10 +438,13 @@
 				7BAB352622C0C89A00154D36 /* APIResponseModels.swift */,
 				7B9EB94722C4950D003D9121 /* GoodsDetailModel.swift */,
 				DC264EE722D306DB001FDAD6 /* ShopSettingModel.swift */,
+				DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */,
+				DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */,
 				7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */,
 				7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */,
 				7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */,
 				7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */,
+				7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,6 +457,7 @@
 				7BAB354B22C0FAF400154D36 /* APIUserServices.swift */,
 				7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */,
 				DC77E9AA22D571D400E92E25 /* APIDepositService.swift */,
+				DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */,
 				7BAB352322C0C76400154D36 /* APIToken.swift */,
 				7BAB352922C0CDF500154D36 /* APIUser.swift */,
 			);
@@ -535,11 +563,17 @@
 			isa = PBXGroup;
 			children = (
 				0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */,
+				7B08931C22D7153700872136 /* UDepost.swift */,
+				7B08931822D7151000872136 /* UMeDepost.swift */,
+				7B08932222D728F300872136 /* UDepostStatusCell.swift */,
+				7B08932422D72BD200872136 /* UDepostPhotoCell.swift */,
+				7B08932622D72CE600872136 /* UWebViewCell.swift */,
+				7B08931922D7151000872136 /* UMeDepostcell.swift */,
 				DC7E297622D5754500AC3F21 /* UMenuDepost.swift */,
 				7BAB354F22C1AF4600154D36 /* UMineHead.swift */,
 				7BAB355B22C1C93000154D36 /* UStoreEventsCell.swift */,
-				7BAB355D22C1DE0000154D36 /* UDataCell.swift */,
 				7BAB355F22C1F2CD00154D36 /* UMenuCell.swift */,
+				7BAB355D22C1DE0000154D36 /* UDataCell.swift */,
 				7BAB356122C1F5EF00154D36 /* UMenuGoodsManagement.swift */,
 				7BAB356322C1F62800154D36 /* UMenuStoreSettings.swift */,
 				7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */,
@@ -564,6 +598,8 @@
 				DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */,
 				DC221C8322CF033C003A4053 /* UFeedBackController.swift */,
 				DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */,
+				7B08931E22D715CD00872136 /* UDepostPostController.swift */,
+				7B08932022D7258800872136 /* UMyDepostController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -856,6 +892,7 @@
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
+				7B08932722D72CE600872136 /* UWebViewCell.swift in Sources */,
 				DC264EEC22D3266B001FDAD6 /* USettingDeliveryController.swift in Sources */,
 				7BAB34F122C0AE1200154D36 /* ViewController.swift in Sources */,
 				7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */,
@@ -878,10 +915,12 @@
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
 				7BAB354A22C0D87100154D36 /* ULoginView.swift in Sources */,
 				7BAB352722C0C89A00154D36 /* APIResponseModels.swift in Sources */,
+				DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */,
 				0AB057AB22D2D676002B7E40 /* UManagementClassificationController.swift in Sources */,
 				DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */,
 				0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */,
 				DC7E297922D575B700AC3F21 /* ImagePressHelper.swift in Sources */,
+				7B08932522D72BD200872136 /* UDepostPhotoCell.swift in Sources */,
 				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
 				DC7E297722D5754600AC3F21 /* UMenuDepost.swift in Sources */,
@@ -898,16 +937,21 @@
 				7BAB355022C1AF4600154D36 /* UMineHead.swift in Sources */,
 				7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */,
 				DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */,
+				7B7B15CF22D70EB50082F227 /* StoreDepostModel.swift in Sources */,
 				7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */,
+				DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */,
 				7BAB355C22C1C93000154D36 /* UStoreEventsCell.swift in Sources */,
+				7B08932322D728F300872136 /* UDepostStatusCell.swift in Sources */,
 				7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */,
 				7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */,
 				DC221C8E22CF46D9003A4053 /* UShopLabelImgCell.swift in Sources */,
 				7BAB352422C0C76400154D36 /* APIToken.swift in Sources */,
 				7BAB352D22C0D00400154D36 /* BaseView.swift in Sources */,
 				7BAB355622C1B8BF00154D36 /* ParallaxHeaderMode.swift in Sources */,
+				7B08932122D7258800872136 /* UMyDepostController.swift in Sources */,
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */,
+				7B08931F22D715CD00872136 /* UDepostPostController.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
 				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
 				DC7E297B22D575E200AC3F21 /* UChooseAddressFromMap.swift in Sources */,
@@ -919,12 +963,16 @@
 				DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */,
 				0AB057C722D97179002B7E40 /* USettingView.swift in Sources */,
 				DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */,
+				7B08931B22D7151000872136 /* UMeDepostcell.swift in Sources */,
+				7B08931D22D7153700872136 /* UDepost.swift in Sources */,
+				DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
 				7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */,
 				DC7E298022D5764700AC3F21 /* UPlaceAroundTableView.swift in Sources */,
 				7B2DE2AD22D5995200AD6FDD /* LocationHelper.swift in Sources */,
 				DC221C8A22CF3CDE003A4053 /* UShopLabelNotArrowCell.swift in Sources */,
 				0AB057AD22D2D68D002B7E40 /* UManagementClassificationCell.swift in Sources */,
+				7B08931A22D7151000872136 /* UMeDepost.swift in Sources */,
 				7BAB353D22C0D16900154D36 /* UNavigationController.swift in Sources */,
 				DC221C8822CF32CF003A4053 /* USetUpShopController.swift in Sources */,
 				7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */,

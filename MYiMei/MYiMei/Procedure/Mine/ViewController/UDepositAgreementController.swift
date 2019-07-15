@@ -14,56 +14,49 @@ protocol UDepositAgreementViewDelegate: AnyObject {
 
 class UDepositAgreementController: UBaseViewController {
     
+    fileprivate let service = APIDepositServices()
+    
     let depositAgreementView = UDepositAgreementView()
-    
-    var title：String = "保证金协议声明"
-    
+
+    var agreementContent = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadUrl()
     }
     
     override func configUI() {
         depositAgreementView.configUI()
         depositAgreementView.delegate = self
         self.view.addSubview(depositAgreementView)
-        if let request = getUrl() {
-            depositAgreementView.wkWebView.load(request)
-        }
-        
         depositAgreementView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
     }
     
-    //MARK:网络请求
-    func getUrl() -> URLRequest? {
-        
-        if let url = URL(string:"http://www.baidu.com") {
-            return URLRequest(url: url)
+    //MARK:请求保证金协议
+    func loadUrl() {
+        service.getDepositAgreement({ (DepositAgreementResponsModel) in
+            self.title = DepositAgreementResponsModel.data?.title
+            self.agreementContent = DepositAgreementResponsModel.data?.content ?? "暂无保证金协议"
+            self.depositAgreementView.wkWebView.loadHTMLString(self.agreementContent, baseURL: URL(string:"http://yiwuyimei-test.oss-cn-beijing.aliyuncs.com"))
+
+        }) { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg ?? "获取保证金协议失败", inView: self.view)
         }
-        return nil
     }
-    
-    func showAlert() {
-        let alertController = UIAlertController(title: "温馨提示", message: "您还未同意保证金协议", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default,handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }
 
 extension UDepositAgreementController: UDepositAgreementViewDelegate {
     //MARK:申请入驻
     func agree() {
         if (!depositAgreementView.checkButton.isSelected) {
-            showAlert()
+            showHUDInView(text: "请勾选我已阅读并同意保证金协议", inView: view)
         } else {
-            let vc = UMechJoinViewController()
+            let vc = UDepostPostController()
             vc.title = "缴纳保证金"
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-   
 }
 

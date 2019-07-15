@@ -8,25 +8,35 @@
 
 import UIKit
 
+protocol UDepostViewDelegate: AnyObject {
+    func tapPush(money: String)
+    func choosePicAction()
+}
+
 class UDepost: BaseView {
-    //字段说明
+    //MARK:接口代理
+    weak var delegate: UDepostViewDelegate?
+
+    //转账账号
+    var accountBg = UIImageView()
     var transferLaber = UILabel()
     var accountNameLaber = UILabel()
     var accountBankLaber = UILabel()
     var bankNumberLaber = UILabel()
+
+    //上传保证金
     var certificateLaber = UILabel()
-    var uploadLaber = UILabel()
-    var depostLaber = UILabel()
-    //输入框
-    var depostEdit = UITextField()
-    //背景
-    var accountBg = UIImageView()
-    var certificateBg = UIImageView()
+    var uploadPicBtn = UIButton()
     var uploadBg = UIImageView()
     var depostBg = UIImageView()
-    //图标
-    var uploadIcon = UIImageView()
-    //按钮
+
+
+    //保证金金额
+    var depostLaber = UILabel()
+    var depostEdit = UITextField()
+    var certificateBg = UIImageView()
+
+    //提交按钮
     var submitBtn = UIButton()
     
     
@@ -77,6 +87,7 @@ class UDepost: BaseView {
             ConstraintMaker.top.equalTo(accountBankLaber.snp.bottom).offset(5)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
+
         //MARK:凭证背景
         certificateBg.backgroundColor = UIColor.white
         self.addSubview(certificateBg)
@@ -95,6 +106,7 @@ class UDepost: BaseView {
             ConstraintMaker.top.equalTo(certificateBg.snp.top).offset(19)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
+
         //MARK:上传照片背景
         uploadBg.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         uploadBg.layer.cornerRadius = 3
@@ -105,23 +117,26 @@ class UDepost: BaseView {
             ConstraintMaker.left.equalTo(certificateBg.snp.left).offset(15)
             ConstraintMaker.right.equalTo(certificateBg.snp.right).offset(-15)
         }
+
         //MARK:添加上传照片图片
-        uploadIcon.image = UIImage.init(named: "add_photo")
-        self.addSubview(uploadIcon)
-        uploadIcon.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.size.equalTo(49)
-            ConstraintMaker.top.equalTo(uploadBg.snp.top).offset(40)
-            ConstraintMaker.centerX.equalTo(uploadBg)
+
+        uploadPicBtn.setImage(UIImage.init(named: "add_photo"), for: UIControl.State.normal)
+        uploadPicBtn.setTitleColor(UIColor.theme, for: UIControl.State.normal)
+        uploadPicBtn.setTitle("上传照片", for: UIControl.State.normal)
+        uploadPicBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        uploadPicBtn.sizeToFit()
+        uploadPicBtn.layoutButton(style: .Top, imageTitleSpace: 10)
+        self.addSubview(uploadPicBtn)
+        uploadPicBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(certificateBg.snp.left).offset(15)
+            ConstraintMaker.top.equalTo(certificateLaber.snp.bottom).offset(11)
+            ConstraintMaker.right.equalTo(certificateBg.snp.right).offset(-15)
+            ConstraintMaker.height.equalTo(150)
         }
-        //MARK:上传照片字段
-        uploadLaber.text = "上传照片"
-        uploadLaber.textColor = UIColor.hex(hexString: "#999999")
-        uploadLaber.font = UIFont.systemFont(ofSize: 13)
-        self.addSubview(uploadLaber)
-        uploadLaber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(uploadIcon.snp.bottom).offset(9)
-            ConstraintMaker.centerX.equalTo(uploadBg)
-        }
+
+        uploadPicBtn.addTarget(self, action: #selector(choosePicAction), for: UIControl.Event.touchDown)
+
+
         //MARK:保证金背景
         depostBg.backgroundColor = UIColor.white
         self.addSubview(depostBg)
@@ -167,5 +182,18 @@ class UDepost: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
         }
+
+        submitBtn.addTarget(self, action: #selector(pushAction), for: UIControl.Event.touchDown)
+        
+    }
+
+    @objc func pushAction() {
+        delegate?.tapPush(money: depostEdit.text!)
+    }
+
+    @objc func choosePicAction() {
+        delegate?.choosePicAction()
     }
 }
+
+

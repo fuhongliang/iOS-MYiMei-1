@@ -26,16 +26,6 @@ class StoreDashBoardResponeDataModel: Codable {
 
 class DashBoardModel: Codable {
 
-//    private int order_num_day;
-//    private int order_num_thirty;
-//    private String total_income_day;
-//    private String total_income_thirty;
-//    private String total_goods_count;
-//    private String operate_data_url;
-//    private String contact_platform_tel;
-//    private int total_order_count;
-
-
     var order_num_day = Int()
 
     var order_num_thirty = Int()
