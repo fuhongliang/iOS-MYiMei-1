@@ -83,13 +83,12 @@ class UGoodsManagementController: UBaseViewController {
             ConstraintMaker.height.equalTo(67)
         }
 
-        //MARK:发布商品
-        bottomTab.addGoodsBtn.addTarget(self, action: #selector(showGoodDetailView), for: UIControl.Event.touchDown)
         //MARK:新建分类
-        bottomTab.addCategoryBtn.addTarget(self, action: #selector(showAddCategoryView), for: UIControl.Event.touchDown)
-
+        bottomTab.addCategoryBtn.addTarget(self, action: #selector(showAddCategoryView), for: UIControl.Event.touchUpInside)
+        //MARK:发布商品
+        bottomTab.addGoodsBtn.addTarget(self, action: #selector(showGoodDetailView), for: UIControl.Event.touchUpInside)
         //MARK:管理分类
-        bottomTab.addManageCategoryBtn.addTarget(self, action: #selector(showManageCategoryView), for: UIControl.Event.touchDown)
+        bottomTab.addManageCategoryBtn.addTarget(self, action: #selector(showManageCategoryView), for: UIControl.Event.touchUpInside)
 
 
         self.view.addSubview(categoryTableView)
@@ -118,16 +117,18 @@ class UGoodsManagementController: UBaseViewController {
 
     //MARK:新建分类
     @objc func showAddCategoryView(){
-//        let vc = UGoodsDetailsController()
-//        vc.title = "新建分类"
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = UClassEditController()
+        vc.title = "新建分类"
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     //MARK:管理分类
     @objc func showManageCategoryView(){
-//        let vc = UGoodsDetailsController()
-//        vc.title = "管理分类"
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = UManagementClassificationController()
+        vc.title = "管理分类"
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     //MARK: 提示框

@@ -79,13 +79,6 @@ class UOderCell : UBaseTableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
-//    var expandLaber: UILabel = {
-//        let label = UILabel()
-//        label.text = "展开"
-//        label.textColor = UIColor.hex(hexString: "#999999")
-//        label.font = UIFont.systemFont(ofSize: 14)
-//        return label
-//    }()
     var commodityNumberLaber: UILabel = {
         let label = UILabel()
         label.text = "x2"
@@ -305,21 +298,7 @@ class UOderCell : UBaseTableViewCell {
             ConstraintMaker.top.equalTo(commodityIcon)
             ConstraintMaker.left.equalTo(commodityIcon.snp.right).offset(11)
         }
-        //MARK:展开
-//        self.addSubview(expandLaber)
-//        expandLaber.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-30)
-//            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(15)
-//        }
-        //MARK:展开图标
-//        self.addSubview(expandIcon)
-//        expandIcon.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-//            ConstraintMaker.height.equalTo(6)
-//            ConstraintMaker.width.equalTo(9)
-//            ConstraintMaker.top.equalTo(commodityLaber.snp.bottom).offset(20)
-//        }
-        
+
         //MARK:商品规格
         self.addSubview(commoditySpecificationLaber)
         commoditySpecificationLaber.snp.makeConstraints { (ConstraintMaker) in

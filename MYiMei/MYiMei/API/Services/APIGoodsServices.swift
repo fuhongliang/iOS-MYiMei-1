@@ -9,29 +9,67 @@
 import Foundation
 
 protocol APIGoodsServicesProtocol {
-    //获取分类
+    //MARK:添加商品分类
+    func addGoodsCat(name: String, sort: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
+    //MARK:删除商品分类
+    func deleteGoodsCat(catId: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
+    //MARK:编辑商品分类
+    func editGoodsCat(catId: Int,name: String, sort: Int, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
+    //MARK:获取分类
     func getCategory(mch_id: Int, access_token: String, _ success: @escaping(((CategoryResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //获取商品列表协议
     func getGoodsList(mch_id: Int,cat_id: Int, access_token: String, _ success: @escaping(((GoodsResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
-
+    
     //删除商品
     func deleteGoods(mch_id: Int,goods_id: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
-
+    
     //上下架商品
-     func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
-
+    func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
     //发布商品
     func addGoods(name: String,
                   detail: String,cover_pic: String,goods_pic: [String],pt_cat_id: Int,goods_cat_id: Int,unit: String,weight: String,original_price: String,price: String,
                   pieces: String,forehead: String,service: String,goods_num: String,_ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
-
+    
     //获取平台分类
     func getMchPtCats( _ success: @escaping(((PlatCateResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 }
 
 class APIGoodsServices: APIGoodsServicesProtocol {
-
+    
+    func editGoodsCat(catId: Int, name: String, sort: Int, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id ?? 0,
+            "access_token":String(APIUser.shared.user?.access_token ?? ""),
+            "cat_id":catId,
+            "name":name,
+            "sort":sort,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.editGoodsCat(param: params), { (data) in
+            success()
+        }) { (error) in
+            fail(error)
+        }
+    }
+    
+    func deleteGoodsCat(catId: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:String] = [
+            "mch_id":String(APIUser.shared.user?.mch_id ?? 0),
+            "access_token":String(APIUser.shared.user?.access_token ?? ""),
+            "cat_id":catId,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.deleteGoodsCat(param: params), { (data) in
+            success()
+        }) { (error) in
+            fail(error)
+        }
+    }
     func getMchPtCats(_ success: @escaping (((PlatCateResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "mch_id":APIUser.shared.user?.mch_id as Any,
@@ -52,7 +90,21 @@ class APIGoodsServices: APIGoodsServicesProtocol {
             fail(error)
         }
     }
-
+    
+    func addGoodsCat(name: String, sort: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:String] = [
+            "mch_id":String(APIUser.shared.user?.mch_id ?? 0),
+            "access_token":String(APIUser.shared.user?.access_token ?? ""),
+            "name":name,
+            "sort":sort,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.addGoodsCat(param: params), { (data) in
+            success()
+        }) { (error) in
+            fail(error)
+        }
+    }
 
     func addGoods(name: String, detail: String, cover_pic: String, goods_pic: [String], pt_cat_id: Int,goods_cat_id:Int, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, service: String, goods_num: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
@@ -83,6 +135,7 @@ class APIGoodsServices: APIGoodsServicesProtocol {
             fail(error)
         }
     }
+
 
     func modifyGoodsStatus(mch_id: Int, goods_id: Int, status: Int, access_token: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
@@ -118,8 +171,6 @@ class APIGoodsServices: APIGoodsServicesProtocol {
 
     }
 
-
-    //获取商品列表实现
     func getGoodsList(mch_id: Int, cat_id: Int, access_token: String, _ success: @escaping (((GoodsResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "mch_id":String(mch_id),
@@ -142,7 +193,6 @@ class APIGoodsServices: APIGoodsServicesProtocol {
         }
     }
 
-    //获取分类列表实现
     func getCategory(mch_id: Int, access_token: String, _ success: @escaping (((CategoryResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "mch_id":String(mch_id),

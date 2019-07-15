@@ -113,10 +113,6 @@ class UOrdersViewController: UBaseViewController {
     }
     
 }
-//
-//extension UOrdersViewController: UModifyPriceAlertViewDelegate{
-//
-//}
 
 extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -153,7 +149,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //cell待更换
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
-        cell.selectionStyle = .default
+//        cell.selectionStyle = .default
         cell.modifyPrice = {
             NSLog("修改价格")
             self.mOrderId = self.orderList.order[indexPath.section].order_id
@@ -166,13 +162,13 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
                 (action: UIAlertAction!) -> Void in
                 self.service.deliveryGoods(order_id: self.orderList.order[indexPath.section].order_id, is_express: 0, express: "", express_no: "", words: "", {
-                    
+                    showHUDInView(text: "发货成功", inView: self.view)
                 }, { (APIErrorModel) in
                     print(APIErrorModel.msg ?? "-----")
                 })
             }
             
-            let okAction = UIAlertAction(title: "物流快递", style: UIAlertAction.Style.default) {
+            let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
                 (action: UIAlertAction!) -> Void in
                 let vc = USettingDeliveryController()
                 vc.title = "设置发货"
