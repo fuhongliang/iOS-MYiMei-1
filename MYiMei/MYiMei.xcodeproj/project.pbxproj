@@ -84,6 +84,7 @@
 		7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */; };
 		95A2174AE09F7C516201A271 /* Pods_MYiMei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */; };
 		DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14816A22CD95A100018EED /* UAccountSafeView.swift */; };
+		DC18766022DDD854004FEF65 /* OrderDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */; };
 		DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */; };
 		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
 		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
@@ -215,6 +216,7 @@
 		7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerViewController.swift; sourceTree = "<group>"; };
 		80184B4DF6FA1EBEDC3C8DC7 /* Pods-MYiMei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.debug.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14816A22CD95A100018EED /* UAccountSafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeView.swift; sourceTree = "<group>"; };
+		DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailResponseModel.swift; sourceTree = "<group>"; };
 		DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
 		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */,
 				7B08932822D888B500872136 /* PlatCateResponeModel.swift */,
 				DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */,
+				DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */,
 				7B08931F22D715CD00872136 /* UDepostPostController.swift in Sources */,
+				DC18766022DDD854004FEF65 /* OrderDetailResponseModel.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
 				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
 				DC7E297B22D575E200AC3F21 /* UChooseAddressFromMap.swift in Sources */,

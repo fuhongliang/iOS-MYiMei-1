@@ -77,7 +77,7 @@ class UOrderDetailsView: BaseView {
     var orderShippiingIcon = UIImageView()
     var orderFinishIcon = UIImageView()
     //订单进度条
-     var orderPushLiner = UILabel()
+    var orderPushLiner = UILabel()
     var orderPayLine = UILabel()
     var orderShippingLine = UILabel()
     func setView()  {
@@ -134,7 +134,7 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.centerX.equalTo(orderPushLaber)
         }
         
-        orderPushTimeLaber.text = "2019.06.11 10:22"
+        orderPushTimeLaber.text = ""
         orderPushTimeLaber.textColor = UIColor.hex(hexString: "#999999")
         orderPushTimeLaber.font = UIFont.systemFont(ofSize: 11)
         orderPushTimeLaber.textAlignment = .center
@@ -158,14 +158,14 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
             ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
         }
-        orderPayIcon.image = UIImage.init(named: "order_status")
+        orderPayIcon.image = UIImage.init(named: "two_img")
         self.addSubview(orderPayIcon)
         orderPayIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.bottom.equalTo(orderPayLaber.snp.top).offset(-12)
             ConstraintMaker.width.height.equalTo(20)
             ConstraintMaker.centerX.equalTo(orderPayLaber)
         }
-        orderPayTimeLaber.text = "2019.06.11 10:33"
+        orderPayTimeLaber.text = ""
         orderPayTimeLaber.textColor = UIColor.hex(hexString: "#999999")
         orderPayTimeLaber.font = UIFont.systemFont(ofSize: 11)
         orderPayTimeLaber.textAlignment = .center
@@ -189,14 +189,14 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
         }
         
-        orderShippiingIcon.image = UIImage.init(named: "order_status")
+        orderShippiingIcon.image = UIImage.init(named: "three_img")
         self.addSubview(orderShippiingIcon)
         orderShippiingIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.bottom.equalTo(orderShippingLaber.snp.top).offset(-12)
             ConstraintMaker.width.height.equalTo(20)
             ConstraintMaker.centerX.equalTo(orderShippingLaber)
         }
-        orderShippingTimeLaber.text = "2019.06.11 10:44"
+        orderShippingTimeLaber.text = ""
         orderShippingTimeLaber.textColor = UIColor.hex(hexString: "#999999")
         orderShippingTimeLaber.font = UIFont.systemFont(ofSize: 11)
         orderShippingTimeLaber.textAlignment = .center
@@ -219,14 +219,14 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
             ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
         }
-        orderFinishIcon.image = UIImage.init(named: "order_status")
+        orderFinishIcon.image = UIImage.init(named: "four_img")
         self.addSubview(orderFinishIcon)
         orderFinishIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.bottom.equalTo(orderFinishLaber.snp.top).offset(-12)
             ConstraintMaker.width.height.equalTo(20)
             ConstraintMaker.centerX.equalTo(orderFinishLaber)
         }
-        orderFinishTimeLaber.text = "2019.06.11 10:55"
+        orderFinishTimeLaber.text = ""
         orderFinishTimeLaber.textColor = UIColor.hex(hexString: "#999999")
         orderFinishTimeLaber.font = UIFont.systemFont(ofSize: 11)
         orderFinishTimeLaber.textAlignment = .center
@@ -248,7 +248,7 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.right.equalTo(orderPayIcon.snp.left)
             ConstraintMaker.bottom.equalTo(orderPushLaber.snp.top).offset(-19)
         }
-        orderPayLine.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        orderPayLine.backgroundColor = UIColor.hex(hexString: "#F0F0F0")
         orderPushLiner.layer.cornerRadius = 3
         self.addSubview(orderPayLine)
         orderPayLine.snp.makeConstraints { (ConstraintMaker) in
@@ -257,7 +257,7 @@ class UOrderDetailsView: BaseView {
             ConstraintMaker.right.equalTo(orderShippiingIcon.snp.left)
             ConstraintMaker.bottom.equalTo(orderPushLaber.snp.top).offset(-19)
         }
-        orderShippingLine.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        orderShippingLine.backgroundColor = UIColor.hex(hexString: "#F0F0F0")
         orderPushLiner.layer.cornerRadius = 3
         self.addSubview(orderShippingLine)
         orderShippingLine.snp.makeConstraints { (ConstraintMaker) in
