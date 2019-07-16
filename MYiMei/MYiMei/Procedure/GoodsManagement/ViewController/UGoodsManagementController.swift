@@ -83,6 +83,14 @@ class UGoodsManagementController: UBaseViewController {
             ConstraintMaker.height.equalTo(67)
         }
 
+        //MARK:新建分类
+        bottomTab.addCategoryBtn.addTarget(self, action: #selector(showAddCategoryView), for: UIControl.Event.touchUpInside)
+        //MARK:发布商品
+        bottomTab.addGoodsBtn.addTarget(self, action: #selector(showGoodDetailView), for: UIControl.Event.touchUpInside)
+        //MARK:管理分类
+        bottomTab.addManageCategoryBtn.addTarget(self, action: #selector(showManageCategoryView), for: UIControl.Event.touchUpInside)
+
+
         self.view.addSubview(categoryTableView)
         categoryTableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
@@ -98,6 +106,29 @@ class UGoodsManagementController: UBaseViewController {
             ConstraintMaker.bottom.equalTo(bottomTab.snp.top)
             ConstraintMaker.right.equalToSuperview()
         }
+    }
+
+    //MARK:发布商品
+    @objc func showGoodDetailView(){
+        let vc = UGoodsDetailsController(goodscateList: categoryList)
+        vc.title = "发布商品"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    //MARK:新建分类
+    @objc func showAddCategoryView(){
+        let vc = UClassEditController()
+        vc.title = "新建分类"
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
+
+    //MARK:管理分类
+    @objc func showManageCategoryView(){
+        let vc = UManagementClassificationController()
+        vc.title = "管理分类"
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     //MARK: 提示框
@@ -118,7 +149,7 @@ class UGoodsManagementController: UBaseViewController {
     @objc private func deleteGoods(goodsIndex:Int) {
         let mch_id: Int = APIUser.shared.user!.mch_id ?? 0
         let access_token: String = getToken()
-        service.deleteGoods(mch_id: mch_id, goods_id: goodsList[goodsIndex].goods_id ?? 0, access_token: access_token, { (GoodsResponeModel) in
+        service.deleteGoods(mch_id: mch_id, goods_id: goodsList[goodsIndex].goods_id ?? 0, access_token: access_token, { () in
             self.goodsList.remove(at: goodsIndex)
             self.goodsTableView.reloadData()
         }) { (APIErrorModel) in
@@ -131,7 +162,7 @@ class UGoodsManagementController: UBaseViewController {
     @objc private func popupGoods(goodsIndex:Int,status:Int) {
         let mch_id: Int = APIUser.shared.user!.mch_id ?? 0
         let access_token: String = getToken()
-        service.modifyGoodsStatus(mch_id: mch_id, goods_id: goodsList[goodsIndex].goods_id ?? 0, status: status, access_token: access_token, { (APIListModel) in
+        service.modifyGoodsStatus(mch_id: mch_id, goods_id: goodsList[goodsIndex].goods_id ?? 0, status: status, access_token: access_token, { () in
             self.goodsList[goodsIndex].status = status
             self.goodsTableView.reloadData()
         }, { (APIErrorModel) in
@@ -199,7 +230,7 @@ extension UGoodsManagementController: UITableViewDelegate, UITableViewDataSource
                 self.popupGoods(goodsIndex:indexPath.row,status: self.goodsList[indexPath.row].status == 0 ? 1 : 0)
             }
             cell.subscribeGoodsEditAction = {
-                let vc = UGoodsDetailsController()
+                let vc = UGoodsDetailsController(goodscateList: self.categoryList)
                 vc.title = "编辑商品"
                 self.navigationController?.pushViewController(vc, animated: true)
             }

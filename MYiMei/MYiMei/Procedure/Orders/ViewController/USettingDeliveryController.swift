@@ -12,6 +12,14 @@ class USettingDeliveryController: UBaseViewController {
     
     let settingDelivery = USettingDeliveryView()
     
+    var expressList = [ExpressModel]()
+    
+    let service = APIOrderServices()
+    
+    var curCatIndex = 0//当前选择的物流公司索引
+    
+    var orderId = 0
+  
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,15 +27,52 @@ class USettingDeliveryController: UBaseViewController {
     override func configUI() {
         settingDelivery.configUI()
         settingDelivery.delegate = self
+        getExpressList()
         view.addSubview(settingDelivery)
         settingDelivery.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
     }
     
+    func getExpressList() {
+        service.getExpressList({ (ExpressListResponesModel) in
+            self.expressList = ExpressListResponesModel.data?.express ?? []
+        }) { (APIErrorModel) in
+            NSLog("请求失败")
+        }
+    }
+    
     func chooseCourierDelivery() {
         //MARK:请求按钮
+        let express = settingDelivery.courierCompanyChoiceBtn.currentTitle ?? ""
+        if express == "请选择" || express == "" {
+            showHUDInView(text: "请选择物流公司", inView: self.view)
+            return
+        }
+        let expressNo = settingDelivery.courierOrderNoLabel.text ?? ""
+        let words = settingDelivery.courierLeaveMessageTF.text ?? ""
+        service.deliveryGoods(order_id: orderId, is_express: 1, express: express, express_no: expressNo, words: words, {
+            print("发货成功")
+            showHUDInView(text: "发货成功", inView: self.view)
+        }) { (APIErrorModel) in
+            print("发货失败")
+            showHUDInView(text: "发货失败", inView: self.view)
+        }
     }
+    
+    func setExpress() {
+        // Simple Option Picker
+        var dummyList = [String]()
+        for item in expressList{
+            dummyList.append(item.name!)
+        }
+        // Simple Option Picker with selected index
+        RPicker.selectOption(title: "", hideCancel: true, dataArray: dummyList, selectedIndex: curCatIndex) { (selctedText, atIndex) in
+            self.curCatIndex = atIndex
+            self.settingDelivery.courierCompanyChoiceBtn.setTitle(selctedText, for: .normal)
+        }
+    }
+    
 }
 
 extension USettingDeliveryController: USettingDeliveryViewDelegate {

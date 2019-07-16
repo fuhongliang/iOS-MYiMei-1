@@ -11,6 +11,8 @@ import KMPlaceholderTextView
 
 protocol USettingDeliveryViewDelegate: AnyObject {
     func checkCourierDeliverySwitch()
+    func setExpress()
+    
 }
 
 class USettingDeliveryView: BaseView {
@@ -19,6 +21,7 @@ class USettingDeliveryView: BaseView {
 
     //MARK:快递公司
     var courierCompanyLayer = UIView()
+    var courierCompanyChoiceBtn = UIButton()
     
     var courierCompanyLabel = UILabel()
     var courierCompanyChoiceLabel = UILabel()
@@ -36,7 +39,8 @@ class USettingDeliveryView: BaseView {
     
     var courierLeaveMessageLabel = UILabel()
     var courierLeaveMessageTF = KMPlaceholderTextView()
-//    //MARK:无需物流
+    
+    var submitInfoBtn = UIButton()
     
     func configUI(){
         
@@ -69,14 +73,30 @@ class USettingDeliveryView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
         
-        courierCompanyChoiceLabel.text = "请选择快递公司"
-        courierCompanyChoiceLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        courierCompanyChoiceLabel.font = UIFont.systemFont(ofSize: 17)
-        courierCompanyLayer.addSubview(courierCompanyChoiceLabel)
-        courierCompanyChoiceLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.centerY.equalToSuperview()
-            ConstraintMaker.right.equalTo(courierCompanyArrowImg.snp.left).offset(-13)
+//        courierCompanyChoiceLabel.text = "请选择快递公司"
+//        courierCompanyChoiceLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
+//        courierCompanyChoiceLabel.font = UIFont.systemFont(ofSize: 17)
+//        courierCompanyLayer.addSubview(courierCompanyChoiceLabel)
+//        courierCompanyChoiceLabel.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.centerY.equalToSuperview()
+//            ConstraintMaker.right.equalTo(courierCompanyArrowImg.snp.left).offset(-13)
+//        }
+        
+        courierCompanyChoiceBtn.setTitleColor( UIColor.black, for: UIControl.State.normal)
+        courierCompanyChoiceBtn.setTitle("请选择", for: UIControl.State.normal)
+        courierCompanyChoiceBtn.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        courierCompanyChoiceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        courierCompanyChoiceBtn.contentHorizontalAlignment = .right
+        courierCompanyLayer.addSubview(courierCompanyChoiceBtn)
+        courierCompanyChoiceBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(courierCompanyLabel.snp.right).offset(30)
+            ConstraintMaker.top.equalToSuperview()
+            ConstraintMaker.right.equalToSuperview().offset(-33)
+            ConstraintMaker.height.equalTo(44)
         }
+        
+        courierCompanyChoiceBtn.addTarget(self, action: #selector(setExpressCompany), for: UIControl.Event.touchUpInside)
+
         
         courierCompanyLine.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
         courierCompanyLayer.addSubview(courierCompanyLine)
@@ -157,11 +177,29 @@ class USettingDeliveryView: BaseView {
             ConstraintMaker.height.equalTo(70)
 
         }
+        
+        submitInfoBtn.setTitleColor( UIColor.white, for: UIControl.State.normal)
+        submitInfoBtn.setTitle("确认", for: UIControl.State.normal)
+        submitInfoBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        //        submitInfoBtn.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        submitInfoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        self.addSubview(submitInfoBtn)
+        submitInfoBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.bottom.equalToSuperview().offset(-20)
+            ConstraintMaker.width.equalToSuperview().offset(30)
+            ConstraintMaker.height.equalTo(44)
+        }
+        
+        submitInfoBtn.addTarget(self, action: #selector(checkCourierDeliverySwitch), for: UIControl.Event.touchUpInside)
+
  
 
     }
     
     @objc func checkCourierDeliverySwitch() {
         delegate?.checkCourierDeliverySwitch()
+    }
+    @objc func setExpressCompany(){
+        delegate?.setExpress()
     }
 }

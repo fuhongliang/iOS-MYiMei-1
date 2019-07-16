@@ -15,20 +15,12 @@ class UTabBarController: UITabBarController {
 
         tabBar.isTranslucent = false
 
-        /// 我的店铺
-        let mineVC = UMineViewController()
-        addChildViewController(mineVC,
-                               title: "我的店铺",
-                               image: UIImage(named: "tab_mine"),
-                               selectedImage: UIImage(named: "tab_mine_S"))
-
         /// 待处理
         let onePageVC = UOrdersViewController()
         addChildViewController(onePageVC,
                                title: "待处理",
                                image: UIImage(named: "tab_home"),
                                selectedImage: UIImage(named: "tab_home_S"))
-
 
         /// 订单管理
         let classVC = UManagerOrdersController()
@@ -37,6 +29,12 @@ class UTabBarController: UITabBarController {
                                image: UIImage(named: "tab_manager_orders"),
                                selectedImage: UIImage(named: "tab_manager_orders_S"))
 
+        /// 我的店铺
+        let mineVC = UMineViewController()
+        addChildViewController(mineVC,
+                               title: "我的店铺",
+                               image: UIImage(named: "tab_mine"),
+                               selectedImage: UIImage(named: "tab_mine_S"))
 
 
     }
