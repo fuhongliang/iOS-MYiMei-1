@@ -67,6 +67,7 @@ enum NetApi {
     case addGoods(param:[String:Any])
     case getMchPtCats(param: [String:Any])
     case getExpressList(param: [String:Any])
+    case getOrderDetail(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -136,12 +137,14 @@ extension NetApi: TargetType {
             return "/mch_pt_cats"
         case .getExpressList:
             return "/list_express"
+        case .getOrderDetail:
+            return "/get_order_detail"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat:
+        case .getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat:
           return .post
 
         }
@@ -206,6 +209,8 @@ extension NetApi: TargetType {
         case .getMchPtCats(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getExpressList(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getOrderDetail(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

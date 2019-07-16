@@ -24,6 +24,7 @@ pod 'TLPhotoPicker', '~> 1.8.9'
 
 pod 'AMap3DMap'
 pod 'AMapSearch'
-pod 'SCLAlertView'
+pod 'SCLAlertView' #弹窗
+pod 'JXSegmentedView' #滑动页面
 
 end

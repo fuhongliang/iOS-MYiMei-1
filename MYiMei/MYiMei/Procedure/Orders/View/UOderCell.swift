@@ -10,11 +10,7 @@ import UIKit
 
 class UOderCell : UBaseTableViewCell {
     
-    var modifyPrice : (() -> ())?
-    var deliveryGoods : (() -> ())?
-    var subscribeStoreSettingsAction : (() -> ())?
-    var subscribeBusinessDataAction : (() -> ())?
-
+    var modifyPriceOrDeliveryGoods : (() -> ())?
     
     var statusLayer: UIView = {
         let sl = UIView()
@@ -408,19 +404,8 @@ class UOderCell : UBaseTableViewCell {
         }
     }
     
-    @objc func tapModifyPrice() {
-        modifyPrice?()
-    }
-    
-    @objc func tapDeliveryGoods() {
-        deliveryGoods?()
-    }
-    
-    @objc func tapStoreSettingsAction() {
-        subscribeStoreSettingsAction?()
-    }
-    @objc func tapBusinessDataAction() {
-        subscribeBusinessDataAction?()
+    @objc func tapModifyPriceOrDeliveryGoods() {
+        modifyPriceOrDeliveryGoods?()
     }
     
     var model: Order? {
@@ -430,13 +415,12 @@ class UOderCell : UBaseTableViewCell {
                 statusLaber.text = "待付款"
                 statusLaber.textColor = UIColor.hex(hexString: "#FF4444")
                 priceModifyBg.setTitle("价格修改", for: .normal)
-                priceModifyBg.addTarget(self, action: #selector(tapModifyPrice), for:  UIControl.Event.touchDown)
             } else {
                 statusLaber.text = "待发货"
                 statusLaber.textColor = UIColor.hex(hexString: "#1C98F6")
                 priceModifyBg.setTitle("发货", for: .normal)
-                priceModifyBg.addTarget(self, action: #selector(tapDeliveryGoods), for:  UIControl.Event.touchDown)
             }
+            priceModifyBg.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for:  UIControl.Event.touchUpInside)
             userNameLaber.text = model.name
             userPhoneLaber.text = model.mobile
             addressLaber.text = model.address

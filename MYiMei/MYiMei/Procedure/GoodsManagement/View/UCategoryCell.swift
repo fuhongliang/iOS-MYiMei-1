@@ -28,7 +28,7 @@ class UCategoryCell: UBaseTableViewCell {
             ConstraintMaker.centerY.equalToSuperview()
         }
 
-        categoryLabel.font = UIFont.systemFont(ofSize: 17)
+        categoryLabel.font = UIFont.systemFont(ofSize: 14)
         categoryLabel.textColor = UIColor.hex(hexString: "#666666")
         categoryLabel.text = "现代系列"
         self.addSubview(categoryLabel)

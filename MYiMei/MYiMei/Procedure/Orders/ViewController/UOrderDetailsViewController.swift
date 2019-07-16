@@ -11,6 +11,8 @@ class UOrderDetailsViewController: UBaseViewController {
     
     let mOrderDetailsViewController = UOrderDetailsView()
     
+    var orderId = 0
+    
     override func configUI() {
         mOrderDetailsViewController.setView()
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
