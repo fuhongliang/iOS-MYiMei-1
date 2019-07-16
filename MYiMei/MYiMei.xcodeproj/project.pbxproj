@@ -16,8 +16,11 @@
 		0AB057BD22D71058002B7E40 /* StoreInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057BC22D71058002B7E40 /* StoreInfoModel.swift */; };
 		0AB057BF22D74074002B7E40 /* UModifySetUpShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */; };
 		0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057C022D745B6002B7E40 /* UModifySetUpShopController.swift */; };
+		0AB057C722D97179002B7E40 /* USettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057C622D97179002B7E40 /* USettingView.swift */; };
+		0AB057C922D9725A002B7E40 /* USettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057C822D9725A002B7E40 /* USettingController.swift */; };
+		0AB057D322DC1934002B7E40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AB057D222DC1934002B7E40 /* Assets.xcassets */; };
+		0AB057D522DC2709002B7E40 /* UNewOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057D422DC2709002B7E40 /* UNewOrderCell.swift */; };
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
-		0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
 		0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */; };
 		7B08931A22D7151000872136 /* UMeDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931822D7151000872136 /* UMeDepost.swift */; };
@@ -140,8 +143,11 @@
 		0AB057BC22D71058002B7E40 /* StoreInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoModel.swift; sourceTree = "<group>"; };
 		0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UModifySetUpShopView.swift; sourceTree = "<group>"; };
 		0AB057C022D745B6002B7E40 /* UModifySetUpShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UModifySetUpShopController.swift; sourceTree = "<group>"; };
+		0AB057C622D97179002B7E40 /* USettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USettingView.swift; sourceTree = "<group>"; };
+		0AB057C822D9725A002B7E40 /* USettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USettingController.swift; sourceTree = "<group>"; };
+		0AB057D222DC1934002B7E40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0AB057D422DC2709002B7E40 /* UNewOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNewOrderCell.swift; sourceTree = "<group>"; };
 		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
-		0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; };
 		0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsViewController.swift; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,12 +276,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AB057CA22D991CD002B7E40 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0AB057CF22D9AD82002B7E40 /* ViewController */,
+				0AB057CE22D9AD77002B7E40 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0AB057CB22D991D5002B7E40 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0AB057CD22D991F8002B7E40 /* ViewController */,
+				0AB057CC22D991ED002B7E40 /* View */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0AB057CC22D991ED002B7E40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AB057C622D97179002B7E40 /* USettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AB057CD22D991F8002B7E40 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0AB057C822D9725A002B7E40 /* USettingController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0AB057CE22D9AD77002B7E40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AB057CF22D9AD82002B7E40 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		0AD5FC5822CC95D1008CE6CF /* View */ = {
 			isa = PBXGroup;
 			children = (
 				0AD5FC6022CCA195008CE6CF /* UOderCell.swift */,
 				0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */,
 				DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */,
+				0AB057D422DC2709002B7E40 /* UNewOrderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,8 +403,9 @@
 		7BAB351C22C0B51900154D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0AD5FC6422CCB1E1008CE6CF /* Assets.xcassets */,
+				0AB057D222DC1934002B7E40 /* Assets.xcassets */,
 				7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */,
+				7BAB353422C0D0A700154D36 /* ManageOrders */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -357,9 +413,10 @@
 		7BAB351D22C0BF3900154D36 /* Procedure */ = {
 			isa = PBXGroup;
 			children = (
+				0AB057CB22D991D5002B7E40 /* Settings */,
+				0AB057CA22D991CD002B7E40 /* Home */,
 				7BAB356722C2249D00154D36 /* GoodsManagement */,
 				7BAB353522C0D0B300154D36 /* Mine */,
-				7BAB353422C0D0A700154D36 /* ManageOrders */,
 				7BAB353322C0D09D00154D36 /* Orders */,
 				7BAB353222C0D09600154D36 /* Login */,
 				7BAB352B22C0CFDB00154D36 /* Base */,
@@ -743,7 +800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAB34F922C0AE1400154D36 /* LaunchScreen.storyboard in Resources */,
-				0AD5FC6522CCB1E1008CE6CF /* Assets.xcassets in Resources */,
+				0AB057D322DC1934002B7E40 /* Assets.xcassets in Resources */,
 				7BAB34F422C0AE1200154D36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -856,10 +913,12 @@
 				7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */,
 				7BAB354C22C0FAF400154D36 /* APIUserServices.swift in Sources */,
 				DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */,
+				0AB057D522DC2709002B7E40 /* UNewOrderCell.swift in Sources */,
 				0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */,
 				7B41456622C4DABE00BB61D0 /* GoodsResponeModel.swift in Sources */,
 				7B41456C22C4DB3700BB61D0 /* UBottomTab.swift in Sources */,
 				DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */,
+				0AB057C922D9725A002B7E40 /* USettingController.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
 				0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */,
 				7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */,
@@ -914,6 +973,7 @@
 				7BAB355A22C1B90600154D36 /* ParallaxHeader.swift in Sources */,
 				0A0FF6C822CA013C003F4B53 /* UMechJoinViewController.swift in Sources */,
 				DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */,
+				0AB057C722D97179002B7E40 /* USettingView.swift in Sources */,
 				DC264EE822D306DB001FDAD6 /* ShopSettingModel.swift in Sources */,
 				7B08931B22D7151000872136 /* UMeDepostcell.swift in Sources */,
 				7B08931D22D7153700872136 /* UDepost.swift in Sources */,
