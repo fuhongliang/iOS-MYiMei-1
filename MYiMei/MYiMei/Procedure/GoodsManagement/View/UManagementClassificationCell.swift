@@ -8,69 +8,116 @@
 
 import UIKit
 
-class UManagementClassificationCell: BaseView {
-    //白色背景
-    var whiteBg = UIImageView()
+class UManagementClassificationCell: UBaseTableViewCell {
+    
+    var editCategory : (() -> ())?
+    var deleteCategory : (() -> ())?
+
     //字段说明
-    var seriesLaber = UILabel()
-    //按钮
-    var editBtn = UIButton()
-    var deleteBtn = UIButton()
-    //分割线
-    var Line = UILabel()
-    func setView()  {
-        self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
-        whiteBg.backgroundColor = UIColor.white
-        self.addSubview(whiteBg)
-        whiteBg.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.height.equalTo(48)
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.top.equalToSuperview()
-        }
+    var seriesLaber : UILabel = {
+        let seriesLaber = UILabel()
         seriesLaber.text = "现代系列"
         seriesLaber.textColor = UIColor.hex(hexString: "#666666")
         seriesLaber.font = UIFont.systemFont(ofSize: 17)
-        self.addSubview(seriesLaber)
-        seriesLaber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(17)
-            ConstraintMaker.left.equalToSuperview().offset(15)
+        return seriesLaber
+    }()
+    //按钮
+    var editBtn : UIButton = {
+        let eb = UIButton()
+        eb.backgroundColor = UIColor.white
+        eb.setTitle("编辑", for: UIControl.State.normal)
+        eb.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        eb.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        eb.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        eb.layer.borderWidth = 1
+        eb.layer.cornerRadius = 2
+        return eb
+    }()
+    
+    var deleteBtn : UIButton = {
+        let delBtn = UIButton()
+        delBtn.backgroundColor = UIColor.white
+        delBtn.setTitle("删除", for: UIControl.State.normal)
+        delBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        delBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        delBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        delBtn.layer.borderWidth = 1
+        delBtn.layer.cornerRadius = 2
+        return delBtn
+    }()
+    
+    var layerView: UIView = {
+        let layerView = UIView()
+        layerView.backgroundColor = UIColor.white
+        return layerView
+    }()
+
+    var line: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor.hex(hexString: "#E5E5E5")
+        return line
+    }()
+
+    override func configUI() {
+
+        contentView.addSubview(layerView)
+        layerView.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.top.equalToSuperview()
+            ConstraintMaker.width.equalToSuperview()
         }
         
-        deleteBtn.backgroundColor = UIColor.white
-        deleteBtn.setTitle("删除", for: UIControl.State.normal)
-        deleteBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
-        deleteBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        deleteBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
-        deleteBtn.layer.borderWidth = 1
-        deleteBtn.layer.cornerRadius = 2
-        self.addSubview(deleteBtn)
+        layerView.addSubview(seriesLaber)
+        seriesLaber.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.centerY.equalToSuperview()
+            ConstraintMaker.left.equalToSuperview().offset(15)
+        }
+
+        layerView.addSubview(deleteBtn)
         deleteBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.height.equalTo(30)
             ConstraintMaker.width.equalTo(68)
-            ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(9)
+            ConstraintMaker.centerY.equalToSuperview()
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }
-        editBtn.backgroundColor = UIColor.white
-        editBtn.setTitle("编辑", for: UIControl.State.normal)
-        editBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
-        editBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        editBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
-        editBtn.layer.borderWidth = 1
-        editBtn.layer.cornerRadius = 2
-        self.addSubview(editBtn)
+        
+        layerView.addSubview(editBtn)
         editBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.centerY.equalToSuperview()
+            ConstraintMaker.right.equalTo(deleteBtn.snp.left).offset(-15)
             ConstraintMaker.height.equalTo(30)
             ConstraintMaker.width.equalTo(68)
-            ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(9)
-            ConstraintMaker.right.equalTo(deleteBtn.snp.left).offset(-15)
         }
-        Line.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
-        self.addSubview(Line)
-        Line.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(deleteBtn.snp.bottom).offset(9)
-            ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.right.equalToSuperview()
+
+        layerView.addSubview(line)
+        line.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.bottom.equalToSuperview()
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.left.equalToSuperview()
+            
+        }
+        
+        editBtn.addTarget(self, action: #selector(tapEditCat), for: UIControl.Event.touchDown)
+        deleteBtn.addTarget(self, action: #selector(tapDeleteCat), for: UIControl.Event.touchDown)
+    
+        
+    }
+    
+    
+    @objc func tapEditCat(){
+        editCategory?()
+    }
+    
+    @objc func tapDeleteCat(){
+        deleteCategory?()
+    }
+    
+    var model: CategoryModel? {
+        didSet {
+            guard let model = model else { return }
+            seriesLaber.text = model.name
+            
         }
     }
+    
 }

@@ -24,5 +24,6 @@ pod 'TLPhotoPicker', '~> 1.8.9'
 
 pod 'AMap3DMap'
 pod 'AMapSearch'
+pod 'SCLAlertView'
 
 end

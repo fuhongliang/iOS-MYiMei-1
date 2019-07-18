@@ -35,7 +35,7 @@ class Order : Codable{
     var express : String!
     var express_no : String!
     var express_price : String!
-    var goods_list : [GoodsList]!
+    var goodsList : [GoodsList]!
     var is_confirm : Int!
     var is_delete : Int!
     var is_pay : Int!
@@ -55,7 +55,7 @@ class Order : Codable{
 }
 
 //MARK:订单中商品详情
-class GoodsList: Codable{
+class GoodsList : Codable{
     var attr : [Attr]!
     var name : String!
     var pic : String!
@@ -64,9 +64,9 @@ class GoodsList: Codable{
 }
 
 //MARK:商品的商品规格
-class Attr: Codable{
+class Attr : Codable{
     var attr_group_name : String!
-    var attr_id : String!
+    var attr_id : Int!
     var attr_name : String!
     var no : String!
 }

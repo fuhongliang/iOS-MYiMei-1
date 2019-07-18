@@ -10,8 +10,20 @@ import UIKit
 import KMPlaceholderTextView
 
 protocol UGoodsDetailViewDelegate: AnyObject {
+    //选择商品缩略图
     func tapChooseGoodsSLTAction()
+    //选择商品主图
     func tapChooseGoodsPicAction()
+    //选择平台分类
+    func tapChooseCateAction()
+    //选择商品分类
+    func tapChooseGoodsCateAction()
+    //点击选择标签
+    func tapChooseGoodsTagAction(tag:UIButton)
+    //点击保存按钮
+    func tapSaveAction(name:String,detail:String,
+                       unit:String,weight:String,original_price:String,
+                       price:String,pieces:String,forehead:String,goods_num:String)
 }
 
 class UGoodsDetailView: BaseView {
@@ -39,12 +51,12 @@ class UGoodsDetailView: BaseView {
     var platformClassLabel = UILabel()
     var classLine = UIImageView()
     //选择平台分类
-    var choosePlatformClassLabel = UILabel()
+    var choosePlatformClassBtn = UIButton()
     var arrowRight = UIImageView()
     //商品分类
     var goodsClassLabel = UILabel()
     //选择商品分类
-    var choosegoodsClassLabel = UILabel()
+    var choosegoodsClassBtn = UIButton()
     var goodsArrowRight = UIImageView()
 
     //MARK:单位白色的背景
@@ -55,12 +67,6 @@ class UGoodsDetailView: BaseView {
     //单位输入
     var unitClassTF = UITextField()
     var unitLine = UIImageView()
-    
-    //MARK:虚拟销量
-    var virtualSalesLabel = UILabel()
-    var virtualSalesTF = UITextField()
-    var virtualLine = UIImageView()
-    
 
     //MARK:重量
     var weightLabel = UILabel()
@@ -218,7 +224,7 @@ class UGoodsDetailView: BaseView {
         unitBgWhite.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(272)
+            ConstraintMaker.height.equalTo(227)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.bottom).offset(15)
         }
 
@@ -264,22 +270,26 @@ class UGoodsDetailView: BaseView {
         }
         
         //MARK:平台分类选择
-        choosePlatformClassLabel.text = "请选择平台分类"
-        choosePlatformClassLabel.font = UIFont.systemFont(ofSize: 17)
-        choosePlatformClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        choosePlatformClassLabel.textAlignment = .right
-
-        self.addSubview(choosePlatformClassLabel)
-        choosePlatformClassLabel.snp.makeConstraints { (ConstraintMaker) in
+        choosePlatformClassBtn.setTitle("请选择平台分类", for: UIControl.State.normal)
+        choosePlatformClassBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        choosePlatformClassBtn.titleLabel?.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        choosePlatformClassBtn.titleLabel?.textColor = UIColor.black
+        choosePlatformClassBtn.contentHorizontalAlignment = .right
+        choosePlatformClassBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        self.addSubview(choosePlatformClassBtn)
+        choosePlatformClassBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(platformClassLabel).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-34)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.top)
         }
+
+        choosePlatformClassBtn.addTarget(self, action: #selector(chooseCateAction), for: UIControl.Event.touchDown)
+
         arrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(arrowRight)
         arrowRight.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(choosePlatformClassLabel.snp.right).offset(10)
+            ConstraintMaker.left.equalTo(choosePlatformClassBtn.snp.right).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(13)
             ConstraintMaker.width.equalTo(8)
@@ -307,23 +317,26 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(classLine.snp.top).offset(14)
         }
         //MARK:选择商品分类
-        choosegoodsClassLabel.text = "请选择商品分类"
-        choosegoodsClassLabel.font = UIFont.systemFont(ofSize: 17)
-        choosegoodsClassLabel.textColor = UIColor.hex(hexString: "#CCCCCC")
-        choosegoodsClassLabel.textAlignment = .right
-
-        self.addSubview(choosegoodsClassLabel)
-        choosegoodsClassLabel.snp.makeConstraints { (ConstraintMaker) in
+        choosegoodsClassBtn.setTitle("请选择商品分类", for: UIControl.State.normal)
+        choosegoodsClassBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        choosegoodsClassBtn.titleLabel?.tintColor = UIColor.hex(hexString: "#CCCCCC")
+        choosegoodsClassBtn.titleLabel?.textColor = UIColor.black
+        choosegoodsClassBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        choosegoodsClassBtn.contentHorizontalAlignment = .right
+        self.addSubview(choosegoodsClassBtn)
+        choosegoodsClassBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(goodsClassLabel).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-34)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(classLine.snp.top)
         }
+        choosegoodsClassBtn.addTarget(self, action: #selector(chooseGoodsCateAction), for: UIControl.Event.touchDown)
+
         
         goodsArrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(goodsArrowRight)
         goodsArrowRight.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(choosegoodsClassLabel.snp.right).offset(10)
+            ConstraintMaker.left.equalTo(choosegoodsClassBtn.snp.right).offset(10)
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(13)
             ConstraintMaker.width.equalTo(8)
@@ -359,38 +372,8 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.right.equalToSuperview()
         }
-        
-        //MARK:虚拟销量
-        virtualSalesLabel.text = "虚拟销量"
-        virtualSalesLabel.font = UIFont.systemFont(ofSize: 17)
-        virtualSalesLabel.textColor = UIColor.black
-        self.addSubview(virtualSalesLabel)
-        virtualSalesLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.height.equalTo(16)
-            ConstraintMaker.top.equalTo(unitLine.snp.bottom).offset(14)
-        }
-        
-        virtualSalesTF.placeholder = "展示的销量=实际销量+虚拟销量"
-        virtualSalesTF.font = UIFont.systemFont(ofSize: 17)
-        virtualSalesTF.textAlignment = .right
-        self.addSubview(virtualSalesTF)
-        virtualSalesTF.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.right.equalToSuperview().offset(-15)
-            ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(250)
-            ConstraintMaker.top.equalTo(unitLine.snp.bottom)
-        }
-        
-        virtualLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
-        self.addSubview(virtualLine)
-        virtualLine.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.height.equalTo(1)
-            ConstraintMaker.top.equalTo(virtualSalesTF.snp.bottom)
-            ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.right.equalToSuperview()
-        }
-        
+
+
         //MARK:重量
         weightLabel.text = "重量"
         weightLabel.font = UIFont.systemFont(ofSize: 17)
@@ -399,7 +382,7 @@ class UGoodsDetailView: BaseView {
         weightLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.height.equalTo(16)
-            ConstraintMaker.top.equalTo(virtualLine.snp.bottom).offset(14)
+            ConstraintMaker.top.equalTo(unitLine.snp.bottom).offset(14)
         }
         
         weightUnitLabel.text = "克"
@@ -408,18 +391,19 @@ class UGoodsDetailView: BaseView {
         self.addSubview(weightUnitLabel)
         weightUnitLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
-            ConstraintMaker.top.equalTo(virtualLine.snp.top).offset(13)
+            ConstraintMaker.top.equalTo(unitLine.snp.top).offset(13)
         }
         
         weightTF.placeholder = "请输入"
         weightTF.font = UIFont.systemFont(ofSize: 17)
         weightTF.textAlignment = .right
+        weightTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(weightTF)
         weightTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(weightUnitLabel.snp.left).offset(-10)
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.width.equalTo(200)
-            ConstraintMaker.top.equalTo(virtualLine.snp.bottom)
+            ConstraintMaker.top.equalTo(unitLine.snp.bottom)
         }
         
         weightLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
@@ -455,6 +439,7 @@ class UGoodsDetailView: BaseView {
         originalPriceTF.placeholder = "请输入"
         originalPriceTF.font = UIFont.systemFont(ofSize: 17)
         originalPriceTF.textAlignment = .right
+        originalPriceTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(originalPriceTF)
         originalPriceTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(originalPriceUnitLabel.snp.left).offset(-10)
@@ -495,6 +480,7 @@ class UGoodsDetailView: BaseView {
         goodsPriceTF.placeholder = "请输入"
         goodsPriceTF.font = UIFont.systemFont(ofSize: 17)
         goodsPriceTF.textAlignment = .right
+        goodsPriceTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(goodsPriceTF)
         goodsPriceTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(goodsPriceUnitLabel.snp.left).offset(-10)
@@ -522,10 +508,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(16)
             ConstraintMaker.top.equalTo(goodsPriceLine.snp.bottom).offset(14)
         }
-      
+
         amountTF.placeholder = "请填写库存"
         amountTF.font = UIFont.systemFont(ofSize: 17)
         amountTF.textAlignment = .right
+        amountTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(amountTF)
         amountTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -556,6 +543,7 @@ class UGoodsDetailView: BaseView {
         piecesDesrcTF.placeholder = "请输入"
         piecesDesrcTF.textAlignment = .right
         piecesDesrcTF.font = UIFont.systemFont(ofSize: 17)
+        piecesDesrcTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(piecesDesrcTF)
         piecesDesrcTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -586,6 +574,7 @@ class UGoodsDetailView: BaseView {
         foreDesrcTF.placeholder = "请输入"
         foreDesrcTF.textAlignment = .right
         foreDesrcTF.font = UIFont.systemFont(ofSize: 17)
+        foreDesrcTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(foreDesrcTF)
         foreDesrcTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -616,6 +605,7 @@ class UGoodsDetailView: BaseView {
         //MARK:标签按钮
         doorDeliveryTagBtn.setTitle("送货入户", for: .normal)
         doorDeliveryTagBtn.setTitleColor(UIColor.black, for: .normal)
+        doorDeliveryTagBtn.setTitleColor(UIColor.white, for: .selected)
         doorDeliveryTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         doorDeliveryTagBtn.clipsToBounds = true
         doorDeliveryTagBtn.layer.cornerRadius = 4
@@ -628,9 +618,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
+        doorDeliveryTagBtn.addTarget(self, action: #selector(chooseTag1Action), for: UIControl.Event.touchDown)
         
         professionalInstallationTagBtn.setTitle("专业安装", for: .normal)
         professionalInstallationTagBtn.setTitleColor(UIColor.black, for: .normal)
+        professionalInstallationTagBtn.setTitleColor(UIColor.white, for: .selected)
         professionalInstallationTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         professionalInstallationTagBtn.clipsToBounds = true
         professionalInstallationTagBtn.layer.cornerRadius = 4
@@ -643,9 +635,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
+        professionalInstallationTagBtn.addTarget(self, action: #selector(chooseTag2Action), for: UIControl.Event.touchDown)
         
         doorReturnTagBtn.setTitle("上门退换", for: .normal)
         doorReturnTagBtn.setTitleColor(UIColor.black, for: .normal)
+        doorReturnTagBtn.setTitleColor(UIColor.white, for: .selected)
         doorReturnTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         doorReturnTagBtn.clipsToBounds = true
         doorReturnTagBtn.layer.cornerRadius = 4
@@ -658,9 +652,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
+        doorReturnTagBtn.addTarget(self, action: #selector(chooseTag3Action), for: UIControl.Event.touchDown)
         
         qualityAssuranceCommitmentTagBtn.setTitle("质保承诺", for: .normal)
         qualityAssuranceCommitmentTagBtn.setTitleColor(UIColor.black, for: .normal)
+        qualityAssuranceCommitmentTagBtn.setTitleColor(UIColor.white, for: .selected)
         qualityAssuranceCommitmentTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         qualityAssuranceCommitmentTagBtn.clipsToBounds = true
         qualityAssuranceCommitmentTagBtn.layer.cornerRadius = 4
@@ -673,9 +669,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+        qualityAssuranceCommitmentTagBtn.addTarget(self, action: #selector(chooseTag4Action), for: UIControl.Event.touchDown)
+
         realThingReleasedTagBtn.setTitle("正品行货", for: .normal)
         realThingReleasedTagBtn.setTitleColor(UIColor.black, for: .normal)
+        realThingReleasedTagBtn.setTitleColor(UIColor.white, for: .selected)
         realThingReleasedTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         realThingReleasedTagBtn.clipsToBounds = true
         realThingReleasedTagBtn.layer.cornerRadius = 4
@@ -688,9 +686,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+        realThingReleasedTagBtn.addTarget(self, action: #selector(chooseTag5Action), for: UIControl.Event.touchDown)
+
         newPreferentialTagBtn.setTitle("新品特惠", for: .normal)
         newPreferentialTagBtn.setTitleColor(UIColor.black, for: .normal)
+        newPreferentialTagBtn.setTitleColor(UIColor.white, for: .selected)
         newPreferentialTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         newPreferentialTagBtn.clipsToBounds = true
         newPreferentialTagBtn.layer.cornerRadius = 4
@@ -703,9 +703,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+        newPreferentialTagBtn.addTarget(self, action: #selector(chooseTag6Action), for: UIControl.Event.touchDown)
+
         restAssuredBuyTagBtn.setTitle("放心购买", for: .normal)
         restAssuredBuyTagBtn.setTitleColor(UIColor.black, for: .normal)
+        restAssuredBuyTagBtn.setTitleColor(UIColor.white, for: .selected)
         restAssuredBuyTagBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         restAssuredBuyTagBtn.clipsToBounds = true
         restAssuredBuyTagBtn.layer.cornerRadius = 4
@@ -718,7 +720,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        
+        restAssuredBuyTagBtn.addTarget(self, action: #selector(chooseTag7Action), for: UIControl.Event.touchDown)
         //MARK:保存按钮
         saveBtn.setTitle("保存", for: .normal)
         saveBtn.setTitleColor(UIColor.white, for: .normal)
@@ -733,7 +735,8 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
         }
-        
+
+        saveBtn.addTarget(self, action: #selector(saveAction), for: UIControl.Event.touchDown)
     }
 
     @objc func tapChooseGoodsSLTAction() {
@@ -743,6 +746,46 @@ class UGoodsDetailView: BaseView {
     @objc func tapChooseGoodsPicAction() {
         delegate?.tapChooseGoodsPicAction()
     }
+
+    @objc func chooseCateAction() {
+        delegate?.tapChooseCateAction()
+    }
+
+    @objc func chooseGoodsCateAction() {
+        delegate?.tapChooseGoodsCateAction()
+    }
+
+    @objc func chooseTag1Action() {
+        delegate?.tapChooseGoodsTagAction(tag:doorDeliveryTagBtn)
+    }
+    @objc func chooseTag2Action() {
+        delegate?.tapChooseGoodsTagAction(tag:professionalInstallationTagBtn)
+    }
+    @objc func chooseTag3Action() {
+        delegate?.tapChooseGoodsTagAction(tag:doorReturnTagBtn)
+    }
+    @objc func chooseTag4Action() {
+        delegate?.tapChooseGoodsTagAction(tag:qualityAssuranceCommitmentTagBtn)
+    }
+    @objc func chooseTag5Action() {
+        delegate?.tapChooseGoodsTagAction(tag:realThingReleasedTagBtn)
+    }
+    @objc func chooseTag6Action() {
+        delegate?.tapChooseGoodsTagAction(tag:newPreferentialTagBtn)
+    }
+    @objc func chooseTag7Action() {
+        delegate?.tapChooseGoodsTagAction(tag:restAssuredBuyTagBtn)
+    }
+
+    @objc func saveAction() {
+        delegate?.tapSaveAction(name:goodsNameTF.text!,detail:goodsDescr.text!,
+                                unit:unitClassTF.text!,weight:weightTF.text!,
+                                original_price:originalPriceTF.text!,price:goodsPriceTF.text!,
+                                pieces:piecesDesrcTF.text!,
+                                forehead:foreDesrcTF.text!,goods_num:amountTF.text!)
+    }
+    
+
 }
 
 

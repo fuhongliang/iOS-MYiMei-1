@@ -19,8 +19,6 @@ class UBottomTab: BaseView {
 
     var addManageCategoryBtn = UIButton()
 
-    var sortCategoryBtn = UIButton()
-
     func configUI() {
         self.backgroundColor = UIColor.white
 
@@ -42,7 +40,8 @@ class UBottomTab: BaseView {
         self.addSubview(addCategoryBtn)
         addCategoryBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
+            ConstraintMaker.width.equalToSuperview().dividedBy(3)
+            ConstraintMaker.height.equalTo(48)
             ConstraintMaker.centerY.equalToSuperview()
         }
 
@@ -56,7 +55,8 @@ class UBottomTab: BaseView {
         self.addSubview(addGoodsBtn)
         addGoodsBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(addCategoryBtn.snp.right)
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
+            ConstraintMaker.width.equalToSuperview().dividedBy(3)
+            ConstraintMaker.height.equalTo(48)
             ConstraintMaker.centerY.equalToSuperview()
 
         }
@@ -71,23 +71,10 @@ class UBottomTab: BaseView {
         self.addSubview(addManageCategoryBtn)
         addManageCategoryBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(addGoodsBtn.snp.right)
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
+            ConstraintMaker.width.equalToSuperview().dividedBy(3)
+            ConstraintMaker.height.equalTo(48)
             ConstraintMaker.centerY.equalToSuperview()
 
-        }
-
-        sortCategoryBtn.setImage(UIImage.init(named: "sort_category"), for: UIControl.State.normal)
-        sortCategoryBtn.setTitle("排序操作", for:.normal)
-        sortCategoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        sortCategoryBtn.sizeToFit()
-        sortCategoryBtn.setTitleColor(UIColor.theme, for: UIControl.State.normal)
-        sortCategoryBtn.layoutButton(style: .Top, imageTitleSpace: 10)
-
-        self.addSubview(sortCategoryBtn)
-        sortCategoryBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(addManageCategoryBtn.snp.right)
-            ConstraintMaker.width.equalToSuperview().dividedBy(4)
-            ConstraintMaker.centerY.equalToSuperview()
         }
     }
 }
