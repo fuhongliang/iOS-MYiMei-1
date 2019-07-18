@@ -22,9 +22,33 @@ protocol APIOrderServicesProtocol {
     //MARK:获取物流公司
     func getExpressList(_ success: @escaping(((ExpressListResponesModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
     
+    //MARK:获取订单详情
+    func getOrderDetail(order_id: Int, _ success: @escaping(((OrderDetailResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
 }
 
 class APIOrderServices: APIOrderServicesProtocol {
+    func getOrderDetail(order_id: Int, _ success: @escaping (((OrderDetailResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "order_id": order_id as Any,
+            "mch_id": APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.getOrderDetail(param: params), { (data) in
+            //提示是否成功
+            do{
+                let model = try JSONDecoder().decode(OrderDetailResponseModel.self, from: data)
+                success(model)
+            } catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (APIErrorModel) in
+            fail(APIErrorModel)
+        }
+    }
+    
     func getExpressList(_ success: @escaping (((ExpressListResponesModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "mch_id": APIUser.shared.user?.mch_id as Any,

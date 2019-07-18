@@ -186,13 +186,12 @@ class USettingDeliveryView: BaseView {
         self.addSubview(submitInfoBtn)
         submitInfoBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.bottom.equalToSuperview().offset(-20)
-            ConstraintMaker.width.equalToSuperview().offset(30)
+            ConstraintMaker.left.equalToSuperview().offset(30)
+            ConstraintMaker.right.equalToSuperview().offset(-30)
             ConstraintMaker.height.equalTo(44)
         }
         
         submitInfoBtn.addTarget(self, action: #selector(checkCourierDeliverySwitch), for: UIControl.Event.touchUpInside)
-
- 
 
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import JXSegmentedView
 
 class UOrdersViewController: UBaseViewController {
 
@@ -45,7 +46,6 @@ class UOrdersViewController: UBaseViewController {
         tw.delegate = self
         tw.dataSource = self
         tw.register(cellType: UOderCell.self)
-//
         return tw
     }()
 
@@ -83,6 +83,7 @@ class UOrdersViewController: UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
+            self.tableView.refreshControl?.endRefreshing()
             NSLog(APIErrorModel.msg ?? "...")
         }
     }
@@ -150,13 +151,18 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         //cell待更换
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
 //        cell.selectionStyle = .default
-        cell.modifyPrice = {
-            NSLog("修改价格")
-            self.mOrderId = self.orderList.order[indexPath.section].order_id
-            //获取点击事件
-            self.configAlertView()
-        }
-        cell.deliveryGoods = {
+        
+        
+        
+        cell.modifyPriceOrDeliveryGoods = {
+            
+            if(self.orderList.order[indexPath.section].is_pay==0){
+                NSLog("修改价格")
+                self.mOrderId = self.orderList.order[indexPath.section].order_id
+                //获取点击事件
+                self.configAlertView()
+                return
+            }
             NSLog("发货")
             let alertController = UIAlertController(title: "温馨提示", message: "请选择发货方式", preferredStyle: UIAlertController.Style.alert)
             let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
@@ -179,6 +185,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             alertController.addAction(cancleAction)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
+            
         }
         cell.model = orderList.order[indexPath.section]
 
@@ -198,11 +205,13 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            
-        }
         
+        let orderDetail = UOrderDetailsViewController()
+        orderDetail.title = "订单详情"
+        orderDetail.orderId = orderList.order[indexPath.section].order_id
+        navigationController?.pushViewController(orderDetail, animated: true)
+        
+
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -228,17 +237,9 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         //添加环形进度条
         activity.color = UIColor.black
         activity.startAnimating()
-        
-//        let tipView = UILabel()
-//        tipView.text = "获取订单数据..."
-//        loadMoreView.addSubview(tipView)
-//        tipView.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.centerY.equalToSuperview()
-//            ConstraintMaker.centerX.equalToSuperview().offset(activity.frame.width)
-//        }
+
         loadMoreView.addSubview(activity)
         activity.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.right.equalTo(tipView.snp.left)
             ConstraintMaker.centerY.centerX.equalToSuperview()
         }
         activity.hidesWhenStopped = true
@@ -327,10 +328,8 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             ConstraintMaker.left.equalTo(freightLabel.snp.right).offset(5)
             ConstraintMaker.width.equalTo(190)
             ConstraintMaker.height.equalTo(35)
-            //                ConstraintMaker.right.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(tipFreightLabel.snp.bottom).offset(11)
         })
-        //
         
         warnLabel.text = "优惠的运费不能超过原来的运费"
         warnLabel.textColor = UIColor.hex(hexString: "#FF4444")
@@ -340,35 +339,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(inputFreightPriceTF.snp.bottom).offset(15)
         }
-        
-        
-//        addPriceBtn.backgroundColor = UIColor.white
-//        addPriceBtn.setTitle("加价", for: .normal)
-//        addPriceBtn.setTitleColor(UIColor.hex(hexString: "#07D781"), for: UIControl.State.normal)
-//        addPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-//        subview.addSubview(addPriceBtn)
-//        addPriceBtn.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.left.equalToSuperview()
-//            ConstraintMaker.width.equalToSuperview().dividedBy(2)
-//            ConstraintMaker.height.equalTo(44)
-//            ConstraintMaker.bottom.equalToSuperview()
-//        }
-//        addPriceBtn.addTarget(self, action: #selector(addPrice), for: UIControl.Event.touchDown)
-//
-//
-//        reducePriceBtn.backgroundColor = UIColor.white
-//        reducePriceBtn.setTitle("优惠", for: .normal)
-//        reducePriceBtn.setTitleColor(UIColor.hex(hexString: "#07D781"), for: UIControl.State.normal)
-//        reducePriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-//        subview.addSubview(reducePriceBtn)
-//        reducePriceBtn.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.left.equalTo(addPriceBtn.snp.right)
-//            ConstraintMaker.width.equalToSuperview().dividedBy(2)
-//            ConstraintMaker.height.equalTo(44)
-//            ConstraintMaker.bottom.equalToSuperview()
-//        }
-//        reducePriceBtn.addTarget(self, action: #selector(reducePrice), for: UIControl.Event.touchDown)
-        
+     
         _ = alert?.addButton("加价", backgroundColor: UIColor.white,textColor:UIColor.hex(hexString: "##1C98F6"), target:self, selector:#selector(addOrderPrice))
         _ = alert?.addButton("优惠", backgroundColor: UIColor.white,textColor:UIColor.hex(hexString: "#07D781"), target:self, selector:#selector(reduceOrderPrice))
 
@@ -416,4 +387,10 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         alert?.hideView()
     }
 
+}
+
+extension UOrdersViewController : JXSegmentedListContainerViewListDelegate {
+    func listView() -> UIView {
+        return view
+    }
 }

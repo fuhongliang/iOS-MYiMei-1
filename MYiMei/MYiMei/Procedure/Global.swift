@@ -15,6 +15,14 @@ import MJRefresh
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
 
+//MARK:时间戳转日期时间
+func dateForMatter(timeString:Int, join:String) -> String{
+    let timeInterval = TimeInterval(timeString)
+    let date = Date(timeIntervalSince1970: timeInterval)
+    let dateForMatter = DateFormatter()
+    dateForMatter.dateFormat = "yyyy.MM.dd"+join+"HH:mm:ss"
+    return dateForMatter.string(from: date)
+}
 
 extension UIColor {
     class var background: UIColor {

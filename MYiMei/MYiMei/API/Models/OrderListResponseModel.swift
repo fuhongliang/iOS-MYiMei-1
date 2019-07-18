@@ -29,7 +29,7 @@ class Order : Codable{
     
     var address : String!
     var addtime : Int!
-    var before_update_price : String?//修改前实际支付费用
+    var before_update_price : String!//修改前实际支付费用
     var confirm_time : Int!
     var coupon_sub_price : String!
     var express : String!
