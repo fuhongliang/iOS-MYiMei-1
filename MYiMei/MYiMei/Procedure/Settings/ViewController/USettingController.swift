@@ -10,7 +10,7 @@ import UIKit
 
 class USettingController: UBaseViewController {
     
-    let mSettingController = UMessageManagementCellView()
+    let mSettingController = UAboutUsView()
     
     override func configUI() {
         mSettingController.setView()
