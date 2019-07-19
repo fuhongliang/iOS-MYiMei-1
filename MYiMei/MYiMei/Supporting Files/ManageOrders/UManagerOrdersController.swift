@@ -80,7 +80,11 @@ extension UManagerOrdersController : JXSegmentedViewDelegate,JXSegmentedListCont
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let vc = UOrdersChildViewController()
-        vc.titles = ["全部", "待付款", "待发货", "待收货", "已完成", "已取消"]
+        if index == 0 {
+            vc.titles = ["全部", "待付款", "待发货", "待收货", "已完成", "已取消"]
+        } else {
+            vc.titles = ["全部", "待处理", "已处理", "异常订单", "回收站"]
+        }
         return vc
 
     }

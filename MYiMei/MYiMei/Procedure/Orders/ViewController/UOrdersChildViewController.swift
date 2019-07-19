@@ -83,8 +83,9 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
     }
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        
-        return UOrdersViewController()
+        let orderViewController = UOrdersViewController()
+//        orderViewController.
+        return orderViewController
     }
 }
 

@@ -19,6 +19,11 @@ class UOrdersViewController: UBaseViewController {
     let activity = UIActivityIndicatorView()
     var loadMoreView = UIView()
     
+    /*
+     订单类型:通过orderType来判断哪一种类型的订单
+     */
+    var orderType = 1
+    
     var mOrderId = 0
     
     var alert:SCLAlertView? = nil

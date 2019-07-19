@@ -91,6 +91,12 @@
 		DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */; };
 		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
 		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
+		DC1B387222DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387122DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift */; };
+		DC1B387422DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387322DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift */; };
+		DC1B387622DEBE8000C915FC /* UOrderDetailProcessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387522DEBE8000C915FC /* UOrderDetailProcessCell.swift */; };
+		DC1B387822DEBF0900C915FC /* UOrderDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387722DEBF0900C915FC /* UOrderDetailInfoCell.swift */; };
+		DC1B387A22DEBF5C00C915FC /* UOrderDetailGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387922DEBF5C00C915FC /* UOrderDetailGoodsCell.swift */; };
+		DC1B387C22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387B22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift */; };
 		DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */; };
 		DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */; };
 		DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8122CF02FE003A4053 /* UFeedBackView.swift */; };
@@ -226,6 +232,12 @@
 		DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
 		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
+		DC1B387122DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailSectionTitleCell.swift; sourceTree = "<group>"; };
+		DC1B387322DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailNameAddressCell.swift; sourceTree = "<group>"; };
+		DC1B387522DEBE8000C915FC /* UOrderDetailProcessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailProcessCell.swift; sourceTree = "<group>"; };
+		DC1B387722DEBF0900C915FC /* UOrderDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailInfoCell.swift; sourceTree = "<group>"; };
+		DC1B387922DEBF5C00C915FC /* UOrderDetailGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailGoodsCell.swift; sourceTree = "<group>"; };
+		DC1B387B22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailConfirmBtnCell.swift; sourceTree = "<group>"; };
 		DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordView.swift; sourceTree = "<group>"; };
 		DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordController.swift; sourceTree = "<group>"; };
 		DC221C8122CF02FE003A4053 /* UFeedBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFeedBackView.swift; sourceTree = "<group>"; };
@@ -335,6 +347,12 @@
 				0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */,
 				DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */,
 				0AB057D422DC2709002B7E40 /* UNewOrderCell.swift */,
+				DC1B387122DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift */,
+				DC1B387322DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift */,
+				DC1B387522DEBE8000C915FC /* UOrderDetailProcessCell.swift */,
+				DC1B387722DEBF0900C915FC /* UOrderDetailInfoCell.swift */,
+				DC1B387922DEBF5C00C915FC /* UOrderDetailGoodsCell.swift */,
+				DC1B387B22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -893,6 +911,7 @@
 			files = (
 				7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */,
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
+				DC1B387C22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
 				DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */,
 				0AB057BF22D74074002B7E40 /* UModifySetUpShopView.swift in Sources */,
@@ -906,6 +925,7 @@
 				7BAB352222C0C56400154D36 /* Global.swift in Sources */,
 				DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */,
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
+				DC1B387A22DEBF5C00C915FC /* UOrderDetailGoodsCell.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
 				7B08932922D888B500872136 /* PlatCateResponeModel.swift in Sources */,
@@ -943,6 +963,7 @@
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
 				DC7E297722D5754600AC3F21 /* UMenuDepost.swift in Sources */,
 				7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */,
+				DC1B387622DEBE8000C915FC /* UOrderDetailProcessCell.swift in Sources */,
 				0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */,
 				7BAB356222C1F5EF00154D36 /* UMenuGoodsManagement.swift in Sources */,
 				7B7B15CB22D6DED50082F227 /* StoreDashBoardModel.swift in Sources */,
@@ -951,6 +972,7 @@
 				7B2DE2AF22D5B5C000AD6FDD /* RPicker.swift in Sources */,
 				7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */,
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,
+				DC1B387822DEBF0900C915FC /* UOrderDetailInfoCell.swift in Sources */,
 				0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */,
 				7BAB355022C1AF4600154D36 /* UMineHead.swift in Sources */,
 				7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */,
@@ -959,6 +981,7 @@
 				7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */,
 				DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */,
 				7BAB355C22C1C93000154D36 /* UStoreEventsCell.swift in Sources */,
+				DC1B387222DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift in Sources */,
 				7B08932322D728F300872136 /* UDepostStatusCell.swift in Sources */,
 				7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */,
 				7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */,
@@ -994,6 +1017,7 @@
 				0AB057AD22D2D68D002B7E40 /* UManagementClassificationCell.swift in Sources */,
 				7B08931A22D7151000872136 /* UMeDepost.swift in Sources */,
 				7BAB353D22C0D16900154D36 /* UNavigationController.swift in Sources */,
+				DC1B387422DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift in Sources */,
 				DC221C8822CF32CF003A4053 /* USetUpShopController.swift in Sources */,
 				7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */,
 			);
