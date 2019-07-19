@@ -43,17 +43,18 @@ class UOrderDetailInfoCell : UBaseTableViewCell {
         freightLeftLaber.font = UIFont.systemFont(ofSize: 14)
         freightLayer.addSubview(freightLeftLaber)
         freightLeftLaber.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.top.equalToSuperview().offset(14)
             ConstraintMaker.centerY.equalToSuperview()
+            ConstraintMaker.width.equalTo(75)
             ConstraintMaker.left.equalToSuperview().offset(15)
         }
         freightRightLaber.text = "0.00元"
         freightRightLaber.textColor = UIColor.hex(hexString: "#333333")
-        freightRightLaber.textAlignment = .right
+        freightRightLaber.textAlignment = .left
         freightRightLaber.font = UIFont.systemFont(ofSize: 14)
         freightLayer.addSubview(freightRightLaber)
         freightRightLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.equalToSuperview()
+//            ConstraintMaker.width.equalToSuperview()
             ConstraintMaker.left.equalTo(freightLeftLaber.snp.right)
             ConstraintMaker.right.equalToSuperview().offset(-15)
         }

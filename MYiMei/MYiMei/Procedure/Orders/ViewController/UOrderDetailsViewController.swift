@@ -38,6 +38,7 @@ class UOrderDetailsViewController: UBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setOrderDetailTitle()
         service.getOrderDetail(order_id: orderId, { (OrderDetailResponseModel) in
             self.orderModel = OrderDetailResponseModel.data.order
             self.isRequestOrderDetail = true
@@ -64,31 +65,39 @@ class UOrderDetailsViewController: UBaseViewController {
 
     }
     
-    //MARK:设置进度条
-    func setOrderProccess(view : UOrderDetailProcessCell) {
+    func setOrderDetailTitle(){
         if (orderStatus == 0) {
             mOrderDetailsViewController.orderStatusLaber.text = "订单已经提交，等待卖家付款"
-            setProcessOne(cell: view)
         } else if (orderStatus == 1){
             mOrderDetailsViewController.orderStatusLaber.text = "订单已支付成功"
-            setProcessOne(cell: view)
-            setProcessTwo(cell: view)
         } else if (orderStatus == 2){
             mOrderDetailsViewController.orderStatusLaber.text = "订单已支付，未确认收货"
-            setProcessOne(cell: view)
-            setProcessTwo(cell: view)
-            setProcessThree(cell: view)
         } else if (orderStatus == 3){
             mOrderDetailsViewController.orderStatusLaber.text = "订单已完成"
-            setProcessOne(cell: view)
-            setProcessTwo(cell: view)
-            setProcessThree(cell: view)
-            setProcessFour(cell: view)
         } else {
             mOrderDetailsViewController.orderStatusLaber.text = "订单已取消"
             mOrderDetailsViewController.orderStatusLaber.textColor = UIColor.black
             mOrderDetailsViewController.headBg.image = nil
             navigationController?.navigationBar.barTintColor = UIColor.hex(hexString: "#F5F5F5")
+        }
+    }
+    
+    //MARK:设置进度条
+    func setOrderProccess(view : UOrderDetailProcessCell) {
+        if (orderStatus == 0) {
+            setProcessOne(cell: view)
+        } else if (orderStatus == 1){
+            setProcessOne(cell: view)
+            setProcessTwo(cell: view)
+        } else if (orderStatus == 2){
+            setProcessOne(cell: view)
+            setProcessTwo(cell: view)
+            setProcessThree(cell: view)
+        } else if (orderStatus == 3){
+            setProcessOne(cell: view)
+            setProcessTwo(cell: view)
+            setProcessThree(cell: view)
+            setProcessFour(cell: view)
         }
     }
     
@@ -127,7 +136,7 @@ class UOrderDetailsViewController: UBaseViewController {
      通过判断当前的cell位置 结合当前订单进度 返回对应的cell高度
      */
     func getInfoCellHeight(cellRow:Int) -> CGFloat {
-        if(orderStatus==0){
+        if(orderStatus == 0){
             if (cellRow == 2){//未支付订单->三个item
                 return 86
             } else if (cellRow == 3){//未支付订单->四个item
@@ -139,7 +148,7 @@ class UOrderDetailsViewController: UBaseViewController {
             } else if (cellRow == 3){///已支付未发货的订单->两个item
                 return 60
             }
-        } else if (orderStatus == 3 ){
+        } else if (orderStatus == 2 || orderStatus == 3 ){
             if (cellRow == 2 || cellRow == 4){//已发货和已收货一样 -> 头尾两个item
                 return 60
             } else if (cellRow == 3){//已发货和已收货一样 -> 中间四个item
@@ -206,7 +215,10 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         if !isRequestOrderDetail {
             return 0 //如果请求未完成则不显示
         }
-        if (section == 0 || section == 3) {
+        if (section == 0) {
+            if orderStatus == 5 {
+                return 0 //订单进度 如果是取消订单状态 则不显示
+            }
             return 1 //订单进度 一个cell 注:3是原本的Button
         } else if (section == 1) {
             if (orderStatus == 2 || orderStatus == 3) {
@@ -331,6 +343,24 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                             labelFour = "实付金额"
                             labelFourValue = orderModel.pay_price + "元"
                         }
+                    } else if orderStatus == 5 {
+                        if(indexPath.row == 2){
+                            num = 3
+                            labelOne = "订单编号"
+                            labelOneValue = orderModel.order_no ?? ""
+                            labelTwo = "订单时间"
+                            labelTwoValue = dateForMatter(timeString: orderModel.addtime ?? 0, join: " ")
+                            labelThree = "支付方式"
+                            labelThreeValue = getPayType(type: orderModel.pay_type ?? 0)
+                        } else if(indexPath.row == 3){
+                            num = 2
+                            colorIndex = 1 << 1
+                            colorArray = [UIColor.hex(hexString: "#FF4444")]
+                            labelOne = "运费"
+                            labelOneValue = "\(orderModel.express_price ?? "0")元"
+                            labelTwo = "实付金额"
+                            labelTwoValue = "\(orderModel.pay_price ?? "0")元"
+                        }
                     }
                     
                 }
@@ -341,7 +371,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                 return getSectionTitleCell(index: indexPath, title: "商品信息")
             } else if (indexPath.row == orderModel.goodsList.count + 1){
                 //这里只保留一行，并且把内容文字的方向调整为left
-                return getInfoCell(index: indexPath, num: 1, colorArray: [], labelOne: "买家留言：", labelOneValue: orderModel.remark+"叽叽叽叽教教", textAlignment: .left)
+                return getInfoCell(index: indexPath, num: 1, colorArray: [], labelOne: "买家留言：", labelOneValue: orderModel.remark ?? "", textAlignment: NSTextAlignment.left)
             } else {
                 //商品cell
                 return getGoodsCell(index: indexPath)
@@ -358,9 +388,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
     
     //MARK:点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        
+    
     }
 
     
@@ -379,7 +407,9 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         
         var needSeparator = false
         if (indexPath.row == 0 && numberOfRows == 1) {
-            pathRef.addRoundedRect(in: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
+            if bounds.height >= cornerRadius{
+                pathRef.addRoundedRect(in: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
+            }
         }else if (indexPath.row == 0) {
             pathRef.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
             pathRef.addArc(tangent1End: CGPoint(x: bounds.minX, y: bounds.minY), tangent2End: CGPoint(x: bounds.midX, y: bounds.minY), radius: cornerRadius)
@@ -442,7 +472,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         guard !isRequestOrderDetail else {
             cell.userNameLabel.text = orderModel.name
             cell.userPhoneLabel.text = orderModel.mobile
-            cell.addressLabel.text = "地址：" + orderModel.address
+            cell.addressLabel.text = "地址：\(orderModel.address ?? "")"
             return cell
         }
         return cell

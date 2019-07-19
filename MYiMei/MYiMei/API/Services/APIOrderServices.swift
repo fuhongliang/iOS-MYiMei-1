@@ -103,7 +103,7 @@ class APIOrderServices: APIOrderServicesProtocol {
                 let model = try JSONDecoder().decode(OrderListResponseModel.self, from: data)
                 success(model)
             } catch {
-                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败\(error)", _data: nil)
                 fail(errorModel)
             }
         }) { (error) in

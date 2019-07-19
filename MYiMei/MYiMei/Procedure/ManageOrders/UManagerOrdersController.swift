@@ -45,7 +45,9 @@ class UManagerOrdersController: UBaseViewController {
         segmentedView.dataSource = segmentedDataSource
         segmentedView.indicators = [indicator]
         segmentedView.delegate = self
-        self.navigationItem.titleView = segmentedView
+        //打开头部的显示
+        //self.navigationItem.titleView = segmentedView
+        self.navigationItem.title = "订单管理"
 
         segmentedView.contentScrollView = listContainerView.scrollView
         view.addSubview(listContainerView)
@@ -73,7 +75,7 @@ extension UManagerOrdersController : JXSegmentedViewDelegate,JXSegmentedListCont
     
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
         if let titleDataSource = segmentedView.dataSource as? JXSegmentedBaseDataSource {
-            return titleDataSource.dataSource.count
+            return 1//titleDataSource.dataSource.count
         }
         return 0
     }

@@ -277,7 +277,7 @@ class UNewOrderCell: UBaseTableViewCell {
             guard let model = model else { return }
             
             modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for:  UIControl.Event.touchUpInside)
-            recycleBinBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
+            recycleBinBtn.addTarget(self, action: #selector(tapMoveToRecycleBin), for: UIControl.Event.touchUpInside)
             //TODO 判断 待付款,待收货,待发货 的状态  0 待付款  1待发货 2待收货 3已完成 5已取消
             switch model.order_status {
                 case 0:
