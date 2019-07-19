@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Alamofire
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    // 后台任务标识
+    var backgroundTask:UIBackgroundTaskIdentifier! = nil
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -32,6 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window?.makeKeyAndVisible()
 
+        //推送代码
+        let entity = JPUSHRegisterEntity()
+        entity.types = 1 << 0 | 1 << 1 | 1 << 2
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        //需要IDFA 功能，定向投放广告功能
+        //let advertisingId = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        JPUSHService.setup(withOption: launchOptions, appKey: "dfe3546772ea640af808d640", channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
+
         return true
     }
     
@@ -48,6 +59,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // 延迟程序静止的时间
+        DispatchQueue.global().async() {
+            //如果已存在后台任务，先将其设为完成
+            if self.backgroundTask != nil {
+                application.endBackgroundTask(self.backgroundTask)
+                self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+            }
+        }
+
+        //如果要后台运行
+        self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
+            () -> Void in
+            //如果没有调用endBackgroundTask，时间耗尽时应用程序将被终止
+            application.endBackgroundTask(self.backgroundTask)
+            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+        })
+
+        //销毁通知红点
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        JPUSHService.setBadge(0)
+        UIApplication.shared.cancelAllLocalNotifications()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -71,4 +103,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
+
+//MARK:--推送代理
+extension AppDelegate : JPUSHRegisterDelegate {
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, openSettingsFor notification: UNNotification?) {
+
+    }
+
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+
+        let userInfo = notification.request.content.userInfo
+        if notification.request.trigger is UNPushNotificationTrigger {
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+        completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue))
+    }
+
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        let userInfo = response.notification.request.content.userInfo
+        if response.notification.request.trigger is UNPushNotificationTrigger {
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        // 系统要求执行这个方法
+        completionHandler()
+    }
+
+    //点推送进来执行这个方法
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler(UIBackgroundFetchResult.newData)
+
+    }
+    //系统获取Token
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+        print("----deviceToken = \(deviceToken)")
+    }
+    //获取token 失败
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) { //可选
+        print("did Fail To Register For Remote Notifications With Error: \(error)")
+    }
+}
+
+
+
+
 

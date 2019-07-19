@@ -193,6 +193,7 @@
 		7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		7B2DE2AE22D5B5C000AD6FDD /* RPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPicker.swift; sourceTree = "<group>"; };
 		7B3127E522E1B1ED0083D544 /* MYiMei-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MYiMei-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B3127E822E1C89E0083D544 /* MYiMei.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MYiMei.entitlements; sourceTree = "<group>"; };
 		7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGoodsServices.swift; sourceTree = "<group>"; };
 		7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsResponeModel.swift; sourceTree = "<group>"; };
@@ -439,6 +440,7 @@
 		7BAB34ED22C0AE1200154D36 /* MYiMei */ = {
 			isa = PBXGroup;
 			children = (
+				7B3127E822E1C89E0083D544 /* MYiMei.entitlements */,
 				7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */,
 				DC7E297822D575B700AC3F21 /* ImagePressHelper.swift */,
 				7BAB355322C1B3FD00154D36 /* Component */,
@@ -820,6 +822,11 @@
 					7BAB34EA22C0AE1200154D36 = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					7BAB34FE22C0AE1400154D36 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -1238,6 +1245,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MYiMei/MYiMei.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6L4S78C444;
 				INFOPLIST_FILE = MYiMei/Info.plist;
@@ -1245,7 +1253,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xfigo.MYiMei;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ifhu.MYiMei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MYiMei/Supporting Files/MYiMei-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MYiMei-Swift.h";
@@ -1262,6 +1270,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MYiMei/MYiMei.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6L4S78C444;
 				INFOPLIST_FILE = MYiMei/Info.plist;
@@ -1269,7 +1278,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xfigo.MYiMei;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ifhu.MYiMei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MYiMei/Supporting Files/MYiMei-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MYiMei-Swift.h";
