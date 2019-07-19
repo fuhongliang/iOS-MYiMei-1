@@ -13,6 +13,9 @@ class UOrderDetailsViewController: UBaseViewController {
     
     var orderId = 0
     
+    // 0 待付款  1待发货 2待收货 3已完成 5已取消
+    var orderStatus = 0
+    
     var orderModel = Order()
     var isRequestOrderDetail = false
     
@@ -29,7 +32,6 @@ class UOrderDetailsViewController: UBaseViewController {
         tw.register(cellType: UOrderDetailInfoCell.self)
         tw.register(cellType: UOrderDetailProcessCell.self)
         tw.register(cellType: UOrderDetailGoodsCell.self)
-//        tw.register(cellType: UOrderDetailConfirmBtnCell.self)
         return tw
     }()
     
@@ -40,21 +42,6 @@ class UOrderDetailsViewController: UBaseViewController {
             self.orderModel = OrderDetailResponseModel.data.order
             self.isRequestOrderDetail = true
             self.tableView.reloadData()
-//            self.setOrderProccess()
-//            self.mOrderDetailsViewController.userNameLaber.text = self.orderModel.name
-//            self.mOrderDetailsViewController.userPhoneLaber.text = self.orderModel.mobile
-//            self.mOrderDetailsViewController.addressLaber.text = "地址: \(String(self.orderModel.address))"
-//            self.mOrderDetailsViewController.orderNumberRightLaber.text = self.orderModel.order_no
-//            self.mOrderDetailsViewController.orderTimeRighrLaber.text = String(self.orderModel.addtime ?? 0)
-//            self.mOrderDetailsViewController.payModeRightLaber.text = self.getPayType(type: self.orderModel.pay_type)
-//            self.mOrderDetailsViewController.freightRightLaber.text = self.orderModel.express_price
-//            self.mOrderDetailsViewController.orderAmountRightLaber.text = self.orderModel.total_price
-//            let payPrice = Int(self.orderModel.pay_price ?? "") ?? 0
-//            let beforPrice = Int(self.orderModel.before_update_price ?? "") ?? 0
-//            self.mOrderDetailsViewController.bgModifypPriceRightLaber.text = ((payPrice - beforPrice)>0 ? "加价：" : "优惠：") + "\(abs(payPrice - beforPrice))"
-//            self.mOrderDetailsViewController.actualAmountRightLaber.text = self.orderModel.pay_price
-////            self.setGoodsView()
-//            self.mOrderDetailsViewController.leaveCommentsRightLaber.text = self.orderModel.remark
         }) { (APIErrorModel) in
 
         }
@@ -71,7 +58,7 @@ class UOrderDetailsViewController: UBaseViewController {
         tableView.backgroundColor = nil
         tableView.backgroundView = UIView()
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 55, left: 15, bottom: 0, right: 15))
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 60, left: 15, bottom: 0, right: 15))
 
         }
 
@@ -79,24 +66,29 @@ class UOrderDetailsViewController: UBaseViewController {
     
     //MARK:设置进度条
     func setOrderProccess(view : UOrderDetailProcessCell) {
-        if (getProgress() == 0) {
+        if (orderStatus == 0) {
             mOrderDetailsViewController.orderStatusLaber.text = "订单已经提交，等待卖家付款"
             setProcessOne(cell: view)
-        } else if (getProgress() == 1){
+        } else if (orderStatus == 1){
             mOrderDetailsViewController.orderStatusLaber.text = "订单已支付成功"
             setProcessOne(cell: view)
             setProcessTwo(cell: view)
-        } else if (getProgress() == 2){
+        } else if (orderStatus == 2){
             mOrderDetailsViewController.orderStatusLaber.text = "订单已支付，未确认收货"
             setProcessOne(cell: view)
             setProcessTwo(cell: view)
             setProcessThree(cell: view)
-        } else if (getProgress() == 3){
+        } else if (orderStatus == 3){
             mOrderDetailsViewController.orderStatusLaber.text = "订单已完成"
             setProcessOne(cell: view)
             setProcessTwo(cell: view)
             setProcessThree(cell: view)
             setProcessFour(cell: view)
+        } else {
+            mOrderDetailsViewController.orderStatusLaber.text = "订单已取消"
+            mOrderDetailsViewController.orderStatusLaber.textColor = UIColor.black
+            mOrderDetailsViewController.headBg.image = nil
+            navigationController?.navigationBar.barTintColor = UIColor.hex(hexString: "#F5F5F5")
         }
     }
     
@@ -129,43 +121,35 @@ class UOrderDetailsViewController: UBaseViewController {
         }
         return "暂无"
     }
-    
-    //获取当前的进度 用数值表示
-    func getProgress() -> Int {
-        if (orderModel.is_pay == 0) {
-            return 0
-        } else if (orderModel.is_send == 0){
-            return 1
-        } else if (orderModel.is_confirm == 0){
-            return 2
-        } else if (orderModel.is_confirm == 1){
-            return 3
-        }
-        return 0
-    }
-    
+
     /*
      MARK:获取InfoCell removeItem后对应的高度
      通过判断当前的cell位置 结合当前订单进度 返回对应的cell高度
      */
     func getInfoCellHeight(cellRow:Int) -> CGFloat {
-        if(getProgress()==0){
+        if(orderStatus==0){
             if (cellRow == 2){//未支付订单->三个item
                 return 86
             } else if (cellRow == 3){//未支付订单->四个item
                 return 111
             }
-        } else if (getProgress() == 1){
+        } else if (orderStatus == 1){
             if (cellRow == 2){//已支付未发货的订单->四个item
                 return 111
             } else if (cellRow == 3){///已支付未发货的订单->两个item
                 return 60
             }
-        } else if (getProgress() == 3 || getProgress() == 4){
+        } else if (orderStatus == 3 ){
             if (cellRow == 2 || cellRow == 4){//已发货和已收货一样 -> 头尾两个item
                 return 60
             } else if (cellRow == 3){//已发货和已收货一样 -> 中间四个item
                 return 111
+            }
+        } else if (orderStatus == 5){
+            if (cellRow == 2){//已取消 -> 三个item
+                return 86
+            } else if (cellRow == 3){//已取消 -> 两个item
+                return 60
             }
         }
         return 0
@@ -190,6 +174,9 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
             return 0 //如果请求未完成则不显示
         }
         if (indexPath.section == 0) {
+            if orderStatus == 5{
+                return 0 // 如果当前订单是已取消的则隐藏进度显示
+            }
             return 113 //订单进度条
         } else if (indexPath.section == 1){
             if (indexPath.row == 0){
@@ -222,7 +209,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         if (section == 0 || section == 3) {
             return 1 //订单进度 一个cell 注:3是原本的Button
         } else if (section == 1) {
-            if (getProgress() == 2 || getProgress() == 3) {
+            if (orderStatus == 2 || orderStatus == 3) {
                 return 5 //订单详情 23进度下5个cell
             } else {
                 return 4//订单详情 01进度下4个cell
@@ -242,23 +229,9 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         
         return 0
     }
-    
-    
-    //MARK:cell的Footer高度
-    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        return 10
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    //
-    //        let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-    //
-    //        return tipView
-    //    }
-    
+
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
         return nil
     }
 
@@ -287,7 +260,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                 var labelFourValue = ""
                 if (isRequestOrderDetail){
                     
-                    if (getProgress() == 0){
+                    if (orderStatus == 0){
                         if(indexPath.row == 2){
                             num = 3
                             labelOne = "订单编号"
@@ -312,7 +285,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                             labelFour = "实付金额"
                             labelFourValue = orderModel.pay_price + "元"
                         }
-                    } else if (getProgress() == 1){
+                    } else if (orderStatus == 1){
                         if(indexPath.row == 2){
                             num = 4
                             labelOne = "订单编号"
@@ -332,7 +305,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                             labelTwo = "实付金额"
                             labelTwoValue = orderModel.pay_price + "元"
                         }
-                    } else if (getProgress() == 2 || getProgress() == 3){
+                    } else if (orderStatus == 2 || orderStatus == 3){
                         if(indexPath.row == 2){
                             num = 2
                             labelOne = "快递公司"
@@ -368,7 +341,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                 return getSectionTitleCell(index: indexPath, title: "商品信息")
             } else if (indexPath.row == orderModel.goodsList.count + 1){
                 //这里只保留一行，并且把内容文字的方向调整为left
-                return getInfoCell(index: indexPath, num: 1, colorArray: [], labelOne: "买家留言：", labelOneValue: orderModel.remark, textAlignment: .left)
+                return getInfoCell(index: indexPath, num: 1, colorArray: [], labelOne: "买家留言：", labelOneValue: orderModel.remark+"叽叽叽叽教教", textAlignment: .left)
             } else {
                 //商品cell
                 return getGoodsCell(index: indexPath)
@@ -524,22 +497,11 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                     cell.actualAmountLayer.removeFromSuperview()
                     cell.bgModifyPriceLayer.removeFromSuperview()
                     cell.orderAmountLayer.removeFromSuperview()
-//                    cell.actualAmountLayer.isHidden = true
-//                    cell.bgModifyPriceLayer.isHidden = true
-//                    cell.orderAmountLayer.isHidden = true
-                    break
                 case 2:
                     cell.actualAmountLayer.removeFromSuperview()
                     cell.bgModifyPriceLayer.removeFromSuperview()
-                    
-//                    cell.actualAmountLayer.isHidden = true
-//                    cell.bgModifyPriceLayer.isHidden = true
-                    break
                 case 3:
                     cell.actualAmountLayer.removeFromSuperview()
-                    
-//                    cell.actualAmountLayer.isHidden = true
-                    break
                 default:
                     break
             }

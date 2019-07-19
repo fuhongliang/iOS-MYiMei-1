@@ -48,10 +48,13 @@ class UOrdersViewController: UBaseViewController {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
         tw.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        tw.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tw.showsVerticalScrollIndicator = false
         tw.delegate = self
         tw.dataSource = self
         tw.register(cellType: UOderCell.self)
         tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
+        tw.register(cellType: UNewOrderCell.self)
         return tw
     }()
 
@@ -63,7 +66,7 @@ class UOrdersViewController: UBaseViewController {
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
         getOrderList()
         
@@ -72,7 +75,11 @@ class UOrdersViewController: UBaseViewController {
     //MARK:网络请求-获取待处理订单列表数据
     func getOrderList(){
         loadMoreEnable = false
-        service.getOrderList(status: 1, page: pageRecord, { (OrderListResponseModel) in
+        if orderType == -1 {
+            showHUDInView(text: "功能正加速开发中", inView: self.view)
+            return
+        }
+        service.getOrderList(status: orderType, page: pageRecord, { (OrderListResponseModel) in
             if (self.pageRecord != 1) {
                 self.orderList.order.append(contentsOf: OrderListResponseModel.data.order)
             } else {
@@ -137,7 +144,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK:cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //订单商品数据展开时，需要动态获取高度再设置
-        return 507
+        return 293
     }
     
     //MARK:每组cell的数量
@@ -148,7 +155,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK:cell数量
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return CGFloat.leastNormalMagnitude
+        return section == 0 ? 16 : CGFloat.leastNormalMagnitude
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -158,47 +165,93 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK:返回每个cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //cell待更换
-        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
+//        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
 //        cell.selectionStyle = .default
-        
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UNewOrderCell.self)
         
         
         cell.modifyPriceOrDeliveryGoods = {
-            
-            if(self.orderList.order[indexPath.section].is_pay==0){
+            // 0 待付款  1待发货 2待收货 3已完成 5已取消
+            if(self.orderList.order[indexPath.section].order_status==0){
                 NSLog("修改价格")
                 self.mOrderId = self.orderList.order[indexPath.section].order_id
                 //获取点击事件
                 self.configAlertView()
                 return
             }
-            NSLog("发货")
-            let alertController = UIAlertController(title: "温馨提示", message: "请选择发货方式", preferredStyle: UIAlertController.Style.alert)
-            let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
-                (action: UIAlertAction!) -> Void in
-                self.service.deliveryGoods(order_id: self.orderList.order[indexPath.section].order_id, is_express: 0, express: "", express_no: "", words: "", {
-                    showHUDInView(text: "发货成功", inView: self.view)
-                }, { (APIErrorModel) in
-                    print(APIErrorModel.msg ?? "-----")
-                })
-            }
-            
-            let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
-                (action: UIAlertAction!) -> Void in
+            switch self.orderList.order[indexPath.section].order_status {
+            case 0:
+                NSLog("修改价格")
+                self.mOrderId = self.orderList.order[indexPath.section].order_id
+                //获取点击事件
+                self.configAlertView()
+            case 1:
+                NSLog("发货")
+                let alertController = UIAlertController(title: "温馨提示", message: "请选择发货方式", preferredStyle: UIAlertController.Style.alert)
+                let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
+                    (action: UIAlertAction!) -> Void in
+                    self.service.deliveryGoods(order_id: self.orderList.order[indexPath.section].order_id, is_express: 0, express: "", express_no: "", words: "", {
+                        showHUDInView(text: "发货成功", inView: self.view)
+                    }, { (APIErrorModel) in
+                        print(APIErrorModel.msg ?? "-----")
+                    })
+                }
+                
+                let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
+                    (action: UIAlertAction!) -> Void in
+                    let vc = USettingDeliveryController()
+                    vc.title = "设置发货"
+                    vc.orderId = self.orderList.order[indexPath.section].order_id
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                alertController.addAction(cancleAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            case 2:
                 let vc = USettingDeliveryController()
-                vc.title = "设置发货"
+                vc.title = "修改快递信息"
                 vc.orderId = self.orderList.order[indexPath.section].order_id
                 
                 self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                break
             }
-            alertController.addAction(cancleAction)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            
             
         }
+        
+        cell.moveToRecycleBin = {
+            showHUDInView(text: "此功能正在开发中", inView: self.view)
+        }
+        
         cell.model = orderList.order[indexPath.section]
 
         return cell
+        
+    }
+    
+    //MARK:每个cell即将显示时回调  在这里处理section的圆角
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let cornerRadius: CGFloat = 6.0
+        cell.backgroundColor = UIColor.clear
+        
+        let layer = CAShapeLayer()
+        let backgroundLayer = CAShapeLayer()
+        let pathRef = CGMutablePath()
+        let bounds = cell.bounds;
+
+        pathRef.addRoundedRect(in: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
+
+        layer.path = pathRef
+        backgroundLayer.path = pathRef
+        layer.fillColor = UIColor.white.cgColor
+        
+        let roundView = UIView(frame: bounds)
+        roundView.layer.insertSublayer(layer, at: 0)
+        roundView.backgroundColor = UIColor.clear
+        cell.backgroundView = roundView
         
     }
     
@@ -217,11 +270,13 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         
         let orderDetail = UOrderDetailsViewController()
         orderDetail.title = "订单详情"
+        orderDetail.orderStatus = orderList.order[indexPath.section].order_status
         orderDetail.orderId = orderList.order[indexPath.section].order_id
         navigationController?.pushViewController(orderDetail, animated: true)
         
 
     }
+    
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if (orderList.order.count != 1 && section == orderList.order.count-1){
@@ -234,9 +289,9 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         if (orderList.order.count != 1 && section == orderList.order.count-1){
             return loadMoreView
         }
-        let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-        tipView.backgroundColor = UIColor.background
-        return tipView
+//        let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+//        tipView.backgroundColor = UIColor.background
+        return nil
     }
     
     func configLoadMoreView() {

@@ -18,6 +18,13 @@ class UOrdersChildViewController: UBaseViewController {
         return JXSegmentedListContainerView(dataSource: self)
     }()
     
+    /*
+     判断是否当前的订单页面是什么状态
+     0 -> 普通订单
+     1 -> 维权订单
+     */
+    var listType = 0
+    
     var titles = [String]()
     
     override func viewDidLoad() {
@@ -84,7 +91,18 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let orderViewController = UOrdersViewController()
-//        orderViewController.
+        if listType == 0{
+            if index == 3 {
+                orderViewController.orderType = 2
+            } else if index == 4{
+                orderViewController.orderType = 3
+            } else if index == 5{
+                orderViewController.orderType = 5
+            }
+        } else {
+            orderViewController.orderType = -1
+        }
+        
         return orderViewController
     }
 }

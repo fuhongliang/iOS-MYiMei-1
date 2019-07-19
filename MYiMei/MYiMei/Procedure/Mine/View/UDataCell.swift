@@ -19,7 +19,7 @@ class UDataCell: UBaseTableViewCell {
         return tl
     }()
 
-    private lazy var decrsLabel: UILabel = {
+    var decrsLabel: UILabel = {
         let tl = UILabel()
         tl.font = UIFont.systemFont(ofSize: 12)
         tl.textColor = UIColor.white

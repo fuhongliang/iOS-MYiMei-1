@@ -87,16 +87,17 @@
 		7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */; };
 		95A2174AE09F7C516201A271 /* Pods_MYiMei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */; };
 		DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14816A22CD95A100018EED /* UAccountSafeView.swift */; };
+		DC18271F22E06181005F9410 /* UOrderDetailConfirmBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271822E06180005F9410 /* UOrderDetailConfirmBtnCell.swift */; };
+		DC18272022E06181005F9410 /* UOrderDetailSectionTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271922E06180005F9410 /* UOrderDetailSectionTitleCell.swift */; };
+		DC18272122E06181005F9410 /* UOrderDetailProcessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271A22E06180005F9410 /* UOrderDetailProcessCell.swift */; };
+		DC18272222E06181005F9410 /* UOrderDetailNameAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271B22E06180005F9410 /* UOrderDetailNameAddressCell.swift */; };
+		DC18272322E06181005F9410 /* UModifyPriceAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271C22E06181005F9410 /* UModifyPriceAlertView.swift */; };
+		DC18272422E06181005F9410 /* UOrderDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271D22E06181005F9410 /* UOrderDetailInfoCell.swift */; };
+		DC18272522E06181005F9410 /* UOrderDetailGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271E22E06181005F9410 /* UOrderDetailGoodsCell.swift */; };
 		DC18766022DDD854004FEF65 /* OrderDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */; };
 		DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */; };
 		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
 		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
-		DC1B387222DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387122DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift */; };
-		DC1B387422DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387322DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift */; };
-		DC1B387622DEBE8000C915FC /* UOrderDetailProcessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387522DEBE8000C915FC /* UOrderDetailProcessCell.swift */; };
-		DC1B387822DEBF0900C915FC /* UOrderDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387722DEBF0900C915FC /* UOrderDetailInfoCell.swift */; };
-		DC1B387A22DEBF5C00C915FC /* UOrderDetailGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387922DEBF5C00C915FC /* UOrderDetailGoodsCell.swift */; };
-		DC1B387C22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B387B22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift */; };
 		DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */; };
 		DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */; };
 		DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8122CF02FE003A4053 /* UFeedBackView.swift */; };
@@ -228,16 +229,17 @@
 		7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerViewController.swift; sourceTree = "<group>"; };
 		80184B4DF6FA1EBEDC3C8DC7 /* Pods-MYiMei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.debug.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14816A22CD95A100018EED /* UAccountSafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeView.swift; sourceTree = "<group>"; };
+		DC18271822E06180005F9410 /* UOrderDetailConfirmBtnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailConfirmBtnCell.swift; sourceTree = "<group>"; };
+		DC18271922E06180005F9410 /* UOrderDetailSectionTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailSectionTitleCell.swift; sourceTree = "<group>"; };
+		DC18271A22E06180005F9410 /* UOrderDetailProcessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailProcessCell.swift; sourceTree = "<group>"; };
+		DC18271B22E06180005F9410 /* UOrderDetailNameAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailNameAddressCell.swift; sourceTree = "<group>"; };
+		DC18271C22E06181005F9410 /* UModifyPriceAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UModifyPriceAlertView.swift; sourceTree = "<group>"; };
+		DC18271D22E06181005F9410 /* UOrderDetailInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailInfoCell.swift; sourceTree = "<group>"; };
+		DC18271E22E06181005F9410 /* UOrderDetailGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailGoodsCell.swift; sourceTree = "<group>"; };
 		DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailResponseModel.swift; sourceTree = "<group>"; };
 		DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
 		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
-		DC1B387122DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailSectionTitleCell.swift; sourceTree = "<group>"; };
-		DC1B387322DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailNameAddressCell.swift; sourceTree = "<group>"; };
-		DC1B387522DEBE8000C915FC /* UOrderDetailProcessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailProcessCell.swift; sourceTree = "<group>"; };
-		DC1B387722DEBF0900C915FC /* UOrderDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailInfoCell.swift; sourceTree = "<group>"; };
-		DC1B387922DEBF5C00C915FC /* UOrderDetailGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailGoodsCell.swift; sourceTree = "<group>"; };
-		DC1B387B22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailConfirmBtnCell.swift; sourceTree = "<group>"; };
 		DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordView.swift; sourceTree = "<group>"; };
 		DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordController.swift; sourceTree = "<group>"; };
 		DC221C8122CF02FE003A4053 /* UFeedBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFeedBackView.swift; sourceTree = "<group>"; };
@@ -343,6 +345,13 @@
 		0AD5FC5822CC95D1008CE6CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DC18271C22E06181005F9410 /* UModifyPriceAlertView.swift */,
+				DC18271822E06180005F9410 /* UOrderDetailConfirmBtnCell.swift */,
+				DC18271E22E06181005F9410 /* UOrderDetailGoodsCell.swift */,
+				DC18271D22E06181005F9410 /* UOrderDetailInfoCell.swift */,
+				DC18271B22E06180005F9410 /* UOrderDetailNameAddressCell.swift */,
+				DC18271A22E06180005F9410 /* UOrderDetailProcessCell.swift */,
+				DC18271922E06180005F9410 /* UOrderDetailSectionTitleCell.swift */,
 				0AD5FC6022CCA195008CE6CF /* UOderCell.swift */,
 				0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */,
 				DC264EE922D324D8001FDAD6 /* USettingDeliveryView.swift */,
@@ -911,12 +920,13 @@
 			files = (
 				7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */,
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
-				DC1B387C22DF093900C915FC /* UOrderDetailConfirmBtnCell.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
+				DC18272322E06181005F9410 /* UModifyPriceAlertView.swift in Sources */,
 				DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */,
 				0AB057BF22D74074002B7E40 /* UModifySetUpShopView.swift in Sources */,
 				7B9EB94A22C4988E003D9121 /* UGoodsDetailView.swift in Sources */,
 				DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */,
+				DC18272222E06181005F9410 /* UOrderDetailNameAddressCell.swift in Sources */,
 				7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */,
 				7BAB354022C0D1BB00154D36 /* UIColorExtension.swift in Sources */,
 				0A0FF6CA22CB004B003F4B53 /* UReviewView.swift in Sources */,
@@ -924,8 +934,8 @@
 				7BAB355822C1B8E900154D36 /* UIScrollView+ParallaxHeader.swift in Sources */,
 				7BAB352222C0C56400154D36 /* Global.swift in Sources */,
 				DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */,
+				DC18271F22E06181005F9410 /* UOrderDetailConfirmBtnCell.swift in Sources */,
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
-				DC1B387A22DEBF5C00C915FC /* UOrderDetailGoodsCell.swift in Sources */,
 				7BAB354422C0D6FA00154D36 /* UIBarButtonItemExtension.swift in Sources */,
 				0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */,
 				7B08932922D888B500872136 /* PlatCateResponeModel.swift in Sources */,
@@ -944,7 +954,9 @@
 				7B41456622C4DABE00BB61D0 /* GoodsResponeModel.swift in Sources */,
 				7B41456C22C4DB3700BB61D0 /* UBottomTab.swift in Sources */,
 				DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */,
+				DC18272422E06181005F9410 /* UOrderDetailInfoCell.swift in Sources */,
 				0AB057C922D9725A002B7E40 /* USettingController.swift in Sources */,
+				DC18272122E06181005F9410 /* UOrderDetailProcessCell.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
 				0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */,
 				7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */,
@@ -963,7 +975,6 @@
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
 				DC7E297722D5754600AC3F21 /* UMenuDepost.swift in Sources */,
 				7BAB352022C0C3D300154D36 /* APIServices.swift in Sources */,
-				DC1B387622DEBE8000C915FC /* UOrderDetailProcessCell.swift in Sources */,
 				0A0FF6C622C9AF09003F4B53 /* UMchJoinView.swift in Sources */,
 				7BAB356222C1F5EF00154D36 /* UMenuGoodsManagement.swift in Sources */,
 				7B7B15CB22D6DED50082F227 /* StoreDashBoardModel.swift in Sources */,
@@ -972,16 +983,15 @@
 				7B2DE2AF22D5B5C000AD6FDD /* RPicker.swift in Sources */,
 				7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */,
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,
-				DC1B387822DEBF0900C915FC /* UOrderDetailInfoCell.swift in Sources */,
 				0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */,
 				7BAB355022C1AF4600154D36 /* UMineHead.swift in Sources */,
 				7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */,
 				DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */,
 				7B7B15CF22D70EB50082F227 /* StoreDepostModel.swift in Sources */,
+				DC18272522E06181005F9410 /* UOrderDetailGoodsCell.swift in Sources */,
 				7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */,
 				DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */,
 				7BAB355C22C1C93000154D36 /* UStoreEventsCell.swift in Sources */,
-				DC1B387222DEBE2F00C915FC /* UOrderDetailSectionTitleCell.swift in Sources */,
 				7B08932322D728F300872136 /* UDepostStatusCell.swift in Sources */,
 				7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */,
 				7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */,
@@ -997,6 +1007,7 @@
 				DC18766022DDD854004FEF65 /* OrderDetailResponseModel.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
 				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
+				DC18272022E06181005F9410 /* UOrderDetailSectionTitleCell.swift in Sources */,
 				DC7E297B22D575E200AC3F21 /* UChooseAddressFromMap.swift in Sources */,
 				7BAB356022C1F2CD00154D36 /* UMenuCell.swift in Sources */,
 				DC7E297522D5750600AC3F21 /* UploadFileResponeModel.swift in Sources */,
@@ -1017,7 +1028,6 @@
 				0AB057AD22D2D68D002B7E40 /* UManagementClassificationCell.swift in Sources */,
 				7B08931A22D7151000872136 /* UMeDepost.swift in Sources */,
 				7BAB353D22C0D16900154D36 /* UNavigationController.swift in Sources */,
-				DC1B387422DEBE3D00C915FC /* UOrderDetailNameAddressCell.swift in Sources */,
 				DC221C8822CF32CF003A4053 /* USetUpShopController.swift in Sources */,
 				7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */,
 			);

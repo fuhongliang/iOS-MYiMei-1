@@ -13,7 +13,7 @@ class USettingController: UBaseViewController {
     let mSettingController = UNewOrderCell()
     
     override func configUI() {
-        mSettingController.setView()
+//        mSettingController.setView()
         self.view.addSubview(mSettingController)
         self.view.backgroundColor = UIColor.white
         
