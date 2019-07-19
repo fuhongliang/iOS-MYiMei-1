@@ -192,6 +192,7 @@
 		7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyResponeModel.swift; sourceTree = "<group>"; };
 		7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		7B2DE2AE22D5B5C000AD6FDD /* RPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPicker.swift; sourceTree = "<group>"; };
+		7B3127E522E1B1ED0083D544 /* MYiMei-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MYiMei-Bridging-Header.h"; sourceTree = "<group>"; };
 		7B41455B22C4DA2B00BB61D0 /* APIGoodsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGoodsServices.swift; sourceTree = "<group>"; };
 		7B41455D22C4DA4400BB61D0 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		7B41456522C4DABE00BB61D0 /* GoodsResponeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsResponeModel.swift; sourceTree = "<group>"; };
@@ -456,8 +457,10 @@
 		7BAB351C22C0B51900154D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC7E297E22D5762700AC3F21 /* Swift-Bridging-Header.h */,
 				0AB057D222DC1934002B7E40 /* Assets.xcassets */,
 				7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */,
+				7B3127E522E1B1ED0083D544 /* MYiMei-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -472,8 +475,8 @@
 				7BAB353322C0D09D00154D36 /* Orders */,
 				7BAB353222C0D09600154D36 /* Login */,
 				7BAB352B22C0CFDB00154D36 /* Base */,
-				7BAB352122C0C56400154D36 /* Global.swift */,
 				7BAB353422C0D0A700154D36 /* ManageOrders */,
+				7BAB352122C0C56400154D36 /* Global.swift */,
 			);
 			path = Procedure;
 			sourceTree = "<group>";
@@ -612,7 +615,6 @@
 		7BAB354822C0D85B00154D36 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DC7E297E22D5762700AC3F21 /* Swift-Bridging-Header.h */,
 				DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */,
 				7BAB354522C0D7D500154D36 /* ULoginViewController.swift */,
 				0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */,
@@ -817,6 +819,7 @@
 				TargetAttributes = {
 					7BAB34EA22C0AE1200154D36 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					7BAB34FE22C0AE1400154D36 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -1234,6 +1237,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6L4S78C444;
 				INFOPLIST_FILE = MYiMei/Info.plist;
@@ -1243,6 +1247,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xfigo.MYiMei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MYiMei/Supporting Files/MYiMei-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MYiMei-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1254,6 +1261,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6L4S78C444;
 				INFOPLIST_FILE = MYiMei/Info.plist;
@@ -1263,6 +1271,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xfigo.MYiMei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MYiMei/Supporting Files/MYiMei-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MYiMei-Swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
