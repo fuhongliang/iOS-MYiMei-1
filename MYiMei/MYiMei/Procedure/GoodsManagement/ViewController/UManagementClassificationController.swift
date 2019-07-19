@@ -108,11 +108,7 @@ extension UManagementClassificationController: UITableViewDelegate,UITableViewDa
         }
         
         cell.deleteCategory = {
-            self.service.deleteGoodsCat(catId: String(self.categoryList[indexPath.section].id ?? 0), { () in
-                showHUDInView(text: "删除成功", inView: self.view)
-            }, { (APIErrorModel) in
-                showHUDInView(text: "删除失败", inView: self.view)
-            })
+            self.showAlertControllerStyle(title: "温馨提示", message: "删除该分类将会删除分类下所有商品", categoryId: self.categoryList[indexPath.section].id ?? 0)
         }
         
         cell.model = categoryList[indexPath.section]
@@ -120,5 +116,28 @@ extension UManagementClassificationController: UITableViewDelegate,UITableViewDa
         return cell
         
     }
+    
+    //MARK: 提示框
+    func showAlertControllerStyle(title:String , message:String,categoryId:Int) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+            (action: UIAlertAction!) -> Void in
+            self.deleteCategory(categoryId: categoryId)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteCategory(categoryId:Int) {
+        self.service.deleteGoodsCat(catId: String(categoryId), { () in
+            showHUDInView(text: "删除成功", inView: self.view)
+            self.getCategoryInfo()
+        }, { (APIErrorModel) in
+            showHUDInView(text: "删除失败", inView: self.view)
+        })
+    }
+    
   
 }

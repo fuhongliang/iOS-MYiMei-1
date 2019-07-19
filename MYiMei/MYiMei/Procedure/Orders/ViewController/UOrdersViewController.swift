@@ -172,13 +172,6 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.modifyPriceOrDeliveryGoods = {
             // 0 待付款  1待发货 2待收货 3已完成 5已取消
-            if(self.orderList.order[indexPath.section].order_status==0){
-                NSLog("修改价格")
-                self.mOrderId = self.orderList.order[indexPath.section].order_id
-                //获取点击事件
-                self.configAlertView()
-                return
-            }
             switch self.orderList.order[indexPath.section].order_status {
             case 0:
                 NSLog("修改价格")
@@ -273,7 +266,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         orderDetail.orderStatus = orderList.order[indexPath.section].order_status
         orderDetail.orderId = orderList.order[indexPath.section].order_id
         navigationController?.pushViewController(orderDetail, animated: true)
-        
+        showHUDInView(text: "T##String,,", inView: self.view)
 
     }
     
