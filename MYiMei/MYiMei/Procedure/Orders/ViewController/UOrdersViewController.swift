@@ -264,6 +264,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         orderDetail.title = "订单详情"
         orderDetail.orderStatus = orderList.order[indexPath.section].order_status
         orderDetail.orderId = orderList.order[indexPath.section].order_id
+//        UINavigationController.init(rootViewController: self).pushViewController(orderDetail, animated: true)
         navigationController?.pushViewController(orderDetail, animated: true)
     }
     

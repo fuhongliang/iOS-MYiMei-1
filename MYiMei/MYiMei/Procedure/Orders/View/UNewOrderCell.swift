@@ -295,9 +295,10 @@ class UNewOrderCell: UBaseTableViewCell {
                     modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
                         ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
                         ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-                        ConstraintMaker.width.equalTo(105)
+                        ConstraintMaker.width.equalTo(145)
                         ConstraintMaker.height.equalTo(30)
                     }
+//                    modifyPriceBtn.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
                 case 3:
                     pendingPaymentLaber.text = "已完成"
                     pendingPaymentLaber.textColor = UIColor.hex(hexString: "#07D781")
@@ -322,11 +323,11 @@ class UNewOrderCell: UBaseTableViewCell {
                     pendingPaymentLaber.text = "已完成"
                     pendingPaymentLaber.textColor = UIColor.hex(hexString: "#07D781")
                     modifyPriceBtn.removeFromSuperview()
-                    recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-                        ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                        ConstraintMaker.right.equalToSuperview().offset(-15)
-                        ConstraintMaker.width.equalTo(95)
-                        ConstraintMaker.height.equalTo(30)
+//                    recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
+//                        ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+//                        ConstraintMaker.right.equalToSuperview().offset(-15)
+//                        ConstraintMaker.width.equalTo(95)
+//                        ConstraintMaker.height.equalTo(30)
             }
             userNameLaber.text = model.name
             userPhoneLaber.text = model.mobile
@@ -353,4 +354,3 @@ class UNewOrderCell: UBaseTableViewCell {
     
 }
 
-}
