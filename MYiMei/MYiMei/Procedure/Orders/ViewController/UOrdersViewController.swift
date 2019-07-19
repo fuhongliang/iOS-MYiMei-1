@@ -46,6 +46,7 @@ class UOrdersViewController: UBaseViewController {
         tw.delegate = self
         tw.dataSource = self
         tw.register(cellType: UOderCell.self)
+        tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
         return tw
     }()
 
@@ -73,12 +74,15 @@ class UOrdersViewController: UBaseViewController {
                 self.orderList = OrderListResponseModel.data
                 self.tableView.refreshControl?.endRefreshing()
             }
+
             if(OrderListResponseModel.data.order.count >= 20){
                 self.loadMoreEnable = true
             } else {
                 self.loadMoreEnable = false
                 self.activity.stopAnimating()
             }
+
+            self.tableView.uempty?.allowShow = true
             self.tableView.reloadData()
             self.pageRecord += 1
             

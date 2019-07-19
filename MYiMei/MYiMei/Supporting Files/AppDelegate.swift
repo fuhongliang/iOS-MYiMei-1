@@ -20,15 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         APIUser.shared.loadUserFromCache()
-//        if APIUser.shared.user != nil {
-//            self.window?.rootViewController = UTabBarController()
-//        }else {
+        if APIUser.shared.user != nil {
+            self.window?.rootViewController = UTabBarController()
+        }else {
             //测试
-            let vc = USettingController()
+            let vc = ULoginViewController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
-//        }
-        
+        }
+
         window?.makeKeyAndVisible()
         return true
     }
