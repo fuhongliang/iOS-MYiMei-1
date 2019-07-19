@@ -458,7 +458,6 @@
 			children = (
 				0AB057D222DC1934002B7E40 /* Assets.xcassets */,
 				7BAB34EE22C0AE1200154D36 /* AppDelegate.swift */,
-				7BAB353422C0D0A700154D36 /* ManageOrders */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -474,6 +473,7 @@
 				7BAB353222C0D09600154D36 /* Login */,
 				7BAB352B22C0CFDB00154D36 /* Base */,
 				7BAB352122C0C56400154D36 /* Global.swift */,
+				7BAB353422C0D0A700154D36 /* ManageOrders */,
 			);
 			path = Procedure;
 			sourceTree = "<group>";
