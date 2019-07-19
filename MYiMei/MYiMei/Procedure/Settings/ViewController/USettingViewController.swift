@@ -1,5 +1,5 @@
 //
-//  USettingController.swift
+//  USettingViewController.swift
 //  MYiMei
 //
 //  Created by KevinFu on 2019/7/13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class USettingController: UBaseViewController {
+class USettingViewController: UBaseViewController {
     
     let mSettingController = UAboutUsView()
     

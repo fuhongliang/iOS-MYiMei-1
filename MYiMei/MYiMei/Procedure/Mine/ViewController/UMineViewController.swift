@@ -106,6 +106,13 @@ class UMineViewController: UBaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    //MARK:跳转关于平台
+    func goToAboutUsView() {
+        let vc = AboutUsViewController()
+        vc.title = "关于平台"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     //MARK:跳转店铺设置
     func goToSetUpShop() {
         let vc = USetUpShopController()
@@ -215,6 +222,8 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
                 self.goToAccountSafe()
             }else if(indexPath.row == 2){
                 showAlertControllerStyle()
+            }else if(indexPath.row == 3){
+                self.goToAboutUsView()
             }
         }
     }
