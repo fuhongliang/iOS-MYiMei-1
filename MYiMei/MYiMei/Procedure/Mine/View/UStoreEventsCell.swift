@@ -70,7 +70,7 @@ class UStoreEventsCell: UBaseTableViewCell {
         let ll = UILabel()
         ll.font = UIFont.systemFont(ofSize: 11)
         ll.textColor = UIColor.hex(hexString: "#666666")
-        ll.text = "店铺商品总量"
+        ll.text = "店铺总收入"
         ll.textAlignment = .center
         return ll
     }()
@@ -145,6 +145,7 @@ class UStoreEventsCell: UBaseTableViewCell {
             ConstraintMaker.width.equalToSuperview()
         }
 
+
         contentView.addSubview(todayIncome)
         todayIncome.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerX.equalToSuperview()
@@ -152,6 +153,7 @@ class UStoreEventsCell: UBaseTableViewCell {
             ConstraintMaker.width.equalToSuperview().dividedBy(2)
         }
 
+        todayOrders.decrsLabel.text = "今日订单数/单"
         contentView.addSubview(todayOrders)
         todayOrders.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(todayIncome.snp.right)
@@ -325,12 +327,12 @@ class UStoreEventsCell: UBaseTableViewCell {
     var model: DashBoardModel? {
         didSet {
             guard let model = model else { return }
-            todayIncome.dataLabel.text = String(model.total_income_day)
-            todayOrders.dataLabel.text = String(model.order_num_day)
-            storeOrdersAmountLabel.text = String(model.total_order_count)
-            storeGoodsAmountLabel.text = String(model.total_goods_count)
-            thirtyDaysOrderAmountLabel.text = String(model.order_num_thirty)
-            thirtyDaysIncomeAmountLabel.text = String(model.total_income_thirty)
+            todayIncome.dataLabel.text = String(model.sell_statistics_today?.order_price ?? "0.00")
+            todayOrders.dataLabel.text = String(model.sell_statistics_today?.order_num ?? 0)
+            storeOrdersAmountLabel.text = String(model.sell_statistics_total?.order_num ?? 0)
+            storeGoodsAmountLabel.text = String(model.sell_statistics_total?.order_price ?? "0.00")
+            thirtyDaysOrderAmountLabel.text = String(model.sell_statistics_thirtydays?.order_num ?? 0)
+            thirtyDaysIncomeAmountLabel.text = String(model.sell_statistics_thirtydays?.order_price ?? "0.00")
         }
     }
 }

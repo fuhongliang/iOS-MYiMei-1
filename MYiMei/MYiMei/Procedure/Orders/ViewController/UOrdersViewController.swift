@@ -52,7 +52,8 @@ class UOrdersViewController: UBaseViewController {
         tw.showsVerticalScrollIndicator = false
         tw.delegate = self
         tw.dataSource = self
-//        tw.register(cellType: UOderCell.self)
+        tw.register(cellType: UOderCell.self)
+        tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
         tw.register(cellType: UNewOrderCell.self)
         return tw
     }()
@@ -85,12 +86,15 @@ class UOrdersViewController: UBaseViewController {
                 self.orderList = OrderListResponseModel.data
                 self.tableView.refreshControl?.endRefreshing()
             }
+
             if(OrderListResponseModel.data.order.count >= 20){
                 self.loadMoreEnable = true
             } else {
                 self.loadMoreEnable = false
                 self.activity.stopAnimating()
             }
+
+            self.tableView.uempty?.allowShow = true
             self.tableView.reloadData()
             self.pageRecord += 1
             
@@ -256,15 +260,12 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let orderDetail = UOrderDetailsViewController()
         orderDetail.title = "订单详情"
         orderDetail.orderStatus = orderList.order[indexPath.section].order_status
         orderDetail.orderId = orderList.order[indexPath.section].order_id
 //        UINavigationController.init(rootViewController: self).pushViewController(orderDetail, animated: true)
         navigationController?.pushViewController(orderDetail, animated: true)
-        showHUDInView(text: "T##String,,", inView: self.view)
-
     }
     
     
@@ -279,8 +280,6 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         if (orderList.order.count != 1 && section == orderList.order.count-1){
             return loadMoreView
         }
-//        let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-//        tipView.backgroundColor = UIColor.background
         return nil
     }
     

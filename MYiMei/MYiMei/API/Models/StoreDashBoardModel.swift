@@ -26,20 +26,48 @@ class StoreDashBoardResponeDataModel: Codable {
 
 class DashBoardModel: Codable {
 
-    var order_num_day = Int()
+    var sell_statistics_today: SellStatisticsTodayModel?
+    var sell_statistics_yesterday: SellStatisticsTodayModel?
+    var sell_statistics_sevendays: SellStatisticsTodayModel?
+    var sell_statistics_thirtydays: SellStatisticsTodayModel?
+    var sell_statistics_total: SellStatisticsTodayModel?
 
-    var order_num_thirty = Int()
+    var order_statistics: OrderStatisticsModel?
+    var order_price_chart: OrderPriceChartModel?
+}
 
-    var total_goods_count = Int()
+class SellStatisticsTodayModel: Codable {
 
-    var total_order_count = Int()
+    var order_num = Int()
 
-    var total_income_day = String()
-
-    var total_income_thirty = String()
-
-    var operate_data_url:String?
-
-    var contact_platform_tel: String?
+    var order_price = String()
 
 }
+
+class OrderStatisticsModel: Codable {
+
+    var wait_pay_orders = Int()
+
+     var wait_send_orders = Int()
+
+    var refunding_orders = Int()
+
+}
+
+class OrderPriceChartModel: Codable {
+    var today: OrderPriceChartTodayModel?
+    var yesterday: OrderPriceChartTodayModel?
+    var sevenday: OrderPriceChartTodayModel?
+    var thirtyday: OrderPriceChartTodayModel?
+}
+
+class OrderPriceChartTodayModel: Codable {
+
+    var time = [String]()
+
+    var income = [String]()
+
+}
+
+
+

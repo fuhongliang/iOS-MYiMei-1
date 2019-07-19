@@ -43,6 +43,10 @@ class UGoodsManagementController: UBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .top
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.configNavigationBar()
         loadCategoryData()
     }
 
@@ -66,6 +70,7 @@ class UGoodsManagementController: UBaseViewController {
         service.getGoodsList(mch_id: mch_id, cat_id: categoryList[curCategoryIndex].id!, access_token: access_token, { (GoodsResponeModel) in
             self.goodsList = GoodsResponeModel.data?.goods ?? []
             self.goodsTableView.reloadData()
+            self.goodsTableView.uHead.endRefreshing()
         }) { (APIErrorModel) in
             showHUDInView(text: "拉取列表失败", inView: self.view)
         }

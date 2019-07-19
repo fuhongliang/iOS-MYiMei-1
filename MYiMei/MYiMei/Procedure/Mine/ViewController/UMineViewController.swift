@@ -106,6 +106,13 @@ class UMineViewController: UBaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    //MARK:跳转关于平台
+    func goToAboutUsView() {
+        let vc = AboutUsViewController()
+        vc.title = "关于平台"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     //MARK:跳转店铺设置
     func goToSetUpShop() {
         let vc = USetUpShopController()
@@ -215,6 +222,8 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
                 self.goToAccountSafe()
             }else if(indexPath.row == 2){
                 showAlertControllerStyle()
+            }else if(indexPath.row == 3){
+                self.goToAboutUsView()
             }
         }
     }
@@ -233,8 +242,9 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
             let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
                 (action: UIAlertAction!) -> Void in
-                // phoneStr:  电话号码
-                let phone = "telprompt://" + self.storeData.store!.contact_platform_tel! ?? "18825110997"
+
+                let phone = "telprompt://" + APIUser.shared.user!.service_tel!
+
                 if UIApplication.shared.canOpenURL(URL(string: phone)!) {
                     UIApplication.shared.openURL(URL(string: phone)!)
                 }
