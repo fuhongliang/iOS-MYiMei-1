@@ -90,20 +90,19 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
     }
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        let orderViewController = UOrdersViewController()
+        let vc = UOrdersViewController()
         if listType == 0{
             if index == 3 {
-                orderViewController.orderType = 2
+                vc.orderType = 2
             } else if index == 4{
-                orderViewController.orderType = 3
+                vc.orderType = 3
             } else if index == 5{
-                orderViewController.orderType = 5
+                vc.orderType = 5
             }
         } else {
-            orderViewController.orderType = -1
+            vc.orderType = -1
         }
-        
-        return orderViewController
+        return vc
     }
 }
 

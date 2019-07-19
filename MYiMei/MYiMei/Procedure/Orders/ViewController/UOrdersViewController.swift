@@ -260,14 +260,11 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let orderDetail = UOrderDetailsViewController()
         orderDetail.title = "订单详情"
         orderDetail.orderStatus = orderList.order[indexPath.section].order_status
         orderDetail.orderId = orderList.order[indexPath.section].order_id
         navigationController?.pushViewController(orderDetail, animated: true)
-        showHUDInView(text: "T##String,,", inView: self.view)
-
     }
     
     
@@ -282,8 +279,6 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         if (orderList.order.count != 1 && section == orderList.order.count-1){
             return loadMoreView
         }
-//        let tipView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-//        tipView.backgroundColor = UIColor.background
         return nil
     }
     
