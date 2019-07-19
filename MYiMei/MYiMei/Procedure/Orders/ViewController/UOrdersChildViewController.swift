@@ -91,6 +91,7 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let orderViewController = UOrdersViewController()
+    
         if listType == 0{
             if index == 3 {
                 orderViewController.orderType = 2
