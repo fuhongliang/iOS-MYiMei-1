@@ -198,7 +198,7 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
                 self.goToSetUpShop()
             }
             cell.subscribeBusinessDataAction = {
-                NSLog("经营数据被点击了")
+                 showHUDInView(text: "此功能正在开发中", inView: self.view)
             }
             cell.model = storeData.store
             return cell

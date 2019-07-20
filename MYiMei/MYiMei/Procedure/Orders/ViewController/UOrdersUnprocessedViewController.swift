@@ -73,12 +73,7 @@ class UOrdersUnprocessedViewController: UBaseViewController {
         getOrderList()
         
     }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshOrderData()
-    }
+
     
     
     //MARK:网络请求-获取待处理订单列表数据
@@ -199,7 +194,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
     //MARK:cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //订单商品数据展开时，需要动态获取高度再设置
-        return 290
+        return 280
     }
     
     //MARK:每组cell的数量
@@ -355,6 +350,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
             kButtonFont: UIFont(name: "HelveticaNeue", size: 18)!,
             showCloseButton: false,
             showCircularIcon: false,
+            hideWhenBackgroundViewIsTapped:true,
             buttonsLayout: .horizontal
         )
         
@@ -448,7 +444,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
         
         alert?.customSubview = subview
         
-        alert?.showEdit("价格修改", subTitle: "ddddddddd")
+        alert?.showEdit("价格修改", subTitle: "ddddddddd",animationStyle:.noAnimation)
         
     }
     
@@ -466,6 +462,10 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
                 devily = goodsPrice
             }
         }
+
+        if(goodspp == 0 && devily == 0){
+            return
+        }
         
         self.reduceOrderPrice(orderId: mOrderId, updatePrice: goodspp, updateExpress: devily)
         alert?.hideView()
@@ -475,15 +475,21 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
     @objc func addPrice(orderId: Int,updatePrice: Int, updateExpress: Int){
         var goodspp:Int = 0
         var devily:Int = 0
+
         if(inputGoodsPriceTF.text?.count ?? 0 >= 0){
             if let goodsPrice = Int(inputGoodsPriceTF.text ?? "0") {
                 goodspp = goodsPrice
             }
         }
+
         if(inputFreightPriceTF.text?.count ?? 0 >= 0){
             if let goodsPrice = Int(inputFreightPriceTF.text ?? "0") {
                 devily = goodsPrice
             }
+        }
+
+        if(goodspp == 0 && devily == 0){
+            return
         }
         
         self.addOrderPrice(orderId: mOrderId, updatePrice: goodspp, updateExpress: devily)
