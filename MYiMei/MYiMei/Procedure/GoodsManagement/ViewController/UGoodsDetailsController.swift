@@ -39,35 +39,124 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
 
     var goodsPicArray = [String]()
 
+    var serviceArray = [String]()
+
     var plat_cat_id = 0
 
     var goods_cat_id = 0
+
+    var goods_id = 0
+
+    var goodsDetailModel = GoodsDetail()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .top
         loadGoodsDetailData()
         getPlatCat()
+        if(goods_id != 0){
+            loadGoodsDetailData()
+        }
     }
 
 
-    convenience init(goodscateList:[CategoryModel]?) {
+    convenience init(goodscateList:[CategoryModel]?,goodsId:Int) {
         self.init()
         self.goodscateList = goodscateList!
+        self.goods_id = goodsId
     }
 
 
     @objc private func loadGoodsDetailData() {
-        //        let mch_id: Int = APIUser.shared.user!.mch_id ?? 0
-        //        let access_token: String = getToken()
-        //        service.getCategory(mch_id: mch_id, access_token: access_token, { (CategoryResponeModel) in
-        //            self.categoryList = CategoryResponeModel.data?.cats ?? []
-        //            self.categoryTableView.reloadData()
-        //            self.loadGoodsData()
-        //        }, { (APIErrorModel) in
-        //            showHUDInView(text: "拉取列表失败", inView: self.view)
-        //        })
+        let mch_id: Int = APIUser.shared.user!.mch_id ?? 0
+        let access_token: String = getToken()
+        goodsService.getGoodsDetail(mch_id: mch_id, goods_id: goods_id, access_token: access_token, { (GoodsDetailResponeModel) in
+            self.goodsDetailModel = GoodsDetailResponeModel.data!.goods!
+            self.setViewData()
+        }, { (APIErrorModel) in
+            showHUDInView(text: APIErrorModel.msg ?? "获取商品详情失败", inView: self.view)
+        })
+    }
 
+    func setViewData(){
+        self.goodsDetailView.goodsNameTF.text = goodsDetailModel.goods_name
+        self.goodsDetailView.goodsDescr.palceholdertextView.text = goodsDetailModel.detail
+        let image = UIImageView()
+        image.kf.setImage(with: URL(string: goodsDetailModel.cover_pic!))
+        self.goodsDetailView.addGoodsCoverPic.setBackgroundImage(image.image, for: UIControl.State.normal)
+
+        let imageGoodsPic = UIImageView()
+        imageGoodsPic.kf.setImage(with: URL(string: goodsDetailModel.goods_pic![0]))
+        self.goodsDetailView.addGoodsPic.setBackgroundImage(imageGoodsPic.image, for: UIControl.State.normal)
+        self.goodsDetailView.choosegoodsClassBtn.setTitle(getGoodsCat(cat_id: goodsDetailModel.goods_cat_id ?? 0), for: UIControl.State.normal)
+        self.goodsDetailView.choosePlatformClassBtn.setTitle(getPaltCat(cat_id: goodsDetailModel.goods_cat_id ?? 0), for: UIControl.State.normal)
+
+        self.goodsDetailView.unitClassTF.text = goodsDetailModel.unit
+        self.goodsDetailView.weightTF.text = String(goodsDetailModel.weight)
+        self.goodsDetailView.originalPriceTF.text = goodsDetailModel.original_price
+        self.goodsDetailView.goodsPriceTF.text = goodsDetailModel.price
+        self.goodsDetailView.amountTF.text = String(goodsDetailModel.goods_num)
+
+        self.goodsDetailView.piecesDesrcTF.text = goodsDetailModel.full_cut?.pieces
+        self.goodsDetailView.foreDesrcTF.text = goodsDetailModel.full_cut?.forehead
+
+        self.serviceArray = goodsDetailModel.service!.components(separatedBy: ",")
+        self.serviceTag = goodsDetailModel.service!
+        if(self.serviceArray.count>0){
+            for service in self.serviceArray{
+                if(service == self.goodsDetailView.doorDeliveryTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.doorDeliveryTagBtn)
+                    self.goodsDetailView.doorDeliveryTagBtn.isSelected = true
+                }
+                if(service == self.goodsDetailView.professionalInstallationTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.professionalInstallationTagBtn)
+                    self.goodsDetailView.professionalInstallationTagBtn.isSelected = true
+                }
+                if(service == self.goodsDetailView.doorReturnTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.doorReturnTagBtn)
+                    self.goodsDetailView.doorReturnTagBtn.isSelected = true
+                }
+
+                if(service == self.goodsDetailView.qualityAssuranceCommitmentTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.qualityAssuranceCommitmentTagBtn)
+                    self.goodsDetailView.qualityAssuranceCommitmentTagBtn.isSelected = true
+                }
+
+                if(service == self.goodsDetailView.realThingReleasedTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.realThingReleasedTagBtn)
+                    self.goodsDetailView.realThingReleasedTagBtn.isSelected = true
+                }
+
+                if(service == self.goodsDetailView.newPreferentialTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.newPreferentialTagBtn)
+                    self.goodsDetailView.newPreferentialTagBtn.isSelected = true
+                }
+                if(service == self.goodsDetailView.restAssuredBuyTagBtn.titleLabel?.text!){
+                    tagBtnSet.updateValue(service + ",", forKey: self.goodsDetailView.restAssuredBuyTagBtn)
+                    self.goodsDetailView.restAssuredBuyTagBtn.isSelected = true
+                }
+            }
+        }
+
+    }
+
+
+    func getGoodsCat(cat_id:Int) -> String {
+        for categoryModel in goodscateList{
+            if(categoryModel.id == cat_id){
+                return categoryModel.name ?? ""
+            }
+        }
+        return ""
+    }
+
+    func getPaltCat(cat_id:Int) -> String {
+        for platCateModel in cateList{
+            if(platCateModel.id == cat_id){
+                return platCateModel.name ?? ""
+            }
+        }
+        return ""
     }
 
     override func configUI() {
@@ -189,7 +278,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         switch choosePicType {
         case 0:
             // 获取图片
-            let image = ImagePressHelper.init().resizeImage(originalImg: self.goodsDetailView.addGoodsCoverPic.backgroundImage(for: UIControl.State.normal)!)
+            let image = ImagePressHelper.init().resizeImage(originalImg:self.goodsDetailView.addGoodsCoverPic.backgroundImage(for: UIControl.State.normal)!)
             // 将图片转化成Data
             let imageData = ImagePressHelper.init().compressImageSize(image: image)
             // 将Data转化成 base64的字符串

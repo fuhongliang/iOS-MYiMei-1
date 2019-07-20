@@ -115,7 +115,7 @@ class UGoodsManagementController: UBaseViewController {
 
     //MARK:发布商品
     @objc func showGoodDetailView(){
-        let vc = UGoodsDetailsController(goodscateList: categoryList)
+        let vc = UGoodsDetailsController(goodscateList: categoryList,goodsId: 0)
         vc.title = "发布商品"
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -235,7 +235,7 @@ extension UGoodsManagementController: UITableViewDelegate, UITableViewDataSource
                 self.popupGoods(goodsIndex:indexPath.row,status: self.goodsList[indexPath.row].status == 0 ? 1 : 0)
             }
             cell.subscribeGoodsEditAction = {
-                let vc = UGoodsDetailsController(goodscateList: self.categoryList)
+                let vc = UGoodsDetailsController(goodscateList: self.categoryList,goodsId: self.goodsList[indexPath.row].goods_id!)
                 vc.title = "编辑商品"
                 self.navigationController?.pushViewController(vc, animated: true)
             }

@@ -37,9 +37,35 @@ protocol APIGoodsServicesProtocol {
     
     //获取平台分类
     func getMchPtCats( _ success: @escaping(((PlatCateResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
+    //获取平台分类
+    func getGoodsDetail(mch_id: Int,goods_id: Int, access_token: String, _ success: @escaping(((GoodsDetailResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+
+
 }
 
 class APIGoodsServices: APIGoodsServicesProtocol {
+    func getGoodsDetail(mch_id: Int, goods_id: Int, access_token: String, _ success: @escaping (((GoodsDetailResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":String(mch_id),
+            "goods_id":String(goods_id),
+            "access_token":access_token,
+            "is_debug":"1"
+        ]
+        APIService.shared.request(.getGoodsDetail(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(GoodsDetailResponeModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+
+    }
     
     func editGoodsCat(catId: Int, name: String, sort: Int, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [

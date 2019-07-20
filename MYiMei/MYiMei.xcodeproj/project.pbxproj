@@ -96,6 +96,7 @@
 		7BAB356622C1F66900154D36 /* UMenuBusinessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */; };
 		7BAB356922C224E800154D36 /* UGoodsManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB356822C224E800154D36 /* UGoodsManagementController.swift */; };
 		7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */; };
+		7BF09D2A22E3058A003B6D14 /* GoodsDetailResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF09D2922E3058A003B6D14 /* GoodsDetailResponeModel.swift */; };
 		95A2174AE09F7C516201A271 /* Pods_MYiMei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */; };
 		DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14816A22CD95A100018EED /* UAccountSafeView.swift */; };
 		DC18271F22E06181005F9410 /* UOrderDetailConfirmBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18271822E06180005F9410 /* UOrderDetailConfirmBtnCell.swift */; };
@@ -260,6 +261,7 @@
 		7BAB356522C1F66900154D36 /* UMenuBusinessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMenuBusinessData.swift; sourceTree = "<group>"; };
 		7BAB356822C224E800154D36 /* UGoodsManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGoodsManagementController.swift; sourceTree = "<group>"; };
 		7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerViewController.swift; sourceTree = "<group>"; };
+		7BF09D2922E3058A003B6D14 /* GoodsDetailResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsDetailResponeModel.swift; sourceTree = "<group>"; };
 		80184B4DF6FA1EBEDC3C8DC7 /* Pods-MYiMei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.debug.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14816A22CD95A100018EED /* UAccountSafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAccountSafeView.swift; sourceTree = "<group>"; };
 		DC18271822E06180005F9410 /* UOrderDetailConfirmBtnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UOrderDetailConfirmBtnCell.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 				7B08932822D888B500872136 /* PlatCateResponeModel.swift */,
 				DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */,
 				DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */,
+				7BF09D2922E3058A003B6D14 /* GoodsDetailResponeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1120,6 +1123,7 @@
 				0AB057DB22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift in Sources */,
 				DC221C8822CF32CF003A4053 /* USetUpShopController.swift in Sources */,
 				7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */,
+				7BF09D2A22E3058A003B6D14 /* GoodsDetailResponeModel.swift in Sources */,
 				7B85A6D622E1624D00F22056 /* AboutUsViewController.swift in Sources */,
 				0AB057D922DD6A45002B7E40 /* UHomeView.swift in Sources */,
 			);
