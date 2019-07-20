@@ -54,7 +54,7 @@ class UBaseViewController: UIViewController {
 //                self.navigationItem.leftBarButtonItem = leftBarButtonItem
 ////                fixedBarButtonItem.width = -15;
                 
-                self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:fixedBarButtonItem, buttonItem, nil];
+//                self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:fixedBarButtonItem, buttonItem, nil];
             }
         }
     }
