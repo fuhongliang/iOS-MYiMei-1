@@ -1,17 +1,18 @@
 //
-//  UOrdersViewController.swift
+//  UOrdersUnprocessedViewController.swift
 //  MYiMei
 //
-//  Created by 符宏梁 on 2019/6/24.
+//  Created by 于亿鑫 on 2019/7/20.
 //  Copyright © 2019 符宏梁. All rights reserved.
 //
+
 
 import UIKit
 import SCLAlertView
 import JXSegmentedView
 
-class UOrdersViewController: UBaseViewController {
-
+class UOrdersUnprocessedViewController: UBaseViewController {
+    
     fileprivate var service = APIOrderServices()
     
     private var orderList = OrderList()
@@ -52,12 +53,13 @@ class UOrdersViewController: UBaseViewController {
         tw.showsVerticalScrollIndicator = false
         tw.delegate = self
         tw.dataSource = self
-        tw.register(cellType: UOderCell.self)
+//        tw.register(cellType: UOderCell.self)
         tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
-        tw.register(cellType: UNewOrderCell.self)
+        tw.register(cellType: UOrderNotPayCell.self)
+        tw.register(cellType: UOrderNotSendCell.self)
         return tw
     }()
-
+    
     override func configUI() {
         
         tableView.refreshControl = UIRefreshControl()
@@ -71,6 +73,13 @@ class UOrdersViewController: UBaseViewController {
         getOrderList()
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshOrderData()
+    }
+    
     
     //MARK:网络请求-获取待处理订单列表数据
     func getOrderList(){
@@ -86,14 +95,14 @@ class UOrdersViewController: UBaseViewController {
                 self.orderList = OrderListResponseModel.data
                 self.tableView.refreshControl?.endRefreshing()
             }
-
+            
             if(OrderListResponseModel.data.order.count >= 20){
                 self.loadMoreEnable = true
             } else {
                 self.loadMoreEnable = false
                 self.activity.stopAnimating()
             }
-
+            
             self.tableView.uempty?.allowShow = true
             self.tableView.reloadData()
             self.pageRecord += 1
@@ -108,9 +117,55 @@ class UOrdersViewController: UBaseViewController {
     func modifyOrderPrice(orderId: Int, updatePrice: Int, updateExpress: Int, type: Int){
         service.modifyOrderPrice(orderId: orderId, updatePrice: updatePrice, updateExpress: updateExpress, type: type, {
             showHUDInView(text: "修改成功", inView: self.view)
+            self.refreshOrderData()
         }) { (APIErrorModel) in
+//            print(APIErrorModel.msg)
             showHUDInView(text: "修改失败", inView: self.view)
         }
+    }
+    
+    //MARK:打电话给客户
+    func callTheClient(index:Int){
+        let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+            (action: UIAlertAction!) -> Void in
+            
+            let phone = "telprompt://\(self.orderList.order[index].mobile ?? "")"
+            
+            if UIApplication.shared.canOpenURL(URL(string: phone)!) {
+                UIApplication.shared.openURL(URL(string: phone)!)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK:设置发货
+    func sendGoods(index:Int){
+        let alertController = UIAlertController(title: "温馨提示", message: "请选择发货方式", preferredStyle: UIAlertController.Style.alert)
+        let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
+            (action: UIAlertAction!) -> Void in
+            self.service.deliveryGoods(order_id: self.orderList.order[index].order_id, is_express: 0, express: "", express_no: "", words: "", {
+                showHUDInView(text: "发货成功", inView: self.view)
+                self.refreshOrderData()
+            }, { (APIErrorModel) in
+                print(APIErrorModel.msg ?? "-----")
+            })
+        }
+        
+        let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
+            (action: UIAlertAction!) -> Void in
+            let vc = USettingDeliveryController()
+            vc.title = "设置发货"
+            vc.orderId = self.orderList.order[index].order_id
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        alertController.addAction(cancleAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func refreshOrderData() {
@@ -131,7 +186,7 @@ class UOrdersViewController: UBaseViewController {
     
 }
 
-extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
+extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:cell组数
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -164,77 +219,53 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:返回每个cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //cell待更换
-//        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
-//        cell.selectionStyle = .default
-        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UNewOrderCell.self)
         
-        cell.callTheClient = {
-            let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
-                (action: UIAlertAction!) -> Void in
-                
-                let phone = "telprompt://\(self.orderList.order[indexPath.section].mobile ?? "")"
-                
-                if UIApplication.shared.canOpenURL(URL(string: phone)!) {
-                    UIApplication.shared.openURL(URL(string: phone)!)
-                }
+        let orderStatus = orderList.order[indexPath.section].order_status
+        
+        if orderStatus == 0 {
+            
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOrderNotPayCell.self)
+            
+            cell.callTheClient = {
+                self.callTheClient(index: indexPath.section)
             }
-            let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
-            alertController.addAction(okAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
-        cell.modifyPriceOrDeliveryGoods = {
-            // 0 待付款  1待发货 2待收货 3已完成 5已取消
-            switch self.orderList.order[indexPath.section].order_status {
-            case 0:
+            
+            cell.modifyPriceOrDeliveryGoods = {
+                // 0 待付款  1待发货 2待收货 3已完成 5已取消
+                
                 NSLog("修改价格")
                 self.mOrderId = self.orderList.order[indexPath.section].order_id
                 //获取点击事件
                 self.configAlertView()
-            case 1:
-                NSLog("发货")
-                let alertController = UIAlertController(title: "温馨提示", message: "请选择发货方式", preferredStyle: UIAlertController.Style.alert)
-                let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
-                    (action: UIAlertAction!) -> Void in
-                    self.service.deliveryGoods(order_id: self.orderList.order[indexPath.section].order_id, is_express: 0, express: "", express_no: "", words: "", {
-                        showHUDInView(text: "发货成功", inView: self.view)
-                    }, { (APIErrorModel) in
-                        print(APIErrorModel.msg ?? "-----")
-                    })
-                }
                 
-                let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
-                    (action: UIAlertAction!) -> Void in
-                    let vc = USettingDeliveryController()
-                    vc.title = "设置发货"
-                    vc.orderId = self.orderList.order[indexPath.section].order_id
-                    
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                alertController.addAction(cancleAction)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            case 2:
-                let vc = USettingDeliveryController()
-                vc.title = "修改快递信息"
-                vc.orderId = self.orderList.order[indexPath.section].order_id
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
             }
+            
+            cell.moveToRecycleBin = {
+                showHUDInView(text: "此功能正在开发中", inView: self.view)
+            }
+            
+            cell.model = orderList.order[indexPath.section]
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOrderNotSendCell.self)
+            cell.callTheClient = {
+                self.callTheClient(index: indexPath.section)
+            }
+            
+            cell.modifyPriceOrDeliveryGoods = {
+                // 0 待付款  1待发货 2待收货 3已完成 5已取消
+                NSLog("发货")
+                self.sendGoods(index: indexPath.section)
+                
+            }
+            
+            cell.moveToRecycleBin = {
+                showHUDInView(text: "此功能正在开发中", inView: self.view)
+            }
+            
+            cell.model = orderList.order[indexPath.section]
+            return cell
         }
-        
-        cell.moveToRecycleBin = {
-            showHUDInView(text: "此功能正在开发中", inView: self.view)
-        }
-        
-        cell.model = orderList.order[indexPath.section]
-
-        return cell
         
     }
     
@@ -248,9 +279,9 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundLayer = CAShapeLayer()
         let pathRef = CGMutablePath()
         let bounds = cell.bounds;
-
+        
         pathRef.addRoundedRect(in: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
-
+        
         layer.path = pathRef
         backgroundLayer.path = pathRef
         layer.fillColor = UIColor.white.cgColor
@@ -264,7 +295,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK:footerView即将显示的时候的回调
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-
+        
         //当下拉到底部，执行loadMore()
         if (loadMoreEnable && section == orderList.order.count-1) {
             getOrderList()
@@ -309,7 +340,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         //添加环形进度条
         activity.color = UIColor.black
         activity.startAnimating()
-
+        
         loadMoreView.addSubview(activity)
         activity.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.centerX.equalToSuperview()
@@ -411,10 +442,10 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(inputFreightPriceTF.snp.bottom).offset(15)
         }
-     
-        _ = alert?.addButton("加价", backgroundColor: UIColor.white,textColor:UIColor.hex(hexString: "##1C98F6"), target:self, selector:#selector(addOrderPrice))
-        _ = alert?.addButton("优惠", backgroundColor: UIColor.white,textColor:UIColor.hex(hexString: "#07D781"), target:self, selector:#selector(reduceOrderPrice))
-
+        
+        _ = alert?.addButton("加价", backgroundColor: UIColor.white,textColor:UIColor.hex(hexString: "#1C98F6"), target:self, selector:#selector(addPrice))
+        _ = alert?.addButton("优惠", backgroundColor: UIColor.white,textColor:UIColor.hex(hexString: "#07D781"), target:self, selector:#selector(reducePrice))
+        
         alert?.customSubview = subview
         
         alert?.showEdit("价格修改", subTitle: "ddddddddd")
@@ -458,10 +489,10 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         self.addOrderPrice(orderId: mOrderId, updatePrice: goodspp, updateExpress: devily)
         alert?.hideView()
     }
-
+    
 }
 
-extension UOrdersViewController : JXSegmentedListContainerViewListDelegate {
+extension UOrdersUnprocessedViewController : JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
         return view
     }

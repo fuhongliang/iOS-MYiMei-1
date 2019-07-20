@@ -9,28 +9,32 @@
 import UIKit
 
 class UTabBarController: UITabBarController {
-
+    
+    let onePageVC = UOrdersUnprocessedViewController()
+    let classVC = UManagerOrdersController()
+    let mineVC = UMineViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tabBar.isTranslucent = false
 
         /// 待处理
-        let onePageVC = UOrdersViewController()
+        
         addChildViewController(onePageVC,
                                title: "待处理",
                                image: UIImage(named: "tab_home"),
                                selectedImage: UIImage(named: "tab_home_S"))
 
         /// 订单管理
-        let classVC = UManagerOrdersController()
+        
         addChildViewController(classVC,
                                title: "订单管理",
                                image: UIImage(named: "tab_manager_orders"),
                                selectedImage: UIImage(named: "tab_manager_orders_S"))
 
         /// 我的店铺
-        let mineVC = UMineViewController()
+        
         addChildViewController(mineVC,
                                title: "我的店铺",
                                image: UIImage(named: "tab_mine"),
