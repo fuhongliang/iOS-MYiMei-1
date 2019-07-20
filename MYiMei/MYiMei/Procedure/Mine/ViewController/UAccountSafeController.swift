@@ -39,6 +39,9 @@ class UAccountSafeController: UBaseViewController{
     func logout() -> Void {
         APIUser.shared.cleanUser()
         (UIApplication.shared.delegate as! AppDelegate).showLoginView()
+        JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
+            print("注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
+        }, seq: 0)
     }
     
     func jumpToChangePassword() {

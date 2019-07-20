@@ -164,7 +164,7 @@ class UOrderNotPayCell: UBaseTableViewCell {
             ConstraintMaker.top.left.equalTo(grayBg)
             ConstraintMaker.width.height.equalTo(grayBg)
         }
-        contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpOutside)
+        contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpInside)
         
         
         //MARK:商品图片

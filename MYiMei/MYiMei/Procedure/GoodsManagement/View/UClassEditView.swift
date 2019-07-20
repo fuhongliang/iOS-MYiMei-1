@@ -67,6 +67,7 @@ class UClassEditView: BaseView {
         classNameTF.placeholder = "请输入分类名称"
         classNameTF.font = UIFont.systemFont(ofSize: 17)
         classNameTF.textAlignment = .right
+        classNameTF.dl_maxLength = 12
         self.addSubview(classNameTF)
         classNameTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -85,15 +86,16 @@ class UClassEditView: BaseView {
             ConstraintMaker.top.equalTo(classSortBgWhite.snp.top).offset(14)
         }
         
-        classSortTF.placeholder = "请输入分类名称"
+        classSortTF.placeholder = "分类排序(排序值越小排序越靠前)"
         classSortTF.font = UIFont.systemFont(ofSize: 17)
         classSortTF.textAlignment = .right
+        classSortTF.dl_maxLength = 4
         classSortTF.keyboardType = UIKeyboardType.numberPad
         self.addSubview(classSortTF)
         classSortTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.width.equalTo(200)
+            ConstraintMaker.width.equalTo(300)
             ConstraintMaker.top.equalTo(classSortBgWhite.snp.top)
         }
         
