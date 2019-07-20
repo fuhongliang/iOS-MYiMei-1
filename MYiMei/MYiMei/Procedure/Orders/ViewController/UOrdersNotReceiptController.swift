@@ -148,7 +148,7 @@ extension UOrdersNotReceiptController: UITableViewDelegate, UITableViewDataSourc
     //MARK:cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //订单商品数据展开时，需要动态获取高度再设置
-        return 290
+        return 285
     }
     
     //MARK:每组cell的数量

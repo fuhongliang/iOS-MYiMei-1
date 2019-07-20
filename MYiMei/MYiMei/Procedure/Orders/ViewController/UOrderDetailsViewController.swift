@@ -25,6 +25,7 @@ class UOrderDetailsViewController: UBaseViewController {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         tw.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tw.showsVerticalScrollIndicator = false
         tw.delegate = self
         tw.dataSource = self
         tw.register(cellType: UOrderDetailSectionTitleCell.self)

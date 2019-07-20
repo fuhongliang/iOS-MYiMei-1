@@ -105,6 +105,13 @@ class UMineViewController: UBaseViewController {
         vc.title = "账号与安全"
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    //MARK:跳转消息管理
+    func goToMessageManager() {
+        let vc = UMessageManagerController()
+        vc.title = "消息管理"
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
     //MARK:跳转关于平台
     func goToAboutUsView() {
@@ -198,7 +205,8 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
                 self.goToSetUpShop()
             }
             cell.subscribeBusinessDataAction = {
-                 showHUDInView(text: "此功能正在开发中", inView: self.view)
+                NSLog("经营数据被点击了")
+                showHUDInView(text: "此功能正加速开发中", inView: self.view)
             }
             cell.model = storeData.store
             return cell
@@ -220,6 +228,8 @@ extension UMineViewController: UITableViewDelegate, UITableViewDataSource {
         if(indexPath.section == 1){
             if indexPath.row == 0 {
                 self.goToAccountSafe()
+            } else if (indexPath.row == 1){
+                self.goToMessageManager()
             }else if(indexPath.row == 2){
                 showAlertControllerStyle()
             }else if(indexPath.row == 3){

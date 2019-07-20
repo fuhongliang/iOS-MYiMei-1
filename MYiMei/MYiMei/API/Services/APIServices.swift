@@ -68,6 +68,8 @@ enum NetApi {
     case getMchPtCats(param: [String:Any])
     case getExpressList(param: [String:Any])
     case getOrderDetail(param: [String:Any])
+    case getMessageNotice(param: [String:Any])
+    case setMessageNoticeRead(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -139,12 +141,16 @@ extension NetApi: TargetType {
             return "/list_express"
         case .getOrderDetail:
             return "/get_order_detail"
+        case .getMessageNotice:
+            return "/message_notice/orderNotice"
+        case .setMessageNoticeRead:
+            return "/message_notice/readNotice"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat:
+        case .setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat:
           return .post
 
         }
@@ -211,6 +217,10 @@ extension NetApi: TargetType {
         case .getExpressList(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getOrderDetail(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getMessageNotice(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .setMessageNoticeRead(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

@@ -133,6 +133,9 @@
 		DC30C53E22DC717D00F8B03B /* UOrdersChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC30C53D22DC717D00F8B03B /* UOrdersChildViewController.swift */; };
 		DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */; };
 		DC32F62C22D46C8800EBB75E /* UDepositAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */; };
+		DC64FEBE22E2F7E700E67EB8 /* UMessageManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64FEBD22E2F7E700E67EB8 /* UMessageManagerController.swift */; };
+		DC64FEC022E3010B00E67EB8 /* APIMessageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64FEBF22E3010B00E67EB8 /* APIMessageServices.swift */; };
+		DC64FEC222E3017A00E67EB8 /* MessageNoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64FEC122E3017A00E67EB8 /* MessageNoticeModel.swift */; };
 		DC77E9AB22D571D400E92E25 /* APIDepositService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77E9AA22D571D400E92E25 /* APIDepositService.swift */; };
 		DC7E297522D5750600AC3F21 /* UploadFileResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297422D5750600AC3F21 /* UploadFileResponeModel.swift */; };
 		DC7E297722D5754600AC3F21 /* UMenuDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E297622D5754500AC3F21 /* UMenuDepost.swift */; };
@@ -297,6 +300,9 @@
 		DC30C53D22DC717D00F8B03B /* UOrdersChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrdersChildViewController.swift; sourceTree = "<group>"; };
 		DC32F62922D468B900EBB75E /* UDepositAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepositAgreementView.swift; sourceTree = "<group>"; };
 		DC32F62B22D46C8800EBB75E /* UDepositAgreementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDepositAgreementController.swift; sourceTree = "<group>"; };
+		DC64FEBD22E2F7E700E67EB8 /* UMessageManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMessageManagerController.swift; sourceTree = "<group>"; };
+		DC64FEBF22E3010B00E67EB8 /* APIMessageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMessageServices.swift; sourceTree = "<group>"; };
+		DC64FEC122E3017A00E67EB8 /* MessageNoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNoticeModel.swift; sourceTree = "<group>"; };
 		DC77E9AA22D571D400E92E25 /* APIDepositService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDepositService.swift; sourceTree = "<group>"; };
 		DC7E297422D5750600AC3F21 /* UploadFileResponeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFileResponeModel.swift; sourceTree = "<group>"; };
 		DC7E297622D5754500AC3F21 /* UMenuDepost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMenuDepost.swift; sourceTree = "<group>"; };
@@ -375,9 +381,8 @@
 		0AB057CE22D9AD77002B7E40 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AB057D622DD6201002B7E40 /* UMessageManagementCellView.swift */,
-				0AB057D822DD6A45002B7E40 /* UHomeView.swift */,
 				0AB057DA22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift */,
+				0AB057D822DD6A45002B7E40 /* UHomeView.swift */,
 				0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */,
 				0AB057DE22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift */,
 				0AB057E022DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift */,
@@ -509,6 +514,7 @@
 		7BAB351D22C0BF3900154D36 /* Procedure */ = {
 			isa = PBXGroup;
 			children = (
+				DC18A52822E2F71C00451E10 /* MessageManager */,
 				0AB057CB22D991D5002B7E40 /* Settings */,
 				0AB057CA22D991CD002B7E40 /* Home */,
 				7BAB356722C2249D00154D36 /* GoodsManagement */,
@@ -551,6 +557,7 @@
 				7B08932822D888B500872136 /* PlatCateResponeModel.swift */,
 				DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */,
 				DC18765F22DDD854004FEF65 /* OrderDetailResponseModel.swift */,
+				DC64FEC122E3017A00E67EB8 /* MessageNoticeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -566,6 +573,7 @@
 				DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */,
 				7BAB352322C0C76400154D36 /* APIToken.swift */,
 				7BAB352922C0CDF500154D36 /* APIUser.swift */,
+				DC64FEBF22E3010B00E67EB8 /* APIMessageServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -789,6 +797,31 @@
 				7BB7666422D2CCBB0019E564 /* CustomPhotoPickerViewController.swift */,
 			);
 			path = PhotoPicker;
+			sourceTree = "<group>";
+		};
+		DC18A52822E2F71C00451E10 /* MessageManager */ = {
+			isa = PBXGroup;
+			children = (
+				DC64FEBB22E2F78B00E67EB8 /* ViewController */,
+				DC64FEBC22E2F79400E67EB8 /* View */,
+			);
+			path = MessageManager;
+			sourceTree = "<group>";
+		};
+		DC64FEBB22E2F78B00E67EB8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DC64FEBD22E2F7E700E67EB8 /* UMessageManagerController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DC64FEBC22E2F79400E67EB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AB057D622DD6201002B7E40 /* UMessageManagementCellView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1040,9 +1073,11 @@
 				DC18272122E06181005F9410 /* UOrderDetailProcessCell.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
 				0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */,
+				DC64FEC022E3010B00E67EB8 /* APIMessageServices.swift in Sources */,
 				7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */,
 				7BAB356922C224E800154D36 /* UGoodsManagementController.swift in Sources */,
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
+				DC64FEC222E3017A00E67EB8 /* MessageNoticeModel.swift in Sources */,
 				7BAB354A22C0D87100154D36 /* ULoginView.swift in Sources */,
 				7BAB352722C0C89A00154D36 /* APIResponseModels.swift in Sources */,
 				DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */,
@@ -1081,6 +1116,7 @@
 				7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */,
 				0AB057E522DF1582002B7E40 /* UAboutUsView.swift in Sources */,
 				DC18A52522E2BC6F00451E10 /* UOrdersCompleteController.swift in Sources */,
+				DC64FEBE22E2F7E700E67EB8 /* UMessageManagerController.swift in Sources */,
 				DC221C8E22CF46D9003A4053 /* UShopLabelImgCell.swift in Sources */,
 				DC30C53E22DC717D00F8B03B /* UOrdersChildViewController.swift in Sources */,
 				7BAB352422C0C76400154D36 /* APIToken.swift in Sources */,
