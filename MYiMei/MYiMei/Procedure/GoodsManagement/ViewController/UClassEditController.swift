@@ -44,7 +44,7 @@ class UClassEditController: UBaseViewController {
         } else {
             if (!isNewCategory) {
                 
-                service.editGoodsCat(catId: categoryId, name: "", sort: categorySort, {
+                service.editGoodsCat(catId: categoryId, name: classEditView.classNameTF.text ?? categoryName, sort: Int(classEditView.classSortTF.text ?? String(categorySort))! , {
                     showHUDInView(text: "修改成功", inView: self.view)
                     self.pressBack()
                 }) { (APIErrorModel) in

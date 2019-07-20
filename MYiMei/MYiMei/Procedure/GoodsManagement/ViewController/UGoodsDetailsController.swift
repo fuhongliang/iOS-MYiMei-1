@@ -251,15 +251,21 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
     }
 
     func tapChooseGoodsTagAction(tag: UIButton) {
-        tag.isSelected = !tag.isSelected
+
         if(tag.isSelected){
-            tag.backgroundColor = UIColor.theme
-            tagBtnSet.updateValue((tag.titleLabel?.text!)! + ",", forKey: tag)
-        }else{
             tag.backgroundColor = UIColor.white
             tagBtnSet.updateValue("", forKey: tag)
+        }else{
+            if(serviceTag.split(separator: ",").count > 3){
+                showHUDInView(text: "最多可选择四个标签", inView: view)
+                return
+            }else{
+                tag.backgroundColor = UIColor.theme
+                tagBtnSet.updateValue((tag.titleLabel?.text!)! + ",", forKey: tag)
+            }
         }
         self.getServiceTags()
+        tag.isSelected = !tag.isSelected
     }
 
     func getServiceTags () {

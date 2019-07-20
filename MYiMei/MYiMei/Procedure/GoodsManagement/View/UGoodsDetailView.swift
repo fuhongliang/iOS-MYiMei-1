@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KMPlaceholderTextView
 
 protocol UGoodsDetailViewDelegate: AnyObject {
     //选择商品缩略图
@@ -36,7 +35,7 @@ class UGoodsDetailView: BaseView {
     var bgWhite = UIImageView()
 
     //MARK:商品描述
-    var goodsDescr = KMPlaceholderTextView()
+    var goodsDescr = PlaceholderTextView(placeholder: "商品描述(200字以内)", placeholderColor: UIColor.lightGray, frame: CGRect(x: 15, y: 100, width: 400, height: 110))
 
     //MARK:商品缩略图
     var addGoodsCoverPic = UIButton()
@@ -130,6 +129,7 @@ class UGoodsDetailView: BaseView {
         goodsNameTF.tintColor = UIColor.hex(hexString: "#CCCCCC")
         goodsNameTF.font = UIFont.systemFont(ofSize: 17)
         goodsNameTF.placeholder = "商品名称 (30字以内)"
+        goodsNameTF.dl_maxLength = 30
         let leftview = UIView()
         leftview.frame = CGRect(x: 0, y: 0, width: 10, height: 44)
         leftview.frame.size.width = 15//设置左边距的大小
@@ -165,14 +165,14 @@ class UGoodsDetailView: BaseView {
         }
 
         //MARK:描述
-        goodsDescr.textColor = UIColor.black
-        goodsDescr.tintColor = UIColor.hex(hexString: "#CCCCCC")
-        goodsDescr.font = UIFont.systemFont(ofSize: 17)
-        goodsDescr.placeholder = "描述下您的宝贝吧 (200字以内)"
-        goodsDescr.placeholderFont = UIFont.systemFont(ofSize: 17)
+        goodsDescr.limitWords = 200
+        goodsDescr.palceholdertextView.font = UIFont.systemFont(ofSize: 17)
+        goodsDescr.plaleLabel.font = UIFont.systemFont(ofSize: 17)
+//        //是否return关闭键盘
+//        goodsDescr.isReturnHidden = true
         self.addSubview(goodsDescr)
         goodsDescr.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview().offset(10)
+            ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(110)
             ConstraintMaker.top.equalTo(goodsNameTF.snp.bottom).offset(1)
@@ -356,6 +356,7 @@ class UGoodsDetailView: BaseView {
         unitClassTF.placeholder = "请填写单位，如：个、件"
         unitClassTF.font = UIFont.systemFont(ofSize: 17)
         unitClassTF.textAlignment = .right
+        unitClassTF.dl_maxLength = 5
         self.addSubview(unitClassTF)
         unitClassTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -778,7 +779,7 @@ class UGoodsDetailView: BaseView {
     }
 
     @objc func saveAction() {
-        delegate?.tapSaveAction(name:goodsNameTF.text!,detail:goodsDescr.text!,
+        delegate?.tapSaveAction(name:goodsNameTF.text!,detail:goodsDescr.palceholdertextView.text!,
                                 unit:unitClassTF.text!,weight:weightTF.text!,
                                 original_price:originalPriceTF.text!,price:goodsPriceTF.text!,
                                 pieces:piecesDesrcTF.text!,
