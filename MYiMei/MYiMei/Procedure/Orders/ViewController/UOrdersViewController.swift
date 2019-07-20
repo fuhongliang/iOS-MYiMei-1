@@ -305,13 +305,16 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
             kButtonFont: UIFont(name: "HelveticaNeue", size: 18)!,
             showCloseButton: false,
             showCircularIcon: false,
+            hideWhenBackgroundViewIsTapped:true,
             buttonsLayout: .horizontal
         )
+
         
         // Initialize SCLAlertView using custom Appearance
         alert = SCLAlertView(appearance: style)
         // Creat the subview
         alert?.viewWillAppear(true)
+
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth-96, height: 203))
         
         tipGoodsLabel.text = "修改订单中所有商品的总价格"
@@ -398,7 +401,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
 
         alert?.customSubview = subview
         
-        alert?.showEdit("价格修改", subTitle: "ddddddddd")
+        alert?.showEdit("价格修改", subTitle: "",animationStyle:.noAnimation)
         
     }
     

@@ -45,10 +45,10 @@ class UTabBarController: UITabBarController {
         childController.tabBarItem = UITabBarItem(title: title,
                                                   image: image?.withRenderingMode(.alwaysOriginal),
                                                   selectedImage: selectedImage?.withRenderingMode(.alwaysOriginal))
-        childController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4);
+        childController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0);
 
         if UIDevice.current.userInterfaceIdiom == .phone {
-            childController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            childController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         addChild(UNavigationController(rootViewController: childController))
     }
