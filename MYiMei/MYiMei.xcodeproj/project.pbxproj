@@ -52,6 +52,8 @@
 		7B41456A22C4DB2300BB61D0 /* URefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456922C4DB2300BB61D0 /* URefresh.swift */; };
 		7B41456C22C4DB3700BB61D0 /* UBottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456B22C4DB3700BB61D0 /* UBottomTab.swift */; };
 		7B41456E22C4DB4000BB61D0 /* UCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41456D22C4DB4000BB61D0 /* UCategoryCell.swift */; };
+		7B6ADDDF22E2B72A00BCF9C6 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6ADDDE22E2B72A00BCF9C6 /* UITextFieldExtension.swift */; };
+		7B6ADDE422E2BBA400BCF9C6 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6ADDE322E2BBA400BCF9C6 /* PlaceholderTextView.swift */; };
 		7B7B15CB22D6DED50082F227 /* StoreDashBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */; };
 		7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */; };
 		7B7B15CF22D70EB50082F227 /* StoreDepostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */; };
@@ -201,6 +203,8 @@
 		7B41456922C4DB2300BB61D0 /* URefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URefresh.swift; sourceTree = "<group>"; };
 		7B41456B22C4DB3700BB61D0 /* UBottomTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBottomTab.swift; sourceTree = "<group>"; };
 		7B41456D22C4DB4000BB61D0 /* UCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UCategoryCell.swift; sourceTree = "<group>"; };
+		7B6ADDDE22E2B72A00BCF9C6 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		7B6ADDE322E2BBA400BCF9C6 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7B7B15CA22D6DED50082F227 /* StoreDashBoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDashBoardModel.swift; sourceTree = "<group>"; };
 		7B7B15CC22D6E6070082F227 /* APIStoreServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStoreServices.swift; sourceTree = "<group>"; };
 		7B7B15CE22D70EB50082F227 /* StoreDepostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDepostModel.swift; sourceTree = "<group>"; };
@@ -417,6 +421,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7B6ADDE222E2BB9100BCF9C6 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				7B6ADDE322E2BBA400BCF9C6 /* PlaceholderTextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
 		7BAB34E222C0AE1200154D36 = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +611,7 @@
 			children = (
 				7BAB353F22C0D1BB00154D36 /* UIColorExtension.swift */,
 				7BAB354322C0D6FA00154D36 /* UIBarButtonItemExtension.swift */,
+				7B6ADDDE22E2B72A00BCF9C6 /* UITextFieldExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -673,6 +686,7 @@
 		7BAB355322C1B3FD00154D36 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7B6ADDE222E2BB9100BCF9C6 /* TextView */,
 				7BB7666322D2CCA60019E564 /* PhotoPicker */,
 				7BAB357322C24B4700154D36 /* EmptyDataSet */,
 				7BAB357022C249BD00154D36 /* Refresh */,
@@ -964,6 +978,7 @@
 				7BAB353922C0D12E00154D36 /* UManagerOrdersController.swift in Sources */,
 				7BAB355822C1B8E900154D36 /* UIScrollView+ParallaxHeader.swift in Sources */,
 				7BAB352222C0C56400154D36 /* Global.swift in Sources */,
+				7B6ADDE422E2BBA400BCF9C6 /* PlaceholderTextView.swift in Sources */,
 				DC264EEA22D324D8001FDAD6 /* USettingDeliveryView.swift in Sources */,
 				DC18271F22E06181005F9410 /* UOrderDetailConfirmBtnCell.swift in Sources */,
 				DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */,
@@ -980,6 +995,7 @@
 				7BAB355222C1B37100154D36 /* UBaseTableViewCell.swift in Sources */,
 				7B41455C22C4DA2C00BB61D0 /* APIGoodsServices.swift in Sources */,
 				0AB057DF22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift in Sources */,
+				7B6ADDDF22E2B72A00BCF9C6 /* UITextFieldExtension.swift in Sources */,
 				7BAB354C22C0FAF400154D36 /* APIUserServices.swift in Sources */,
 				DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */,
 				0AB057D522DC2709002B7E40 /* UNewOrderCell.swift in Sources */,
