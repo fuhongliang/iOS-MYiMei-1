@@ -70,6 +70,7 @@ enum NetApi {
     case getOrderDetail(param: [String:Any])
     case getMessageNotice(param: [String:Any])
     case setMessageNoticeRead(param: [String:Any])
+    case getGoodsDetail(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -145,12 +146,14 @@ extension NetApi: TargetType {
             return "/message_notice/orderNotice"
         case .setMessageNoticeRead:
             return "/message_notice/readNotice"
+        case .getGoodsDetail:
+            return "/goods_detail"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat:
+        case .setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
           return .post
 
         }
@@ -221,6 +224,8 @@ extension NetApi: TargetType {
         case .getMessageNotice(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .setMessageNoticeRead(let param):
+             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getGoodsDetail(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }
