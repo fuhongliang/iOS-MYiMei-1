@@ -44,17 +44,6 @@ class UBaseViewController: UIViewController {
                 navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_back_white"),
                                                                    target: self,
                                                                    action: #selector(pressBack))
-//                let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_back_white"),
-//                                                        target: self,
-//                                                        action: #selector(pressBack))
-////                UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-button-whiteArrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutBarBtnPressed:)];
-//
-////                var fixedBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//                leftBarButtonItem
-//                self.navigationItem.leftBarButtonItem = leftBarButtonItem
-////                fixedBarButtonItem.width = -15;
-                
-//                self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:fixedBarButtonItem, buttonItem, nil];
             }
         }
     }
