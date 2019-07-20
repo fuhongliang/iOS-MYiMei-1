@@ -25,6 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         APIUser.shared.loadUserFromCache()
         if APIUser.shared.user != nil {
+            JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
+                print("注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
+                JPUSHService.setAlias(APIUser.shared.user?.tel, completion: { (iResCode, iAlias, seq) in
+                    print("注册极光别名 \(APIUser.shared.user?.tel),\(iResCode),\(String(describing: iAlias)),\(seq)")
+                }, seq: 0)
+
+            }, seq: 0)
+
             self.window?.rootViewController = UTabBarController()
         }else {
             //测试
