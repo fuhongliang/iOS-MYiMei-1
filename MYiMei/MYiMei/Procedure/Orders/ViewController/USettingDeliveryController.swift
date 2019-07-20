@@ -54,6 +54,10 @@ class USettingDeliveryController: UBaseViewController {
         service.deliveryGoods(order_id: orderId, is_express: 1, express: express, express_no: expressNo, words: words, {
             print("发货成功")
             showHUDInView(text: "发货成功", inView: self.view)
+            //获取上一层的controller 通过这个刷新数据
+            let parent = self.navigationController?.viewControllers[0] as! UOrdersUnprocessedViewController
+            parent.refreshOrderData()
+            
             self.pressBack()
         }) { (APIErrorModel) in
             print(APIErrorModel.msg ?? "发货失败")

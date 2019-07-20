@@ -108,7 +108,9 @@ class UMineViewController: UBaseViewController {
     
     //MARK:跳转消息管理
     func goToMessageManager() {
-//        let vc =
+        let vc = UMessageManagerController()
+        vc.title = "消息管理"
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     //MARK:跳转关于平台

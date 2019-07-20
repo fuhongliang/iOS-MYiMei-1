@@ -50,17 +50,7 @@ class UOrderCancleCell : UBaseTableViewCell {
     //运费
     var freight = UILabel()
     var totalLine = UILabel()
-    //按钮
-    //    var modifyPriceBtn : UIButton = {
-    //        let modifyPriceBtn = UIButton()
-    //        modifyPriceBtn.setTitle("修改快递单号", for: UIControl.State.normal)
-    //        modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
-    //        modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-    //        modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-    //        modifyPriceBtn.layer.cornerRadius = 15
-    //        modifyPriceBtn.layer.masksToBounds = true
-    //        return modifyPriceBtn
-    //    }()
+
     var recycleBinBtn : UIButton = {
         let recycleBinBtn = UIButton()
         recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
@@ -85,7 +75,7 @@ class UOrderCancleCell : UBaseTableViewCell {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(297)
+            ConstraintMaker.height.equalTo(285)
         }
         
         //MARK:订单号
@@ -166,7 +156,7 @@ class UOrderCancleCell : UBaseTableViewCell {
             ConstraintMaker.top.left.equalTo(grayBg)
             ConstraintMaker.width.height.equalTo(grayBg)
         }
-        contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpOutside)
+        contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpInside)
         
         
         //MARK:商品图片
@@ -260,32 +250,7 @@ class UOrderCancleCell : UBaseTableViewCell {
             ConstraintMaker.right.equalTo(whiteBg)
             ConstraintMaker.height.equalTo(1)
         }
-        //MARK:修改价格按钮
-        //            modifyPriceBtn.titleLabel?.sizeToFit()
-        //            modifyPriceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
-        //            modifyPriceBtn.setTitle("修改价格", for: UIControl.State.normal)
-        //            modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
-        //            modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        //            modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        //            modifyPriceBtn.layer.cornerRadius = 15
-        //            modifyPriceBtn.layer.masksToBounds = true
-        //        contentView.addSubview(modifyPriceBtn)
-        //        modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
-        //            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-        //            ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-        //            ConstraintMaker.width.equalTo(105)
-        //            ConstraintMaker.height.equalTo(30)
-        //        }
-        //        modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
-        
-        //MARK:移入回收站按钮
-        //            recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
-        //            recycleBinBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
-        //            recycleBinBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        //            recycleBinBtn.backgroundColor = UIColor.white
-        //            recycleBinBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
-        //            recycleBinBtn.layer.borderWidth = 1
-        //            recycleBinBtn.layer.cornerRadius = 15
+
         contentView.addSubview(recycleBinBtn)
         recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)

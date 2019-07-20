@@ -84,7 +84,7 @@ class UOrderNotSendCell : UBaseTableViewCell {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(297)
+            ConstraintMaker.height.equalTo(285)
         }
         
         //MARK:订单号
@@ -164,7 +164,7 @@ class UOrderNotSendCell : UBaseTableViewCell {
             ConstraintMaker.top.left.equalTo(grayBg)
             ConstraintMaker.width.height.equalTo(grayBg)
         }
-        contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpOutside)
+        contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpInside)
         
         
         //MARK:商品图片

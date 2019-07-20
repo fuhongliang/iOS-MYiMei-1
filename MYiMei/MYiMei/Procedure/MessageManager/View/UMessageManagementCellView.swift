@@ -8,16 +8,21 @@
 
 import UIKit
 
-class UMessageManagementCellView: BaseView {
+class UMessageManagementCellView: UBaseTableViewCell {
     //背景
     var whiteBg = UIImageView()
     //标题
     var title = UILabel()
+    
+    //订单时间
+    var addTime = UILabel()
+    
     //内容
     var content = UILabel()
-    func setView() {
+    
+    override func configUI() {
         whiteBg.backgroundColor = UIColor.white
-        self.addSubview(whiteBg)
+        contentView.addSubview(whiteBg)
         whiteBg.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
@@ -27,19 +32,37 @@ class UMessageManagementCellView: BaseView {
         title.text = "新订单"
         title.textColor = UIColor.black
         title.font = UIFont.systemFont(ofSize: 15)
-        self.addSubview(title)
+        contentView.addSubview(title)
         title.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(whiteBg.snp.left).offset(15)
             ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(15)
         }
+        
+        addTime.textColor = UIColor.hex(hexString: "#808080")
+        addTime.font = UIFont.systemFont(ofSize: 13)
+        contentView.addSubview(addTime)
+        addTime.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.centerY.equalTo(title)
+            ConstraintMaker.left.equalTo(title.snp.right).offset(15)
+        }
+        
         content.text = "显示内容显示内容"
         content.textColor = UIColor.hex(hexString: "#999999")
         content.font = UIFont.systemFont(ofSize: 12)
-        self.addSubview(content)
+        contentView.addSubview(content)
         content.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(whiteBg.snp.left).offset(15)
             ConstraintMaker.top.equalTo(title.snp.bottom).offset(10)
             ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+        }
+    }
+    
+    var model: MessageInfo? {
+        didSet {
+            guard let model = model else { return }
+            title.text = model.msg_type
+            addTime.text = dateForMatter(timeString: model.addtime, join: " ")
+            content.text = model.msg_content
         }
     }
 }
