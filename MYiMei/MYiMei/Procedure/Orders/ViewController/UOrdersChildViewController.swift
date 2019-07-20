@@ -90,14 +90,20 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
     }
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        let vc = UOrdersViewController()
+        let vc = UOrdersUnprocessedViewController()
         if listType == 0{
-            if index == 3 {
-                vc.orderType = 2
-            } else if index == 4{
-                vc.orderType = 3
-            } else if index == 5{
-                vc.orderType = 5
+            if index == 1 {//待处理
+                let controller = UOrdersUnprocessedViewController()
+                return controller
+            } else if index == 2 {//待收货
+                let controller = UOrdersNotReceiptController()
+                return controller
+            } else if index == 3 {
+                let controller = UOrdersCompleteController()
+                return controller
+            } else if index == 4 {
+                let controller = UOrdersCancleController()
+                return controller
             }
         } else {
             vc.orderType = -1

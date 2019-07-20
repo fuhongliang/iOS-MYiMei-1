@@ -54,8 +54,9 @@ class USettingDeliveryController: UBaseViewController {
         service.deliveryGoods(order_id: orderId, is_express: 1, express: express, express_no: expressNo, words: words, {
             print("发货成功")
             showHUDInView(text: "发货成功", inView: self.view)
+            self.pressBack()
         }) { (APIErrorModel) in
-            print("发货失败")
+            print(APIErrorModel.msg ?? "发货失败")
             showHUDInView(text: "发货失败", inView: self.view)
         }
     }

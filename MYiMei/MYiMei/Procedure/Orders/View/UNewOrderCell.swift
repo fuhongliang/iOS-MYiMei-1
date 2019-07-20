@@ -13,6 +13,7 @@ class UNewOrderCell: UBaseTableViewCell {
     
     var modifyPriceOrDeliveryGoods : (() -> ())?
     var moveToRecycleBin : (() -> ())?
+    var callTheClient : (() -> ())?
     
     //白色背景
     var whiteBg = UIImageView()
@@ -32,6 +33,8 @@ class UNewOrderCell: UBaseTableViewCell {
     var phoneIcon = UIImageView()
     //联系收货人
     var contactReceiverLaber = UILabel()
+    var contactBtn = UIButton()
+    
     //商品模块
     var commodityIcon = UIImageView()
     var commodityNameLaber = UILabel()
@@ -47,8 +50,26 @@ class UNewOrderCell: UBaseTableViewCell {
     var freight = UILabel()
     var totalLine = UILabel()
     //按钮
-    var modifyPriceBtn = UIButton()
-    var recycleBinBtn = UIButton()
+    var modifyPriceBtn : UIButton = {
+        let modifyPriceBtn = UIButton()
+        modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        modifyPriceBtn.layer.cornerRadius = 15
+        modifyPriceBtn.layer.masksToBounds = true
+        return modifyPriceBtn
+    }()
+    var recycleBinBtn : UIButton = {
+        let recycleBinBtn = UIButton()
+        recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
+        recycleBinBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
+        recycleBinBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        recycleBinBtn.backgroundColor = UIColor.white
+        recycleBinBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+        recycleBinBtn.layer.borderWidth = 1
+        recycleBinBtn.layer.cornerRadius = 15
+        return recycleBinBtn
+    }()
     
         override func configUI() {
 //    func setView() {
@@ -99,7 +120,8 @@ class UNewOrderCell: UBaseTableViewCell {
             grayBg.snp.makeConstraints { (ConstraintMaker) in
                 ConstraintMaker.left.equalTo(whiteBg.snp.left).offset(15)
                 ConstraintMaker.top.equalTo(orderLine.snp.bottom).offset(15)
-                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+//                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+                ConstraintMaker.width.equalTo(whiteBg).offset(30)
                 ConstraintMaker.height.equalTo(40)
             }
             //MARK:用户名称
@@ -136,6 +158,14 @@ class UNewOrderCell: UBaseTableViewCell {
                 ConstraintMaker.centerY.equalTo(grayBg)
                 ConstraintMaker.right.equalTo(contactReceiverLaber.snp.left).offset(-6)
             }
+            
+            contentView.addSubview(contactBtn)
+            contactBtn.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.top.left.equalTo(grayBg)
+                ConstraintMaker.width.height.equalTo(grayBg)
+            }
+            contactBtn.addTarget(self, action: #selector(tapCallTheClient), for: UIControl.Event.touchUpOutside)
+            
             
             //MARK:商品图片
             commodityIcon.image = UIImage.init(named: "apply_status")
@@ -229,38 +259,38 @@ class UNewOrderCell: UBaseTableViewCell {
                 ConstraintMaker.height.equalTo(1)
             }
             //MARK:修改价格按钮
-            modifyPriceBtn.titleLabel?.sizeToFit()
-            modifyPriceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
-            modifyPriceBtn.setTitle("修改价格", for: UIControl.State.normal)
-            modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
-            modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-            modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            modifyPriceBtn.layer.cornerRadius = 15
-            modifyPriceBtn.layer.masksToBounds = true
-            contentView.addSubview(modifyPriceBtn)
-            modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
-                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-                ConstraintMaker.width.equalTo(95)
-                ConstraintMaker.height.equalTo(30)
-            }
-            modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
+//            modifyPriceBtn.titleLabel?.sizeToFit()
+//            modifyPriceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
+//            modifyPriceBtn.setTitle("修改价格", for: UIControl.State.normal)
+//            modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+//            modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
+//            modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//            modifyPriceBtn.layer.cornerRadius = 15
+//            modifyPriceBtn.layer.masksToBounds = true
+//            contentView.addSubview(modifyPriceBtn)
+//            modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
+//                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+//                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+//                ConstraintMaker.width.equalTo(95)
+//                ConstraintMaker.height.equalTo(30)
+//            }
+//            modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
             
             //MARK:移入回收站按钮
-            recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
-            recycleBinBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
-            recycleBinBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            recycleBinBtn.backgroundColor = UIColor.white
-            recycleBinBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
-            recycleBinBtn.layer.borderWidth = 1
-            recycleBinBtn.layer.cornerRadius = 15
-            contentView.addSubview(recycleBinBtn)
-            recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
-                ConstraintMaker.width.equalTo(95)
-                ConstraintMaker.height.equalTo(30)
-            }
+//            recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
+//            recycleBinBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
+//            recycleBinBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//            recycleBinBtn.backgroundColor = UIColor.white
+//            recycleBinBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
+//            recycleBinBtn.layer.borderWidth = 1
+//            recycleBinBtn.layer.cornerRadius = 15
+//            contentView.addSubview(recycleBinBtn)
+//            recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
+//                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+//                ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
+//                ConstraintMaker.width.equalTo(95)
+//                ConstraintMaker.height.equalTo(30)
+//            }
     }
     
     
@@ -272,6 +302,36 @@ class UNewOrderCell: UBaseTableViewCell {
         moveToRecycleBin?()
     }
     
+    @objc func tapCallTheClient(){
+        callTheClient?()
+    }
+    
+    //设置修改价格按钮是否显示
+    //TODO 设置按钮后灰色背景会偏移  可能cell或者tableview的宽度计算错误
+    func setButton(modifyPrice:Bool,modifyPriceText:String,modifyPriceWidth:Int){
+//        if modifyPrice {
+            modifyPriceBtn.setTitle(modifyPriceText, for: .normal)
+            contentView.addSubview(modifyPriceBtn)
+            modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+                ConstraintMaker.width.equalTo(modifyPriceWidth)
+                ConstraintMaker.height.equalTo(30)
+            }
+//        }
+        contentView.addSubview(recycleBinBtn)
+        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+            ConstraintMaker.width.equalTo(95)
+            ConstraintMaker.height.equalTo(30)
+            if modifyPrice {
+                ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
+            } else {
+                ConstraintMaker.right.equalToSuperview().offset(-15)
+            }
+        }
+    }
+    
     var model: Order? {
         didSet {
             guard let model = model else { return }
@@ -280,58 +340,35 @@ class UNewOrderCell: UBaseTableViewCell {
             recycleBinBtn.addTarget(self, action: #selector(tapMoveToRecycleBin), for: UIControl.Event.touchUpInside)
             //TODO 判断 待付款,待收货,待发货 的状态  0 待付款  1待发货 2待收货 3已完成 5已取消
             switch model.order_status {
-                case 0:
-                    pendingPaymentLaber.text = "待付款"
-                    pendingPaymentLaber.textColor = UIColor.hex(hexString: "#FF4444")
-                    modifyPriceBtn.setTitle("修改价格", for: .normal)
-                case 1:
-                    pendingPaymentLaber.text = "待发货"
-                    pendingPaymentLaber.textColor = UIColor.hex(hexString: "#1C98F6")
-                    modifyPriceBtn.setTitle("设置发货", for: .normal)
-                case 2:
-                    pendingPaymentLaber.text = "待收货"
-                    pendingPaymentLaber.textColor = UIColor.hex(hexString: "#1C98F6")
-                    modifyPriceBtn.setTitle("修改快递单号", for: .normal)
-                    modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
-                        ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                        ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-                        ConstraintMaker.width.equalTo(145)
-                        ConstraintMaker.height.equalTo(30)
-                    }
-//                    modifyPriceBtn.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
-                case 3:
-                    pendingPaymentLaber.text = "已完成"
-                    pendingPaymentLaber.textColor = UIColor.hex(hexString: "#07D781")
-                    modifyPriceBtn.removeFromSuperview()
-                    recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-                        ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                        ConstraintMaker.right.equalToSuperview().offset(-15)
-                        ConstraintMaker.width.equalTo(95)
-                        ConstraintMaker.height.equalTo(30)
-                    }
-                case 5:
-                    pendingPaymentLaber.text = "已取消"
-                    pendingPaymentLaber.textColor = UIColor.hex(hexString: "#999999")
-                    modifyPriceBtn.removeFromSuperview()
-                    recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-                        ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                        ConstraintMaker.right.equalToSuperview().offset(-15)
-                        ConstraintMaker.width.equalTo(95)
-                        ConstraintMaker.height.equalTo(30)
-                }
-                default:
-                    pendingPaymentLaber.text = "已完成"
-                    pendingPaymentLaber.textColor = UIColor.hex(hexString: "#07D781")
-                    modifyPriceBtn.removeFromSuperview()
-//                    recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-//                        ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-//                        ConstraintMaker.right.equalToSuperview().offset(-15)
-//                        ConstraintMaker.width.equalTo(95)
-//                        ConstraintMaker.height.equalTo(30)
+            case 0:
+                pendingPaymentLaber.text = "待付款"
+                pendingPaymentLaber.textColor = UIColor.hex(hexString: "#FF4444")
+                setButton(modifyPrice: true, modifyPriceText: "修改价格", modifyPriceWidth: 95)
+            case 1:
+                pendingPaymentLaber.text = "待发货"
+                pendingPaymentLaber.textColor = UIColor.hex(hexString: "#1C98F6")
+                setButton(modifyPrice: true, modifyPriceText: "设置发货", modifyPriceWidth: 95)
+            case 2:
+                pendingPaymentLaber.text = "待收货"
+                pendingPaymentLaber.textColor = UIColor.hex(hexString: "#1C98F6")
+                setButton(modifyPrice: true, modifyPriceText: "修改快递单号", modifyPriceWidth: 105)
+
+            case 3:
+                pendingPaymentLaber.text = "已完成"
+                pendingPaymentLaber.textColor = UIColor.hex(hexString: "#07D781")
+                setButton(modifyPrice: false, modifyPriceText: "", modifyPriceWidth: 0)
+            case 5:
+                pendingPaymentLaber.text = "已取消"
+                pendingPaymentLaber.textColor = UIColor.hex(hexString: "#999999")
+                setButton(modifyPrice: false, modifyPriceText: "", modifyPriceWidth: 0)
+            default:
+                pendingPaymentLaber.text = "已完成"
+                pendingPaymentLaber.textColor = UIColor.hex(hexString: "#07D781")
+                setButton(modifyPrice: false, modifyPriceText: "", modifyPriceWidth: 0)
+
             }
             userNameLaber.text = model.name
             userPhoneLaber.text = model.mobile
-//            addressLaber.text = model.address
             if (model.goodsList.count != 0){
                 commodityNameLaber.text = model.goodsList?[0].name
                 var label:String = ""
