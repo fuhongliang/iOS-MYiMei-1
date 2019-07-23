@@ -228,7 +228,7 @@ extension NetApi: TargetType {
         case .getMessageNotice(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .setMessageNoticeRead(let param):
-             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getGoodsDetail(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }

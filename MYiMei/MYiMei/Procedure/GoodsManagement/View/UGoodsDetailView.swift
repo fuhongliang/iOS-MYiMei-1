@@ -440,7 +440,7 @@ class UGoodsDetailView: BaseView {
         originalPriceTF.placeholder = "请输入"
         originalPriceTF.font = UIFont.systemFont(ofSize: 17)
         originalPriceTF.textAlignment = .right
-        originalPriceTF.keyboardType = UIKeyboardType.numberPad
+        originalPriceTF.keyboardType = UIKeyboardType.decimalPad
         self.addSubview(originalPriceTF)
         originalPriceTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(originalPriceUnitLabel.snp.left).offset(-10)
@@ -481,7 +481,7 @@ class UGoodsDetailView: BaseView {
         goodsPriceTF.placeholder = "请输入"
         goodsPriceTF.font = UIFont.systemFont(ofSize: 17)
         goodsPriceTF.textAlignment = .right
-        goodsPriceTF.keyboardType = UIKeyboardType.numberPad
+        goodsPriceTF.keyboardType = UIKeyboardType.decimalPad
         self.addSubview(goodsPriceTF)
         goodsPriceTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalTo(goodsPriceUnitLabel.snp.left).offset(-10)
