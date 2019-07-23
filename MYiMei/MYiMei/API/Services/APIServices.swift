@@ -12,8 +12,9 @@ import Moya
 import MBProgressHUD
 
 let ssl: Bool = true
-//fileprivate let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
-//fileprivate let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
+//MARK:开发环境
+// let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
+// let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
 //MARK:正式环境
 let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
 let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"

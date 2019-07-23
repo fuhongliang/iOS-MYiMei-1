@@ -147,7 +147,7 @@ extension ULoginViewController: ULoginViewDelegate {
             let rootVC = UIApplication.shared.delegate as! AppDelegate
             rootVC.window?.rootViewController = UTabBarController()
         }) { (APIErrorModel) in
-            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+            showHUDInView(text: APIErrorModel.msg ?? "登录失败", inView: self.view)
         }
     }
 }
