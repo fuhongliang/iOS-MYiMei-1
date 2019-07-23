@@ -679,14 +679,14 @@
 		7BAB354D22C1AF1300154D36 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7B08931822D7151000872136 /* UMeDepost.swift */,
+				7B08931922D7151000872136 /* UMeDepostcell.swift */,
 				7BAB355B22C1C93000154D36 /* UStoreEventsCell.swift */,
 				0AB057BE22D74074002B7E40 /* UModifySetUpShopView.swift */,
 				7B08931C22D7153700872136 /* UDepost.swift */,
-				7B08931822D7151000872136 /* UMeDepost.swift */,
 				7B08932222D728F300872136 /* UDepostStatusCell.swift */,
 				7B08932422D72BD200872136 /* UDepostPhotoCell.swift */,
 				7B08932622D72CE600872136 /* UWebViewCell.swift */,
-				7B08931922D7151000872136 /* UMeDepostcell.swift */,
 				DC7E297622D5754500AC3F21 /* UMenuDepost.swift */,
 				7BAB354F22C1AF4600154D36 /* UMineHead.swift */,
 				7BAB355F22C1F2CD00154D36 /* UMenuCell.swift */,

@@ -121,7 +121,7 @@ class UDepost: BaseView {
         //MARK:添加上传照片图片
 
         uploadPicBtn.setImage(UIImage.init(named: "add_photo"), for: UIControl.State.normal)
-        uploadPicBtn.setTitleColor(UIColor.theme, for: UIControl.State.normal)
+        uploadPicBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
         uploadPicBtn.setTitle("上传照片", for: UIControl.State.normal)
         uploadPicBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         uploadPicBtn.sizeToFit()

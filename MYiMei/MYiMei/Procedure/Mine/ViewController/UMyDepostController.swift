@@ -38,6 +38,7 @@ class UMyDepostController: UBaseViewController {
         let btnItem = UIBarButtonItem.init(title: "追加", style: .plain, target: self, action: #selector(tapAddDepostAction))
         btnItem.tintColor = UIColor.white
         btnItem.width = 60
+//        btnItem.accessibilityFrame = CGRectMak
         navigationItem.rightBarButtonItem = btnItem
         getStoreDepost()
         loadUrl()

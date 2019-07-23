@@ -185,9 +185,9 @@ class USettingDeliveryView: BaseView {
         submitInfoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(submitInfoBtn)
         submitInfoBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.bottom.equalToSuperview().offset(-20)
-            ConstraintMaker.left.equalToSuperview().offset(30)
-            ConstraintMaker.right.equalToSuperview().offset(-30)
+            ConstraintMaker.bottom.equalToSuperview()
+            ConstraintMaker.left.equalToSuperview()
+            ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(44)
         }
         
