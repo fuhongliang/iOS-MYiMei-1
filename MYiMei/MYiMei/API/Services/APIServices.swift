@@ -11,12 +11,12 @@ import Alamofire
 import Moya
 import MBProgressHUD
 
-fileprivate let ssl: Bool = true
+let ssl: Bool = true
 //fileprivate let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
 //fileprivate let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
 //MARK:正式环境
-fileprivate let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
-fileprivate let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"
+let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
+let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"
 
 // MARK: 网络请求加载插件
 let loadingPlugin = NetworkActivityPlugin { (type, target) in

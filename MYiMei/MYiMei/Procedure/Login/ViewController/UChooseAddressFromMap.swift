@@ -34,7 +34,7 @@ class UChooseAddressFromMap: UBaseViewController, MAMapViewDelegate, PlaceAround
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.gray
-        AMapServices.shared().apiKey = "25a2a5ea58db98f339e672d49e74f4d7"
+        AMapServices.shared().apiKey = "a4547d4dfcc5ba8d2f91cd0a916935ba"
         initMapView()
         initTableView()
         initSearch()
