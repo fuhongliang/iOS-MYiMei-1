@@ -145,7 +145,7 @@ class UGoodsDetailView: BaseView {
         goodsNameTF.textColor = UIColor.black
         goodsNameTF.tintColor = UIColor.hex(hexString: "#CCCCCC")
         goodsNameTF.font = UIFont.systemFont(ofSize: 17)
-        goodsNameTF.placeholder = "商品名称 (30字以内)"
+        goodsNameTF.placeholder = "商品名称 (250字以内)"
         goodsNameTF.dl_maxLength = 30
         let leftview = UIView()
         leftview.frame = CGRect(x: 0, y: 0, width: 10, height: 44)
