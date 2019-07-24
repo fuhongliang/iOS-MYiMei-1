@@ -52,13 +52,20 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .top
-        loadGoodsDetailData()
         getPlatCat()
         if(goods_id != 0){
             loadGoodsDetailData()
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.configNavigationBar()
+        if(getGoodsDescr().isEmpty){
+            self.goodsDetailView.goodsDescrBtn.setTitle("请添加商品描述", for: UIControl.State.normal)
+        }else{
+            self.goodsDetailView.goodsDescrBtn.setTitle("已添加", for: UIControl.State.normal)
+        }
+    }
 
     convenience init(goodscateList:[CategoryModel]?,goodsId:Int) {
         self.init()
@@ -72,6 +79,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         let access_token: String = getToken()
         goodsService.getGoodsDetail(mch_id: mch_id, goods_id: goods_id, access_token: access_token, { (GoodsDetailResponeModel) in
             self.goodsDetailModel = GoodsDetailResponeModel.data!.goods!
+            saveGoodsDescr(goodsDescr: self.goodsDetailModel.detail ?? "")
             self.setViewData()
         }, { (APIErrorModel) in
             showHUDInView(text: APIErrorModel.msg ?? "获取商品详情失败", inView: self.view)
@@ -79,15 +87,26 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
     }
 
     func setViewData(){
+        //MARK:商品名称
         self.goodsDetailView.goodsNameTF.text = goodsDetailModel.goods_name
-        self.goodsDetailView.goodsDescr.palceholdertextView.text = goodsDetailModel.detail
+
+        if(getGoodsDescr().isEmpty){
+            self.goodsDetailView.goodsDescrBtn.setTitle("请添加商品描述", for: UIControl.State.normal)
+        }else{
+            self.goodsDetailView.goodsDescrBtn.setTitle("已添加", for: UIControl.State.normal)
+        }
+
         let image = UIImageView()
         image.kf.setImage(with: URL(string: goodsDetailModel.cover_pic!))
         self.goodsDetailView.addGoodsCoverPic.setBackgroundImage(image.image, for: UIControl.State.normal)
+        self.coverPic = goodsDetailModel.cover_pic!
 
+        //MARK:商品图片
         let imageGoodsPic = UIImageView()
         imageGoodsPic.kf.setImage(with: URL(string: goodsDetailModel.goods_pic![0]))
         self.goodsDetailView.addGoodsPic.setBackgroundImage(imageGoodsPic.image, for: UIControl.State.normal)
+        self.goodsPic = goodsDetailModel.goods_pic![0]
+
         self.goodsDetailView.choosegoodsClassBtn.setTitle(getGoodsCat(cat_id: goodsDetailModel.goods_cat_id ?? 0), for: UIControl.State.normal)
         self.goodsDetailView.choosePlatformClassBtn.setTitle(getPaltCat(cat_id: goodsDetailModel.goods_cat_id ?? 0), for: UIControl.State.normal)
 
@@ -311,6 +330,14 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
 }
 
 extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDelegate {
+
+    func tapAddGoodsDescrAction() {
+        let vc = RichEditorViewController()
+        vc.title = "添加商品描述"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+
     func tapChooseCateAction() {
         // Simple Option Picker
         var dummyList = [String]()
@@ -326,12 +353,10 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
     }
 
     func tapChooseGoodsCateAction() {
-        // Simple Option Picker
         var dummyList = [String]()
         for item in goodscateList{
             dummyList.append(item.name!)
         }
-        // Simple Option Picker with selected index
 
         RPicker.selectOption(title: "", hideCancel: true, dataArray: dummyList, selectedIndex: curGoodsCatIndex) { (selctedText, atIndex) in
             self.curGoodsCatIndex = atIndex
@@ -364,17 +389,18 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
         }
     }
 
-    func tapSaveAction(name: String, detail: String, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, goods_num: String) {
+    func tapSaveAction(name: String, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, goods_num: String) {
 
         guard name.count > 0 else {
             showHUDInView(text: "请输入商品名", inView: view)
             return
         }
 
-        guard detail.count > 0 else {
-            showHUDInView(text: "请输入商品描述", inView: view)
+        guard getGoodsDescr().count > 0 else {
+            showHUDInView(text: "请添加商品描述", inView: view)
             return
         }
+
         guard coverPic.count > 0 else {
             showHUDInView(text: "请选择缩略图", inView: view)
             return
@@ -417,9 +443,9 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
 
         goodsPicArray.append(goodsPic)
 
-        goodsService.addGoods(name: name, detail: detail, cover_pic: coverPic, goods_pic: goodsPicArray, pt_cat_id: plat_cat_id, goods_cat_id: goods_cat_id, unit: unit, weight: weight, original_price: original_price, price: price, pieces: pieces, forehead: forehead, service: serviceTag, goods_num: goods_num, {
-
+        goodsService.addGoods(name: name, detail: getGoodsDescr(), cover_pic: coverPic, goods_pic: goodsPicArray, pt_cat_id: plat_cat_id, goods_cat_id: goods_cat_id, unit: unit, weight: weight, original_price: original_price, price: price, pieces: pieces, forehead: forehead, service: serviceTag, goods_num: goods_num, {
             showHUDInView(text: "发布成功", inView: self.view)
+            cleanGoodsDescr()
             self.pressBack()
         }) { (APIErrorModel) in
             showHUDInView(text: APIErrorModel.msg ?? "发布失败" , inView: self.view)

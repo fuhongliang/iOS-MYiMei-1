@@ -28,5 +28,6 @@ pod 'SCLAlertView' #弹窗
 pod 'JXSegmentedView' #滑动页面
 pod 'Bugtags'
 pod 'JPush'
+pod "RichEditorView", :path => "../"
 
 end

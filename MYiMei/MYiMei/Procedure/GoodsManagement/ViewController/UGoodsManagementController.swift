@@ -48,6 +48,11 @@ class UGoodsManagementController: UBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.configNavigationBar()
         loadCategoryData()
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        cleanGoodsDescr()
     }
 
     @objc private func loadCategoryData() {
