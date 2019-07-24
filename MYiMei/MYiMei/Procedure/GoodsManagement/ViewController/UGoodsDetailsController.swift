@@ -333,7 +333,7 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
 
     func tapAddGoodsDescrAction() {
         let vc = RichEditorViewController()
-        vc.title = "添加商品描述"
+        vc.title = "编辑商品描述"
         navigationController?.pushViewController(vc, animated: true)
     }
 
