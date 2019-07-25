@@ -32,7 +32,6 @@ class UShopLabelImgCell: UBaseTableViewCell {
     
     var shopImg: UIImageView = {
         let shopImg = UIImageView()
-        shopImg.image = UIImage.init(named: "add_category")
         return shopImg
     }()
     

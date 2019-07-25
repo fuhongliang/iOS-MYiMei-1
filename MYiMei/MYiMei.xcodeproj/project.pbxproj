@@ -116,6 +116,7 @@
 		DC18A52322E2BA8600451E10 /* UOrdersNotReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18A52222E2BA8600451E10 /* UOrdersNotReceiptController.swift */; };
 		DC18A52522E2BC6F00451E10 /* UOrdersCompleteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18A52422E2BC6F00451E10 /* UOrdersCompleteController.swift */; };
 		DC18A52722E2BD3F00451E10 /* UOrdersCancleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18A52622E2BD3F00451E10 /* UOrdersCancleController.swift */; };
+		DC18BA5122E94648007C47CC /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18BA5022E94648007C47CC /* BalloonMarker.swift */; };
 		DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */; };
 		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
 		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
@@ -146,6 +147,7 @@
 		DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */; };
 		DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */; };
 		DC7E298722D5A65C00AC3F21 /* OrderListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */; };
+		DC81B07D22E82C1600A47A58 /* UHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC81B07C22E82C1600A47A58 /* UHomeController.swift */; };
 		DC8708D122D9B22D009B92F2 /* ExpressListResponesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -284,6 +286,7 @@
 		DC18A52222E2BA8600451E10 /* UOrdersNotReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrdersNotReceiptController.swift; sourceTree = "<group>"; };
 		DC18A52422E2BC6F00451E10 /* UOrdersCompleteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrdersCompleteController.swift; sourceTree = "<group>"; };
 		DC18A52622E2BD3F00451E10 /* UOrdersCancleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrdersCancleController.swift; sourceTree = "<group>"; };
+		DC18BA5022E94648007C47CC /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
 		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
@@ -315,6 +318,7 @@
 		DC7E298222D58CBC00AC3F21 /* DepositAgreementResponsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositAgreementResponsModel.swift; sourceTree = "<group>"; };
 		DC7E298422D5A5DE00AC3F21 /* APIOrderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOrderServices.swift; sourceTree = "<group>"; };
 		DC7E298622D5A65C00AC3F21 /* OrderListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListResponseModel.swift; sourceTree = "<group>"; };
+		DC81B07C22E82C1600A47A58 /* UHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UHomeController.swift; path = MYiMei/API/Models/UHomeController.swift; sourceTree = SOURCE_ROOT; };
 		DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressListResponesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -396,6 +400,8 @@
 		0AB057CF22D9AD82002B7E40 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DC81B07C22E82C1600A47A58 /* UHomeController.swift */,
+				DC18BA5022E94648007C47CC /* BalloonMarker.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1026,6 +1032,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC81B07D22E82C1600A47A58 /* UHomeController.swift in Sources */,
 				DC18A52722E2BD3F00451E10 /* UOrdersCancleController.swift in Sources */,
 				7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */,
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
@@ -1106,6 +1113,7 @@
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,
 				0A0FF6CC22CB0271003F4B53 /* UReviewControiller.swift in Sources */,
 				7BAB355022C1AF4600154D36 /* UMineHead.swift in Sources */,
+				DC18BA5122E94648007C47CC /* BalloonMarker.swift in Sources */,
 				0AB057E322DDAD1E002B7E40 /* UHomeDepostCell.swift in Sources */,
 				7BAB356422C1F62800154D36 /* UMenuStoreSettings.swift in Sources */,
 				DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */,

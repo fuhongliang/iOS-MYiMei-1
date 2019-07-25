@@ -50,7 +50,7 @@ class UReviwView: BaseView {
         }
         
         //按钮
-       button.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        button.backgroundColor = UIColor.hex(hexString: "#1C98F6")
         button.setTitle("确定", for: UIControl.State.normal)
         button.setTitleColor(UIColor.white, for: UIControl.State.normal)
         button.layer.masksToBounds = true

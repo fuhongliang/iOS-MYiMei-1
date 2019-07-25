@@ -8,7 +8,17 @@
 
 import UIKit
 
+protocol USettingViewDelegate: AnyObject {
+    func tapShopSetting()
+    func tapAccountSafe()
+    func tapCallThePlatform()
+    func tapAboutThePlatform()
+}
+
+
 class USettingView: BaseView {
+    
+    weak var delegate: USettingViewDelegate?
     
     //蓝色背景图片
     var blueIcon = UIImageView()
@@ -49,16 +59,21 @@ class USettingView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(185)
+            ConstraintMaker.height.equalTo(200)
         }
         //MARK:头部头像
-        headIcon.image = UIImage.init(named: "menu_goods_management")
         self.addSubview(headIcon)
         headIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerX.equalTo(blueIcon)
-            ConstraintMaker.top.equalTo(blueIcon.snp.top).offset(34)
+            ConstraintMaker.top.equalTo(blueIcon.snp.top).offset(49)
             ConstraintMaker.size.equalTo(70)
         }
+        //设置圆角
+        headIcon.layer.cornerRadius = 35;
+        //将多余的部分切掉
+        headIcon.layer.masksToBounds = true;
+        
+        
         //MARK:店铺名称
         storeNameLaber.text = "箭牌卫浴旗舰店"
         storeNameLaber.textColor = UIColor.white
@@ -91,12 +106,16 @@ class USettingView: BaseView {
         storeBtn.setTitle("店铺设置", for: UIControl.State.normal)
         storeBtn.setTitleColor(UIColor.hex(hexString: "#333333"), for: UIControl.State.normal)
         storeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        storeBtn.contentHorizontalAlignment = .left
+        storeBtn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 43, bottom: 0, right: 0)
         self.addSubview(storeBtn)
         storeBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(storeWhiteBg.snp.left).offset(43)
+            ConstraintMaker.left.right.equalTo(storeWhiteBg)
             ConstraintMaker.top.equalTo(storeWhiteBg.snp.top)
             ConstraintMaker.height.equalTo(45)
         }
+        storeBtn.addTarget(self, action: #selector(shopSetting), for: UIControl.Event.touchUpInside)
+        
         storeLeftIcon.image = UIImage.init(named: "storeIcon")
         self.addSubview(storeLeftIcon)
         storeLeftIcon.snp.makeConstraints { (ConstraintMaker) in
@@ -124,12 +143,16 @@ class USettingView: BaseView {
         accountSecurityBtn.setTitle("账户安全", for: UIControl.State.normal)
         accountSecurityBtn.setTitleColor(UIColor.hex(hexString: "#333333"), for: UIControl.State.normal)
         accountSecurityBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        accountSecurityBtn.contentHorizontalAlignment = .left
+        accountSecurityBtn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 43, bottom: 0, right: 0)
         self.addSubview(accountSecurityBtn)
         accountSecurityBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(storeWhiteBg.snp.left).offset(43)
+            ConstraintMaker.left.right.equalTo(storeWhiteBg)
             ConstraintMaker.top.equalTo(storeLine.snp.bottom)
             ConstraintMaker.height.equalTo(45)
         }
+        accountSecurityBtn.addTarget(self, action: #selector(accountSafe), for: UIControl.Event.touchUpInside)
+        
         accountSecurityLeftIcon.image = UIImage.init(named: "account_security")
         self.addSubview(accountSecurityLeftIcon)
         accountSecurityLeftIcon.snp.makeConstraints { (ConstraintMaker) in
@@ -159,12 +182,16 @@ class USettingView: BaseView {
         contactPlatformBtn.setTitle("联系平台", for: UIControl.State.normal)
         contactPlatformBtn.setTitleColor(UIColor.hex(hexString: "#333333"), for: UIControl.State.normal)
         contactPlatformBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        contactPlatformBtn.contentHorizontalAlignment = .left
+        contactPlatformBtn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 43, bottom: 0, right: 0)
         self.addSubview(contactPlatformBtn)
         contactPlatformBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(platformBg.snp.left).offset(43)
+            ConstraintMaker.left.right.equalTo(platformBg)
             ConstraintMaker.top.equalTo(platformBg.snp.top)
             ConstraintMaker.height.equalTo(45)
         }
+        contactPlatformBtn.addTarget(self, action: #selector(callThePlatform), for: UIControl.Event.touchUpInside)
+        
         contactPlatformLeftIcon.image = UIImage.init(named: "contact_platform")
         self.addSubview(contactPlatformLeftIcon)
         contactPlatformLeftIcon.snp.makeConstraints { (ConstraintMaker) in
@@ -192,12 +219,16 @@ class USettingView: BaseView {
         aboutPlatformBtn.setTitle("关于平台", for: UIControl.State.normal)
         aboutPlatformBtn.setTitleColor(UIColor.hex(hexString: "#333333"), for: UIControl.State.normal)
         aboutPlatformBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        aboutPlatformBtn.contentHorizontalAlignment = .left
+        aboutPlatformBtn.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 43, bottom: 0, right: 0)
         self.addSubview(aboutPlatformBtn)
         aboutPlatformBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(platformBg.snp.left).offset(43)
+            ConstraintMaker.left.right.equalTo(platformBg)
             ConstraintMaker.top.equalTo(contactPlatformLine.snp.bottom)
             ConstraintMaker.height.equalTo(45)
         }
+        aboutPlatformBtn.addTarget(self, action: #selector(aboutThePlatform), for: UIControl.Event.touchUpInside)
+        
         aboutPlatformLeftIcon.image = UIImage.init(named: "about_platform")
         self.addSubview(aboutPlatformLeftIcon)
         aboutPlatformLeftIcon.snp.makeConstraints { (ConstraintMaker) in
@@ -213,5 +244,17 @@ class USettingView: BaseView {
             ConstraintMaker.height.equalTo(14)
             ConstraintMaker.width.equalTo(9)
         }
+    }
+    @objc func shopSetting() {
+        delegate?.tapShopSetting()
+    }
+    @objc func accountSafe() {
+        delegate?.tapAccountSafe()
+    }
+    @objc func callThePlatform() {
+        delegate?.tapCallThePlatform()
+    }
+    @objc func aboutThePlatform() {
+        delegate?.tapAboutThePlatform()
     }
 }

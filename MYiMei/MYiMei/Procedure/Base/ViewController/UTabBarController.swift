@@ -10,9 +10,14 @@ import UIKit
 
 class UTabBarController: UITabBarController {
     
-    let onePageVC = UOrdersUnprocessedViewController()
+    let homePageVC = UHomeController()
     let classVC = UManagerOrdersController()
     let mineVC = UMineViewController()
+    
+    ///NEW
+    let goodsVC = UGoodsManagementController()
+    let settingVC = USettingViewController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,31 +26,37 @@ class UTabBarController: UITabBarController {
 
         /// 待处理
         
-        addChildViewController(onePageVC,
-                               title: "待处理",
+        addChildViewController(homePageVC,
+                               title: "首页",
                                image: UIImage(named: "tab_home"),
                                selectedImage: UIImage(named: "tab_home_S"))
 
         /// 订单管理
         
         addChildViewController(classVC,
-                               title: "订单管理",
+                               title: "订单",
                                image: UIImage(named: "tab_manager_orders"),
                                selectedImage: UIImage(named: "tab_manager_orders_S"))
 
         /// 我的店铺
         
-        addChildViewController(mineVC,
-                               title: "我的店铺",
-                               image: UIImage(named: "tab_mine"),
-                               selectedImage: UIImage(named: "tab_mine_S"))
-
+        addChildViewController(goodsVC,
+                               title: "商品",
+                               navigateTile: "商品管理",
+                               image: UIImage(named: "tab_goods"),
+                               selectedImage: UIImage(named: "tab_goods_S"))
+        
+        /// 设置
+        addChildViewController(settingVC,
+                               title: "设置",
+                               image:  UIImage(named: "tab_setting"),
+                               selectedImage: UIImage(named: "tab_setting_S"))
 
     }
 
-    func addChildViewController(_ childController: UIViewController, title:String?, image:UIImage? ,selectedImage:UIImage?) {
+    func addChildViewController(_ childController: UIViewController, title:String?,navigateTile:String = "", image:UIImage? ,selectedImage:UIImage?) {
 
-        childController.title = title
+        childController.title = navigateTile == "" ? title : navigateTile
         childController.tabBarItem = UITabBarItem(title: title,
                                                   image: image?.withRenderingMode(.alwaysOriginal),
                                                   selectedImage: selectedImage?.withRenderingMode(.alwaysOriginal))

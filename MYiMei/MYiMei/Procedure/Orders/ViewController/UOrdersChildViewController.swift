@@ -91,7 +91,7 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let vc = UOrdersUnprocessedViewController()
-        if listType == 0{
+        if listType == 0{ // 普通订单
             if index == 1 {//待处理
                 let controller = UOrdersUnprocessedViewController()
                 return controller
@@ -105,7 +105,7 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
                 let controller = UOrdersCancleController()
                 return controller
             }
-        } else {
+        } else { // 售后订单
             vc.orderType = -1
         }
         return vc

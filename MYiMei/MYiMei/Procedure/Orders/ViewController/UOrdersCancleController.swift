@@ -111,7 +111,7 @@ class UOrdersCancleController : UBaseViewController {
     
     //MARK:打电话给客户
     func callTheClient(index:Int){
-        let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "温馨提示", message: "是否拨打客户联系电话？", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
             (action: UIAlertAction!) -> Void in
             

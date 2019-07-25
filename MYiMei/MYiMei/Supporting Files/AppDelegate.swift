@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
                 print("注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
                 JPUSHService.setAlias(APIUser.shared.user?.tel, completion: { (iResCode, iAlias, seq) in
-                    print("注册极光别名 \(APIUser.shared.user?.tel),\(iResCode),\(String(describing: iAlias)),\(seq)")
+                    print("注册极光别名 \(APIUser.shared.user!.tel),\(iResCode),\(String(describing: iAlias)),\(seq)")
                 }, seq: 0)
 
             }, seq: 0)
