@@ -68,8 +68,11 @@ class UGoodsManagementController: UBaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        cleanGoodsDescr()
     }
 
     @objc private func loadCategoryData() {
