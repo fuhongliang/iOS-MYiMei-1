@@ -39,10 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             self.window?.rootViewController = UTabBarController()
         }else {            //测试
-            let vc = UReviewControiller()
+            let vc = ULoginViewController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
-//        }
+        }
 
 //        window?.makeKeyAndVisible()
 //
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        //let advertisingId = ASIdentifierManager.shared().advertisingIdentifier.uuidString
 //        JPUSHService.setup(withOption: launchOptions, appKey: "dfe3546772ea640af808d640", channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
 //
-        return true
+            return true
     }
 
     func configBase() {
@@ -158,8 +158,3 @@ extension AppDelegate : JPUSHRegisterDelegate {
         print("did Fail To Register For Remote Notifications With Error: \(error)")
     }
 }
-
-
-
-
-

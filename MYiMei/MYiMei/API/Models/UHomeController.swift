@@ -329,6 +329,9 @@ extension UHomeController: ChartViewDelegate,UHomeViewDelegate {
     
     func tapCommentsManager() {
         //评论管理
+        let vc = UCommentController()
+        vc.title = "评价管理"
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tapShopSetting() {
