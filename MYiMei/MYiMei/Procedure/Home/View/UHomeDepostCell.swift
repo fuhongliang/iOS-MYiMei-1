@@ -23,6 +23,7 @@ class UHomeDepostCell: BaseView {
         tl.isUserInteractionEnabled = true
         return tl
     }()
+    
     func configUI() {
         menuIcon.image = UIImage.init(named: "homeDepostCell")
         self.addSubview(menuIcon)
