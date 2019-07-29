@@ -170,7 +170,7 @@ extension UOrdersViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UNewOrderCell.self)
         
         cell.callTheClient = {
-            let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "温馨提示", message: "是否拨打客户联系电话？", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
                 (action: UIAlertAction!) -> Void in
                 

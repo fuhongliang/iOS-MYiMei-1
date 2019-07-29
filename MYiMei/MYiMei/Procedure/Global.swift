@@ -24,6 +24,14 @@ func dateForMatter(timeString:Int, join:String) -> String{
     return dateForMatter.string(from: date)
 }
 
+func stringArrayConvertDoubleArray(stringArray:[String]) -> [Double]{
+    var icome : [Double] = []
+    for number in stringArray {
+        icome.append(Double(number) as! Double)
+    }
+    return icome
+}
+
 extension UIColor {
     class var background: UIColor {
         return UIColor(r: 242, g: 242, b: 242)

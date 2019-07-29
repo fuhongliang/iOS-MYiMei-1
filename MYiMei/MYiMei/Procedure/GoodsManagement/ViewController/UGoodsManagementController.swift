@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FTPopOverMenu_Swift
 
 class UGoodsManagementController: UBaseViewController {
     fileprivate var service: APIGoodsServices = APIGoodsServices()
@@ -43,11 +44,30 @@ class UGoodsManagementController: UBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .top
+        
+        loadCategoryData()
+        
+        //获取状态栏的高度
+        let statusbarHeight = UIApplication.shared.statusBarFrame.height
+        let navigationBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
+        //这个配置一次就能用到全局
+        let config = FTConfiguration.shared
+        config.backgoundTintColor = UIColor.white
+        //        config.globalShadow = true #globalShow优先级比globalNotContainBarShadow高
+        //        config.localShadow = true
+        config.globalNotContainBarShadow = true
+        config.navigationBarHeight = statusbarHeight + navigationBarHeight
+        config.borderColor = UIColor.white
+        config.menuWidth = 107
+        config.menuSeparatorColor = UIColor.lightGray
+        config.menuRowHeight = 43
+        config.cornerRadius = 3
+        config.menuSeparatorInset = UIEdgeInsets.init(top: 0, left: 36, bottom: 0, right: 0)
+        config.menuSeparatorColor = UIColor.hex(hexString: "#F2F2F2")
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.configNavigationBar()
-        loadCategoryData()
+        super.viewWillAppear(true)
 
     }
 
@@ -81,31 +101,36 @@ class UGoodsManagementController: UBaseViewController {
         }
 
     }
+    
+    
 
     override func configUI() {
-        let bottomTab = UBottomTab()
-        bottomTab.configUI()
-        self.view.addSubview(bottomTab)
-        bottomTab.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.bottom.equalToSuperview()
-            ConstraintMaker.height.equalTo(67)
-        }
+//        let bottomTab = UBottomTab()
+//        bottomTab.configUI()
+//        self.view.addSubview(bottomTab)
+//        bottomTab.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalToSuperview()
+//            ConstraintMaker.right.equalToSuperview()
+//            ConstraintMaker.bottom.equalToSuperview()
+//            ConstraintMaker.height.equalTo(67)
+//        }
+//
+//        //MARK:新建分类
+//        bottomTab.addCategoryBtn.addTarget(self, action: #selector(showAddCategoryView), for: UIControl.Event.touchUpInside)
+//        //MARK:发布商品
+//        bottomTab.addGoodsBtn.addTarget(self, action: #selector(showGoodDetailView), for: UIControl.Event.touchUpInside)
+//        //MARK:管理分类
+//        bottomTab.addManageCategoryBtn.addTarget(self, action: #selector(showManageCategoryView), for: UIControl.Event.touchUpInside)
 
-        //MARK:新建分类
-        bottomTab.addCategoryBtn.addTarget(self, action: #selector(showAddCategoryView), for: UIControl.Event.touchUpInside)
-        //MARK:发布商品
-        bottomTab.addGoodsBtn.addTarget(self, action: #selector(showGoodDetailView), for: UIControl.Event.touchUpInside)
-        //MARK:管理分类
-        bottomTab.addManageCategoryBtn.addTarget(self, action: #selector(showManageCategoryView), for: UIControl.Event.touchUpInside)
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add_bar_right"),
+                                                            target: self,
+                                                            action: #selector(handleAddBarButtonItem(_:event:)))
 
         self.view.addSubview(categoryTableView)
         categoryTableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
-            ConstraintMaker.bottom.equalTo(bottomTab.snp.top)
+            ConstraintMaker.bottom.equalToSuperview()
             ConstraintMaker.width.equalTo(100)
         }
 
@@ -113,9 +138,35 @@ class UGoodsManagementController: UBaseViewController {
         goodsTableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(categoryTableView.snp.right)
             ConstraintMaker.top.equalToSuperview()
-            ConstraintMaker.bottom.equalTo(bottomTab.snp.top)
+            ConstraintMaker.bottom.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
         }
+    }
+    
+    // MARK: - 点击出现弹窗
+    @IBAction func handleAddBarButtonItem(_ sender: UIBarButtonItem, event: UIEvent) {
+        let cellConfi = FTCellConfiguration()
+        cellConfi.textColor = UIColor.hex(hexString: "#333333")
+        cellConfi.textFont = UIFont.systemFont(ofSize: 14)
+        cellConfi.menuIconSize = 14
+        cellConfi.cellMargin = 16
+        let cellConfis = Array(repeating: cellConfi, count: 4)
+        FTPopOverMenu.showForEvent(event: event,
+                                   with: ["新建分类", "发布商品", "管理分类"],
+                                   menuImageArray: ["new_category","add_goods","management_category"],
+                                   cellConfigurationArray: cellConfis,
+                                   done: { (selectedIndex) -> () in
+                                    if selectedIndex == 0 {
+                                        self.showAddCategoryView()
+                                    } else if selectedIndex == 1 {
+                                        self.showGoodDetailView()
+                                    } else {
+                                        self.showManageCategoryView()
+                                    }
+        }) {
+            
+        }
+        
     }
 
     //MARK:发布商品
@@ -130,7 +181,6 @@ class UGoodsManagementController: UBaseViewController {
         let vc = UClassEditController()
         vc.title = "新建分类"
         self.navigationController?.pushViewController(vc, animated: true)
-
     }
 
     //MARK:管理分类

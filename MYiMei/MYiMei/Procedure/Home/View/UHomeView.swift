@@ -7,7 +7,22 @@
 //
 
 import UIKit
+import Charts
+
+protocol UHomeViewDelegate: AnyObject {
+    func tapMessageManager()//消息管理
+    func tapCommentsManager()//评论管理
+    func tapShopSetting()//店铺设置
+    func tapFinancialOver()//财务结算
+    func tapDepost()//保证金
+    func tapSalesControl(sender: UISegmentedControl)//保证金
+    func tapPayControl(sender: UISegmentedControl)//保证金
+}
+
 class UHomeView: BaseView {
+    
+    weak var delegate: UHomeViewDelegate?
+    
     //蓝色背景
     var blueBg = UIImageView()
     //头像
@@ -36,6 +51,10 @@ class UHomeView: BaseView {
     //销售统计
     var salesLaber = UILabel()
     var salerLine = UILabel()
+    
+    //分段-销售统计
+    var salesSegmentedControl = UISegmentedControl.init(items: ["汇总","今日","昨日","7日","30日"])
+    
     //支付订单数
     var payOrderLaber = UILabel()
     var payOrderNumberLaber = UILabel()
@@ -63,6 +82,12 @@ class UHomeView: BaseView {
     //金额白色背景
     var moneyWhiteBg = UIImageView()
     var payAmount = UILabel()
+    
+    //分段-支付金额
+    var paySegmentedControl = UISegmentedControl.init(items: ["今日","昨日","7日","30日"])
+    
+    var chartView = LineChartView()
+    
     func setView() {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         
@@ -73,15 +98,17 @@ class UHomeView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(126)
+            ConstraintMaker.height.equalTo(126 + UIApplication.shared.statusBarFrame.height)
         }
         //MARK:头像
         storeAvatarIcon.backgroundColor = UIColor.white
+        storeAvatarIcon.layer.cornerRadius = 17
+        storeAvatarIcon.layer.masksToBounds = true
         self.addSubview(storeAvatarIcon)
         storeAvatarIcon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalTo(blueBg.snp.top).offset(15)
-            ConstraintMaker.size.equalTo(33)
+            ConstraintMaker.top.equalTo(blueBg.snp.top).offset(15 + UIApplication.shared.statusBarFrame.height)
+            ConstraintMaker.size.equalTo(34)
         }
         //MARk:店铺名称
         storeNameLaber.text = "箭牌卫浴旗舰店"
@@ -116,6 +143,7 @@ class UHomeView: BaseView {
             ConstraintMaker.top.equalTo(featuresBg.snp.top).offset(17)
             ConstraintMaker.width.equalTo(featuresBg).dividedBy(5)
         }
+        messageBtn.addTarget(self, action: #selector(messageManager), for: UIControl.Event.touchUpInside)
         //MARK:评论管理
         evaluation.configUI()
         self.addSubview(evaluation)
@@ -130,6 +158,7 @@ class UHomeView: BaseView {
             ConstraintMaker.top.equalTo(featuresBg.snp.top).offset(17)
             ConstraintMaker.width.equalTo(featuresBg).dividedBy(5)
         }
+        evaluationBtn.addTarget(self, action: #selector(commentsManager), for: UIControl.Event.touchUpInside)
         //MARK:店铺设置
         storeSetting.configUI()
         self.addSubview(storeSetting)
@@ -138,12 +167,14 @@ class UHomeView: BaseView {
             ConstraintMaker.top.equalTo(featuresBg.snp.top).offset(17)
            ConstraintMaker.width.equalTo(featuresBg).dividedBy(5)
         }
+        
         self.addSubview(storeSettingBtn)
         storeSettingBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(evaluation.snp.right)
             ConstraintMaker.top.equalTo(featuresBg.snp.top).offset(17)
             ConstraintMaker.width.equalTo(featuresBg).dividedBy(5)
         }
+        storeSettingBtn.addTarget(self, action: #selector(shopSetting), for: UIControl.Event.touchUpInside)
         //MARK:财务结算
         financial.configUI()
         self.addSubview(financial)
@@ -158,6 +189,7 @@ class UHomeView: BaseView {
             ConstraintMaker.top.equalTo(featuresBg.snp.top).offset(17)
             ConstraintMaker.width.equalTo(featuresBg).dividedBy(5)
         }
+        financialBtn.addTarget(self, action: #selector(financialOver), for: UIControl.Event.touchUpInside)
         //MARK:保证金
         depost.configUI()
         self.addSubview(depost)
@@ -172,6 +204,7 @@ class UHomeView: BaseView {
             ConstraintMaker.top.equalTo(featuresBg.snp.top).offset(17)
             ConstraintMaker.width.equalTo(featuresBg).dividedBy(5)
         }
+        depostBtn.addTarget(self, action: #selector(depostTap), for: UIControl.Event.touchUpInside)
         
         //MARK:销售统计背景
         salesWhiteBg.backgroundColor = UIColor.white
@@ -181,7 +214,7 @@ class UHomeView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(featuresBg.snp.bottom).offset(15)
             ConstraintMaker.right.equalToSuperview().offset(-15)
-            ConstraintMaker.height.equalTo(203)
+            ConstraintMaker.height.equalTo(216)
         }
         salesLaber.text = "销售统计"
         salesLaber.textColor = UIColor.hex(hexString: "#333333")
@@ -191,6 +224,21 @@ class UHomeView: BaseView {
             ConstraintMaker.left.equalTo(salesWhiteBg.snp.left).offset(15)
             ConstraintMaker.top.equalTo(salesWhiteBg.snp.top).offset(15)
         }
+        
+        salesSegmentedControl.tintColor = UIColor.hex(hexString: "#1C98F6")
+        salesSegmentedControl.layer.borderColor = UIColor.hex(hexString: "#1C98F6").cgColor
+        salesSegmentedControl.layer.borderWidth = 1
+        salesSegmentedControl.layer.cornerRadius = 15
+        salesSegmentedControl.layer.masksToBounds = true
+        self.addSubview(salesSegmentedControl)
+        salesSegmentedControl.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(salesWhiteBg).offset(16)
+            ConstraintMaker.right.equalTo(salesWhiteBg).offset(-16)
+            ConstraintMaker.top.equalTo(salesLaber.snp.bottom).offset(15)
+            ConstraintMaker.height.equalTo(28)
+        }
+        salesSegmentedControl.addTarget(self, action: #selector(salesContorl(_:)), for: .valueChanged)
+        
         //MARK:支付订单数
         payOrderLaber.text = "支付订单数"
         payOrderLaber.textColor = UIColor.hex(hexString: "#999999")
@@ -199,7 +247,7 @@ class UHomeView: BaseView {
         self.addSubview(payOrderLaber)
         payOrderLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(salesWhiteBg.snp.left)
-            ConstraintMaker.top.equalTo(salesWhiteBg.snp.top).offset(100)
+            ConstraintMaker.top.equalTo(salesSegmentedControl.snp.bottom).offset(40)
             ConstraintMaker.width.equalTo(salesWhiteBg.snp.width).dividedBy(2)
         }
         payOrderNumberLaber.text = "4343"
@@ -218,7 +266,7 @@ class UHomeView: BaseView {
         self.addSubview(payAmountLaber)
         payAmountLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(payOrderLaber.snp.right)
-            ConstraintMaker.top.equalTo(salesWhiteBg.snp.top).offset(100)
+            ConstraintMaker.top.equalTo(salesSegmentedControl.snp.bottom).offset(40)
             ConstraintMaker.width.equalTo(salesWhiteBg.snp.width).dividedBy(2)
         }
         payAmountNumberLaber.text = "43434.00"
@@ -364,7 +412,7 @@ class UHomeView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(salesWhiteBg.snp.bottom).offset(15)
             ConstraintMaker.right.equalToSuperview().offset(-15)
-            ConstraintMaker.height.equalTo(245)
+            ConstraintMaker.height.equalTo(250)
         }
         payAmount.text = "支付金额"
         payAmount.textColor = UIColor.hex(hexString: "#333333")
@@ -374,5 +422,48 @@ class UHomeView: BaseView {
             ConstraintMaker.left.equalTo(moneyWhiteBg.snp.left).offset(15)
             ConstraintMaker.top.equalTo(moneyWhiteBg.snp.top).offset(15)
         }
+        
+        paySegmentedControl.tintColor = UIColor.hex(hexString: "#1C98F6")
+        paySegmentedControl.layer.borderColor = UIColor.hex(hexString: "#1C98F6").cgColor
+        paySegmentedControl.layer.borderWidth = 1
+        paySegmentedControl.layer.cornerRadius = 15
+        paySegmentedControl.layer.masksToBounds = true
+        self.addSubview(paySegmentedControl)
+        paySegmentedControl.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(moneyWhiteBg).offset(16)
+            ConstraintMaker.right.equalTo(moneyWhiteBg).offset(-16)
+            ConstraintMaker.top.equalTo(payAmount.snp.bottom).offset(15)
+            ConstraintMaker.height.equalTo(28)
+        }
+        paySegmentedControl.addTarget(self, action: #selector(payContorl(_:)), for: .valueChanged)
+
+        self.addSubview(chartView)
+        chartView.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalTo(moneyWhiteBg).offset(15)
+            ConstraintMaker.right.equalTo(moneyWhiteBg).offset(-15)
+            ConstraintMaker.top.equalTo(paySegmentedControl.snp.bottom).offset(15)
+            ConstraintMaker.height.equalTo(155)
+        }
+    }
+    @objc func messageManager() {
+        delegate?.tapMessageManager()//消息管理
+    }
+    @objc func commentsManager() {
+        delegate?.tapCommentsManager()
+    }
+    @objc func shopSetting() {
+        delegate?.tapShopSetting()
+    }
+    @objc func financialOver() {
+        delegate?.tapFinancialOver()
+    }
+    @objc func depostTap() {
+        delegate?.tapDepost()
+    }
+    @objc func salesContorl(_ sender: UISegmentedControl){
+        delegate?.tapSalesControl(sender: sender)
+    }
+    @objc func payContorl(_ sender: UISegmentedControl){
+        delegate?.tapPayControl(sender: sender)
     }
 }

@@ -27,10 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         APIUser.shared.loadUserFromCache()
+        
         if APIUser.shared.user != nil {
             self.window?.rootViewController = UTabBarController()
-        }else {
-            //测试
+        }else {            //测试
             let vc = ULoginViewController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-    
+
     func configBase() {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
@@ -160,8 +160,3 @@ extension AppDelegate : JPUSHRegisterDelegate {
         print("did Fail To Register For Remote Notifications With Error: \(error)")
     }
 }
-
-
-
-
-
