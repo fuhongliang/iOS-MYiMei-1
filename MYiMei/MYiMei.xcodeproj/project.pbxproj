@@ -31,7 +31,6 @@
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
 		0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */; };
-		0AE9516C22EEE531000ECD47 /* UHomeEvaluationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE9516B22EEE531000ECD47 /* UHomeEvaluationCell.swift */; };
 		7B08931A22D7151000872136 /* UMeDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931822D7151000872136 /* UMeDepost.swift */; };
 		7B08931B22D7151000872136 /* UMeDepostcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931922D7151000872136 /* UMeDepostcell.swift */; };
 		7B08931D22D7153700872136 /* UDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931C22D7153700872136 /* UDepost.swift */; };
@@ -192,7 +191,6 @@
 		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; };
 		0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsViewController.swift; sourceTree = "<group>"; };
-		0AE9516B22EEE531000ECD47 /* UHomeEvaluationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHomeEvaluationCell.swift; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
 		7B08931822D7151000872136 /* UMeDepost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMeDepost.swift; sourceTree = "<group>"; };
@@ -385,7 +383,6 @@
 		0AB057CE22D9AD77002B7E40 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AE9516B22EEE531000ECD47 /* UHomeEvaluationCell.swift */,
 				0AB057DA22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift */,
 				0AB057D822DD6A45002B7E40 /* UHomeView.swift */,
 				0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */,
@@ -1164,7 +1161,6 @@
 				7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */,
 				7BF09D2A22E3058A003B6D14 /* GoodsDetailResponeModel.swift in Sources */,
 				7B85A6D622E1624D00F22056 /* AboutUsViewController.swift in Sources */,
-				0AE9516C22EEE531000ECD47 /* UHomeEvaluationCell.swift in Sources */,
 				0AB057D922DD6A45002B7E40 /* UHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
