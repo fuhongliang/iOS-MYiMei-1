@@ -41,6 +41,7 @@
 		7B08932722D72CE600872136 /* UWebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932622D72CE600872136 /* UWebViewCell.swift */; };
 		7B08932922D888B500872136 /* PlatCateResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932822D888B500872136 /* PlatCateResponeModel.swift */; };
 		7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */; };
+		7B2C3B3922EED07900C452E9 /* JPushRegistrationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C3B3822EED07900C452E9 /* JPushRegistrationID.swift */; };
 		7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */; };
 		7B2DE2AB22D57DDF00AD6FDD /* MchApplyResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */; };
 		7B2DE2AD22D5995200AD6FDD /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */; };
@@ -206,6 +207,7 @@
 		7B08932622D72CE600872136 /* UWebViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWebViewCell.swift; sourceTree = "<group>"; };
 		7B08932822D888B500872136 /* PlatCateResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatCateResponeModel.swift; sourceTree = "<group>"; };
 		7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCatModel.swift; sourceTree = "<group>"; };
+		7B2C3B3822EED07900C452E9 /* JPushRegistrationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPushRegistrationID.swift; sourceTree = "<group>"; };
 		7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyModel.swift; sourceTree = "<group>"; };
 		7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyResponeModel.swift; sourceTree = "<group>"; };
 		7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				7BAB352322C0C76400154D36 /* APIToken.swift */,
 				7BAB352922C0CDF500154D36 /* APIUser.swift */,
 				7BF06EC722E80FC200DE9851 /* APIGoodsDescr.swift */,
+				7B2C3B3822EED07900C452E9 /* JPushRegistrationID.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1141,6 +1144,7 @@
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */,
 				7B08931F22D715CD00872136 /* UDepostPostController.swift in Sources */,
+				7B2C3B3922EED07900C452E9 /* JPushRegistrationID.swift in Sources */,
 				DC18766022DDD854004FEF65 /* OrderDetailResponseModel.swift in Sources */,
 				7BAB354622C0D7D500154D36 /* ULoginViewController.swift in Sources */,
 				7B9EB94822C4950D003D9121 /* GoodsDetailModel.swift in Sources */,
