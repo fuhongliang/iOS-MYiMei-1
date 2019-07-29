@@ -9,7 +9,6 @@
 import UIKit
 
 class UOrderNotSendCell : UBaseTableViewCell {
-    //class UNewOrderCell: BaseView {
     
     var modifyPriceOrDeliveryGoods : (() -> ())?
     var moveToRecycleBin : (() -> ())?
@@ -73,7 +72,6 @@ class UOrderNotSendCell : UBaseTableViewCell {
     }()
     
     override func configUI() {
-        //    func setView() {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         
         

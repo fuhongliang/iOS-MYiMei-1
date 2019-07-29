@@ -78,6 +78,8 @@ enum NetApi {
     case getCommentList(param: [String:Any])
     case delOrHideComment(param: [String:Any])
     case replyComment(param: [String:Any])
+    case getRefundOrder(param: [String:Any])
+    case handleRefundOrder(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -161,12 +163,16 @@ extension NetApi: TargetType {
             return "/comment_hod"
         case .replyComment:
             return "/comment_reply"
+        case .getRefundOrder:
+            return "/list_refund_order"
+        case .handleRefundOrder:
+            return "/refund_handle"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
+        case .handleRefundOrder,.getRefundOrder,.replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
           return .post
 
         }
@@ -245,6 +251,10 @@ extension NetApi: TargetType {
         case .delOrHideComment(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .replyComment(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getRefundOrder(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .handleRefundOrder(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

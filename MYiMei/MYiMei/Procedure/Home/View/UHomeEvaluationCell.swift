@@ -219,8 +219,6 @@ class UHomeEvaluationCell: UBaseTableViewCell {
             make.top.equalTo(deleteBtn.snp.bottom).offset(8)
             make.bottom.equalTo(contentView)
         }
-        
-        
     }
     
     //MARK:设置label的行间距

@@ -10,9 +10,7 @@
 import UIKit
 
 class UOrderCancleCell : UBaseTableViewCell {
-    //class UNewOrderCell: BaseView {
     
-    //    var modifyPriceOrDeliveryGoods : (() -> ())?
     var moveToRecycleBin : (() -> ())?
     var callTheClient : (() -> ())?
     
@@ -64,7 +62,7 @@ class UOrderCancleCell : UBaseTableViewCell {
     }()
     
     override func configUI() {
-        //    func setView() {
+        
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         
         
