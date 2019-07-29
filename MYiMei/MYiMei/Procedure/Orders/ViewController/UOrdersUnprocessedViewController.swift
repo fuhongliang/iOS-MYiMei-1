@@ -121,7 +121,7 @@ class UOrdersUnprocessedViewController: UBaseViewController {
     
     //MARK:打电话给客户
     func callTheClient(index:Int){
-        let alertController = UIAlertController(title: "温馨提示", message: "是否拨打平台联系电话？", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "温馨提示", message: "是否拨打客户联系电话？", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
             (action: UIAlertAction!) -> Void in
             
@@ -345,7 +345,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
     
     func configAlertView(){
         let style = SCLAlertView.SCLAppearance(
-            kWindowWidth: screenWidth - 96, kTitleFont: UIFont(name: "HelveticaNeue-Bold", size: 20)!,
+            kWindowWidth: 300, kTitleFont: UIFont(name: "HelveticaNeue-Bold", size: 20)!,
             kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
             kButtonFont: UIFont(name: "HelveticaNeue", size: 18)!,
             showCloseButton: false,
@@ -358,7 +358,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
         alert = SCLAlertView(appearance: style)
         // Creat the subview
         alert?.viewWillAppear(true)
-        let subview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth-96, height: 203))
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 203))
         
         tipGoodsLabel.text = "修改订单中所有商品的总价格"
         tipGoodsLabel.font = UIFont.systemFont(ofSize: 15)
@@ -384,13 +384,13 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
         inputGoodsPriceTF.layer.borderColor = UIColor.hex(hexString: "#E5E5E5").cgColor
         inputGoodsPriceTF.layer.borderWidth = 1
         inputGoodsPriceTF.layer.cornerRadius = 2
-        inputGoodsPriceTF.keyboardType = UIKeyboardType.numberPad
+        inputGoodsPriceTF.keyboardType = UIKeyboardType.decimalPad
         inputGoodsPriceTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 35))
         inputGoodsPriceTF.leftViewMode = .always
         subview.addSubview(inputGoodsPriceTF)
         inputGoodsPriceTF.snp.makeConstraints({ (ConstraintMaker) in
             ConstraintMaker.left.equalTo(goodsLabel.snp.right).offset(5)
-            ConstraintMaker.width.equalTo(190)
+            ConstraintMaker.width.equalTo(180)
             ConstraintMaker.height.equalTo(35)
             ConstraintMaker.top.equalTo(tipGoodsLabel.snp.bottom).offset(11)
         })
@@ -416,7 +416,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
         
         //运费价格输入框
         inputFreightPriceTF.text = ""
-        inputFreightPriceTF.keyboardType = UIKeyboardType.numberPad
+        inputFreightPriceTF.keyboardType = UIKeyboardType.decimalPad
         inputFreightPriceTF.layer.borderColor = UIColor.hex(hexString: "#E5E5E5").cgColor
         inputFreightPriceTF.layer.borderWidth = 1
         inputFreightPriceTF.layer.cornerRadius = 2
@@ -425,7 +425,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
         subview.addSubview(inputFreightPriceTF)
         inputFreightPriceTF.snp.makeConstraints({ (ConstraintMaker) in
             ConstraintMaker.left.equalTo(freightLabel.snp.right).offset(5)
-            ConstraintMaker.width.equalTo(190)
+            ConstraintMaker.width.equalTo(180)
             ConstraintMaker.height.equalTo(35)
             ConstraintMaker.top.equalTo(tipFreightLabel.snp.bottom).offset(11)
         })

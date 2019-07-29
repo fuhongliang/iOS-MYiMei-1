@@ -17,7 +17,7 @@ class UManagerOrdersController: UBaseViewController {
     }()
 
     let indicator = JXSegmentedIndicatorBackgroundView()
-    let titles = ["普通订单","维权订单"]
+    let titles = ["普通订单","售后订单"]
     
     let totalItemWidth: CGFloat = 150
     
@@ -86,7 +86,7 @@ extension UManagerOrdersController : JXSegmentedViewDelegate,JXSegmentedListCont
             vc.titles = ["全部", "待处理", "待收货", "已完成", "已取消"]
             vc.listType = 0
         } else {
-            vc.titles = ["全部", "待处理", "已处理", "异常订单", "回收站"]
+            vc.titles = ["全部", "待处理", "已处理"]
             vc.listType = 1
         }
         return vc

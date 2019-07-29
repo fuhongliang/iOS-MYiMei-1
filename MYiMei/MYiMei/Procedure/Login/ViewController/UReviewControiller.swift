@@ -10,15 +10,15 @@ import UIKit
 
 class UReviewControiller: UBaseViewController {
     
-    let mUReviwView = UReviwView()
+    let mUReviwView = UHomeEvaluationCell()
     
     override func configUI() {
-        mUReviwView.setView()
+//        mUReviwView.setView()
         self.view.addSubview(mUReviwView)
         self.view.backgroundColor = UIColor.white
         
         mUReviwView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
+            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
     }
 }

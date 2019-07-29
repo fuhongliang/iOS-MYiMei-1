@@ -31,7 +31,7 @@ class UBottomTab: BaseView {
             ConstraintMaker.top.equalToSuperview()
         }
 
-        addCategoryBtn.setImage(UIImage.init(named: "add_category"), for: UIControl.State.normal)
+        addCategoryBtn.setImage(UIImage.init(named: "add_bar_right"), for: UIControl.State.normal)
         addCategoryBtn.setTitleColor(UIColor.theme, for: UIControl.State.normal)
         addCategoryBtn.setTitle("新建分类", for: UIControl.State.normal)
         addCategoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
