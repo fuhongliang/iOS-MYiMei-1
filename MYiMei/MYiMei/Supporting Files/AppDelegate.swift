@@ -27,33 +27,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         APIUser.shared.loadUserFromCache()
-//        if APIUser.shared.user != nil {
-//            JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
-//                print("注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
-//                JPUSHService.setAlias(APIUser.shared.user?.tel, completion: { (iResCode, iAlias, seq) in
-//                    print("注册极光别名 \(APIUser.shared.user?.tel),\(iResCode),\(String(describing: iAlias)),\(seq)")
-//                }, seq: 0)
-//
-//            }, seq: 0)
-//
-//            self.window?.rootViewController = UTabBarController()
-//        }else {
-            //测试
-            let vc = UReviewControiller()
+        
+        if APIUser.shared.user != nil {
+            self.window?.rootViewController = UTabBarController()
+        }else {            //测试
+            let vc = ULoginViewController()
             let nav = UINavigationController.init(rootViewController: vc)
             self.window?.rootViewController = nav
-//        }
+        }
 
-//        window?.makeKeyAndVisible()
-//
-//        //推送代码
-//        let entity = JPUSHRegisterEntity()
-//        entity.types = 1 << 0 | 1 << 1 | 1 << 2
-//        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
-//        //需要IDFA 功能，定向投放广告功能
-//        //let advertisingId = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-//        JPUSHService.setup(withOption: launchOptions, appKey: "dfe3546772ea640af808d640", channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
-//
+        window?.makeKeyAndVisible()
+
+        //推送代码
+        let entity = JPUSHRegisterEntity()
+        entity.types = 1 << 0 | 1 << 1 | 1 << 2
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        //需要IDFA 功能，定向投放广告功能
+        //let advertisingId = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        JPUSHService.setup(withOption: launchOptions, appKey: "dfe3546772ea640af808d640", channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
+
+        JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
+            if resCode == 0{
+                print("registrationID获取成功：\(registrationID)")
+                saveJPushRegistrationID(registrationID: registrationID!)
+            }else {
+                print("registrationID获取失败：\(registrationID)")
+            }
+        }
         return true
     }
 
@@ -117,6 +117,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK:--推送代理
 extension AppDelegate : JPUSHRegisterDelegate {
+
+
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, openSettingsFor notification: UNNotification?) {
 
     }
@@ -158,8 +160,3 @@ extension AppDelegate : JPUSHRegisterDelegate {
         print("did Fail To Register For Remote Notifications With Error: \(error)")
     }
 }
-
-
-
-
-

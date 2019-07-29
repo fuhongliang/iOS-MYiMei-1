@@ -28,5 +28,9 @@ pod 'SCLAlertView' #弹窗
 pod 'JXSegmentedView' #滑动页面
 pod 'Bugtags'
 pod 'JPush'
+pod 'FTPopOverMenu_Swift', '~> 0.2.0' #弹出菜单
+pod 'Charts' #图表
+pod "RichEditorView", :path => "../"
 
 end
+

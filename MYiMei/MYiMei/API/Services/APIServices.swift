@@ -13,11 +13,11 @@ import MBProgressHUD
 
 let ssl: Bool = true
 //MARK:开发环境
-// let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
-// let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
+ let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
+ let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
 //MARK:正式环境
-let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
-let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"
+//let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
+//let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"
 
 // MARK: 网络请求加载插件
 let loadingPlugin = NetworkActivityPlugin { (type, target) in
@@ -75,6 +75,9 @@ enum NetApi {
     case getMessageNotice(param: [String:Any])
     case setMessageNoticeRead(param: [String:Any])
     case getGoodsDetail(param: [String:Any])
+    case getCommentList(param: [String:Any])
+    case delOrHideComment(param: [String:Any])
+    case replyComment(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -152,12 +155,18 @@ extension NetApi: TargetType {
             return "/message_notice/readNotice"
         case .getGoodsDetail:
             return "/goods_detail"
+        case .getCommentList:
+            return "/comment_list"
+        case .delOrHideComment:
+            return "/comment_hod"
+        case .replyComment:
+            return "/comment_reply"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
+        case .replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
           return .post
 
         }
@@ -230,6 +239,12 @@ extension NetApi: TargetType {
         case .setMessageNoticeRead(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getGoodsDetail(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getCommentList(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .delOrHideComment(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .replyComment(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

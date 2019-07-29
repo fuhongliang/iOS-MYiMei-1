@@ -134,16 +134,7 @@ extension ULoginViewController: ULoginViewDelegate {
             return
         }
 
-        service.login(phoneNumber: phoneNumber, password: password, { (APILoginResponseModel) in
-
-            JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
-                print("注销极光别名儿 \(iResCode),\(String(describing: iAlias)),\(seq)")
-                JPUSHService.setAlias(phoneNumber, completion: { (iResCode, iAlias, seq) in
-                            print("注册极光别名 \(phoneNumber),\(iResCode),\(String(describing: iAlias)),\(seq)")
-                        }, seq: 0)
-
-            }, seq: 0)
-
+        service.login(phoneNumber: phoneNumber, password: password, jpush_registration_id: getJPushRegistrationID(), { (APILoginResponseModel) in
             let rootVC = UIApplication.shared.delegate as! AppDelegate
             rootVC.window?.rootViewController = UTabBarController()
         }) { (APIErrorModel) in
