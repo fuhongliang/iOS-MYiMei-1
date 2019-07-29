@@ -118,7 +118,7 @@ class UHomeEvaluationCell: UBaseTableViewCell {
         contentView.addSubview(evaluationPhotoTwoICon)
         evaluationPhotoTwoICon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerX.equalToSuperview()
-            ConstraintMaker.top.equalTo(evaluationContentLaber.snp.bottom).offset(10)
+            ConstraintMaker.centerY.equalTo(evaluationPhotoOneICon)
             ConstraintMaker.height.equalTo(90)
             ConstraintMaker.width.equalTo(105)
         }
@@ -126,7 +126,7 @@ class UHomeEvaluationCell: UBaseTableViewCell {
         contentView.addSubview(evaluationPhotoThreeICon)
         evaluationPhotoThreeICon.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
-            ConstraintMaker.top.equalTo(evaluationContentLaber.snp.bottom).offset(10)
+            ConstraintMaker.centerY.equalTo(evaluationPhotoOneICon)
             ConstraintMaker.height.equalTo(90)
             ConstraintMaker.width.equalTo(105)
         }
@@ -252,13 +252,32 @@ class UHomeEvaluationCell: UBaseTableViewCell {
 
             let url = URL(string: model.avatar )
             userAvatarIcon.kf.setImage(with: url)
-            setMutableAttributedText(content: model.name,label: userNameLaber)
+            userNameLaber.text = model.name
             setMutableAttributedText(content: model.reply_content ?? "", label: storeReplyLaber)
-            evaluationContentLaber.text = model.content
-            timeLaber.text = dateForMatter(timeString: model.addtime , join: " ")
-            goodsEvaluationLaber.text = Int(model.score) ?? 0 > 3 ? "好评" : "差评"
+            setMutableAttributedText(content: model.content,label: evaluationContentLaber)
             
-            if model.pic_list.count == 0{
+            timeLaber.text = dateForMatter(timeString: model.addtime , join: " ")
+            if Int(model.score) == 1 {
+                goodsEvaluationLaber.text = "差评"
+                evaluationIcon.image = UIImage.init(named: "comment_bad")
+            } else if Int(model.score) == 2 {
+                goodsEvaluationLaber.text = "中评"
+                evaluationIcon.image = UIImage.init(named: "comment_middle")
+            } else {
+                goodsEvaluationLaber.text = "好评"
+                evaluationIcon.image = UIImage.init(named: "comment_good")
+            }
+            
+            if model.content == "" {
+                evaluationPhotoOneICon.snp.makeConstraints { (ConstraintMaker) in
+                    ConstraintMaker.left.equalToSuperview().offset(15)
+                    ConstraintMaker.top.equalTo(userAvatarIcon.snp.bottom).offset(10)
+                    ConstraintMaker.height.equalTo(90)
+                    ConstraintMaker.width.equalTo(105)
+                }
+            }
+            
+            if model.pic_list.count == 0 {
                 evaluationPhotoOneICon.removeFromSuperview()
                 evaluationPhotoTwoICon.removeFromSuperview()
                 evaluationPhotoThreeICon.removeFromSuperview()

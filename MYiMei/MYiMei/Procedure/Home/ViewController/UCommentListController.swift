@@ -138,6 +138,7 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
             self.commentId = String(self.commentList.comment[indexPath.section].id)
             self.service.delOrHideComment(commentId: self.commentId, delOrhide: 1, delete: 0, {
                 showHUDInView(text: "隐藏成功", inView: self.view)
+                self.refreshCommentData()
             }, { (APIErrorModel) in
                 showHUDInView(text: "隐藏失败", inView: self.view)
             })
@@ -146,6 +147,7 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
             self.commentId = String(self.commentList.comment[indexPath.section].id)
             self.service.delOrHideComment(commentId: self.commentId, delOrhide: 1, delete: 1, {
                 showHUDInView(text: "删除成功", inView: self.view)
+                self.refreshCommentData()
             }, { (APIErrorModel) in
                 showHUDInView(text: "删除失败", inView: self.view)
             })
