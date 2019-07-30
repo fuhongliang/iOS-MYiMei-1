@@ -42,6 +42,7 @@
 		7B08932922D888B500872136 /* PlatCateResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08932822D888B500872136 /* PlatCateResponeModel.swift */; };
 		7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */; };
 		7B2C3B3922EED07900C452E9 /* JPushRegistrationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C3B3822EED07900C452E9 /* JPushRegistrationID.swift */; };
+		7B2C3B3B22EFD49A00C452E9 /* UHomeEvaluationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C3B3A22EFD49900C452E9 /* UHomeEvaluationCell.swift */; };
 		7B2DE2A922D57D1200AD6FDD /* MchApplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */; };
 		7B2DE2AB22D57DDF00AD6FDD /* MchApplyResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */; };
 		7B2DE2AD22D5995200AD6FDD /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */; };
@@ -225,6 +226,7 @@
 		7B08932822D888B500872136 /* PlatCateResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatCateResponeModel.swift; sourceTree = "<group>"; };
 		7B18ADFE22D5ED4D00331B10 /* ApplyCatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCatModel.swift; sourceTree = "<group>"; };
 		7B2C3B3822EED07900C452E9 /* JPushRegistrationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPushRegistrationID.swift; sourceTree = "<group>"; };
+		7B2C3B3A22EFD49900C452E9 /* UHomeEvaluationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHomeEvaluationCell.swift; sourceTree = "<group>"; };
 		7B2DE2A822D57D1200AD6FDD /* MchApplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyModel.swift; sourceTree = "<group>"; };
 		7B2DE2AA22D57DDF00AD6FDD /* MchApplyResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MchApplyResponeModel.swift; sourceTree = "<group>"; };
 		7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				0AB057DA22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift */,
 				0AB057D822DD6A45002B7E40 /* UHomeView.swift */,
+				7B2C3B3A22EFD49900C452E9 /* UHomeEvaluationCell.swift */,
 				0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */,
 				0AB057DE22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift */,
 				0AB057E022DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift */,
@@ -721,10 +724,10 @@
 		7BAB354822C0D85B00154D36 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */,
 				DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */,
 				7BAB354522C0D7D500154D36 /* ULoginViewController.swift */,
 				0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */,
-				0A0FF6CB22CB0271003F4B53 /* UReviewControiller.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1184,7 +1187,6 @@
 				DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */,
 				DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */,
 				DCE3157822EEEB7200086EA7 /* FTCellConfiguration.swift in Sources */,
-				0A94EE3522E7F41E00D6B883 /* UHomeEvaluationCell.swift in Sources */,
 				7B2DE2AF22D5B5C000AD6FDD /* RPicker.swift in Sources */,
 				7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */,
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,
@@ -1238,6 +1240,7 @@
 				DC7E298322D58CBC00AC3F21 /* DepositAgreementResponsModel.swift in Sources */,
 				7BF06ECA22E83A8C00DE9851 /* UGoodsDescrView.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
+				7B2C3B3B22EFD49A00C452E9 /* UHomeEvaluationCell.swift in Sources */,
 				DC18A51722E2B26400451E10 /* UOrderNotPayCell.swift in Sources */,
 				DC18A52122E2B5DE00451E10 /* UOrdersUnprocessedViewController.swift in Sources */,
 				DCCCBCED22E9D5980087DBF8 /* UCommentController.swift in Sources */,

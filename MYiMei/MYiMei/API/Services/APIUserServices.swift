@@ -215,6 +215,7 @@ class APIUserServices: APIUserServicesProtocol {
             "jpush_registration_id":jpush_registration_id,
             "is_debug":"1"
         ]
+        
         APIService.shared.request(.login(user: params), { (data) in
             do {
                 let model = try JSONDecoder().decode(APILoginResponseModel.self, from: data)
