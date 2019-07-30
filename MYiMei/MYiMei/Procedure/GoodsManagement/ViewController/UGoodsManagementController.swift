@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FTPopOverMenu_Swift
 
 class UGoodsManagementController: UBaseViewController {
     fileprivate var service: APIGoodsServices = APIGoodsServices()
