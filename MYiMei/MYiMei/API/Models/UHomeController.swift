@@ -229,7 +229,7 @@ class UHomeController: UBaseViewController {
             }
             
         }) { (APIErrorModel) in
-            showHUDInView(text: String(APIErrorModel.msg!), inView: self.view)
+            showHUDInView(text: String(APIErrorModel.msg ?? ""), inView: self.view)
         }
     }
     

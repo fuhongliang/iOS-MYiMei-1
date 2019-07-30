@@ -19,6 +19,11 @@ class UCommentController: UBaseViewController {
     
     var titles = ["全部评价","未回复"]
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        listContainerView.frame = CGRect(x: 0, y: 44, width: view.bounds.size.width, height: view.bounds.size.height - 44)
+    }
+    
     override func configUI() {
         view.backgroundColor = UIColor.white
         

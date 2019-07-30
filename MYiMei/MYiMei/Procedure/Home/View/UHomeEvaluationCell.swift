@@ -231,6 +231,60 @@ class UHomeEvaluationCell: UBaseTableViewCell {
         label.sizeToFit()
     }
     
+    //MARK:重置图片的约束
+    func resetConstraint(picListNil:Bool,replyContentNil:Bool){
+        
+        if replyContentNil {
+            evaluationPhotoLine.backgroundColor = UIColor.white
+        } else {
+            evaluationPhotoLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        }
+        
+        if picListNil {
+            evaluationPhotoOneICon.removeFromSuperview()
+            evaluationPhotoTwoICon.removeFromSuperview()
+            evaluationPhotoThreeICon.removeFromSuperview()
+            evaluationPhotoLine.removeFromSuperview()
+            storeReplyLaber.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.left.right.equalToSuperview().inset(15)
+                ConstraintMaker.top.equalTo(evaluationContentLaber.snp.bottom).offset(11)
+            }
+        } else {
+            contentView.addSubview(evaluationPhotoOneICon)
+            contentView.addSubview(evaluationPhotoTwoICon)
+            contentView.addSubview(evaluationPhotoThreeICon)
+            contentView.addSubview(evaluationPhotoLine)
+            evaluationPhotoOneICon.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.left.equalToSuperview().offset(15)
+                ConstraintMaker.top.equalTo(userAvatarIcon.snp.bottom).offset(10)
+                ConstraintMaker.height.equalTo(90)
+                ConstraintMaker.width.equalTo(105)
+            }
+            evaluationPhotoTwoICon.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.centerX.equalToSuperview()
+                ConstraintMaker.centerY.equalTo(evaluationPhotoOneICon)
+                ConstraintMaker.height.equalTo(90)
+                ConstraintMaker.width.equalTo(105)
+            }
+            evaluationPhotoThreeICon.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.right.equalToSuperview().offset(-15)
+                ConstraintMaker.centerY.equalTo(evaluationPhotoOneICon)
+                ConstraintMaker.height.equalTo(90)
+                ConstraintMaker.width.equalTo(105)
+            }
+            evaluationPhotoLine.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.left.equalToSuperview().offset(15)
+                ConstraintMaker.top.equalTo(evaluationPhotoOneICon.snp.bottom).offset(10)
+                ConstraintMaker.right.equalToSuperview().offset(-15)
+                ConstraintMaker.height.equalTo(1)
+            }
+            storeReplyLaber.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.left.right.equalToSuperview().inset(15)
+                ConstraintMaker.top.equalTo(evaluationPhotoLine.snp.bottom).offset(11)
+            }
+        }
+    }
+    
     
     @objc func tapReplyComment() {
         replyComment?()
@@ -251,7 +305,12 @@ class UHomeEvaluationCell: UBaseTableViewCell {
             let url = URL(string: model.avatar )
             userAvatarIcon.kf.setImage(with: url)
             userNameLaber.text = model.name
-            setMutableAttributedText(content: model.reply_content ?? "", label: storeReplyLaber)
+            let replyContent = model.reply_content ?? ""
+            if replyContent == "" {
+                setMutableAttributedText(content: replyContent, label: storeReplyLaber)
+            } else {
+                setMutableAttributedText(content: "商家回复:\n\(replyContent)", label: storeReplyLaber)
+            }
             setMutableAttributedText(content: model.content,label: evaluationContentLaber)
             
             timeLaber.text = dateForMatter(timeString: model.addtime , join: " ")
@@ -265,27 +324,14 @@ class UHomeEvaluationCell: UBaseTableViewCell {
                 goodsEvaluationLaber.text = "好评"
                 evaluationIcon.image = UIImage.init(named: "comment_good")
             }
+            hideBtn.setTitle(model.is_hide == 1 ? "显示" : "隐藏", for: UIControl.State.normal)
             
-            if model.content == "" {
-                evaluationPhotoOneICon.snp.makeConstraints { (ConstraintMaker) in
-                    ConstraintMaker.left.equalToSuperview().offset(15)
-                    ConstraintMaker.top.equalTo(userAvatarIcon.snp.bottom).offset(10)
-                    ConstraintMaker.height.equalTo(90)
-                    ConstraintMaker.width.equalTo(105)
-                }
-            }
+            let replyContentIsNil = (model.reply_content == "" ? true : false)
+            let picListIsNil = (model.pic_list.count == 0 ? true : false)
             
-            if model.pic_list.count == 0 {
-                evaluationPhotoOneICon.removeFromSuperview()
-                evaluationPhotoTwoICon.removeFromSuperview()
-                evaluationPhotoThreeICon.removeFromSuperview()
-                evaluationPhotoLine.removeFromSuperview()
-                storeReplyLaber.snp.makeConstraints { (ConstraintMaker) in
-                    ConstraintMaker.left.right.equalToSuperview().inset(15)
-                    ConstraintMaker.top.equalTo(evaluationContentLaber.snp.bottom).offset(11)
-                }
-                return
-            }
+            resetConstraint(picListNil: picListIsNil, replyContentNil: replyContentIsNil)
+            
+            
             var imageArray = [evaluationPhotoOneICon, evaluationPhotoTwoICon, evaluationPhotoThreeICon]
             for index in 0..<model.pic_list.count {
                 let url = URL(string: model.pic_list?[index] ?? "")

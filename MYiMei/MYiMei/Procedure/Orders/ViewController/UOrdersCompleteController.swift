@@ -27,19 +27,6 @@ class UOrdersCompleteController: UBaseViewController {
     
     var mOrderId = 0
     
-    var alert:SCLAlertView? = nil
-    
-    let tipGoodsLabel = UILabel() // 商品价格输入框上面的提示
-    let goodsLabel = UILabel() //商品价格
-    let tipFreightLabel = UILabel() // 运费价格输入框上面的提示
-    let freightLabel = UILabel() //运费价格
-    let warnLabel = UILabel()
-    let addPriceBtn = UIButton()
-    
-    let reducePriceBtn = UIButton()
-    let inputFreightPriceTF = UITextField(frame: CGRect(x: 0, y: 0, width: 180, height: 35))
-    let inputGoodsPriceTF = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
-    
     //用了记录当前是否允许加载新数据（加载的时候会将其设为false，防止重复加载）
     var loadMoreEnable = true
     //记录当前加载到哪一页
@@ -158,7 +145,7 @@ extension UOrdersCompleteController: UITableViewDelegate, UITableViewDataSource 
         return 1
     }
     
-    //MARK:cell数量
+    //MARK:cell头部高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return section == 0 ? 16 : CGFloat.leastNormalMagnitude

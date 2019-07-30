@@ -12,7 +12,6 @@ import JXSegmentedView
 
 class UCommentListController: UBaseViewController {
     
-    
     fileprivate var service = APICommentServices()
     
     private var commentList = CommentsListModel()
@@ -45,14 +44,14 @@ class UCommentListController: UBaseViewController {
         tw.estimatedRowHeight = 200
         tw.rowHeight = UITableView.automaticDimension
         
-        tw.uempty = UEmptyView { [weak self] in self?.getCommentList() }
+//        tw.uempty = UEmptyView { [weak self] in self?.getCommentList() }
         tw.register(cellType: UHomeEvaluationCell.self)
         return tw
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
     
     override func configUI() {
         tableView.refreshControl = UIRefreshControl()
@@ -62,11 +61,13 @@ class UCommentListController: UBaseViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+//            ConstraintMaker.top.bottom.left.right.equalToSuperview()
         }
         getCommentList()
         
     }
     
+    //MARK:获取评论数据
     func getCommentList(){
         service.getCommentList(type: commentType,page: pageRecord, { (CommentsResponseModel) in
             self.commentList = CommentsResponseModel.data
@@ -91,6 +92,7 @@ class UCommentListController: UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
+            self.tableView.refreshControl?.endRefreshing()
             print(APIErrorModel.msg ?? ".............")
         }
     }
@@ -111,6 +113,10 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
         }
         return 0
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 200
+//    }
     
     //MARK:每组cell的数量
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,47 +142,13 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.hideComment = {
             self.commentId = String(self.commentList.comment[indexPath.section].id)
-            self.service.delOrHideComment(commentId: self.commentId, delOrhide: 1, delete: 0, {
-                showHUDInView(text: "隐藏成功", inView: self.view)
-                self.refreshCommentData()
-            }, { (APIErrorModel) in
-                showHUDInView(text: "隐藏失败", inView: self.view)
-            })
+            self.hideComment(index: indexPath.section)
         }
         cell.deleteComment = {
             self.commentId = String(self.commentList.comment[indexPath.section].id)
-            self.service.delOrHideComment(commentId: self.commentId, delOrhide: 1, delete: 1, {
-                showHUDInView(text: "删除成功", inView: self.view)
-                self.refreshCommentData()
-            }, { (APIErrorModel) in
-                showHUDInView(text: "删除失败", inView: self.view)
-            })
+            self.deleteComment(index: indexPath.section)
         }
         return cell
-    }
-    
-    //MARK:每个cell即将显示时回调  在这里处理section的圆角
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-        let cornerRadius: CGFloat = 6.0
-        cell.backgroundColor = UIColor.clear
-
-        let layer = CAShapeLayer()
-        let backgroundLayer = CAShapeLayer()
-        let pathRef = CGMutablePath()
-        let bounds = cell.bounds;
-
-        pathRef.addRoundedRect(in: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
-
-        layer.path = pathRef
-        backgroundLayer.path = pathRef
-        layer.fillColor = UIColor.white.cgColor
-
-        let roundView = UIView(frame: bounds)
-        roundView.layer.insertSublayer(layer, at: 0)
-        roundView.backgroundColor = UIColor.clear
-        cell.backgroundView = roundView
-
     }
     
     //MARK:footerView即将显示的时候的回调
@@ -253,6 +225,45 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
         alert?.customSubview = subview
         
         alert?.showEdit("回复", subTitle: "",animationStyle:.noAnimation)
+        
+    }
+    
+    //隐藏
+    func hideComment(index:Int){
+        let isHide = commentList.comment[index].is_hide
+        let alertController = UIAlertController(title: "温馨提示", message: "是否\(isHide == 1 ? "隐藏":"显示")该评价", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+            (action: UIAlertAction!) -> Void in
+            self.service.delOrHideComment(commentId: self.commentId, delOrhide: isHide == 1 ? 0 : 1, delete: 0, {
+                showHUDInView(text: "\(isHide == 1 ? "隐藏":"显示")成功", inView: self.view)
+                self.refreshCommentData()
+            }, { (APIErrorModel) in
+                showHUDInView(text: "\(isHide == 1 ? "隐藏":"显示")失败", inView: self.view)
+            })
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //删除
+    @objc func deleteComment(index:Int){
+        let alertController = UIAlertController(title: "温馨提示", message: "是否删除该评价", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) {
+            (action: UIAlertAction!) -> Void in
+            self.service.delOrHideComment(commentId: self.commentId, delOrhide: 0, delete: 1, {
+                showHUDInView(text: "删除成功", inView: self.view)
+                self.refreshCommentData()
+            }, { (APIErrorModel) in
+                showHUDInView(text: "删除失败", inView: self.view)
+            })
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
         
     }
     
