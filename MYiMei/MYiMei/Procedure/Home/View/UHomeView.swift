@@ -41,7 +41,7 @@ class UHomeView: BaseView {
     var storeSetting = UHomeStoreSettingsCell()
     var storeSettingBtn = UIButton()
     
-    var financial = UHomeFinancialSettlementCell()
+    var financial = UHomeStoreSettingsCell()
     var financialBtn = UIButton()
     
     var depost = UHomeDepostCell()
@@ -177,6 +177,8 @@ class UHomeView: BaseView {
         storeSettingBtn.addTarget(self, action: #selector(shopSetting), for: UIControl.Event.touchUpInside)
         //MARK:财务结算
         financial.configUI()
+        financial.menuIcon.image = UIImage.init(named: "homeFinancialSettlementCell")
+        financial.marginLabel.text = "财务结算"
         self.addSubview(financial)
         financial.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(storeSetting.snp.right)

@@ -24,13 +24,16 @@
 		0AB057DB22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057DA22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift */; };
 		0AB057DD22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */; };
 		0AB057DF22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057DE22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift */; };
-		0AB057E122DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057E022DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift */; };
 		0AB057E322DDAD1E002B7E40 /* UHomeDepostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057E222DDAD1E002B7E40 /* UHomeDepostCell.swift */; };
 		0AB057E522DF1582002B7E40 /* UAboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB057E422DF1582002B7E40 /* UAboutUsView.swift */; };
 		0AD5FC6122CCA195008CE6CF /* UOderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6022CCA195008CE6CF /* UOderCell.swift */; };
 		0AD5FC6722CDD70D008CE6CF /* UOrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */; };
 		0AD5FC6922CDD730008CE6CF /* UOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */; };
 		0ADF510A22EEE8AC00D2DF97 /* UHomeEvaluationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF510922EEE8AC00D2DF97 /* UHomeEvaluationCell.swift */; };
+		0ADF510C22EFD7B500D2DF97 /* UReviewControiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF510B22EFD7B400D2DF97 /* UReviewControiller.swift */; };
+		0ADF510E22F0173000D2DF97 /* UHomeFinancialSettlementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF510D22F0173000D2DF97 /* UHomeFinancialSettlementView.swift */; };
+		0ADF511022F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF510F22F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift */; };
+		0ADF511422F02A0B00D2DF97 /* UHomeFinancialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF511322F02A0B00D2DF97 /* UHomeFinancialCell.swift */; };
 		7B08931A22D7151000872136 /* UMeDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931822D7151000872136 /* UMeDepost.swift */; };
 		7B08931B22D7151000872136 /* UMeDepostcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931922D7151000872136 /* UMeDepostcell.swift */; };
 		7B08931D22D7153700872136 /* UDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931C22D7153700872136 /* UDepost.swift */; };
@@ -205,13 +208,16 @@
 		0AB057DA22DDA5B4002B7E40 /* UHomeMessageManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeMessageManagementCell.swift; sourceTree = "<group>"; };
 		0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeEvaluationManagementCell.swift; sourceTree = "<group>"; };
 		0AB057DE22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeStoreSettingsCell.swift; sourceTree = "<group>"; };
-		0AB057E022DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialSettlementCell.swift; sourceTree = "<group>"; };
 		0AB057E222DDAD1E002B7E40 /* UHomeDepostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeDepostCell.swift; sourceTree = "<group>"; };
 		0AB057E422DF1582002B7E40 /* UAboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAboutUsView.swift; sourceTree = "<group>"; };
 		0AD5FC6022CCA195008CE6CF /* UOderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOderCell.swift; sourceTree = "<group>"; };
 		0AD5FC6622CDD70D008CE6CF /* UOrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsView.swift; sourceTree = "<group>"; };
 		0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrderDetailsViewController.swift; sourceTree = "<group>"; };
 		0ADF510922EEE8AC00D2DF97 /* UHomeEvaluationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHomeEvaluationCell.swift; sourceTree = "<group>"; };
+		0ADF510B22EFD7B400D2DF97 /* UReviewControiller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UReviewControiller.swift; path = "../../../../../../Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688852695613407/Cache/File/2019-07/UReviewControiller.swift"; sourceTree = "<group>"; };
+		0ADF510D22F0173000D2DF97 /* UHomeFinancialSettlementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialSettlementView.swift; sourceTree = "<group>"; };
+		0ADF510F22F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialSettlementController.swift; sourceTree = "<group>"; };
+		0ADF511322F02A0B00D2DF97 /* UHomeFinancialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialCell.swift; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
 		7B08931822D7151000872136 /* UMeDepost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMeDepost.swift; sourceTree = "<group>"; };
@@ -430,8 +436,9 @@
 				0AB057D822DD6A45002B7E40 /* UHomeView.swift */,
 				0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */,
 				0AB057DE22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift */,
-				0AB057E022DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift */,
+				0ADF511322F02A0B00D2DF97 /* UHomeFinancialCell.swift */,
 				0AB057E222DDAD1E002B7E40 /* UHomeDepostCell.swift */,
+				0ADF510D22F0173000D2DF97 /* UHomeFinancialSettlementView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -441,6 +448,7 @@
 			children = (
 				DC81B07C22E82C1600A47A58 /* UHomeController.swift */,
 				DC18BA5022E94648007C47CC /* BalloonMarker.swift */,
+				0ADF510F22F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift */,
 				DCCCBCEC22E9D5980087DBF8 /* UCommentController.swift */,
 				DCCCBCEE22E9D6650087DBF8 /* UCommentListController.swift */,
 			);
@@ -724,6 +732,7 @@
 			children = (
 				DC7E297A22D575E200AC3F21 /* UChooseAddressFromMap.swift */,
 				7BAB354522C0D7D500154D36 /* ULoginViewController.swift */,
+				0ADF510B22EFD7B400D2DF97 /* UReviewControiller.swift */,
 				0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */,
 			);
 			path = ViewController;
@@ -1133,7 +1142,6 @@
 				7B9EB94622C4946D003D9121 /* UGoodsDetailsController.swift in Sources */,
 				DC18A51922E2B35400451E10 /* UOrderNotSendCell.swift in Sources */,
 				7B2DE2AB22D57DDF00AD6FDD /* MchApplyResponeModel.swift in Sources */,
-				0AB057E122DDACF1002B7E40 /* UHomeFinancialSettlementCell.swift in Sources */,
 				DCE3157522EEEB7200086EA7 /* FTConstants.swift in Sources */,
 				0AB057BD22D71058002B7E40 /* StoreInfoModel.swift in Sources */,
 				7BF06EC222E8034C00DE9851 /* RichEditorViewController.swift in Sources */,
@@ -1158,6 +1166,7 @@
 				DC64FEC022E3010B00E67EB8 /* APIMessageServices.swift in Sources */,
 				DC2BAB5722EEACA100D4F0B7 /* RefundOrderResponseModel.swift in Sources */,
 				7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */,
+				0ADF510C22EFD7B500D2DF97 /* UReviewControiller.swift in Sources */,
 				7BAB356922C224E800154D36 /* UGoodsManagementController.swift in Sources */,
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
 				DC64FEC222E3017A00E67EB8 /* MessageNoticeModel.swift in Sources */,
@@ -1185,7 +1194,6 @@
 				DC32F62A22D468B900EBB75E /* UDepositAgreementView.swift in Sources */,
 				DC26DE8622CCC32E009051B9 /* UAccountSafeController.swift in Sources */,
 				DCE3157822EEEB7200086EA7 /* FTCellConfiguration.swift in Sources */,
-				0A94EE3522E7F41E00D6B883 /* UHomeEvaluationCell.swift in Sources */,
 				7B2DE2AF22D5B5C000AD6FDD /* RPicker.swift in Sources */,
 				7B41455F22C4DA4500BB61D0 /* CategoryModel.swift in Sources */,
 				7BAB354222C0D23C00154D36 /* UBaseViewController.swift in Sources */,
@@ -1216,6 +1224,7 @@
 				7B08932122D7258800872136 /* UMyDepostController.swift in Sources */,
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */,
+				0ADF511422F02A0B00D2DF97 /* UHomeFinancialCell.swift in Sources */,
 				7B08931F22D715CD00872136 /* UDepostPostController.swift in Sources */,
 				7B2C3B3922EED07900C452E9 /* JPushRegistrationID.swift in Sources */,
 				DC18766022DDD854004FEF65 /* OrderDetailResponseModel.swift in Sources */,
@@ -1228,6 +1237,7 @@
 				DC7E297522D5750600AC3F21 /* UploadFileResponeModel.swift in Sources */,
 				7B41456822C4DB1B00BB61D0 /* UEmptyDataSet.swift in Sources */,
 				7BAB355A22C1B90600154D36 /* ParallaxHeader.swift in Sources */,
+				0ADF510E22F0173000D2DF97 /* UHomeFinancialSettlementView.swift in Sources */,
 				0A0FF6C822CA013C003F4B53 /* UMechJoinViewController.swift in Sources */,
 				DC14816B22CD95A100018EED /* UAccountSafeView.swift in Sources */,
 				DCE3157922EEEB7200086EA7 /* UIControl+Point.swift in Sources */,
@@ -1239,6 +1249,7 @@
 				7BF06ECA22E83A8C00DE9851 /* UGoodsDescrView.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
 				DC18A51722E2B26400451E10 /* UOrderNotPayCell.swift in Sources */,
+				0ADF511022F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift in Sources */,
 				DC18A52122E2B5DE00451E10 /* UOrdersUnprocessedViewController.swift in Sources */,
 				DCCCBCED22E9D5980087DBF8 /* UCommentController.swift in Sources */,
 				7B7B15CD22D6E6070082F227 /* APIStoreServices.swift in Sources */,

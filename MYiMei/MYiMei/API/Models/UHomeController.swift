@@ -341,7 +341,10 @@ extension UHomeController: ChartViewDelegate,UHomeViewDelegate {
     }
     
     func tapFinancialOver() {
-        showHUDInView(text: "此功能正在开发中", inView: self.view)
+//        showHUDInView(text: "此功能正在开发中", inView: self.view)
+        let vc = UHomeFinancialSettlementController()
+        vc.title = "财务结算"
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tapDepost() {
