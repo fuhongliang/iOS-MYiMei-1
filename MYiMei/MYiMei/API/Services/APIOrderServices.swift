@@ -25,9 +25,54 @@ protocol APIOrderServicesProtocol {
     //MARK:获取订单详情
     func getOrderDetail(order_id: Int, _ success: @escaping(((OrderDetailResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
     
+    //MARK:获取售后订单列表
+    func getRefundOrderList(page: Int, refundStatus: Int, _ success: @escaping(((RefundOrderResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
+    //MARK:售后订单处理
+    func handleRefundOrder(refundOrderId:Int, option:Int, refuseDesc:String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
 }
 
 class APIOrderServices: APIOrderServicesProtocol {
+    func handleRefundOrder(refundOrderId: Int, option: Int, refuseDesc: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id": APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1",
+            "order_refund_id":refundOrderId,
+            "option":option,
+            "refuse_desc":refuseDesc
+        ]
+        APIService.shared.request(.getRefundOrder(param: params), { (data) in
+            success()
+        }) { (APIErrorModel) in
+            fail(APIErrorModel)
+        }
+    }
+    
+    
+    func getRefundOrderList(page: Int, refundStatus: Int, _ success: @escaping (((RefundOrderResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id": APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1",
+            "limit":20,
+            "page":page,
+            "refund_status":refundStatus
+        ]
+        APIService.shared.request(.getRefundOrder(param: params), { (data) in
+            do{
+                let model = try JSONDecoder().decode(RefundOrderResponseModel.self, from: data)
+                success(model)
+            } catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败\(error)", _data: nil)
+                fail(errorModel)
+            }
+        }) { (APIErrorModel) in
+            fail(APIErrorModel)
+        }
+    }
+    
     func getOrderDetail(order_id: Int, _ success: @escaping (((OrderDetailResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
             "order_id": order_id as Any,

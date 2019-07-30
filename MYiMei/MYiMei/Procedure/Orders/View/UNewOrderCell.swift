@@ -9,7 +9,6 @@
 import UIKit
 
 class UNewOrderCell: UBaseTableViewCell {
-//class UNewOrderCell: BaseView {
     
     var modifyPriceOrDeliveryGoods : (() -> ())?
     var moveToRecycleBin : (() -> ())?
@@ -72,7 +71,7 @@ class UNewOrderCell: UBaseTableViewCell {
     }()
     
         override func configUI() {
-//    func setView() {
+            
             self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
             
             
@@ -258,39 +257,7 @@ class UNewOrderCell: UBaseTableViewCell {
                 ConstraintMaker.right.equalTo(whiteBg)
                 ConstraintMaker.height.equalTo(1)
             }
-            //MARK:修改价格按钮
-//            modifyPriceBtn.titleLabel?.sizeToFit()
-//            modifyPriceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
-//            modifyPriceBtn.setTitle("修改价格", for: UIControl.State.normal)
-//            modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
-//            modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-//            modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//            modifyPriceBtn.layer.cornerRadius = 15
-//            modifyPriceBtn.layer.masksToBounds = true
-//            contentView.addSubview(modifyPriceBtn)
-//            modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
-//                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-//                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-//                ConstraintMaker.width.equalTo(95)
-//                ConstraintMaker.height.equalTo(30)
-//            }
-//            modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
-            
-            //MARK:移入回收站按钮
-//            recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
-//            recycleBinBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
-//            recycleBinBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//            recycleBinBtn.backgroundColor = UIColor.white
-//            recycleBinBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
-//            recycleBinBtn.layer.borderWidth = 1
-//            recycleBinBtn.layer.cornerRadius = 15
-//            contentView.addSubview(recycleBinBtn)
-//            recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-//                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-//                ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
-//                ConstraintMaker.width.equalTo(95)
-//                ConstraintMaker.height.equalTo(30)
-//            }
+           
     }
     
     
@@ -309,7 +276,6 @@ class UNewOrderCell: UBaseTableViewCell {
     //设置修改价格按钮是否显示
     //TODO 设置按钮后灰色背景会偏移  可能cell或者tableview的宽度计算错误
     func setButton(modifyPrice:Bool,modifyPriceText:String,modifyPriceWidth:Int){
-//        if modifyPrice {
             modifyPriceBtn.setTitle(modifyPriceText, for: .normal)
             contentView.addSubview(modifyPriceBtn)
             modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
@@ -318,7 +284,6 @@ class UNewOrderCell: UBaseTableViewCell {
                 ConstraintMaker.width.equalTo(modifyPriceWidth)
                 ConstraintMaker.height.equalTo(30)
             }
-//        }
         contentView.addSubview(recycleBinBtn)
         recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)

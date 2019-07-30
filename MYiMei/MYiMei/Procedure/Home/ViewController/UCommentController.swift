@@ -27,12 +27,13 @@ class UCommentController: UBaseViewController {
         segmentedDataSource.titles = titles
         segmentedDataSource.titleNormalColor = UIColor.hex(hexString: "#999999")
         segmentedDataSource.titleSelectedColor = UIColor.hex(hexString: "#333333")
+        segmentedDataSource.isItemSpacingAverageEnabled = true
         segmentedDataSource.reloadData(selectedIndex: 0)
         
         //配置指示器
         let indicator = JXSegmentedIndicatorLineView()
-        indicator.indicatorWidth = screenWidth / 2
-        indicator.lineStyle = .lengthen
+//        indicator.indicatorWidth = screenWidth / 2
+        indicator.lineStyle = .normal
         indicator.indicatorColor = UIColor.hex(hexString: "#1C98F6")
         indicator.indicatorCornerRadius = 0
         indicator.indicatorHeight = 2
