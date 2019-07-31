@@ -106,7 +106,9 @@ extension UOrdersChildViewController: JXSegmentedListContainerViewListDelegate, 
                 return controller
             }
         } else { // 售后订单
-            vc.orderType = -1
+            let vc = URefundOrderController()
+            vc.orderType = index
+            return vc
         }
         return vc
     }

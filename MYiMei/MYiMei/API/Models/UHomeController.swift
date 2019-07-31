@@ -262,7 +262,7 @@ class UHomeController: UBaseViewController {
 
             
         }, { (APIErrorModel) in
-            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+            showHUDInView(text: APIErrorModel.msg ?? "网络错误", inView: self.view)
         })
     }
     
