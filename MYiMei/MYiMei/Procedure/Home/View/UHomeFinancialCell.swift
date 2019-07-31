@@ -1,5 +1,5 @@
 //
-//  UHomeFinancialSettlementCell.swift
+//  UHomeFinancialCell.swift
 //  MYiMei
 //
 //  Created by KevinFu on 2019/7/30.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class UHomeFinancialSettlementCell: BaseView {
+class UHomeFinancialCell: BaseView {
     var whiteBg = UIImageView()
     var withdrawLaber = UILabel()
     var withdrawNumberlaber = UILabel()
     var timeLaber = UILabel()
     var expenditureLaber = UILabel()
     func setView() {
-       
+        
         whiteBg.backgroundColor = UIColor.white
         self.addSubview(whiteBg)
         whiteBg.snp.makeConstraints { (ConstraintMaker) in
