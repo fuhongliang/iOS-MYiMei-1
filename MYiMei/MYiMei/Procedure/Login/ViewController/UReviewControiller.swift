@@ -10,10 +10,10 @@ import UIKit
 
 class UReviewControiller: UBaseViewController {
     
-    let mUReviwView = UHomeEvaluationCell()
+    let mUReviwView = UReviwView()
     
     override func configUI() {
-//        mUReviwView.setView()
+        mUReviwView.setView()
         self.view.addSubview(mUReviwView)
         self.view.backgroundColor = UIColor.white
         

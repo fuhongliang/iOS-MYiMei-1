@@ -42,8 +42,6 @@ class UHomeEvaluationCell: UBaseTableViewCell {
     //删除按钮
     var deleteBtn = UIButton()
     
-    
-
     override func configUI() {
         contentView.backgroundColor = UIColor.white//UIColor.hex(hexString: "#F5F5F5")
         

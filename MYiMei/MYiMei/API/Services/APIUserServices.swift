@@ -11,7 +11,7 @@ import UIKit
 
 protocol APIUserServicesProtocol {
     //登录协议
-    func login(phoneNumber: String, password: String, _ success: @escaping(((APILoginResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    func login(phoneNumber: String, password: String,jpush_registration_id: String, _ success: @escaping(((APILoginResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
     //退出登录协议
     func logout(userId: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
@@ -208,12 +208,14 @@ class APIUserServices: APIUserServicesProtocol {
     }
 
     //登录实现
-    func login(phoneNumber: String, password: String, _ success: @escaping (((APILoginResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+    func login(phoneNumber: String, password: String, jpush_registration_id: String, _ success: @escaping (((APILoginResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:String] = [
             "username":phoneNumber,
             "password":password,
+            "jpush_registration_id":jpush_registration_id,
             "is_debug":"1"
         ]
+        
         APIService.shared.request(.login(user: params), { (data) in
             do {
                 let model = try JSONDecoder().decode(APILoginResponseModel.self, from: data)
