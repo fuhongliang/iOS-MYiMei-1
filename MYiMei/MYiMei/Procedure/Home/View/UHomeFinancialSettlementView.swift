@@ -9,10 +9,22 @@
 import UIKit
 
 class UHomeFinancialSettlementView: BaseView {
-    var overBg = UIImageView()
+    
+    var overBg = UIView()
     var overLaber = UILabel()
     var overNumberLaber = UILabel()
+    
+    //MARK:¥
+    var rmb : UILabel = {
+        let ul = UILabel()
+        ul.text = "¥"
+        ul.textColor = UIColor.white
+        ul.font = UIFont.systemFont(ofSize: 17)
+        return ul
+    }()
+
     var withdrawBtn = UIButton()
+    
     func setView() {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         
@@ -32,20 +44,29 @@ class UHomeFinancialSettlementView: BaseView {
             ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(overBg.snp.top).offset(20)
         }
-        overNumberLaber.text = "￥8790.23"
+        
+        //MARK:￥
+        self.addSubview(rmb)
+        rmb.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.top.equalTo(overLaber.snp.bottom).offset(23)
+        }
+        
+        overNumberLaber.text = ""
         overNumberLaber.textColor = UIColor.white
         overNumberLaber.font = UIFont.boldSystemFont(ofSize: 26)
         self.addSubview(overNumberLaber)
         overNumberLaber.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview().offset(15)
-            ConstraintMaker.top.equalTo(overLaber.snp.bottom).offset(20)
+            ConstraintMaker.left.equalTo(rmb.snp.right).offset(2)
+            ConstraintMaker.bottom.equalTo(rmb).offset(3)
         }
+        
         withdrawBtn.setTitle("提现", for: UIControl.State.normal)
         withdrawBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        withdrawBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         withdrawBtn.layer.borderColor = UIColor.white.cgColor
-        withdrawBtn.layer.borderWidth = 1
+        withdrawBtn.layer.borderWidth = 0.5
         withdrawBtn.layer.cornerRadius = 3
-        withdrawBtn.layer.masksToBounds = true
         self.addSubview(withdrawBtn)
         withdrawBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.equalTo(overBg)
@@ -54,5 +75,6 @@ class UHomeFinancialSettlementView: BaseView {
             ConstraintMaker.width.equalTo(52)
         }
         
+
     }
 }

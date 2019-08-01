@@ -6,7 +6,7 @@
 //  Copyright © 2019 符宏梁. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SCLAlertView
 import JXSegmentedView
 
@@ -44,7 +44,7 @@ class UCommentListController: UBaseViewController {
         tw.estimatedRowHeight = 200
         tw.rowHeight = UITableView.automaticDimension
         
-//        tw.uempty = UEmptyView { [weak self] in self?.getCommentList() }
+        tw.uempty = UEmptyView { [weak self] in self?.refreshCommentData() }
         tw.register(cellType: UHomeEvaluationCell.self)
         return tw
     }()
@@ -61,7 +61,6 @@ class UCommentListController: UBaseViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-//            ConstraintMaker.top.bottom.left.right.equalToSuperview()
         }
         getCommentList()
         
@@ -70,9 +69,7 @@ class UCommentListController: UBaseViewController {
     //MARK:获取评论数据
     func getCommentList(){
         service.getCommentList(type: commentType,page: pageRecord, { (CommentsResponseModel) in
-            self.commentList = CommentsResponseModel.data
-            self.tableView.reloadData()
-            
+
             if (self.pageRecord != 1) {
                 self.commentList.comment.append(contentsOf: CommentsResponseModel.data.comment)
             } else {
@@ -207,7 +204,7 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
         alert?.viewWillAppear(true)
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 160))
         
-        //运费价格输入框
+        //回复输入框
         inputReplyTF.text = ""
         inputReplyTF.layer.borderColor = UIColor.hex(hexString: "#E5E5E5").cgColor
         inputReplyTF.layer.borderWidth = 1

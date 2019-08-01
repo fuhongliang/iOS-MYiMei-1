@@ -1,7 +1,7 @@
 //
 //  BalloonMarker.swift
 //  MYiMei
-//  图表展示气泡的类
+//  图表展示气泡的类(无效)
 //
 //  Created by 于亿鑫 on 2019/7/25.
 //  Copyright © 2019 符宏梁. All rights reserved.
