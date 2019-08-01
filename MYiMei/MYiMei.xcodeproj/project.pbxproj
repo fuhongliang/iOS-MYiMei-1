@@ -33,6 +33,8 @@
 		0ADF510E22F0173000D2DF97 /* UHomeFinancialSettlementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF510D22F0173000D2DF97 /* UHomeFinancialSettlementView.swift */; };
 		0ADF511022F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF510F22F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift */; };
 		0ADF511422F02A0B00D2DF97 /* UHomeFinancialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF511322F02A0B00D2DF97 /* UHomeFinancialCell.swift */; };
+		0ADF511622F02EC200D2DF97 /* UWeChatWithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF511522F02EC200D2DF97 /* UWeChatWithdrawView.swift */; };
+		0ADF511822F030E500D2DF97 /* UWeChatWithdrawController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF511722F030E500D2DF97 /* UWeChatWithdrawController.swift */; };
 		7B08931A22D7151000872136 /* UMeDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931822D7151000872136 /* UMeDepost.swift */; };
 		7B08931B22D7151000872136 /* UMeDepostcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931922D7151000872136 /* UMeDepostcell.swift */; };
 		7B08931D22D7153700872136 /* UDepost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08931C22D7153700872136 /* UDepost.swift */; };
@@ -225,6 +227,8 @@
 		0ADF510D22F0173000D2DF97 /* UHomeFinancialSettlementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialSettlementView.swift; sourceTree = "<group>"; };
 		0ADF510F22F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialSettlementController.swift; sourceTree = "<group>"; };
 		0ADF511322F02A0B00D2DF97 /* UHomeFinancialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHomeFinancialCell.swift; sourceTree = "<group>"; };
+		0ADF511522F02EC200D2DF97 /* UWeChatWithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWeChatWithdrawView.swift; sourceTree = "<group>"; };
+		0ADF511722F030E500D2DF97 /* UWeChatWithdrawController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWeChatWithdrawController.swift; sourceTree = "<group>"; };
 		185C4F6F1038B06CEEC96315 /* Pods_MYiMei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYiMei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37231CBAB7A37B0B6AEB489F /* Pods-MYiMei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYiMei.release.xcconfig"; path = "Target Support Files/Pods-MYiMei/Pods-MYiMei.release.xcconfig"; sourceTree = "<group>"; };
 		7B08931822D7151000872136 /* UMeDepost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMeDepost.swift; sourceTree = "<group>"; };
@@ -451,6 +455,7 @@
 				0ADF510922EEE8AC00D2DF97 /* UHomeEvaluationCell.swift */,
 				0AB057D822DD6A45002B7E40 /* UHomeView.swift */,
 				0AB057DC22DDAC74002B7E40 /* UHomeEvaluationManagementCell.swift */,
+				0ADF511522F02EC200D2DF97 /* UWeChatWithdrawView.swift */,
 				0AB057DE22DDACCF002B7E40 /* UHomeStoreSettingsCell.swift */,
 				0ADF511322F02A0B00D2DF97 /* UHomeFinancialCell.swift */,
 				0AB057E222DDAD1E002B7E40 /* UHomeDepostCell.swift */,
@@ -469,6 +474,7 @@
 				DC2BE7BB22F1A3BF00D63C37 /* UFinancialSettlementListController.swift */,
 				DCCAFD1D22F29BC900525611 /* UCashOutRecordListController.swift */,
 				DCCCBCEC22E9D5980087DBF8 /* UCommentController.swift */,
+				0ADF511722F030E500D2DF97 /* UWeChatWithdrawController.swift */,
 				DCCCBCEE22E9D6650087DBF8 /* UCommentListController.swift */,
 			);
 			path = ViewController;
@@ -1136,6 +1142,7 @@
 				7BB7666522D2CCBB0019E564 /* CustomPhotoPickerViewController.swift in Sources */,
 				7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */,
 				7BAB355E22C1DE0000154D36 /* UDataCell.swift in Sources */,
+				0ADF511622F02EC200D2DF97 /* UWeChatWithdrawView.swift in Sources */,
 				DCE3157A22EEEB7200086EA7 /* FTPopOverMenu.swift in Sources */,
 				DC18272322E06181005F9410 /* UModifyPriceAlertView.swift in Sources */,
 				DC8815F722F02B9300901D71 /* URefundOrderController.swift in Sources */,
@@ -1252,6 +1259,7 @@
 				7B08932122D7258800872136 /* UMyDepostController.swift in Sources */,
 				DC221C8C22CF4462003A4053 /* UShopLabelCell.swift in Sources */,
 				7B18ADFF22D5ED4D00331B10 /* ApplyCatModel.swift in Sources */,
+				0ADF511822F030E500D2DF97 /* UWeChatWithdrawController.swift in Sources */,
 				0ADF511422F02A0B00D2DF97 /* UHomeFinancialCell.swift in Sources */,
 				7B08931F22D715CD00872136 /* UDepostPostController.swift in Sources */,
 				7B2C3B3922EED07900C452E9 /* JPushRegistrationID.swift in Sources */,
