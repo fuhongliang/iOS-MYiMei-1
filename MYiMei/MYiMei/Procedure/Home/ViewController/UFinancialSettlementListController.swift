@@ -33,14 +33,15 @@ class UFinancialSettlementListController: UBaseViewController {
         tw.dataSource = self
         
         tw.uempty = UEmptyView { [weak self] in self?.refreshIncomeListData() }
+        tw.uHead = URefreshHeader { [weak self] in self?.refreshIncomeListData() }
         tw.register(cellType: UHomeFinancialCell.self)
         return tw
     }()
     
     override func configUI() {
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新数据...")
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshIncomeListData), for: .valueChanged)
+//        tableView.refreshControl = UIRefreshControl()
+//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新数据...")
+//        tableView.refreshControl?.addTarget(self, action: #selector(refreshIncomeListData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -64,7 +65,7 @@ class UFinancialSettlementListController: UBaseViewController {
                 self.incomeDetailList?.append(contentsOf: IncomeDetailResponseModel.data.accounts)
             } else {
                 self.incomeDetailList = IncomeDetailResponseModel.data.accounts
-                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.uHead.endRefreshing()
             }
             
             if(IncomeDetailResponseModel.data.accounts.count >= 20){
@@ -79,7 +80,7 @@ class UFinancialSettlementListController: UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.uHead.endRefreshing()
             print(APIErrorModel.msg ?? ".............")
         }
         
@@ -116,7 +117,7 @@ extension UFinancialSettlementListController: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UHomeFinancialCell.self)
-        cell.model = incomeDetailList![indexPath.section]
+        cell.model = incomeDetailList![indexPath.row]
         return cell
     }
     

@@ -45,6 +45,7 @@ class UCommentListController: UBaseViewController {
         tw.rowHeight = UITableView.automaticDimension
         
         tw.uempty = UEmptyView { [weak self] in self?.refreshCommentData() }
+        tw.uHead = URefreshHeader{ [weak self] in self?.refreshCommentData() }
         tw.register(cellType: UHomeEvaluationCell.self)
         return tw
     }()
@@ -54,9 +55,9 @@ class UCommentListController: UBaseViewController {
 //    }
     
     override func configUI() {
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshCommentData), for: .valueChanged)
+//        tableView.refreshControl = UIRefreshControl()
+//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
+//        tableView.refreshControl?.addTarget(self, action: #selector(refreshCommentData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -74,7 +75,7 @@ class UCommentListController: UBaseViewController {
                 self.commentList.comment.append(contentsOf: CommentsResponseModel.data.comment)
             } else {
                 self.commentList = CommentsResponseModel.data
-                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.uHead.endRefreshing()
             }
             
             if(CommentsResponseModel.data.comment.count >= 20){
@@ -89,7 +90,7 @@ class UCommentListController: UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.uHead.endRefreshing()
             print(APIErrorModel.msg ?? ".............")
         }
     }

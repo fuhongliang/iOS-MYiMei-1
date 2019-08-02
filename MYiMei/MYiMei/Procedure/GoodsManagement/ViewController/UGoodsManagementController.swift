@@ -228,8 +228,6 @@ class UGoodsManagementController: UBaseViewController {
             showHUDInView(text: APIErrorModel.msg ?? "上下架失败", inView: self.view)
         })
     }
-
-
 }
 
 extension UGoodsManagementController: UITableViewDelegate, UITableViewDataSource {

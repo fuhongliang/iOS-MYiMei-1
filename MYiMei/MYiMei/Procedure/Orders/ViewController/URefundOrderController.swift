@@ -45,27 +45,28 @@ class URefundOrderController : UBaseViewController {
         tw.rowHeight = UITableView.automaticDimension
         
         tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
+        tw.uHead = URefreshHeader{ [weak self] in self?.refreshOrderData() }
         tw.register(cellType: URefundOrderUntreatedCell.self)
         return tw
     }()
     
     override func configUI() {
         
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
+//        tableView.refreshControl = UIRefreshControl()
+//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
+//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
-        getOrderList()
+//        getOrderList()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        refreshOrderData()
+        refreshOrderData()
     }
     
     //MARK:网络请求-获取待处理订单列表数据
@@ -77,7 +78,7 @@ class URefundOrderController : UBaseViewController {
                 self.orderList.refund_order.append(contentsOf: RefundOrderResponseModel.data.refund_order)
             } else {
                 self.orderList.refund_order = RefundOrderResponseModel.data.refund_order
-                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.uHead.endRefreshing()
             }
             
             if(RefundOrderResponseModel.data.refund_order.count >= 20){
@@ -91,7 +92,7 @@ class URefundOrderController : UBaseViewController {
             self.tableView.reloadData()
             self.pageRecord += 1
         }, { (APIErrorModel) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.uHead.endRefreshing()
             NSLog(APIErrorModel.msg ?? "...")
         })
     }
@@ -126,8 +127,8 @@ class URefundOrderController : UBaseViewController {
         
         alert.customSubview = subview
         
-        let attr = "确认同意退货退款\n\n确认通过后退款金额\(refundAmount)元将直接 返还给用户！"
-        alert.showCustom("温馨提示", subTitle: attr, color: UIColor.white, icon: UIImage(), animationStyle: .noAnimation)//("温馨提示", subTitle: attr,animationStyle:.noAnimation)
+        let attr = "确认通过后退款金额将直接返还给用户！"
+        alert.showCustom("确认同意退款", subTitle: attr, color: UIColor.white, icon: UIImage(), animationStyle: .noAnimation)
     }
     
     //MARK:网络请求-拒绝售后处理

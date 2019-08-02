@@ -40,22 +40,23 @@ class UOrdersNotReceiptController: UBaseViewController {
         tw.delegate = self
         tw.dataSource = self
 //        tw.register(cellType: UOderCell.self)
-        tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
+        tw.uempty = UEmptyView { [weak self] in self?.refreshOrderData() }
+        tw.uHead = URefreshHeader{ [weak self] in self?.refreshOrderData() }
         tw.register(cellType: UOrderNotReceiptCell.self)
         return tw
     }()
     
     override func configUI() {
         
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
+//        tableView.refreshControl = UIRefreshControl()
+//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
+//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
-        getOrderList()
+//        getOrderList()
         
     }
     
@@ -77,7 +78,7 @@ class UOrdersNotReceiptController: UBaseViewController {
                 self.orderList.order.append(contentsOf: OrderListResponseModel.data.order)
             } else {
                 self.orderList = OrderListResponseModel.data
-                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.uHead.endRefreshing()
             }
             
             if(OrderListResponseModel.data.order.count >= 20){
@@ -92,7 +93,7 @@ class UOrdersNotReceiptController: UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.uHead.endRefreshing()
             NSLog(APIErrorModel.msg ?? "...")
         }
     }

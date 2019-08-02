@@ -73,14 +73,14 @@ class URefreshTipKissFooter: MJRefreshBackFooter {
     override func prepare() {
         super.prepare()
         backgroundColor = UIColor.background
-        mj_h = 240
+//        mj_h = 10
         addSubview(tipLabel)
         addSubview(imageView)
     }
 
     override func placeSubviews() {
-        tipLabel.frame = CGRect(x: 0, y: 40, width: bounds.width, height: 60)
-        imageView.frame = CGRect(x: (bounds.width - 80 ) / 2, y: 110, width: 80, height: 80)
+        tipLabel.frame = CGRect(x: 0, y: 20, width: bounds.width, height: 60)
+        imageView.frame = CGRect(x: (bounds.width - 80 ) / 2, y: 90, width: 80, height: 80)
     }
 
     convenience init(with tip: String) {

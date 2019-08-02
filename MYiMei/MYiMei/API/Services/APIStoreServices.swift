@@ -23,10 +23,38 @@ protocol APIStoreServicesProtocol {
     
     //MARK:收支明细
     func incomeDetail(page: Int, _ success: @escaping(((IncomeDetailResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+    
+    //MARK:提现申请
+    func applyCashOut(money:Double, type:Int, typeData: ApplyCashOutTypeDataModel, _ success: @escaping(((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
 
 }
 
 class APIStoreServices: APIStoreServicesProtocol {
+    
+    func applyCashOut(money: Double, type: Int, typeData: ApplyCashOutTypeDataModel, _ success: @escaping (((UploadFileResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+        let params: [String:Any] = [
+            "mch_id":APIUser.shared.user?.mch_id as Any,
+            "access_token":APIUser.shared.user?.access_token as Any,
+            "is_debug":"1",
+            "money":money,
+            "type":type,
+            "type_data":["account":typeData.account,"bank_name":typeData.bank_name,"nickname":typeData.nickname]
+        ]
+        
+        APIService.shared.request(.applyCashOut(param: params), { (data) in
+            do {
+                let model = try JSONDecoder().decode(UploadFileResponeModel.self, from: data)
+                success(model)
+            }
+            catch {
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败---\(error)", _data: nil)
+                fail(errorModel)
+            }
+        }) { (error) in
+            fail(error)
+        }
+    }
+    
     //MARK:收支明细
     func incomeDetail(page: Int, _ success: @escaping (((IncomeDetailResponseModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [

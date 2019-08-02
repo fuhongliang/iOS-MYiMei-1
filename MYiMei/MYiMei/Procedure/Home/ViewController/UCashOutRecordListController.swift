@@ -36,15 +36,16 @@ class UCashOutRecordListController: UBaseViewController {
         tw.delegate = self
         tw.dataSource = self
         
-        tw.uempty = UEmptyView { [weak self] in self?.getCashOutRecordList() }
+        tw.uempty = UEmptyView { [weak self] in self?.refreshCashListData() }
+        tw.uHead = URefreshHeader{ [weak self] in self?.refreshCashListData() }
         tw.register(cellType: UHomeWithdrawalsRecordCell.self)
         return tw
     }()
     
     override func configUI() {
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新数据...")
-        tableView.refreshControl?.addTarget(self, action: #selector(getCashOutRecordList), for: .valueChanged)
+//        tableView.refreshControl = UIRefreshControl()
+//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新数据...")
+//        tableView.refreshControl?.addTarget(self, action: #selector(getCashOutRecordList), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -66,7 +67,7 @@ class UCashOutRecordListController: UBaseViewController {
                 self.cashOutRecordList?.append(contentsOf: CashOutRecordResponseModel.data.cash)
             } else {
                 self.cashOutRecordList = CashOutRecordResponseModel.data.cash
-                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.uHead.endRefreshing()
             }
             
             if(CashOutRecordResponseModel.data.cash.count >= 20){
@@ -81,13 +82,13 @@ class UCashOutRecordListController: UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.uHead.endRefreshing()
             print(APIErrorModel.msg ?? ".............")
         }
         
     }
     
-    @objc func refreshIncomeListData() {
+    @objc func refreshCashListData() {
         pageRecord = 1
         getCashOutRecordList()
     }
@@ -99,26 +100,26 @@ extension UCashOutRecordListController: UITableViewDelegate, UITableViewDataSour
     //MARK:cell组数
     func numberOfSections(in tableView: UITableView) -> Int {
         guard cashOutRecordList == nil else {
-            return cashOutRecordList!.count
+            return 1
         }
         return 0
     }
     
     //MARK:cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 57
+        return 65
     }
     
     //MARK:每组cell的数量
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return cashOutRecordList!.count
     }
     
     //MARK:返回每个cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UHomeWithdrawalsRecordCell.self)
-        cell.model = cashOutRecordList![indexPath.section]
+        cell.model = cashOutRecordList![indexPath.row]
         return cell
     }
     
@@ -129,6 +130,17 @@ extension UCashOutRecordListController: UITableViewDelegate, UITableViewDataSour
             getCashOutRecordList()
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if (cashOutRecordList!.count != 1 && section == cashOutRecordList!.count-1){

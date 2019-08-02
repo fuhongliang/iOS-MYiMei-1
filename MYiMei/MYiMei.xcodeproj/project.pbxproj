@@ -168,6 +168,9 @@
 		DC8815F722F02B9300901D71 /* URefundOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8815F622F02B9300901D71 /* URefundOrderController.swift */; };
 		DC8815F922F0387900901D71 /* UBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8815F822F0387900901D71 /* UBaseCollectionViewCell.swift */; };
 		DCCAFD1E22F29BC900525611 /* UCashOutRecordListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD1D22F29BC900525611 /* UCashOutRecordListController.swift */; };
+		DCCAFD2222F2F05B00525611 /* ApplyCashOutTypeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD2122F2F05B00525611 /* ApplyCashOutTypeDataModel.swift */; };
+		DCCAFD2422F2F66400525611 /* UBankCardWithdrawController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD2322F2F66400525611 /* UBankCardWithdrawController.swift */; };
+		DCCAFD2622F2F68C00525611 /* UBankCardWithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD2522F2F68C00525611 /* UBankCardWithdrawView.swift */; };
 		DCCCBCE922E9CA590087DBF8 /* CommentsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCCBCE822E9CA590087DBF8 /* CommentsResponseModel.swift */; };
 		DCCCBCEB22E9D2990087DBF8 /* APICommentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCCBCEA22E9D2990087DBF8 /* APICommentServices.swift */; };
 		DCCCBCED22E9D5980087DBF8 /* UCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCCBCEC22E9D5980087DBF8 /* UCommentController.swift */; };
@@ -371,6 +374,9 @@
 		DC8815F622F02B9300901D71 /* URefundOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URefundOrderController.swift; sourceTree = "<group>"; };
 		DC8815F822F0387900901D71 /* UBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCCAFD1D22F29BC900525611 /* UCashOutRecordListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCashOutRecordListController.swift; sourceTree = "<group>"; };
+		DCCAFD2122F2F05B00525611 /* ApplyCashOutTypeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCashOutTypeDataModel.swift; sourceTree = "<group>"; };
+		DCCAFD2322F2F66400525611 /* UBankCardWithdrawController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBankCardWithdrawController.swift; sourceTree = "<group>"; };
+		DCCAFD2522F2F68C00525611 /* UBankCardWithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBankCardWithdrawView.swift; sourceTree = "<group>"; };
 		DCCCBCE822E9CA590087DBF8 /* CommentsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsResponseModel.swift; sourceTree = "<group>"; };
 		DCCCBCEA22E9D2990087DBF8 /* APICommentServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentServices.swift; sourceTree = "<group>"; };
 		DCCCBCEC22E9D5980087DBF8 /* UCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCommentController.swift; sourceTree = "<group>"; };
@@ -461,6 +467,7 @@
 				0AB057E222DDAD1E002B7E40 /* UHomeDepostCell.swift */,
 				0ADF510D22F0173000D2DF97 /* UHomeFinancialSettlementView.swift */,
 				DC2C798022F280C600E5A4D7 /* UHomeWithdrawalsRecordCell.swift */,
+				DCCAFD2522F2F68C00525611 /* UBankCardWithdrawView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -474,8 +481,9 @@
 				DC2BE7BB22F1A3BF00D63C37 /* UFinancialSettlementListController.swift */,
 				DCCAFD1D22F29BC900525611 /* UCashOutRecordListController.swift */,
 				DCCCBCEC22E9D5980087DBF8 /* UCommentController.swift */,
-				0ADF511722F030E500D2DF97 /* UWeChatWithdrawController.swift */,
 				DCCCBCEE22E9D6650087DBF8 /* UCommentListController.swift */,
+				0ADF511722F030E500D2DF97 /* UWeChatWithdrawController.swift */,
+				DCCAFD2322F2F66400525611 /* UBankCardWithdrawController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -648,6 +656,7 @@
 				DC2BAB5622EEACA100D4F0B7 /* RefundOrderResponseModel.swift */,
 				DC2C798222F28B0400E5A4D7 /* IncomeDetailResponseModel.swift */,
 				DC2C798422F28C1F00E5A4D7 /* CashOutRecordResponseModel.swift */,
+				DCCAFD2122F2F05B00525611 /* ApplyCashOutTypeDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1203,6 +1212,7 @@
 				7B9EB94422C3348F003D9121 /* UGoodsCell.swift in Sources */,
 				DC64FEC222E3017A00E67EB8 /* MessageNoticeModel.swift in Sources */,
 				7BAB354A22C0D87100154D36 /* ULoginView.swift in Sources */,
+				DCCAFD2622F2F68C00525611 /* UBankCardWithdrawView.swift in Sources */,
 				7BAB352722C0C89A00154D36 /* APIResponseModels.swift in Sources */,
 				DC7E298522D5A5DE00AC3F21 /* APIOrderServices.swift in Sources */,
 				0AB057AB22D2D676002B7E40 /* UManagementClassificationController.swift in Sources */,
@@ -1215,6 +1225,7 @@
 				DC8708D122D9B22D009B92F2 /* ExpressListResponesModel.swift in Sources */,
 				DC7E297922D575B700AC3F21 /* ImagePressHelper.swift in Sources */,
 				7B08932522D72BD200872136 /* UDepostPhotoCell.swift in Sources */,
+				DCCAFD2422F2F66400525611 /* UBankCardWithdrawController.swift in Sources */,
 				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
 				DCE3157D22EF0AD200086EA7 /* URefundOrderImageCell.swift in Sources */,
@@ -1305,6 +1316,7 @@
 				7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */,
 				7BF09D2A22E3058A003B6D14 /* GoodsDetailResponeModel.swift in Sources */,
 				7B85A6D622E1624D00F22056 /* AboutUsViewController.swift in Sources */,
+				DCCAFD2222F2F05B00525611 /* ApplyCashOutTypeDataModel.swift in Sources */,
 				0AB057D922DD6A45002B7E40 /* UHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

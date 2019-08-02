@@ -81,15 +81,30 @@ class UHomeFinancialSettlementController: UBaseViewController {
         )
         
         let alert = SCLAlertView(appearance: style)
-        
-        alert.addButton("提现到银行卡",textColor:UIColor.hex(hexString: "#1C98F6")) {
-            //TODO 跳转
+        if Double(mHomeFinancialSettlementView.overNumberLaber.text!) ?? 0 >= 1 {
+            alert.addButton("提现到银行卡",textColor:UIColor.hex(hexString: "#1C98F6")) {
+                //TODO 跳转
+                let vc = UBankCardWithdrawController()
+                vc.title = "提现"
+                vc.maxAmount = Double(self.mHomeFinancialSettlementView.overNumberLaber.text ?? "0")!
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            alert.addButton("提现到微信",textColor:UIColor.hex(hexString: "#35C42E")) {
+                //TODO 跳转
+                let vc = UWeChatWithdrawController()
+                vc.title = "提现"
+                vc.maxAmount = Double(self.mHomeFinancialSettlementView.overNumberLaber.text ?? "0")!
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            alert.showCustom("", subTitle: "请选择提现方式", color: UIColor.white, icon: UIImage(), animationStyle: .noAnimation)
+        } else {
+            alert.addButton("知道了",textColor:UIColor.hex(hexString: "#1C98F6")) {
+                print("余额不够")
+            }
+            alert.showCustom("", subTitle: "余额不足1元,无法提现", color: UIColor.white, icon: UIImage(), animationStyle: .noAnimation)
         }
-        alert.addButton("提现到微信",textColor:UIColor.hex(hexString: "#35C42E")) {
-            //TODO 跳转
-        }
         
-        alert.showCustom("", subTitle: "请选择提现方式", color: UIColor.white, icon: UIImage(), animationStyle: .noAnimation)
     }
 }
 

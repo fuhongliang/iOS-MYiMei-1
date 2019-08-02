@@ -179,11 +179,13 @@ class UWeChatWithdrawView: BaseView {
         withdrawalBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
         withdrawalBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         withdrawalBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
+        withdrawalBtn.layer.cornerRadius = 5
+        withdrawalBtn.layer.masksToBounds = true
         self.addSubview(withdrawalBtn)
         withdrawalBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.bottom.equalToSuperview()
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.bottom.equalToSuperview().offset(-30)
             ConstraintMaker.height.equalTo(44)
         }
     }

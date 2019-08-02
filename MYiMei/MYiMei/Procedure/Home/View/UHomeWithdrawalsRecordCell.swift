@@ -13,16 +13,16 @@ class UHomeWithdrawalsRecordCell: UBaseTableViewCell {
     //MARK:操作
     var withdrawLaber : UILabel = {
         let ul = UILabel()
-        ul.text = "账户提现"
+        ul.text = "---"
         ul.textColor = UIColor.black
-        ul.font = UIFont.systemFont(ofSize: 14)
+        ul.font = UIFont.boldSystemFont(ofSize: 14)
         return ul
     }()
     
     //MARK:时间
     var timeLaber : UILabel = {
         let ul = UILabel()
-        ul.text = "2019-07-26 11:25"
+        ul.text = "****-**-** **:**"
         ul.textColor = UIColor.hex(hexString: "#999999")
         ul.font = UIFont.systemFont(ofSize: 11)
         return ul
@@ -32,26 +32,28 @@ class UHomeWithdrawalsRecordCell: UBaseTableViewCell {
     var status : UILabel = {
         let ul = UILabel()
         ul.font = UIFont.systemFont(ofSize: 14)
+        ul.text = "待审核"
+        ul.textColor = UIColor.hex(hexString: "#1C98F6")
         return ul
     }()
     
     override func configUI() {
         
-        self.addSubview(withdrawLaber)
+        contentView.addSubview(withdrawLaber)
         withdrawLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(17)
             ConstraintMaker.top.equalToSuperview().offset(13)
         }
 
         
-        self.addSubview(timeLaber)
+        contentView.addSubview(timeLaber)
         timeLaber.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(17)
             ConstraintMaker.top.equalTo(withdrawLaber.snp.bottom).offset(10)
         }
 
         //MARK:提现记录的状态
-        self.addSubview(status)
+        contentView.addSubview(status)
         status.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.equalToSuperview()
             ConstraintMaker.right.equalToSuperview().offset(-27)
@@ -62,7 +64,7 @@ class UHomeWithdrawalsRecordCell: UBaseTableViewCell {
     //TODO 提现记录的model
     var model : CashOutRecordModel? {
         didSet {
-            guard model == nil else { return }
+            guard model != nil else { return }
             
             withdrawLaber.text = model!.money
             timeLaber.text = dateForMatter(timeString: model!.addtime, join: " ")

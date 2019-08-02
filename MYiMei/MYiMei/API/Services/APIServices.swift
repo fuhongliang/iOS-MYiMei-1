@@ -82,6 +82,7 @@ enum NetApi {
     case handleRefundOrder(param: [String:Any])
     case incomeDetail(param: [String:Any])
     case cashOutRecord(param: [String:Any])
+    case applyCashOut(param: [String:Any])
 }
 
 //MARK: 请求对象的封装
@@ -173,12 +174,14 @@ extension NetApi: TargetType {
             return "/income_detail"
         case .cashOutRecord:
             return "/cash_out_record"
+        case .applyCashOut:
+            return "/apply_cash_out"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .cashOutRecord,.incomeDetail,.handleRefundOrder,.getRefundOrder,.replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
+        case .applyCashOut,.cashOutRecord,.incomeDetail,.handleRefundOrder,.getRefundOrder,.replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
           return .post
 
         }
@@ -265,6 +268,8 @@ extension NetApi: TargetType {
         case .incomeDetail(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .cashOutRecord(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .applyCashOut(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
        }
     }

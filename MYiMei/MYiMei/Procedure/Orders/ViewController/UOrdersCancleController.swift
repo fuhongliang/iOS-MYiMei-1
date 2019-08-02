@@ -40,15 +40,16 @@ class UOrdersCancleController : UBaseViewController {
         tw.delegate = self
         tw.dataSource = self
         tw.uempty = UEmptyView { [weak self] in self?.getOrderList() }
+        tw.uHead = URefreshHeader{ [weak self] in self?.refreshOrderData() }
         tw.register(cellType: UOrderCancleCell.self)
         return tw
     }()
     
     override func configUI() {
         
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
+//        tableView.refreshControl = UIRefreshControl()
+//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
+//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -75,7 +76,7 @@ class UOrdersCancleController : UBaseViewController {
                 self.orderList.order.append(contentsOf: OrderListResponseModel.data.order)
             } else {
                 self.orderList = OrderListResponseModel.data
-                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.uHead.endRefreshing()
             }
             
             if(OrderListResponseModel.data.order.count >= 20){
@@ -90,7 +91,7 @@ class UOrdersCancleController : UBaseViewController {
             self.pageRecord += 1
             
         }) { (APIErrorModel) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.uHead.endRefreshing()
             NSLog(APIErrorModel.msg ?? "...")
         }
     }
