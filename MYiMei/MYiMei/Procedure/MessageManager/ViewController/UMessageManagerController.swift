@@ -19,11 +19,16 @@ class UMessageManagerController : UBaseViewController {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
         tw.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-        tw.separatorStyle = UITableViewCell.SeparatorStyle.none
+//        tw.separatorStyle = UITableViewCell.SeparatorStyle.none
         tw.showsVerticalScrollIndicator = false
         tw.delegate = self
         tw.dataSource = self
+        
+        tw.estimatedRowHeight = 66
+        tw.rowHeight = UITableView.automaticDimension
+        
         tw.uempty = UEmptyView { [weak self] in self?.getMessageInfo() }
+        tw.uHead = URefreshHeader { [weak self] in self?.getMessageInfo() }
         tw.register(cellType: UMessageManagementCellView.self)
         return tw
     }()
@@ -47,8 +52,10 @@ class UMessageManagerController : UBaseViewController {
         service.getOrderMessageNotice(page: 1, { (MessageNoticeModel) in
             self.messageList = MessageNoticeModel.data
             self.tableView.reloadData()
+            self.tableView.uHead.endRefreshing()
         }) { (APIErrorModel) in
-            
+            showHUDInView(text: "网络错误", inView: self.view)
+            self.tableView.uHead.endRefreshing()
         }
     }
  
@@ -59,26 +66,26 @@ extension UMessageManagerController : UITableViewDelegate, UITableViewDataSource
     //MARK:cell组数
     func numberOfSections(in tableView: UITableView) -> Int {
         guard messageList.msg == nil else {
-            return messageList.msg.count
+            return 1
         }
         return 0
     }
     
     //MARK:cell高度
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66
-        
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 66
+//
+//    }
     
     //MARK:每组cell的数量
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return messageList.msg.count
     }
     
     //MARK:section头部的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         //头部section 高点
-        return section == 0 ? 10 : CGFloat.leastNormalMagnitude
+        return CGFloat.leastNormalMagnitude
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -89,7 +96,7 @@ extension UMessageManagerController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UMessageManagementCellView.self)
-        cell.model = messageList.msg[indexPath.section]
+        cell.model = messageList.msg[indexPath.row]
         return cell
         
     }
