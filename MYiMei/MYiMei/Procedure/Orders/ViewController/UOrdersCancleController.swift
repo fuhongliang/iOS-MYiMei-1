@@ -46,17 +46,11 @@ class UOrdersCancleController : UBaseViewController {
     }()
     
     override func configUI() {
-        
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
-        getOrderList()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -43,9 +43,7 @@ class UCashOutRecordListController: UBaseViewController {
     }()
     
     override func configUI() {
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(getCashOutRecordList), for: .valueChanged)
+
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in

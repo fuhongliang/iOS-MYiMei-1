@@ -181,13 +181,14 @@ class USettingDeliveryView: BaseView {
         submitInfoBtn.setTitleColor( UIColor.white, for: UIControl.State.normal)
         submitInfoBtn.setTitle("确认", for: UIControl.State.normal)
         submitInfoBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
-        //        submitInfoBtn.tintColor = UIColor.hex(hexString: "#CCCCCC")
         submitInfoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        submitInfoBtn.layer.cornerRadius = 3
+        submitInfoBtn.layer.masksToBounds = true
         self.addSubview(submitInfoBtn)
         submitInfoBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.bottom.equalToSuperview()
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
+            ConstraintMaker.bottom.equalToSuperview().offset(-30)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview().offset(-15)
             ConstraintMaker.height.equalTo(44)
         }
         

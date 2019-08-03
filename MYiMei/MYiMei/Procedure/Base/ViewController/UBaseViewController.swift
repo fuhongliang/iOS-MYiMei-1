@@ -47,6 +47,14 @@ class UBaseViewController: UIViewController {
             }
         }
     }
+    
+    func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        guard navigationController == nil else {
+            navigationController!.pushViewController(viewController,animated: true)
+            return
+        }
+        topVC?.navigationController?.pushViewController(viewController, animated: true)
+    }
 
     @objc func pressBack() {
         navigationController?.popViewController(animated: true)
@@ -58,4 +66,27 @@ extension UBaseViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
+    
+    
+    func getTopViewController() -> UIViewController {
+        let keywindow = (UIApplication.shared.delegate as! AppDelegate).window//UIApplication.shared.keyWindow使用此有时会崩溃
+        let firstView: UIView = (keywindow?.subviews.first)!
+        let secondView: UIView = firstView.subviews.first!
+        var vc = viewForController(view: secondView)!
+        vc = ((vc as! UITabBarController).selectedViewController! as! UINavigationController).visibleViewController!
+        
+        return vc
+    }
+    
+    private func viewForController(view:UIView)->UIViewController?{
+        var next:UIView? = view
+        repeat{
+            if let nextResponder = next?.next, nextResponder is UIViewController {
+                return (nextResponder as! UIViewController)
+            }
+            next = next?.superview
+        }while next != nil
+        return nil
+    }
+    
 }

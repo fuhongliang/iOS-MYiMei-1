@@ -37,7 +37,6 @@ class UCommentController: UBaseViewController {
         
         //配置指示器
         let indicator = JXSegmentedIndicatorLineView()
-//        indicator.indicatorWidth = screenWidth / 2
         indicator.lineStyle = .normal
         indicator.indicatorColor = UIColor.hex(hexString: "#1C98F6")
         indicator.indicatorCornerRadius = 0

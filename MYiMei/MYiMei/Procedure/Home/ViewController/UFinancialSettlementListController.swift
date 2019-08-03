@@ -26,8 +26,7 @@ class UFinancialSettlementListController: UBaseViewController {
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
-//        tw.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-//        tw.separatorStyle = UITableViewCell.SeparatorStyle.none
+
         tw.showsVerticalScrollIndicator = false
         tw.delegate = self
         tw.dataSource = self
@@ -39,9 +38,7 @@ class UFinancialSettlementListController: UBaseViewController {
     }()
     
     override func configUI() {
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshIncomeListData), for: .valueChanged)
+
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -56,6 +53,7 @@ class UFinancialSettlementListController: UBaseViewController {
         
         service.incomeDetail(page: pageRecord, { (IncomeDetailResponseModel) in
 
+            //TODO 待更改此处写法
             let appDelegate  = UIApplication.shared.delegate as! AppDelegate
             let controller = appDelegate.window!.currentController as! UHomeFinancialSettlementController
             

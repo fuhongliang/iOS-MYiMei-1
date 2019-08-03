@@ -71,21 +71,9 @@ class UShopLabelCell: UBaseTableViewCell {
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.equalToSuperview()
             ConstraintMaker.right.equalTo(arrowImg.snp.left).offset(-10)
-//            ConstraintMaker.right.equalToSuperview()
+            ConstraintMaker.left.equalTo(instructionsLabel.snp.right).offset(10)
         }
         
-//        layerView.addSubview(line)
-//        line.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.bottom.equalToSuperview()
-//            ConstraintMaker.left.equalToSuperview().offset(15)
-//        }
-        
-       
     }
-    var model: MchModel? {
-        didSet {
-            guard let model = model else { return }
-//            contentLabel.text = model.
-        }
-    }
+    
 }

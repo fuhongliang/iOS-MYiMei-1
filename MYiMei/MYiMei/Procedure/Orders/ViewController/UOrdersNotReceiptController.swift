@@ -47,17 +47,12 @@ class UOrdersNotReceiptController: UBaseViewController {
     }()
     
     override func configUI() {
-        
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
+     
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
-//        getOrderList()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,6 +163,9 @@ extension UOrdersNotReceiptController: UITableViewDelegate, UITableViewDataSourc
             let vc = USettingDeliveryController()
             vc.title = "修改快递信息"
             vc.orderId = self.orderList.order[indexPath.section].order_id
+            vc.refreshOrderData = {
+                self.refreshOrderData()
+            }
             if (self.navigationController == nil){
                 let appDelegate  = UIApplication.shared.delegate as! AppDelegate
                 let tabBarController = appDelegate.window!.rootViewController as! UTabBarController

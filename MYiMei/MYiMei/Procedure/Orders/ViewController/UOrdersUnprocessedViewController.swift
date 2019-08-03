@@ -45,6 +45,16 @@ class UOrdersUnprocessedViewController: UBaseViewController {
     //记录当前加载到哪一页
     var pageRecord = 1
     
+    let style = SCLAlertView.SCLAppearance(
+        kWindowWidth: 300, kTitleFont: UIFont(name: "HelveticaNeue-Bold", size: 20)!,
+        kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+        kButtonFont: UIFont(name: "HelveticaNeue", size: 18)!,
+        showCloseButton: false,
+        showCircularIcon: false,
+        hideWhenBackgroundViewIsTapped:true,
+        buttonsLayout: .horizontal
+    )
+    
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
         tw.backgroundColor = UIColor.background
@@ -61,10 +71,6 @@ class UOrdersUnprocessedViewController: UBaseViewController {
     }()
     
     override func configUI() {
-        
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -139,9 +145,9 @@ class UOrdersUnprocessedViewController: UBaseViewController {
     
     //MARK:设置发货
     func sendGoods(index:Int){
-        let alertController = UIAlertController(title: "温馨提示", message: "请选择发货方式", preferredStyle: UIAlertController.Style.alert)
-        let cancleAction = UIAlertAction(title: "无需快递", style: UIAlertAction.Style.default){
-            (action: UIAlertAction!) -> Void in
+
+        let window = SCLAlertView(appearance: style)
+        window.addButton("无需快递",textColor:UIColor.hex(hexString: "#1C98F6")) {
             self.service.deliveryGoods(order_id: self.orderList.order[index].order_id, is_express: 0, express: "", express_no: "", words: "", {
                 showHUDInView(text: "发货成功", inView: self.view)
                 self.refreshOrderData()
@@ -149,18 +155,13 @@ class UOrdersUnprocessedViewController: UBaseViewController {
                 print(APIErrorModel.msg ?? "-----")
             })
         }
-        
-        let okAction = UIAlertAction(title: "物流配送", style: UIAlertAction.Style.default) {
-            (action: UIAlertAction!) -> Void in
+        window.addButton("物流配送",textColor:UIColor.hex(hexString: "#35C42E")) {
             let vc = USettingDeliveryController()
             vc.title = "设置发货"
             vc.orderId = self.orderList.order[index].order_id
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.pushViewController(vc, animated: true)
         }
-        alertController.addAction(cancleAction)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        window.showCustom("温馨提示", subTitle: "请选择发货方式", color: UIColor.white, icon: UIImage(), animationStyle: .noAnimation)
     }
     
     @objc func refreshOrderData() {
@@ -344,15 +345,6 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
     }
     
     func configAlertView(){
-        let style = SCLAlertView.SCLAppearance(
-            kWindowWidth: 300, kTitleFont: UIFont(name: "HelveticaNeue-Bold", size: 20)!,
-            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
-            kButtonFont: UIFont(name: "HelveticaNeue", size: 18)!,
-            showCloseButton: false,
-            showCircularIcon: false,
-            hideWhenBackgroundViewIsTapped:true,
-            buttonsLayout: .horizontal
-        )
         
         // Initialize SCLAlertView using custom Appearance
         alert = SCLAlertView(appearance: style)

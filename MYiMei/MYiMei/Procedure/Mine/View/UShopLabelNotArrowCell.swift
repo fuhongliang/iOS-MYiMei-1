@@ -57,12 +57,8 @@ class UShopLabelNotArrowCell: UBaseTableViewCell {
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.centerY.equalToSuperview()
             ConstraintMaker.right.equalToSuperview().offset(-15)
+            ConstraintMaker.left.equalTo(instructionsLabel.snp.right).offset(10)
         }
-        
-//        layerView.addSubview(line)
-//        line.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.left.equalToSuperview().offset(15)
-//            ConstraintMaker.bottom.equalToSuperview()
-//        }
+
     }
 }

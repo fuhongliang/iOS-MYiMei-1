@@ -10,7 +10,6 @@ import UIKit
 import Photos
 import TLPhotoPicker
 
-
 class USetUpShopController: UBaseViewController ,TLPhotosPickerViewControllerDelegate{
     var selectedAssets = [TLPHAsset]()
     fileprivate var services = APIUserServices()
@@ -258,18 +257,14 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource,TLPho
         if(indexPath.section == 1){
             if(indexPath.row == 0){
                 let cell = getImgCell(cellForRowAt: indexPath)
-                //店铺地址、分类数据没写
-               
+                
                 return cell
             } else if(indexPath.row == 4) {
                 let cell = getLabelNotArrowCell(cellForRowAt: indexPath)
-                 cell.selectionStyle = .none
-                //店铺地址、分类数据没写
+                cell.selectionStyle = .none
                 return cell
             } else{
                 let cell = getLabelCell(cellForRowAt: indexPath)
-                //店铺地址、分类数据没写
-                
                 return cell
             }
           
@@ -385,8 +380,4 @@ extension USetUpShopController: UITableViewDelegate, UITableViewDataSource,TLPho
         }
         return cell
     }
-   
-  
-    //MARK:获取店铺信息接口
-    
 }

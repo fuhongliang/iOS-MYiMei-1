@@ -28,7 +28,6 @@ class ULoginViewController: UBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     //MARK:重写顶部导航栏
     override func configNavigationBar() {
@@ -101,6 +100,12 @@ class ULoginViewController: UBaseViewController {
 
 
 extension ULoginViewController: ULoginViewDelegate {
+    
+    func tapManagerDelegate() {
+        let vc = UPlatformManagerDelegateController()
+        vc.title = "商户平台管理协议"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     func tapGetMsgAction(phoneNumber: String) {
         guard phoneNumber.count > 0 else {

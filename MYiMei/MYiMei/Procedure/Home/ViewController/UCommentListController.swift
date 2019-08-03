@@ -112,10 +112,6 @@ extension UCommentListController: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 200
-//    }
-    
     //MARK:每组cell的数量
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

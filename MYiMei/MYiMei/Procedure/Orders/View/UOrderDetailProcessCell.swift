@@ -12,7 +12,6 @@ class UOrderDetailProcessCell : UBaseTableViewCell {
     
     public let cellHeight = 113
     
-    
     var orderStatusBg : UIImageView = {
         let orderStatusBg = UIImageView()
         orderStatusBg.backgroundColor = UIColor.white
@@ -157,7 +156,7 @@ class UOrderDetailProcessCell : UBaseTableViewCell {
         orderPushLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(orderStatusBg.snp.left)
             ConstraintMaker.top.equalTo(orderStatusBg.snp.top).offset(52)
-            ConstraintMaker.width.equalTo(orderStatusBg.snp.width).dividedBy(4)
+            ConstraintMaker.width.equalToSuperview().dividedBy(4)
         }
         
         
@@ -172,8 +171,7 @@ class UOrderDetailProcessCell : UBaseTableViewCell {
         orderStatusBg.addSubview(orderPushTimeLabel)
         orderPushTimeLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(orderPushLabel.snp.bottom).offset(11)
-            ConstraintMaker.centerX.equalTo(orderPushLabel)
-            ConstraintMaker.width.equalTo(56)
+            ConstraintMaker.width.centerX.equalTo(orderPushLabel)
         }
         
         //MARK:支付订单
@@ -196,8 +194,7 @@ class UOrderDetailProcessCell : UBaseTableViewCell {
         orderStatusBg.addSubview(orderPayTimeLabel)
         orderPayTimeLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(orderPayLabel.snp.bottom).offset(11)
-            ConstraintMaker.centerX.equalTo(orderPayLabel)
-            ConstraintMaker.width.equalTo(56)
+            ConstraintMaker.width.centerX.equalTo(orderPayLabel)
         }
         
         //MARK:商家发货
@@ -221,8 +218,7 @@ class UOrderDetailProcessCell : UBaseTableViewCell {
         orderStatusBg.addSubview(orderShippingTimeLabel)
         orderShippingTimeLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(orderShippingLabel.snp.bottom).offset(11)
-            ConstraintMaker.centerX.equalTo(orderShippingLabel)
-            ConstraintMaker.width.equalTo(56)
+            ConstraintMaker.width.centerX.equalTo(orderShippingLabel)
         }
         
         //MARK:确认收货
@@ -245,8 +241,7 @@ class UOrderDetailProcessCell : UBaseTableViewCell {
         orderStatusBg.addSubview(orderFinishTimeLabel)
         orderFinishTimeLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(orderFinishLabel.snp.bottom).offset(11)
-            ConstraintMaker.width.equalTo(56)
-            ConstraintMaker.centerX.equalTo(orderFinishLabel)
+            ConstraintMaker.width.centerX.equalTo(orderFinishLabel)
         }
         
         //MARK:订单进度条
