@@ -51,10 +51,6 @@ class URefundOrderController : UBaseViewController {
     }()
     
     override func configUI() {
-        
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
@@ -215,12 +211,6 @@ extension URefundOrderController : UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
-    //MARK:cell高度
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        //订单商品数据展开时，需要动态获取高度再设置
-//        return 285
-//    }
-    
     //MARK:每组cell的数量
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -252,10 +242,6 @@ extension URefundOrderController : UITableViewDelegate, UITableViewDataSource {
         cell.refusedDealWith = {
             self.refusedDealWith(refundAmount: self.orderList.refund_order[indexPath.section].refund_price, refundOrderId: self.orderList.refund_order[indexPath.section].order_refund_id)
         }
-        
-        //下面这两个语句一定要添加，否则第一屏显示的collection view尺寸，以及里面的单元格位置会不正确
-//        cell.frame = tableView.bounds
-//        cell.layoutIfNeeded()
         
         //重新加载单元格数据
         cell.model = orderList.refund_order[indexPath.section]
@@ -300,17 +286,7 @@ extension URefundOrderController : UITableViewDelegate, UITableViewDataSource {
     
     //MARK:点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let orderDetail = UOrderDetailsViewController()
-//        orderDetail.title = "订单详情"
-//        orderDetail.orderStatus = orderList.refund_order[indexPath.section].order_status
-//        orderDetail.orderId = orderList.refund_order[indexPath.section].order_id
-//        if (navigationController == nil){
-//            let appDelegate  = UIApplication.shared.delegate as! AppDelegate
-//            let tabBarController = appDelegate.window!.rootViewController as! UTabBarController
-//            tabBarController.classVC.navigationController?.pushViewController(orderDetail, animated: true)
-//            return
-//        }
-//        navigationController?.pushViewController(orderDetail, animated: true)
+
     }
     
     

@@ -178,7 +178,7 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         return 3
     }
     
-    //MARK:cell高度
+    //MARK:
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !isRequestOrderDetail {
             return 0 //如果请求未完成则不显示
@@ -246,6 +246,17 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if orderStatus == 5 && section == 0 {
+            return 0 // 如果当前订单是已取消的则把底部高度去掉
+        }
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil//UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 15))
     }
 
     //MARK:返回每个cell
@@ -341,8 +352,8 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
                             colorArray = [UIColor.hex(hexString: "#FF4444")]
                             labelOne = "运费"
                             labelOneValue = orderModel.express_price + "元"
-                            labelFour = "实付金额"
-                            labelFourValue = orderModel.pay_price + "元"
+                            labelTwo = "实付金额"
+                            labelTwoValue = orderModel.pay_price + "元"
                         }
                     } else if orderStatus == 5 {
                         if(indexPath.row == 2){
@@ -431,11 +442,12 @@ extension UOrderDetailsViewController : UITableViewDelegate, UITableViewDataSour
         backgroundLayer.path = pathRef
         layer.fillColor = UIColor.white.cgColor
         
+        //绘制分割线
         if (needSeparator) {
             let lineLayer = CALayer()
-            let lineHeight = /*(1.0 / UIScreen.main.scale)*/ CGFloat(0.5)
+            let lineHeight = /*(1.0 / UIScreen.main.scale)*/ CGFloat(1)
             lineLayer.frame = CGRect(x: bounds.minX + 15, y: bounds.size.height-lineHeight, width: bounds.size.width - 30, height: lineHeight)
-            lineLayer.backgroundColor = self.tableView.separatorColor?.cgColor
+            lineLayer.backgroundColor = UIColor.hex(hexString: "#F2F2F2").cgColor
             
             layer.addSublayer(lineLayer)
         }

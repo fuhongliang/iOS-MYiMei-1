@@ -169,28 +169,33 @@ class UHomeController: UBaseViewController {
         
         mHomeView.chartView.xAxis.drawGridLinesEnabled = false //不绘制纵向的网格线
         mHomeView.chartView.rightAxis.enabled = false //禁用右侧的Y轴
-        mHomeView.chartView.leftAxis.enabled = false
+//        mHomeView.chartView.leftAxis.enabled = false
+        mHomeView.chartView.leftAxis.drawAxisLineEnabled = false
+        
+        mHomeView.chartView.leftAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //左Y轴对应网格线的颜色
+        mHomeView.chartView.leftAxis.gridLineWidth = 1 //右Y轴对应网格线的大小
+        
         //播放y轴方向动画，持续时间1秒
         mHomeView.chartView.animate(yAxisDuration: 1)
         
     }
     
     //MARK:设置图表的数据
-    func setChatsData(chartLine:[ String]) {
+    func setChatsData(chartLine:[String]) {
         //生成随机数据
         var dataEntries = [ChartDataEntry]()
         for i in 0..<chartLine.count {
-            let entry = ChartDataEntry.init(x: Double(i), y: Double(chartLine[i]) as! Double)
+            let entry = ChartDataEntry.init(x: Double(i), y: Double(chartLine[i] ) as! Double)
             dataEntries.append(entry)
         }
         //数据作为1根折线里的所有数据
         let chartDataSet = LineChartDataSet(entries: dataEntries, label: "营业额")
         chartDataSet.colors = [UIColor.hex(hexString: "#1C98F6")]//线的颜色
         chartDataSet.drawCirclesEnabled = false //不绘制转折点
-        chartDataSet.mode = .cubicBezier  //贝塞尔曲线
-        chartDataSet.valueColors = [UIColor.hex(hexString: "#1C98F6")] //拐点上的文字颜色
-        chartDataSet.valueFont = .systemFont(ofSize: 9) //拐点上的文字大小
-        
+        chartDataSet.mode = .linear  //贝塞尔曲线
+//        chartDataSet.valueColors = [UIColor.hex(hexString: "#1C98F6")] //拐点上的文字颜色
+//        chartDataSet.valueFont = .systemFont(ofSize: 9) //拐点上的文字大小
+        chartDataSet.drawValuesEnabled = false //不绘制拐点上的文字
         
         chartDataSet.drawFilledEnabled = true //开启填充色绘制
         let gradientColors = [UIColor.hex(hexString: "#2BC1FF").cgColor, UIColor.white.cgColor] as CFArray //渐变颜色数组

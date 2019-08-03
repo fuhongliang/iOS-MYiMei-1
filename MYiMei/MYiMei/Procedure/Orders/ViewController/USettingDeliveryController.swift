@@ -10,6 +10,8 @@ import UIKit
 
 class USettingDeliveryController: UBaseViewController {
     
+    var refreshOrderData : (() -> ())?
+    
     let settingDelivery = USettingDeliveryView()
     
     var expressList = [ExpressModel]()
@@ -27,11 +29,15 @@ class USettingDeliveryController: UBaseViewController {
     override func configUI() {
         settingDelivery.configUI()
         settingDelivery.delegate = self
-        getExpressList()
+        
         view.addSubview(settingDelivery)
         settingDelivery.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getExpressList()
     }
     
     func getExpressList() {
@@ -39,6 +45,7 @@ class USettingDeliveryController: UBaseViewController {
             self.expressList = ExpressListResponesModel.data?.express ?? []
         }) { (APIErrorModel) in
             NSLog("请求失败")
+            showHUDInView(text: "获取物流公司失败,请重试", inView: self.view)
         }
     }
     
@@ -54,9 +61,8 @@ class USettingDeliveryController: UBaseViewController {
         service.deliveryGoods(order_id: orderId, is_express: 1, express: express, express_no: expressNo, words: words, {
             print("发货成功")
             showHUDInView(text: "发货成功", inView: self.view)
-            //获取上一层的controller 通过这个刷新数据
-            let parent = self.navigationController?.viewControllers[0] as! UOrdersUnprocessedViewController
-            parent.refreshOrderData()
+            //通过上层的传递的闭包刷新数据
+            self.refreshOrderData?()
             
             self.pressBack()
         }) { (APIErrorModel) in
@@ -68,7 +74,7 @@ class USettingDeliveryController: UBaseViewController {
     func setExpress() {
         // Simple Option Picker
         var dummyList = [String]()
-        for item in expressList{
+        for item in expressList {
             dummyList.append(item.name!)
         }
         // Simple Option Picker with selected index

@@ -471,7 +471,7 @@ class UMchJoinView: BaseView {
             ConstraintMaker.size.equalTo(60)
         }
 
-        storeLicenseDescriptionLabel.text = "店铺Logo（支持jpg、jprg、png格式，大小不超过1mb尺寸建议100*100px"
+        storeLicenseDescriptionLabel.text = "营业执照（支持jpg、jprg、png格式，大小不超过1mb尺寸建议100*100px"
         storeLicenseDescriptionLabel.font = UIFont.systemFont(ofSize: 12)
         storeLicenseDescriptionLabel.lineBreakMode = .byWordWrapping
         storeLicenseDescriptionLabel.numberOfLines = 0

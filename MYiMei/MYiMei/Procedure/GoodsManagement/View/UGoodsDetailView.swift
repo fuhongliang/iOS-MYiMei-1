@@ -565,10 +565,11 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(goodsPriceLine.snp.bottom).offset(14)
         }
 
-        amountTF.placeholder = "请填写库存"
+        amountTF.placeholder = "请填写库存(超过99999将调整为库存无限)"
         amountTF.font = UIFont.systemFont(ofSize: 17)
         amountTF.textAlignment = .right
         amountTF.keyboardType = UIKeyboardType.numberPad
+        amountTF.dl_maxLength = 5
         self.addSubview(amountTF)
         amountTF.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.right.equalToSuperview().offset(-15)
@@ -576,6 +577,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.width.equalTo(200)
             ConstraintMaker.top.equalTo(goodsPriceLine.snp.bottom)
         }
+        amountTF.delegate = self
         
         //MARK:单品满件包邮
         piecesHeadDesrcLabel.text = "如果设置0或空，则不支持满额包邮"
@@ -846,6 +848,19 @@ class UGoodsDetailView: BaseView {
     }
     
 
+}
+
+extension UGoodsDetailView : UITextFieldDelegate {
+    //MARK:进入编辑状态时触发
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "99999" {
+            textField.text = "库存无限"
+        }
+    }
 }
 
 

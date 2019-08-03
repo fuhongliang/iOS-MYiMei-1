@@ -78,7 +78,6 @@
 		7BAB352A22C0CDF500154D36 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB352922C0CDF500154D36 /* APIUser.swift */; };
 		7BAB352D22C0D00400154D36 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB352C22C0D00400154D36 /* BaseView.swift */; };
 		7BAB353122C0D06200154D36 /* UTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB353022C0D06200154D36 /* UTabBarController.swift */; };
-		7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB353622C0D0D300154D36 /* UOrdersViewController.swift */; };
 		7BAB353922C0D12E00154D36 /* UManagerOrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB353822C0D12E00154D36 /* UManagerOrdersController.swift */; };
 		7BAB353B22C0D14500154D36 /* UMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB353A22C0D14500154D36 /* UMineViewController.swift */; };
 		7BAB353D22C0D16900154D36 /* UNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB353C22C0D16900154D36 /* UNavigationController.swift */; };
@@ -128,6 +127,7 @@
 		DC1A6A5E22D7357A0036EFDC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */; };
 		DC1AB95022D092D9003C0EA3 /* UClassEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */; };
 		DC1AB95222D0984C003C0EA3 /* UClassEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */; };
+		DC1ACCC622F568FA0075210F /* UPlatformManagerDelegateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1ACCC522F568FA0075210F /* UPlatformManagerDelegateController.swift */; };
 		DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */; };
 		DC221C8022CEEC74003A4053 /* UChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */; };
 		DC221C8222CF02FE003A4053 /* UFeedBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC221C8122CF02FE003A4053 /* UFeedBackView.swift */; };
@@ -167,6 +167,7 @@
 		DC8708D122D9B22D009B92F2 /* ExpressListResponesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */; };
 		DC8815F722F02B9300901D71 /* URefundOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8815F622F02B9300901D71 /* URefundOrderController.swift */; };
 		DC8815F922F0387900901D71 /* UBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8815F822F0387900901D71 /* UBaseCollectionViewCell.swift */; };
+		DCAB0BB022F56F550086005C /* HTML_Files in Resources */ = {isa = PBXBuildFile; fileRef = DCAB0BAF22F56F550086005C /* HTML_Files */; };
 		DCCAFD1E22F29BC900525611 /* UCashOutRecordListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD1D22F29BC900525611 /* UCashOutRecordListController.swift */; };
 		DCCAFD2222F2F05B00525611 /* ApplyCashOutTypeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD2122F2F05B00525611 /* ApplyCashOutTypeDataModel.swift */; };
 		DCCAFD2422F2F66400525611 /* UBankCardWithdrawController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAFD2322F2F66400525611 /* UBankCardWithdrawController.swift */; };
@@ -283,7 +284,6 @@
 		7BAB352922C0CDF500154D36 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		7BAB352C22C0D00400154D36 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7BAB353022C0D06200154D36 /* UTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTabBarController.swift; sourceTree = "<group>"; };
-		7BAB353622C0D0D300154D36 /* UOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOrdersViewController.swift; sourceTree = "<group>"; };
 		7BAB353822C0D12E00154D36 /* UManagerOrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UManagerOrdersController.swift; sourceTree = "<group>"; };
 		7BAB353A22C0D14500154D36 /* UMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMineViewController.swift; sourceTree = "<group>"; };
 		7BAB353C22C0D16900154D36 /* UNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNavigationController.swift; sourceTree = "<group>"; };
@@ -333,6 +333,7 @@
 		DC1A6A5D22D7357A0036EFDC /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		DC1AB94F22D092D9003C0EA3 /* UClassEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditView.swift; sourceTree = "<group>"; };
 		DC1AB95122D0984C003C0EA3 /* UClassEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UClassEditController.swift; sourceTree = "<group>"; };
+		DC1ACCC522F568FA0075210F /* UPlatformManagerDelegateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPlatformManagerDelegateController.swift; sourceTree = "<group>"; };
 		DC221C7D22CEEB4A003A4053 /* UChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordView.swift; sourceTree = "<group>"; };
 		DC221C7F22CEEC74003A4053 /* UChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UChangePasswordController.swift; sourceTree = "<group>"; };
 		DC221C8122CF02FE003A4053 /* UFeedBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFeedBackView.swift; sourceTree = "<group>"; };
@@ -373,6 +374,7 @@
 		DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressListResponesModel.swift; sourceTree = "<group>"; };
 		DC8815F622F02B9300901D71 /* URefundOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URefundOrderController.swift; sourceTree = "<group>"; };
 		DC8815F822F0387900901D71 /* UBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		DCAB0BAF22F56F550086005C /* HTML_Files */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HTML_Files; path = "../../../Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688852695698169/Cache/File/2019-08/HTML_Files"; sourceTree = "<group>"; };
 		DCCAFD1D22F29BC900525611 /* UCashOutRecordListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCashOutRecordListController.swift; sourceTree = "<group>"; };
 		DCCAFD2122F2F05B00525611 /* ApplyCashOutTypeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCashOutTypeDataModel.swift; sourceTree = "<group>"; };
 		DCCAFD2322F2F66400525611 /* UBankCardWithdrawController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBankCardWithdrawController.swift; sourceTree = "<group>"; };
@@ -516,7 +518,6 @@
 		0AD5FC5922CC95E8008CE6CF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7BAB353622C0D0D300154D36 /* UOrdersViewController.swift */,
 				0AD5FC6822CDD730008CE6CF /* UOrderDetailsViewController.swift */,
 				DC264EEB22D3266B001FDAD6 /* USettingDeliveryController.swift */,
 				DC30C53D22DC717D00F8B03B /* UOrdersChildViewController.swift */,
@@ -577,6 +578,7 @@
 		7BAB34ED22C0AE1200154D36 /* MYiMei */ = {
 			isa = PBXGroup;
 			children = (
+				DCAB0BAF22F56F550086005C /* HTML_Files */,
 				7B3127E822E1C89E0083D544 /* MYiMei.entitlements */,
 				7B2DE2AC22D5995200AD6FDD /* LocationHelper.swift */,
 				DC7E297822D575B700AC3F21 /* ImagePressHelper.swift */,
@@ -773,6 +775,7 @@
 				7BAB354522C0D7D500154D36 /* ULoginViewController.swift */,
 				DC2BE7B722F1776200D63C37 /* UReviewControiller.swift */,
 				0A0FF6C722CA013C003F4B53 /* UMechJoinViewController.swift */,
+				DC1ACCC522F568FA0075210F /* UPlatformManagerDelegateController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAB34F922C0AE1400154D36 /* LaunchScreen.storyboard in Resources */,
+				DCAB0BB022F56F550086005C /* HTML_Files in Resources */,
 				0AB057D322DC1934002B7E40 /* Assets.xcassets in Resources */,
 				7BAB34F422C0AE1200154D36 /* Main.storyboard in Resources */,
 			);
@@ -1226,7 +1230,6 @@
 				DC7E297922D575B700AC3F21 /* ImagePressHelper.swift in Sources */,
 				7B08932522D72BD200872136 /* UDepostPhotoCell.swift in Sources */,
 				DCCAFD2422F2F66400525611 /* UBankCardWithdrawController.swift in Sources */,
-				7BAB353722C0D0D300154D36 /* UOrdersViewController.swift in Sources */,
 				DC221C8422CF033C003A4053 /* UFeedBackController.swift in Sources */,
 				DCE3157D22EF0AD200086EA7 /* URefundOrderImageCell.swift in Sources */,
 				DC7E297722D5754600AC3F21 /* UMenuDepost.swift in Sources */,
@@ -1299,6 +1302,7 @@
 				7BF06ECA22E83A8C00DE9851 /* UGoodsDescrView.swift in Sources */,
 				DC221C7E22CEEB4A003A4053 /* UChangePasswordView.swift in Sources */,
 				DC18A51722E2B26400451E10 /* UOrderNotPayCell.swift in Sources */,
+				DC1ACCC622F568FA0075210F /* UPlatformManagerDelegateController.swift in Sources */,
 				0ADF511022F01B7B00D2DF97 /* UHomeFinancialSettlementController.swift in Sources */,
 				DC18A52122E2B5DE00451E10 /* UOrdersUnprocessedViewController.swift in Sources */,
 				DC2BE7BA22F19AC000D63C37 /* UIViewExtension.swift in Sources */,

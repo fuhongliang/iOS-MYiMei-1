@@ -9,8 +9,8 @@
 import UIKit
 
 class UMessageManagementCellView: UBaseTableViewCell {
-    //背景
-    var whiteBg = UIImageView()
+//    //背景
+//    var whiteBg = UIImageView()
     //标题
     var title = UILabel()
     
@@ -21,21 +21,21 @@ class UMessageManagementCellView: UBaseTableViewCell {
     var content = UILabel()
     
     override func configUI() {
-        whiteBg.backgroundColor = UIColor.white
-        contentView.addSubview(whiteBg)
-        whiteBg.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.top.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(66)
-        }
+        contentView.backgroundColor = UIColor.white
+//        contentView.addSubview(whiteBg)
+//        whiteBg.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalToSuperview()
+//            ConstraintMaker.top.equalToSuperview()
+//            ConstraintMaker.right.equalToSuperview()
+//            ConstraintMaker.height.equalTo(66)
+//        }
         title.text = "新订单"
         title.textColor = UIColor.black
         title.font = UIFont.systemFont(ofSize: 15)
         contentView.addSubview(title)
         title.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(whiteBg.snp.left).offset(15)
-            ConstraintMaker.top.equalTo(whiteBg.snp.top).offset(15)
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.top.equalToSuperview().offset(15)
         }
         
         addTime.textColor = UIColor.hex(hexString: "#808080")
@@ -49,11 +49,13 @@ class UMessageManagementCellView: UBaseTableViewCell {
         content.text = "显示内容显示内容"
         content.textColor = UIColor.hex(hexString: "#999999")
         content.font = UIFont.systemFont(ofSize: 12)
+        content.numberOfLines = 0
         contentView.addSubview(content)
         content.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(whiteBg.snp.left).offset(15)
+            ConstraintMaker.left.equalToSuperview().offset(15)
             ConstraintMaker.top.equalTo(title.snp.bottom).offset(10)
-            ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+            ConstraintMaker.right.bottom.equalToSuperview().offset(-15)
+//            ConstraintMaker.bottom.equalToSuperview().offset(-15)
         }
     }
     

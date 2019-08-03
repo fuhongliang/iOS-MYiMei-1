@@ -47,17 +47,11 @@ class UOrdersCompleteController: UBaseViewController {
     }()
     
     override func configUI() {
-        
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshOrderData), for: .valueChanged)
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         }
-//        getOrderList()
-        
     }
     
     
@@ -158,9 +152,7 @@ extension UOrdersCompleteController: UITableViewDelegate, UITableViewDataSource 
     
     //MARK:返回每个cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //cell待更换
-        //        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOderCell.self)
-        //        cell.selectionStyle = .default
+
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UOrderCompleteCell.self)
         
         cell.callTheClient = {

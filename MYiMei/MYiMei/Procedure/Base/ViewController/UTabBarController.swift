@@ -12,7 +12,6 @@ class UTabBarController: UITabBarController {
     
     let homePageVC = UHomeController()
     let classVC = UManagerOrdersController()
-    let mineVC = UMineViewController()
     
     ///NEW
     let goodsVC = UGoodsManagementController()

@@ -12,6 +12,7 @@ protocol ULoginViewDelegate: AnyObject {
     func okTapAction(phoneNumber: String,password: String)
     func tapGetMsgAction(phoneNumber: String)
     func tapApplyAction()
+    func tapManagerDelegate()
 }
 
 class ULoginView: BaseView {
@@ -28,8 +29,22 @@ class ULoginView: BaseView {
     var phoneLine = UIImageView()
     var pwdLine = UIImageView()
     
-    //说明
-    var descrLabel = UILabel()
+    //MARK:说明
+    var descrBtn : UIButton = {
+        let ub = UIButton()
+        ub.tintColor = UIColor.hex(hexString: "#666666")
+        let attributed = NSMutableAttributedString()
+        var attr = "点击登录及表示同意"
+        let target = "《商户端平台管理协议》"
+        let blueAttribute = NSMutableAttributedString.init(string: target,attributes: [NSAttributedString.Key.foregroundColor : UIColor.hex(hexString: "#1C98F6")])
+        let blackAttribute = NSMutableAttributedString.init(string: attr,attributes: [NSAttributedString.Key.foregroundColor : UIColor.hex(hexString: "#666666")])
+        attributed.append(blackAttribute)
+        attributed.append(blueAttribute)
+        
+        ub.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        ub.setAttributedTitle(attributed, for: .normal)
+        return ub
+    }()
     
     //登录按钮
     var loginBtn = UIButton()
@@ -89,9 +104,7 @@ class ULoginView: BaseView {
             ConstraintMaker.height.equalTo(1)
         }
         
-        
         //密码
-        
         pwdLabel.text = "密   码"
         pwdLabel.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(pwdLabel)
@@ -137,21 +150,17 @@ class ULoginView: BaseView {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.height.equalTo(1)
         }
-        
-        //说明
-        descrLabel.tintColor = UIColor.hex(hexString: "#666666")
-        descrLabel.text = "点击登录及表示同意商户端平台管理协议"
-        descrLabel.font = UIFont.systemFont(ofSize: 14)
-        self.addSubview(descrLabel)
-        descrLabel.snp.makeConstraints { (ConstraintMaker) in
+
+        //MARK:说明Button
+        self.addSubview(descrBtn)
+        descrBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(pwdLine.snp.bottom).offset(15)
             ConstraintMaker.left.equalToSuperview()
-            ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(14)
         }
+        descrBtn.addTarget(self, action: #selector(tapManagerDelegate), for: UIControl.Event.touchUpInside)
         
         //登录按钮
-        
         loginBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
         loginBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
         loginBtn.setTitle("登录", for: UIControl.State.normal)
@@ -160,7 +169,7 @@ class ULoginView: BaseView {
         loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(loginBtn)
         loginBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(descrLabel.snp.bottom).offset(51)
+            ConstraintMaker.top.equalTo(descrBtn.snp.bottom).offset(51)
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(44)
@@ -212,6 +221,10 @@ class ULoginView: BaseView {
     
     @objc func tapApplyAction() {
         delegate?.tapApplyAction()
+    }
+    
+    @objc func tapManagerDelegate() {
+        delegate?.tapManagerDelegate()
     }
 }
 
