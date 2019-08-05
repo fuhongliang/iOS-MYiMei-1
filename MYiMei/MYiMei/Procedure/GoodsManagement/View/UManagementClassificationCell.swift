@@ -97,8 +97,8 @@ class UManagementClassificationCell: UBaseTableViewCell {
             
         }
         
-        editBtn.addTarget(self, action: #selector(tapEditCat), for: UIControl.Event.touchDown)
-        deleteBtn.addTarget(self, action: #selector(tapDeleteCat), for: UIControl.Event.touchDown)
+        editBtn.addTarget(self, action: #selector(tapEditCat), for: UIControl.Event.touchUpInside)
+        deleteBtn.addTarget(self, action: #selector(tapDeleteCat), for: UIControl.Event.touchUpInside)
     
         
     }

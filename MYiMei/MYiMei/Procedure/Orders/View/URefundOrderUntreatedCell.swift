@@ -177,20 +177,6 @@ class URefundOrderUntreatedCell: UBaseTableViewCell {
         return uiv
     }()
     
-    //横向滚动的TableView
-//    var uploadPicTableView:UITableView = {
-//        let tw = UITableView()
-//        //把tableView逆向旋转90° cell也需要旋转90°
-//        tw.transform = CGAffineTransform(rotationAngle: -.pi/2)
-//        tw.backgroundColor = UIColor.background
-//        tw.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-//        tw.separatorStyle = UITableViewCell.SeparatorStyle.none
-//        tw.showsVerticalScrollIndicator = false
-//        //TODO 暂未设置代理
-//        tw.register(cellType: URefundOrderImageCell.self)
-//        return tw
-//    }()
-    
     //MARK:横向滚动图片列表
     var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -448,6 +434,21 @@ class URefundOrderUntreatedCell: UBaseTableViewCell {
                     ConstraintMaker.height.equalTo(44)
                     ConstraintMaker.top.equalTo(refundCauseContentLabel.snp.bottom).offset(15)
                 }
+                bottomView.snp.makeConstraints{ (make) in
+                    make.left.equalTo(contentView)
+                    make.width.equalTo(1)
+                    make.height.equalTo(1)
+                    make.top.equalTo(btnLayer.snp.bottom).offset(10)
+                    make.bottom.equalTo(contentView)
+                }
+            } else {
+                bottomView.snp.makeConstraints{ (make) in
+                    make.left.equalTo(contentView)
+                    make.width.equalTo(1)
+                    make.height.equalTo(1)
+                    make.top.equalTo(refundCauseContentLabel.snp.bottom).offset(10)
+                    make.bottom.equalTo(contentView)
+                }
             }
         } else {
             contentView.addSubview(collectionView)
@@ -462,6 +463,22 @@ class URefundOrderUntreatedCell: UBaseTableViewCell {
                     ConstraintMaker.width.equalToSuperview()
                     ConstraintMaker.height.equalTo(44)
                     ConstraintMaker.top.equalTo(collectionView.snp.bottom).offset(15)
+                }
+                bottomView.snp.makeConstraints{ (make) in
+                    make.left.equalTo(contentView)
+                    make.width.equalTo(1)
+                    make.height.equalTo(1)
+                    make.top.equalTo(btnLayer.snp.bottom)
+                    make.bottom.equalTo(contentView)
+                }
+            }
+            else {
+                bottomView.snp.makeConstraints{ (make) in
+                    make.left.equalTo(contentView)
+                    make.width.equalTo(1)
+                    make.height.equalTo(1)
+                    make.top.equalTo(collectionView.snp.bottom)
+                    make.bottom.equalTo(contentView)
                 }
             }
         }

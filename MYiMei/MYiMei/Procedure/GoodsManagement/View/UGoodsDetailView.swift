@@ -206,8 +206,8 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(70)
             ConstraintMaker.width.equalTo(70)
         }
-        addGoodsCoverPic.addTarget(self, action: #selector(tapChooseGoodsSLTAction), for: UIControl.Event.touchDown)
-        addGoodsPic.addTarget(self, action: #selector(tapChooseGoodsPicAction), for: UIControl.Event.touchDown)
+        addGoodsCoverPic.addTarget(self, action: #selector(tapChooseGoodsSLTAction), for: UIControl.Event.touchUpInside)
+        addGoodsPic.addTarget(self, action: #selector(tapChooseGoodsPicAction), for: UIControl.Event.touchUpInside)
 
 //-------------------------------------------------
 
@@ -247,7 +247,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(goodsDescrBgWhite.snp.top)
         }
 
-        goodsDescrBtn.addTarget(self, action: #selector(addGoodsDescrAction), for: UIControl.Event.touchDown)
+        goodsDescrBtn.addTarget(self, action: #selector(addGoodsDescrAction), for: UIControl.Event.touchUpInside)
 
         goodsDescrArrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(goodsDescrArrowRight)
@@ -337,7 +337,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.top)
         }
 
-        choosePlatformClassBtn.addTarget(self, action: #selector(chooseCateAction), for: UIControl.Event.touchDown)
+        choosePlatformClassBtn.addTarget(self, action: #selector(chooseCateAction), for: UIControl.Event.touchUpInside)
 
         arrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(arrowRight)
@@ -383,7 +383,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(classLine.snp.top)
         }
-        choosegoodsClassBtn.addTarget(self, action: #selector(chooseGoodsCateAction), for: UIControl.Event.touchDown)
+        choosegoodsClassBtn.addTarget(self, action: #selector(chooseGoodsCateAction), for: UIControl.Event.touchUpInside)
 
         
         goodsArrowRight.image = UIImage.init(named: "right_arrow")
@@ -674,7 +674,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        doorDeliveryTagBtn.addTarget(self, action: #selector(chooseTag1Action), for: UIControl.Event.touchDown)
+        doorDeliveryTagBtn.addTarget(self, action: #selector(chooseTag1Action), for: UIControl.Event.touchUpInside)
         
         professionalInstallationTagBtn.setTitle("专业安装", for: .normal)
         professionalInstallationTagBtn.setTitleColor(UIColor.black, for: .normal)
@@ -691,7 +691,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        professionalInstallationTagBtn.addTarget(self, action: #selector(chooseTag2Action), for: UIControl.Event.touchDown)
+        professionalInstallationTagBtn.addTarget(self, action: #selector(chooseTag2Action), for: UIControl.Event.touchUpInside)
         
         doorReturnTagBtn.setTitle("上门退换", for: .normal)
         doorReturnTagBtn.setTitleColor(UIColor.black, for: .normal)
@@ -708,7 +708,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        doorReturnTagBtn.addTarget(self, action: #selector(chooseTag3Action), for: UIControl.Event.touchDown)
+        doorReturnTagBtn.addTarget(self, action: #selector(chooseTag3Action), for: UIControl.Event.touchUpInside)
         
         qualityAssuranceCommitmentTagBtn.setTitle("质保承诺", for: .normal)
         qualityAssuranceCommitmentTagBtn.setTitleColor(UIColor.black, for: .normal)
@@ -725,7 +725,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(recommendTagsLabel.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        qualityAssuranceCommitmentTagBtn.addTarget(self, action: #selector(chooseTag4Action), for: UIControl.Event.touchDown)
+        qualityAssuranceCommitmentTagBtn.addTarget(self, action: #selector(chooseTag4Action), for: UIControl.Event.touchUpInside)
 
         realThingReleasedTagBtn.setTitle("正品行货", for: .normal)
         realThingReleasedTagBtn.setTitleColor(UIColor.black, for: .normal)
@@ -742,7 +742,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        realThingReleasedTagBtn.addTarget(self, action: #selector(chooseTag5Action), for: UIControl.Event.touchDown)
+        realThingReleasedTagBtn.addTarget(self, action: #selector(chooseTag5Action), for: UIControl.Event.touchUpInside)
 
         newPreferentialTagBtn.setTitle("新品特惠", for: .normal)
         newPreferentialTagBtn.setTitleColor(UIColor.black, for: .normal)
@@ -759,7 +759,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        newPreferentialTagBtn.addTarget(self, action: #selector(chooseTag6Action), for: UIControl.Event.touchDown)
+        newPreferentialTagBtn.addTarget(self, action: #selector(chooseTag6Action), for: UIControl.Event.touchUpInside)
 
         restAssuredBuyTagBtn.setTitle("放心购买", for: .normal)
         restAssuredBuyTagBtn.setTitleColor(UIColor.black, for: .normal)
@@ -776,7 +776,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(doorDeliveryTagBtn.snp.bottom).offset(11)
             ConstraintMaker.width.equalTo(79)
         }
-        restAssuredBuyTagBtn.addTarget(self, action: #selector(chooseTag7Action), for: UIControl.Event.touchDown)
+        restAssuredBuyTagBtn.addTarget(self, action: #selector(chooseTag7Action), for: UIControl.Event.touchUpInside)
         //MARK:保存按钮
         saveBtn.setTitle("保存", for: .normal)
         saveBtn.setTitleColor(UIColor.white, for: .normal)
@@ -792,7 +792,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(44)
         }
 
-        saveBtn.addTarget(self, action: #selector(saveAction), for: UIControl.Event.touchDown)
+        saveBtn.addTarget(self, action: #selector(saveAction), for: UIControl.Event.touchUpInside)
     }
 
     @objc func tapChooseGoodsSLTAction() {
