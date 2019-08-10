@@ -95,7 +95,7 @@ class URefundOrderController : UBaseViewController {
     
     //MARK:网络请求-同意售后处理
     func confirmDealWith(refundAmount:String,refundOrderId:Int){
-        //TODO 同意处理的接口
+        //同意处理的接口
         let style = SCLAlertView.SCLAppearance(
             kWindowWidth: 300, kTitleFont: UIFont(name: "HelveticaNeue", size: 18)!,
             kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
@@ -129,7 +129,7 @@ class URefundOrderController : UBaseViewController {
     
     //MARK:网络请求-拒绝售后处理
     func refusedDealWith(refundAmount:String,refundOrderId:Int){
-        //TODO 拒绝处理的接口
+        //拒绝处理的接口
         let style = SCLAlertView.SCLAppearance(
             kWindowWidth: 300, kTitleFont: UIFont(name: "HelveticaNeue-Bold", size: 20)!,
             kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
@@ -140,7 +140,7 @@ class URefundOrderController : UBaseViewController {
             buttonsLayout: .horizontal
         )
         
-        //TODO 拒绝理由
+        //拒绝理由
         let alert = SCLAlertView(appearance: style)
         alert.addButton("取消",textColor:UIColor.black) {
             print("取消")
