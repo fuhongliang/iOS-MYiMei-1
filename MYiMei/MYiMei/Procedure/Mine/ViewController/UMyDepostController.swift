@@ -183,6 +183,16 @@ extension UMyDepostController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            var images = [String]()
+            for item in depostArray {
+                images.append(item.image_url)
+            }
+            let previewVC = UImagePreviewController(images: images, isUrlImg: true, index: indexPath.row)
+            previewVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            previewVC.view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+            self.present(previewVC, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
