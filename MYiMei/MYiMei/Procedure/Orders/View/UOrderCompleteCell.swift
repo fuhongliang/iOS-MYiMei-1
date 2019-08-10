@@ -48,16 +48,7 @@ class UOrderCompleteCell : UBaseTableViewCell {
     var freight = UILabel()
     var totalLine = UILabel()
     //按钮
-//    var modifyPriceBtn : UIButton = {
-//        let modifyPriceBtn = UIButton()
-//        modifyPriceBtn.setTitle("修改快递单号", for: UIControl.State.normal)
-//        modifyPriceBtn.backgroundColor = UIColor.hex(hexString: "#1C98F6")
-//        modifyPriceBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-//        modifyPriceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//        modifyPriceBtn.layer.cornerRadius = 15
-//        modifyPriceBtn.layer.masksToBounds = true
-//        return modifyPriceBtn
-//    }()
+
     var recycleBinBtn : UIButton = {
         let recycleBinBtn = UIButton()
         recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)

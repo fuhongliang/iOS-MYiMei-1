@@ -339,18 +339,11 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
 
 
     func tapChooseCateAction() {
-        // Simple Option Picker
+
         var dummyList = [String]()
         for item in cateList{
             dummyList.append(item.name!)
         }
-        // Simple Option Picker with selected index
-
-//        RPicker.selectOption(title: "选择商品分类", hideCancel: false, dataArray: dummyList, selectedIndex: curCatIndex) { (selctedText, atIndex) in
-//            self.curCatIndex = atIndex
-//            self.goodsDetailView.choosePlatformClassBtn.setTitle(selctedText, for: UIControl.State.normal)
-//        }
-        
         let dataPicker = BPicker(onePickerList: dummyList) { [weak self] (selectText, selectIndex) in
             /// 回调显示方法
             print(selectText[0])
