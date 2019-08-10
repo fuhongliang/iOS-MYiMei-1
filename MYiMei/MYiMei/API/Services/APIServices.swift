@@ -13,11 +13,11 @@ import MBProgressHUD
 
 let ssl: Bool = true
 //MARK:开发环境
- let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
- let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
+// let baseHttpsUrl: String = "https://testjiajuapi.ifhu.cn"
+// let baseHttpUrl: String = "http://testjiajuapi.ifhu.cn"
 //MARK:正式环境
-//let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
-//let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"
+let baseHttpsUrl: String = "https://jiajuapi.ifhu.cn"
+let baseHttpUrl: String = "http://jiajuapi.ifhu.cn"
 
 // MARK: 网络请求加载插件
 let loadingPlugin = NetworkActivityPlugin { (type, target) in
