@@ -52,6 +52,7 @@ class UOrdersUnprocessedViewController: UBaseViewController {
         showCloseButton: false,
         showCircularIcon: false,
         hideWhenBackgroundViewIsTapped:true,
+        dynamicAnimatorActive: true,
         buttonsLayout: .horizontal
     )
     
@@ -436,7 +437,7 @@ extension UOrdersUnprocessedViewController: UITableViewDelegate, UITableViewData
         
         alert?.customSubview = subview
         
-        alert?.showEdit("价格修改", subTitle: "ddddddddd",animationStyle:.noAnimation)
+        alert?.showInfo("价格修改", subTitle: "ddddddddd",animationStyle:.noAnimation)
         
     }
     

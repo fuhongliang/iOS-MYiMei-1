@@ -16,6 +16,9 @@ protocol UGoodsDetailViewDelegate: AnyObject {
 
     //选择商品描述
     func tapAddGoodsDescrAction()
+    
+    //选择商品规格
+    func tapChooseAttrAction()
 
     //选择平台分类
     func tapChooseCateAction()
@@ -47,6 +50,15 @@ class UGoodsDetailView: BaseView {
 
     //MARK:商品主图
     var addGoodsPic = UIButton()
+    
+    //MARK:商品主图的白色背景
+    var addGoodsPicWhiteBg : UIView = {
+        let uv = UIView()
+        uv.backgroundColor = UIColor.white
+        return uv
+    }()
+    
+    //MARK:生成图片view
 
     //MARK:商品描述白色的背景
     var goodsDescrBgWhite = UIImageView()
@@ -74,6 +86,40 @@ class UGoodsDetailView: BaseView {
     //选择商品分类
     var choosegoodsClassBtn = UIButton()
     var goodsArrowRight = UIImageView()
+    
+    //MARK:商品规格
+    var goodsAttrBtn :  UIButton = {
+        let ub = UIButton()
+        ub.backgroundColor = UIColor.white
+        ub.setTitle("商品规格", for: .normal)
+        ub.setTitleColor(UIColor.black, for: .normal)
+        ub.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        ub.contentHorizontalAlignment = .left
+        ub.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        return ub
+    }()
+    
+    //MARK:选择商品规格
+    var chooseAttrLabel : UILabel = {
+        let ul = UILabel()
+        ul.text = "选择商品规格"
+        ul.textColor = UIColor.hex(hexString: "#CCCCCC")
+        return ul
+    }()
+    
+    //MARK:商品规格右箭头
+    var chooseAttrArrow : UIImageView = {
+        let uiv = UIImageView()
+        uiv.image = UIImage.init(named: "right_arrow")
+        return uiv
+    }()
+
+    //MARK:商品规格下面的线
+    var attrLine : UIView = {
+        let uv = UIView()
+        uv.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+        return uv
+    }()
 
     //MARK:单位白色的背景
     var unitBgWhite = UIImageView()
@@ -260,15 +306,23 @@ class UGoodsDetailView: BaseView {
         }
 //-------------------------------------------------
 
+        //MARK:商品规格按钮(白色按钮)
+        self.addSubview(goodsAttrBtn)
+        goodsAttrBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.width.equalToSuperview()
+            ConstraintMaker.height.equalTo(44)
+            ConstraintMaker.top.equalTo(goodsDescrBgWhite.snp.bottom).offset(15)
+        }
+        goodsAttrBtn.addTarget(self, action: #selector(chooseAttrAction), for: UIControl.Event.touchUpInside)
 
-        //MARK:白色背景
+        //MARK:分类白色背景
         categoryBgWhite.backgroundColor = UIColor.white
         self.addSubview(categoryBgWhite)
         categoryBgWhite.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
             ConstraintMaker.height.equalTo(89)
-            ConstraintMaker.top.equalTo(goodsDescrBgWhite.snp.bottom).offset(15)
+            ConstraintMaker.top.equalTo(goodsAttrBtn.snp.bottom)
         }
 
         //MARK:单位的白色背景
@@ -300,8 +354,32 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(piecesBgWhite.snp.bottom).offset(44)
         }
-
-        //tagsBgWhite
+        
+        
+        //MARK:商品规格右箭头
+        self.addSubview(chooseAttrArrow)
+        chooseAttrArrow.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalTo(goodsAttrBtn).offset(-15)
+            ConstraintMaker.height.equalTo(13)
+            ConstraintMaker.width.equalTo(8)
+            ConstraintMaker.centerY.equalTo(goodsAttrBtn)
+        }
+        
+        //MARK:选择商品规格label
+        self.addSubview(chooseAttrLabel)
+        chooseAttrLabel.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.right.equalTo(chooseAttrArrow.snp.left).offset(-15)
+            ConstraintMaker.centerY.equalTo(goodsAttrBtn)
+        }
+        
+        self.addSubview(attrLine)
+        attrLine.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.left.equalToSuperview().offset(15)
+            ConstraintMaker.right.equalToSuperview()
+            ConstraintMaker.height.equalTo(1)
+            ConstraintMaker.top.equalTo(goodsAttrBtn.snp.bottom)
+        }
+        
         tagsBgWhite.backgroundColor = UIColor.white
         self.addSubview(tagsBgWhite)
         tagsBgWhite.snp.makeConstraints { (ConstraintMaker) in
@@ -310,11 +388,10 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(123)
             ConstraintMaker.top.equalTo(foreheadBgWhite.snp.bottom).offset(44)
         }
-
+        
         platformClassLabel.text = "平台分类"
         platformClassLabel.font = UIFont.systemFont(ofSize: 17)
         platformClassLabel.textColor = UIColor.black
-
         self.addSubview(platformClassLabel)
         platformClassLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
@@ -336,9 +413,9 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(44)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.top)
         }
-
+        
         choosePlatformClassBtn.addTarget(self, action: #selector(chooseCateAction), for: UIControl.Event.touchUpInside)
-
+        
         arrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(arrowRight)
         arrowRight.snp.makeConstraints { (ConstraintMaker) in
@@ -357,12 +434,12 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.height.equalTo(1)
             ConstraintMaker.top.equalTo(categoryBgWhite.snp.top).offset(44)
         }
-
-
+        
+        
         goodsClassLabel.text = "商品分类"
         goodsClassLabel.font = UIFont.systemFont(ofSize: 17)
         goodsClassLabel.textColor = UIColor.black
-
+        
         self.addSubview(goodsClassLabel)
         goodsClassLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalToSuperview().offset(15)
@@ -384,7 +461,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.top.equalTo(classLine.snp.top)
         }
         choosegoodsClassBtn.addTarget(self, action: #selector(chooseGoodsCateAction), for: UIControl.Event.touchUpInside)
-
+        
         
         goodsArrowRight.image = UIImage.init(named: "right_arrow")
         self.addSubview(goodsArrowRight)
@@ -395,6 +472,7 @@ class UGoodsDetailView: BaseView {
             ConstraintMaker.width.equalTo(8)
             ConstraintMaker.top.equalTo(classLine.snp.top).offset(15)
         }
+        
         
         //MARK:单位
         unitClassLabel.text = "单位"
@@ -806,6 +884,10 @@ class UGoodsDetailView: BaseView {
     @objc func addGoodsDescrAction() {
         delegate?.tapAddGoodsDescrAction()
     }
+    
+    @objc func chooseAttrAction(){
+        delegate?.tapChooseAttrAction()
+    }
 
     @objc func chooseCateAction() {
         delegate?.tapChooseCateAction()
@@ -844,6 +926,20 @@ class UGoodsDetailView: BaseView {
                                 pieces:piecesDesrcTF.text!,
                                 forehead:foreDesrcTF.text!,goods_num:amountTF.text!)
     }
+    
+    //MARK:生成商品主图的view
+    func generatePicView(){
+    
+    }
+    var picData : Array<String>? {
+        didSet {
+            guard let picData = picData else { return }
+            for (index,pic) in picData.enumerated() {
+                
+            }
+        }
+    }
+    
     
 
 }

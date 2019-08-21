@@ -48,6 +48,9 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
     var goods_id = 0
 
     var goodsDetailModel = GoodsDetail()
+    
+    var attrData = AttrArray()//规格数据
+    var attrGroup = SetAttrDataModel()//规格组数据
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +95,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
 
         if(getGoodsDescr().isEmpty){
             self.goodsDetailView.goodsDescrBtn.setTitle("请添加商品描述", for: UIControl.State.normal)
-        }else{
+        } else {
             self.goodsDetailView.goodsDescrBtn.setTitle("已添加", for: UIControl.State.normal)
         }
 
@@ -329,14 +332,54 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
 
 }
 
-extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDelegate {
-
+extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDelegate,UChooseAttrControllerProtocol {
+    //MARK:规格组和规格数据回传
+    func attrDataBack(attrGroupData:SetAttrDataModel, attrArray: AttrArray) {
+        attrGroup = attrGroupData
+        attrData = attrArray
+    }
+   
     func tapAddGoodsDescrAction() {
         let vc = RichEditorViewController()
         vc.title = "编辑商品描述"
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
+    func tapChooseAttrAction() {
+        let vc = UChooseAttrController()
+        vc.title = "商品规格"
+        vc.attrDelegate = self
+        
+        if let attr_group_list = goodsDetailModel.attr_group_list {
+            for (index, item) in attr_group_list.enumerated() {
+                attrGroup.group[index].groupName = item.attr_group_name
+                for (i, j) in item.attr_list!.enumerated() {
+                    attrGroup.group[index].attr[i].attrName = j.attr_name
+                }
+            }
+        }
+        if let attr = goodsDetailModel.attr {
+            for (index, item) in attr.enumerated() {
+                var attrName = ""
+                for (i,j) in item.attr_list!.enumerated() {
+                    if i == item.attr_list!.count-1{
+                        attrName += j.attr_name
+                    } else {
+                        attrName += "\(j.attr_name)-"
+                    }
+                }
+                attrData.attrValueArray[index].attrName = attrName
+                attrData.attrValueArray[index].inventory = String(item.num)
+                attrData.attrValueArray[index].price = item.price
+                attrData.attrValueArray[index].goodsNumber = item.no
+            }
+        }
+        
+        vc.attrData = attrGroup
+        vc.attrValue = attrData
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
     func tapChooseCateAction() {
 
