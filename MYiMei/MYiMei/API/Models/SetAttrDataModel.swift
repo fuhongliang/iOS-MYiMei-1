@@ -28,5 +28,5 @@ struct AttrValue {
     var attrName = String("")
     var inventory = String("0")//库存
     var price = String("0.0")//价格
-    var goodsNumber = String("0")//货号
+    var goodsNumber = String("")//货号
 }

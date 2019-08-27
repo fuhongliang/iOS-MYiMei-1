@@ -168,7 +168,7 @@ class RichEditorViewController: UBaseViewController ,TLPhotosPickerViewControlle
             self.toolbar.editor?.insertImage(UploadFileResponeModel.data?.url ?? "", alt: "")
 
         }) { (APIErrorModel) in
-            showHUDInView(text: APIErrorModel.msg!, inView: self.view)
+            showHUDInView(text: APIErrorModel.msg ?? "请求出错", inView: self.view)
         }
     }
 

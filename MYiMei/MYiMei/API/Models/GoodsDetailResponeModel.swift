@@ -78,6 +78,7 @@ class AttrInfo : Codable{
     var no = String()
     var pic = String()
 }
+//具体每个规格数据的规格信息
 class AttrList: Codable {
     var attr_group_name = String()
     var attr_id = Int()
@@ -88,6 +89,11 @@ class AttrList: Codable {
 class AttrGroupList: Codable {
     var attr_group_id = Int()
     var attr_group_name = String()
-    var attr_list : [AttrList]?
+    var attr_list : [AttrListInfo]?
+}
+//规格组中的规格数据
+class AttrListInfo: Codable {
+    var attr_id = Int()
+    var attr_name = String()
 }
 

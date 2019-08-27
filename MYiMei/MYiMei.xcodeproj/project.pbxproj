@@ -175,6 +175,7 @@
 		DC8708D122D9B22D009B92F2 /* ExpressListResponesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */; };
 		DC8815F722F02B9300901D71 /* URefundOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8815F622F02B9300901D71 /* URefundOrderController.swift */; };
 		DC8815F922F0387900901D71 /* UBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8815F822F0387900901D71 /* UBaseCollectionViewCell.swift */; };
+		DC9F2861230EA5AA00BECE43 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9F2860230EA5AA00BECE43 /* UIImageViewExtension.swift */; };
 		DCA1BEC222F8349D004D684B /* ScreenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1BEC122F8349D004D684B /* ScreenHelper.swift */; };
 		DCA1BEC422F834DA004D684B /* PickerPresentAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1BEC322F834DA004D684B /* PickerPresentAnimated.swift */; };
 		DCAB0BB422F57EF30086005C /* HTML_Files in Resources */ = {isa = PBXBuildFile; fileRef = DCAB0BB322F57EF30086005C /* HTML_Files */; };
@@ -394,6 +395,7 @@
 		DC8708D022D9B22D009B92F2 /* ExpressListResponesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressListResponesModel.swift; sourceTree = "<group>"; };
 		DC8815F622F02B9300901D71 /* URefundOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URefundOrderController.swift; sourceTree = "<group>"; };
 		DC8815F822F0387900901D71 /* UBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		DC9F2860230EA5AA00BECE43 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		DCA1BEC122F8349D004D684B /* ScreenHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHelper.swift; sourceTree = "<group>"; };
 		DCA1BEC322F834DA004D684B /* PickerPresentAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPresentAnimated.swift; sourceTree = "<group>"; };
 		DCAB0BB322F57EF30086005C /* HTML_Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HTML_Files; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 				7BAB354322C0D6FA00154D36 /* UIBarButtonItemExtension.swift */,
 				7B6ADDDE22E2B72A00BCF9C6 /* UITextFieldExtension.swift */,
 				DC2BE7B922F19AC000D63C37 /* UIViewExtension.swift */,
+				DC9F2860230EA5AA00BECE43 /* UIImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1255,6 +1258,7 @@
 				DC23FFC62303A0E800447690 /* UAttrGroupCell.swift in Sources */,
 				7BAB34EF22C0AE1200154D36 /* AppDelegate.swift in Sources */,
 				0AB057C122D745B6002B7E40 /* UModifySetUpShopController.swift in Sources */,
+				DC9F2861230EA5AA00BECE43 /* UIImageViewExtension.swift in Sources */,
 				DCA1BEC422F834DA004D684B /* PickerPresentAnimated.swift in Sources */,
 				DC64FEC022E3010B00E67EB8 /* APIMessageServices.swift in Sources */,
 				DC2BAB5722EEACA100D4F0B7 /* RefundOrderResponseModel.swift in Sources */,

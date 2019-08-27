@@ -40,6 +40,8 @@ let TimeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<NetApi>.Request
     } else {
         closure(.failure(MoyaError.requestMapping(endpoint.url)))
     }
+    guard let vc = topVC else { return }
+    MBProgressHUD.hide(for: vc.view, animated: false)
 }
 
 //MARK: 接口函数
@@ -69,6 +71,7 @@ enum NetApi {
     case deleteGoodsCat(param:[String:String])
     case editGoodsCat(param:[String:Any])
     case addGoods(param:[String:Any])
+    case modifyGoods(param:[String:Any])
     case getMchPtCats(param: [String:Any])
     case getExpressList(param: [String:Any])
     case getOrderDetail(param: [String:Any])
@@ -148,6 +151,8 @@ extension NetApi: TargetType {
             return "/modify_goods_cat"
         case .addGoods:
             return "/add_goods"
+        case .modifyGoods:
+            return "/modify_goods"
         case .getMchPtCats:
             return "/mch_pt_cats"
         case .getExpressList:
@@ -181,7 +186,7 @@ extension NetApi: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .applyCashOut,.cashOutRecord,.incomeDetail,.handleRefundOrder,.getRefundOrder,.replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
+        case .applyCashOut,.cashOutRecord,.incomeDetail,.handleRefundOrder,.getRefundOrder,.replyComment,.delOrHideComment,.getCommentList,.setMessageNoticeRead,.getMessageNotice,.getOrderDetail,.getExpressList,.getMchPtCats,.addGoods,.modifyGoods,.modifyStoreInfo,.storeInfo,.pushDepost,.getDepositAgreement,.getOrderList,.getStoreOperateData,.getMchCommonCatId,.applyJoin,.uploadPic,.login,.logout,.getCategory,.getLoginMsg,.getGoodsList,.deleteGoods,.modifyGoodsStatus,.getChangePasswordVerificationCode,.modifyPwd,.modifyOrderPrice,.deliveryGoods,.getStoreDepostData,.addGoodsCat,.deleteGoodsCat,.editGoodsCat,.getGoodsDetail:
           return .post
 
         }
@@ -242,6 +247,8 @@ extension NetApi: TargetType {
         case .editGoodsCat(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .addGoods(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .modifyGoods(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .getMchPtCats(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
@@ -379,3 +386,35 @@ class APIService {
         }
     }
 }
+
+//struct JSONArrayEncoding {
+//    static let `default` = JSONArrayEncoding()
+//
+//    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+//        var request = try urlRequest.asURLRequest()
+//
+//
+//
+//        guard let json = parameters?["jsonArray"] else {
+//            return request
+//        }
+//
+//        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+//
+//        if request.value(forHTTPHeaderField: "Content-Type") == nil {
+//            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        }
+//
+//        request.httpBody = data
+//
+//        return request
+//    }
+//
+//    func findJsonArray(with parameters: Parameters?){
+//        guard let json = parameters?["jsonArray"] else {
+//            return
+//        }
+//        _ = try JSONSerialization.data(withJSONObject: json, options: [])
+//    }
+//
+//}

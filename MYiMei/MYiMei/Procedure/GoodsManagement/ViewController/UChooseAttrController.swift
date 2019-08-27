@@ -17,7 +17,7 @@ class UChooseAttrController: UBaseViewController {
     var attrDelegate : UChooseAttrControllerProtocol?
     
     var attrData = SetAttrDataModel()
-    var attrValue = AttrArray()
+    var attrValue = AttrArray()//商品规格的具体信息
     
     lazy var tableView: UITableView = {
         let tw = UITableView(frame: .zero, style: .grouped)
@@ -223,7 +223,7 @@ extension UChooseAttrController : UITableViewDelegate, UITableViewDataSource {
             self.getAttrArry(arrayIndex: arrayIndex+1, str: name)
         }
     }
-    
+ 
     func configAlertView(){
         var alert:SCLAlertView? = nil
         let inputReplyTF = UITextView(frame: CGRect(x: 0, y: 0, width: 180, height: 35))
@@ -391,7 +391,12 @@ extension UChooseAttrController : UITableViewDelegate, UITableViewDataSource {
             alert.customSubview = outerLayer
             alert.addButton("取消",backgroundColor: UIColor.white, textColor: UIColor.black) {}
             alert.addButton("确定", backgroundColor: UIColor.white, textColor: UIColor.hex(hexString: "#1C98F6")){
-//                for item in attrData.group
+                for (i,_) in self.attrValue.attrValueArray.enumerated() {
+                    self.attrValue.attrValueArray[i].goodsNumber = goodsNumberTF.text ?? "0"
+                    self.attrValue.attrValueArray[i].inventory = inventoryTF.text ?? "0"
+                    self.attrValue.attrValueArray[i].price = priceTF.text ?? "0.0"
+                }
+                self.tableView.reloadData()
             }
         })
             
