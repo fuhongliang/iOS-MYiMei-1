@@ -33,7 +33,7 @@ class UAboutUsView: BaseView {
             ConstraintMaker.top.equalToSuperview().offset(66)
             ConstraintMaker.size.equalTo(90)
         }
-        merchantSideLaber.text = "一美一物商家端"
+        merchantSideLaber.text = "懂家商家端"
         merchantSideLaber.textColor = UIColor.hex(hexString: "#333333")
         merchantSideLaber.font = UIFont.systemFont(ofSize: 18)
         self.addSubview(merchantSideLaber)
@@ -58,7 +58,7 @@ class UAboutUsView: BaseView {
             ConstraintMaker.top.equalTo(helpingMerchantsLaber.snp.bottom).offset(13)
         }
         
-        labelLaber.text = "《一美一物软件许可及服务协议》"
+        labelLaber.text = "《懂家软件许可及服务协议》"
         labelLaber.textColor = UIColor.hex(hexString: "#1C98F6")
         labelLaber.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(labelLaber)

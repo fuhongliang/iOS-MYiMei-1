@@ -267,13 +267,13 @@ class UOrderNotPayCell: UBaseTableViewCell {
         }
         modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
 
-        contentView.addSubview(recycleBinBtn)
-        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-            ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
-            ConstraintMaker.width.equalTo(95)
-            ConstraintMaker.height.equalTo(30)
-        }
+//        contentView.addSubview(recycleBinBtn)
+//        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+//            ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
+//            ConstraintMaker.width.equalTo(95)
+//            ConstraintMaker.height.equalTo(30)
+//        }
     }
     
     

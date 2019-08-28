@@ -199,7 +199,7 @@ class APIUserServices: APIUserServicesProtocol {
                 success(model)
             }
             catch {
-                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败\(error)", _data: nil)
                 fail(errorModel)
             }
         }) { (error) in

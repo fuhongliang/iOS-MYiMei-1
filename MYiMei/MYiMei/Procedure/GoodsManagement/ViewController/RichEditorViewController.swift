@@ -59,7 +59,6 @@ class RichEditorViewController: UBaseViewController ,TLPhotosPickerViewControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         goodsDescrView.configUI()
-        
         self.view.addSubview(goodsDescrView)
 
         goodsDescrView.snp.makeConstraints { (ConstraintMaker) in
@@ -108,7 +107,7 @@ class RichEditorViewController: UBaseViewController ,TLPhotosPickerViewControlle
     }
 
     func showExceededMaximumAlert(vc: UIViewController) {
-        let alert = UIAlertController(title: "", message: "Exceed Maximum Number Of Selection", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "差不多啦,不能再选了", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         vc.present(alert, animated: true, completion: nil)
     }
@@ -132,7 +131,10 @@ class RichEditorViewController: UBaseViewController ,TLPhotosPickerViewControlle
     func getFirstSelectedImage() {
         if let asset = self.selectedAssets.first {
             if let imageView = asset.fullResolutionImage {
-//                self.goodsDetailView.addGoodsCoverPic.setBackgroundImage(image, for: UIControl.State.normal)
+                if self.goodsDescrView.editorView.html == "" {
+                    //选择图片回来的时候判断是否有头部 没有则加上
+                    self.goodsDescrView.editorView.html = htmlhead
+                }
                 self.image = imageView
                 self.uploadPic()
             }else {
@@ -145,7 +147,6 @@ class RichEditorViewController: UBaseViewController ,TLPhotosPickerViewControlle
                         if let image = image {
                             //use image
                             DispatchQueue.main.async {
-//                                self!.goodsDetailView.addGoodsCoverPic.setBackgroundImage(image, for: UIControl.State.normal)
                                 self!.image = image
                                 self!.uploadPic()
                             }
@@ -157,7 +158,6 @@ class RichEditorViewController: UBaseViewController ,TLPhotosPickerViewControlle
 
     func uploadPic(){
         // 获取图片
-//        let image = ImagePressHelper.init().resizeImage(originalImg:self.goodsDetailView.addGoodsCoverPic.backgroundImage(for: UIControl.State.normal)!)
 
         // 将图片转化成Data
         let imageData = ImagePressHelper.init().compressImageSize(image: self.image)
