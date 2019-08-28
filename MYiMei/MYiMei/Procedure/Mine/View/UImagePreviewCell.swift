@@ -101,7 +101,16 @@ class ImagePreviewCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.5, animations: {
             //如果当前不缩放，则放大到3倍。否则就还原
             if self.scrollView.zoomScale == 1.0 {
-                self.scrollView.zoomScale = 3.0
+                //以点击的位置为中心，放大3倍
+                let pointInView = ges.location(in: self.imageView)
+                let newZoomScale:CGFloat = 3
+                let scrollViewSize = self.scrollView.bounds.size
+                let w = scrollViewSize.width / newZoomScale
+                let h = scrollViewSize.height / newZoomScale
+                let x = pointInView.x - (w / 2.0)
+                let y = pointInView.y - (h / 2.0)
+                let rectToZoomTo = CGRect(x:x, y:y, width:w, height:h)
+                self.scrollView.zoom(to: rectToZoomTo, animated: true)
             }else{
                 self.scrollView.zoomScale = 1.0
             }

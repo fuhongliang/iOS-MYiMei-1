@@ -11,6 +11,10 @@ import Photos
 import TLPhotoPicker
 
 class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewControllerDelegate{
+    
+    //MARK:是否是添加商品
+    var isAddGoods:Bool = true
+    
     fileprivate var goodsService: APIGoodsServices = APIGoodsServices()
     var service: APIUserServices = APIUserServices()
 
@@ -48,6 +52,34 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
     var goods_id = 0
 
     var goodsDetailModel = GoodsDetail()
+    
+    var attrData = AttrArray()//规格数据
+    var attrGroup = SetAttrDataModel()//规格组数据
+    
+    //初始化
+    convenience init(goodscateList:[CategoryModel]?,goodsId:Int) {
+        self.init()
+        self.goodscateList = goodscateList!
+        self.goods_id = goodsId
+    }
+    
+    override func configUI() {
+        goodsDetailView.configUI()
+        goodsDetailView.delegate = self
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        scrollView.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
+        scrollView.addSubview(goodsDetailView)
+        scrollView.showsVerticalScrollIndicator = false
+        goodsDetailView.snp.updateConstraints { (make) -> Void in
+            make.width.equalTo(screenWidth)
+            make.height.equalTo(1300)
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
+        scrollView.contentSize = CGSize(width: screenWidth, height: 1300)
+        view.addSubview(scrollView)
+        self.goodsDetailView.choosegoodsClassBtn.setTitle(goodscateList[curGoodsCatIndex].name!, for: UIControl.State.normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,15 +97,10 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         }else{
             self.goodsDetailView.goodsDescrBtn.setTitle("已添加", for: UIControl.State.normal)
         }
+        self.goodsDetailView.picData = self.goodsPicArray
     }
 
-    convenience init(goodscateList:[CategoryModel]?,goodsId:Int) {
-        self.init()
-        self.goodscateList = goodscateList!
-        self.goods_id = goodsId
-    }
-
-
+    //MARK:获取商品详情
     @objc private func loadGoodsDetailData() {
         let mch_id: Int = APIUser.shared.user!.mch_id ?? 0
         let access_token: String = getToken()
@@ -86,26 +113,26 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         })
     }
 
+    //MARK:设置商品数据
     func setViewData(){
         //MARK:商品名称
         self.goodsDetailView.goodsNameTF.text = goodsDetailModel.goods_name
 
         if(getGoodsDescr().isEmpty){
             self.goodsDetailView.goodsDescrBtn.setTitle("请添加商品描述", for: UIControl.State.normal)
-        }else{
+        } else {
             self.goodsDetailView.goodsDescrBtn.setTitle("已添加", for: UIControl.State.normal)
         }
 
+        //MARK:商品缩略图
         let image = UIImageView()
         image.kf.setImage(with: URL(string: goodsDetailModel.cover_pic!))
         self.goodsDetailView.addGoodsCoverPic.setBackgroundImage(image.image, for: UIControl.State.normal)
         self.coverPic = goodsDetailModel.cover_pic!
 
         //MARK:商品图片
-        let imageGoodsPic = UIImageView()
-        imageGoodsPic.kf.setImage(with: URL(string: goodsDetailModel.goods_pic![0]))
-        self.goodsDetailView.addGoodsPic.setBackgroundImage(imageGoodsPic.image, for: UIControl.State.normal)
-        self.goodsPic = goodsDetailModel.goods_pic![0]
+        refreshPicList(list:goodsDetailModel.goods_pic!)
+        
 
         self.goodsDetailView.choosegoodsClassBtn.setTitle(getGoodsCat(cat_id: goodsDetailModel.goods_cat_id ?? 0), for: UIControl.State.normal)
         self.goodsDetailView.choosePlatformClassBtn.setTitle(getPaltCat(cat_id: goodsDetailModel.goods_cat_id ?? 0), for: UIControl.State.normal)
@@ -159,7 +186,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
 
     }
 
-
+    //MARK:获取商品分类
     func getGoodsCat(cat_id:Int) -> String {
         for categoryModel in goodscateList{
             if(categoryModel.id == cat_id){
@@ -169,6 +196,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         return ""
     }
 
+    //MARK:获取平台分类
     func getPaltCat(cat_id:Int) -> String {
         for platCateModel in cateList{
             if(platCateModel.id == cat_id){
@@ -178,26 +206,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         return ""
     }
 
-    override func configUI() {
-        goodsDetailView.configUI()
-        goodsDetailView.delegate = self
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
-        scrollView.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
-        scrollView.addSubview(goodsDetailView)
-        scrollView.showsVerticalScrollIndicator = false
-        goodsDetailView.snp.updateConstraints { (make) -> Void in
-            make.width.equalTo(screenWidth)
-            make.height.equalTo(1202)
-            make.top.equalTo(scrollView)
-            make.leading.equalTo(scrollView)
-            make.trailing.equalTo(scrollView)
-            make.bottom.equalTo(scrollView)
-        }
-        scrollView.contentSize = CGSize(width: screenWidth, height: 1125)
-        view.addSubview(scrollView)
-        self.goodsDetailView.choosegoodsClassBtn.setTitle(goodscateList[curGoodsCatIndex].name!, for: UIControl.State.normal)
-    }
-
+    //MARK:选择图片
     func tapChoosePicAction() {
         let viewController = CustomPhotoPickerViewController()
         viewController.delegate = self
@@ -214,13 +223,14 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         self.present(viewController, animated: true, completion: nil)
     }
 
-
+    //MARK:显示超过最大警告
     func showExceededMaximumAlert(vc: UIViewController) {
         let alert = UIAlertController(title: "", message: "Exceed Maximum Number Of Selection", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         vc.present(alert, animated: true, completion: nil)
     }
 
+    //MARK:隐藏照片选择
     func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
         self.selectedAssets = withTLPHAssets
         getFirstSelectedImage()
@@ -257,7 +267,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
                 self.uploadPic()
             }else {
                 print("Can't get image at local storage, try download image")
-                asset.cloudImageDownload(progressBlock: { [weak self] (progress) in
+                asset.cloudImageDownload(progressBlock: {/* [weak self]*/ (progress) in
                     DispatchQueue.main.async {
                         print(progress)
                     }
@@ -293,6 +303,7 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
         })
     }
 
+    //MARK:上传图片
     func uploadPic(){
         switch choosePicType {
         case 0:
@@ -313,10 +324,13 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
             let image = ImagePressHelper.init().resizeImage(originalImg: self.goodsDetailView.addGoodsPic.backgroundImage(for: UIControl.State.normal)!)
             // 将图片转化成Data
             let imageData = ImagePressHelper.init().compressImageSize(image: image)
-            // 将Data转化成 base64的字符串s
+            // 将Data转化成 base64的字符串
             let imageBase64String = imageData.base64EncodedString()
             service.uploadPic(ext: "jpg", type: "image", size:imageData.count , image: imageBase64String , { (UploadFileResponeModel) in
-                self.goodsPic = UploadFileResponeModel.data?.url ?? ""
+//                self.goodsPic = UploadFileResponeModel.data?.url ?? ""
+                if let url = UploadFileResponeModel.data?.url {
+                    self.refreshPicList(addOrdel: -1,url: url)
+                }
             }) { (APIErrorModel) in
                 showHUDInView(text: APIErrorModel.msg!, inView: self.view)
             }
@@ -326,17 +340,84 @@ class UGoodsDetailsController: UBaseViewController ,TLPhotosPickerViewController
            break
         }
     }
+    
+    func refreshPicList(addOrdel:Int = -1, url:String = "",list:Array<String>? = nil){
+        //如果传进来一个列表 替换整个列表
+        guard list == nil else {
+            self.goodsPicArray = list!
+            goodsDetailView.picData = self.goodsPicArray
+            return
+        }
+        if addOrdel == -1 {
+            goodsPicArray.append(url)
+        } else  {
+            goodsPicArray.remove(at: addOrdel)
+        }
+        goodsDetailView.picData = self.goodsPicArray
+    }
 
 }
 
-extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDelegate {
-
+extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDelegate,UChooseAttrControllerProtocol {
+    func deletePic(_ index: Int) {
+        refreshPicList(addOrdel: index)
+    }
+    
+    //MARK:规格组和规格数据回传
+    func attrDataBack(attrGroupData:SetAttrDataModel, attrArray: AttrArray) {
+        attrGroup = attrGroupData
+        attrData = attrArray
+    }
+    
     func tapAddGoodsDescrAction() {
         let vc = RichEditorViewController()
         vc.title = "编辑商品描述"
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
+    func tapChooseAttrAction() {
+        let vc = UChooseAttrController()
+        vc.title = "商品规格"
+        vc.attrDelegate = self
+        
+        if let attr_group_list = goodsDetailModel.attr_group_list {
+            attrGroup.group.removeAll()
+            for (_, item) in attr_group_list.enumerated() {
+                var group = Group()
+                group.groupName = item.attr_group_name
+                for (_, j) in item.attr_list!.enumerated() {
+                    var attr = AttrData()
+                    attr.attrName = j.attr_name
+                    group.attr.append(attr)
+                }
+                attrGroup.group.append(group)
+            }
+        }
+        if let attr = goodsDetailModel.attr {
+            attrData.attrValueArray.removeAll()
+            for (_, item) in attr.enumerated() {
+                var attrValueInfo = AttrValue()
+                var attrName = ""
+                for (i,j) in item.attr_list!.enumerated() {
+                    if i == item.attr_list!.count-1{
+                        attrName += j.attr_name
+                    } else {
+                        attrName += "\(j.attr_name)-"
+                    }
+                }
+                attrValueInfo.attrName = attrName
+                attrValueInfo.inventory = String(item.num)
+                attrValueInfo.price = item.price
+                attrValueInfo.goodsNumber = item.no
+                attrData.attrValueArray.append(attrValueInfo)
+            }
+        }
+        
+        vc.attrData = attrGroup
+        vc.attrValue = attrData
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
     func tapChooseCateAction() {
 
@@ -427,7 +508,7 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
             return
         }
 
-        guard goodsPic.count > 0 else {
+        guard goodsPicArray.count > 0 else {
             showHUDInView(text: "请选择商品主图", inView: view)
             return
         }
@@ -462,15 +543,35 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
             return
         }
 
-        goodsPicArray.append(goodsPic)
+//        goodsPicArray.append(goodsPic)//拼接图片
+        
+        //MARK:上传时对规格数据进行处理
+        let useAttr = attrGroup.group.isEmpty ? 0 : 1
+        var attrUp = [AttrInfo]()
+        if useAttr == 1 {
+            for (_, item) in attrData.attrValueArray.enumerated() {
+                let components = item.attrName.split{ $0 == "-" }
+                let attrInfo = AttrInfo()
+                attrInfo.attr_list = [AttrList]()
+                for (i, j) in components.enumerated() {
+                    let attrlist = AttrList()
+                    attrlist.attr_name = String(j)
+                    attrlist.attr_group_name = attrGroup.group[i].groupName
+                    attrInfo.attr_list!.append(attrlist)
+                }
+                attrInfo.num = Int(item.inventory) ?? 0
+                attrInfo.price = item.price
+                attrInfo.no = item.goodsNumber
+                attrUp.append(attrInfo)
+            }
+        }
 
-        goodsService.addGoods(name: name, detail: getGoodsDescr(), cover_pic: coverPic, goods_pic: goodsPicArray, pt_cat_id: plat_cat_id, goods_cat_id: goods_cat_id, unit: unit, weight: weight, original_price: original_price, price: price, pieces: pieces, forehead: forehead, service: serviceTag, goods_num: goods_num, {
+        goodsService.addGoods(isAdd:isAddGoods,goods_id: goods_id, name: name, detail: getGoodsDescr(), cover_pic: coverPic, goods_pic: goodsPicArray, pt_cat_id: plat_cat_id, goods_cat_id: goods_cat_id, unit: unit, weight: weight, original_price: original_price, price: price, pieces: pieces, forehead: forehead, service: serviceTag, goods_num: goods_num, use_attr: useAttr, attr: attrUp, {
             showHUDInView(text: "发布成功", inView: self.view)
             cleanGoodsDescr()
             self.pressBack()
         }) { (APIErrorModel) in
             showHUDInView(text: APIErrorModel.msg ?? "发布失败" , inView: self.view)
-
         }
 
 
@@ -492,11 +593,13 @@ extension UGoodsDetailsController: UGoodsDetailViewDelegate,TLPhotosPickerLogDel
 
     }
 
+    //MARK:缩略图
     func tapChooseGoodsSLTAction() {
         choosePicType = 0
         self.tapChoosePicAction()
     }
 
+    //商品主图
     func tapChooseGoodsPicAction() {
         choosePicType = 1
         self.tapChoosePicAction()

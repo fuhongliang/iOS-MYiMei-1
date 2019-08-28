@@ -59,12 +59,41 @@ class GoodsDetail: Codable {
     var full_cut:FullCutModel?
 
     var pt_cat_id:Int?
-
+    
+    var attr : [AttrInfo]?
+    var attr_group_list : [AttrGroupList]?
 }
 
 // MARK:商品列表返回Data对象
 class FullCutModel: Codable {
     var pieces: String?
     var forehead: String?
+}
+
+//MARK:规格数据
+class AttrInfo : Codable{
+    var attr_list : [AttrList]?
+    var num = Int()
+    var price = String()
+    var no = String()
+    var pic = String()
+}
+//具体每个规格数据的规格信息
+class AttrList: Codable {
+    var attr_group_name = String()
+    var attr_id = Int()
+    var attr_name = String()
+}
+
+//MARK:规格组数据
+class AttrGroupList: Codable {
+    var attr_group_id = Int()
+    var attr_group_name = String()
+    var attr_list : [AttrListInfo]?
+}
+//规格组中的规格数据
+class AttrListInfo: Codable {
+    var attr_id = Int()
+    var attr_name = String()
 }
 

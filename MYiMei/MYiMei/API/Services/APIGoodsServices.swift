@@ -30,10 +30,10 @@ protocol APIGoodsServicesProtocol {
     //上下架商品
     func modifyGoodsStatus(mch_id: Int,goods_id: Int,status: Int, access_token: String, _ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
     
-    //发布商品
-    func addGoods(name: String,
+    //发布商品  isAdd = true 添加商品  false 修改商品信息  goods_id 修改时需要,添加则不需要
+    func addGoods(isAdd:Bool, goods_id:Int, name: String,
                   detail: String,cover_pic: String,goods_pic: [String],pt_cat_id: Int,goods_cat_id: Int,unit: String,weight: String,original_price: String,price: String,
-                  pieces: String,forehead: String,service: String,goods_num: String,_ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
+                  pieces: String,forehead: String,service: String,goods_num: String,use_attr:Int,attr:[AttrInfo],_ success: @escaping((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
     
     //获取平台分类
     func getMchPtCats( _ success: @escaping(((PlatCateResponeModel) -> Void)), _ fail: @escaping ((APIErrorModel) -> Void))
@@ -58,7 +58,8 @@ class APIGoodsServices: APIGoodsServicesProtocol {
                 success(model)
             }
             catch {
-                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败", _data: nil)
+                let errorModel = APIErrorModel.getErrorModel(_code: nil, _msg: "解析失败\(error)", _data: nil)
+                print(errorModel.msg ?? "---")
                 fail(errorModel)
             }
         }) { (error) in
@@ -132,8 +133,9 @@ class APIGoodsServices: APIGoodsServicesProtocol {
         }
     }
 
-    func addGoods(name: String, detail: String, cover_pic: String, goods_pic: [String], pt_cat_id: Int,goods_cat_id:Int, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, service: String, goods_num: String, _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
+    func addGoods(isAdd:Bool, goods_id:Int, name: String, detail: String, cover_pic: String, goods_pic: [String], pt_cat_id: Int,goods_cat_id:Int, unit: String, weight: String, original_price: String, price: String, pieces: String, forehead: String, service: String, goods_num: String,use_attr:Int,attr:[AttrInfo], _ success: @escaping ((() -> Void)), _ fail: @escaping ((APIErrorModel) -> Void)) {
         let params: [String:Any] = [
+//            "attr":attr,
             "mch_id":APIUser.shared.user?.mch_id as Any,
             "name":name,
             "detail":detail,
@@ -149,16 +151,23 @@ class APIGoodsServices: APIGoodsServicesProtocol {
             "forehead":forehead,
             "service":service,
             "goods_num":goods_num,
+            "use_attr":use_attr,
+            "goods_id":goods_id,
             "access_token":APIUser.shared.user?.access_token as Any,
             "is_debug":"1"
         ]
-
-        APIService.shared.request(.addGoods(param: params), { (data) in
-            do {
+        if isAdd {
+            APIService.shared.request(.addGoods(param: params), { (data) in
                 success()
+            }) { (error) in
+                fail(error)
             }
-        }) { (error) in
-            fail(error)
+        } else {
+            APIService.shared.request(.modifyGoods(param: params), { (data) in
+                success()
+            }) { (error) in
+                fail(error)
+            }
         }
     }
 

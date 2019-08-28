@@ -49,15 +49,10 @@ class UCommentListController: UBaseViewController {
         tw.register(cellType: UHomeEvaluationCell.self)
         return tw
     }()
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
+
     
     override func configUI() {
-//        tableView.refreshControl = UIRefreshControl()
-//        tableView.refreshControl?.attributedTitle = NSAttributedString(string: "正在刷新订单数据...")
-//        tableView.refreshControl?.addTarget(self, action: #selector(refreshCommentData), for: .valueChanged)
+
         configLoadMoreView()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (ConstraintMaker) in
