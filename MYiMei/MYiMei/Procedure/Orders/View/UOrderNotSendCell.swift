@@ -275,20 +275,13 @@ class UOrderNotSendCell : UBaseTableViewCell {
         modifyPriceBtn.addTarget(self, action: #selector(tapModifyPriceOrDeliveryGoods), for: UIControl.Event.touchUpInside)
         
         //MARK:移入回收站按钮
-        //            recycleBinBtn.setTitle("移入回收站", for: UIControl.State.normal)
-        //            recycleBinBtn.setTitleColor(UIColor.hex(hexString: "#999999"), for: UIControl.State.normal)
-        //            recycleBinBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        //            recycleBinBtn.backgroundColor = UIColor.white
-        //            recycleBinBtn.layer.borderColor = UIColor.hex(hexString: "#E6E6E6").cgColor
-        //            recycleBinBtn.layer.borderWidth = 1
-        //            recycleBinBtn.layer.cornerRadius = 15
-        contentView.addSubview(recycleBinBtn)
-        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-            ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
-            ConstraintMaker.width.equalTo(95)
-            ConstraintMaker.height.equalTo(30)
-        }
+//        contentView.addSubview(recycleBinBtn)
+//        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+//            ConstraintMaker.right.equalTo(modifyPriceBtn.snp.left).offset(-15)
+//            ConstraintMaker.width.equalTo(95)
+//            ConstraintMaker.height.equalTo(30)
+//        }
     }
     
     

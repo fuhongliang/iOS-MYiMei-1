@@ -274,16 +274,15 @@ class UNewOrderCell: UBaseTableViewCell {
     }
     
     //设置修改价格按钮是否显示
-    //设置按钮后灰色背景会偏移  可能cell或者tableview的宽度计算错误
     func setButton(modifyPrice:Bool,modifyPriceText:String,modifyPriceWidth:Int){
-            modifyPriceBtn.setTitle(modifyPriceText, for: .normal)
-            contentView.addSubview(modifyPriceBtn)
-            modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
-                ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-                ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
-                ConstraintMaker.width.equalTo(modifyPriceWidth)
-                ConstraintMaker.height.equalTo(30)
-            }
+        modifyPriceBtn.setTitle(modifyPriceText, for: .normal)
+        contentView.addSubview(modifyPriceBtn)
+        modifyPriceBtn.snp.makeConstraints { (ConstraintMaker) in
+            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+            ConstraintMaker.right.equalTo(whiteBg.snp.right).offset(-15)
+            ConstraintMaker.width.equalTo(modifyPriceWidth)
+            ConstraintMaker.height.equalTo(30)
+        }
         contentView.addSubview(recycleBinBtn)
         recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)

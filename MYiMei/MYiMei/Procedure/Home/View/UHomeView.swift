@@ -311,15 +311,15 @@ class UHomeView: BaseView {
             ConstraintMaker.centerY.equalTo(pendingPayLaber)
             ConstraintMaker.size.equalTo(12)
         }
-        pendingPayRightIcon.image = UIImage.init(named: "right_icon")
-        pendingPayLayerView.addSubview(pendingPayRightIcon)
-        pendingPayRightIcon.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(pendingPayLaber.snp.right).offset(7)
-            ConstraintMaker.centerY.equalTo(pendingPayLaber)
-            ConstraintMaker.width.equalTo(6)
-            ConstraintMaker.height.equalTo(9)
-        }
-        pendingPayNumberLaber.text = "245"
+//        pendingPayRightIcon.image = UIImage.init(named: "right_icon")
+//        pendingPayLayerView.addSubview(pendingPayRightIcon)
+//        pendingPayRightIcon.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalTo(pendingPayLaber.snp.right).offset(7)
+//            ConstraintMaker.centerY.equalTo(pendingPayLaber)
+//            ConstraintMaker.width.equalTo(6)
+//            ConstraintMaker.height.equalTo(9)
+//        }
+        pendingPayNumberLaber.text = "--"
         pendingPayNumberLaber.textColor = UIColor.black
         pendingPayNumberLaber.font = UIFont.systemFont(ofSize: 16)
         pendingPayLayerView.addSubview(pendingPayNumberLaber)
@@ -350,15 +350,15 @@ class UHomeView: BaseView {
             ConstraintMaker.centerY.equalTo(wiatDeliveryLaber)
             ConstraintMaker.size.equalTo(12)
         }
-        wiatDeliveryRightIcon.image = UIImage.init(named: "right_icon")
-        wiatDeliveryLayerView.addSubview(wiatDeliveryRightIcon)
-        wiatDeliveryRightIcon.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(wiatDeliveryLaber.snp.right).offset(7)
-            ConstraintMaker.centerY.equalTo(wiatDeliveryLaber)
-            ConstraintMaker.width.equalTo(6)
-            ConstraintMaker.height.equalTo(9)
-        }
-        wiatDeliveryNumberLaber.text = "245"
+//        wiatDeliveryRightIcon.image = UIImage.init(named: "right_icon")
+//        wiatDeliveryLayerView.addSubview(wiatDeliveryRightIcon)
+//        wiatDeliveryRightIcon.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalTo(wiatDeliveryLaber.snp.right).offset(7)
+//            ConstraintMaker.centerY.equalTo(wiatDeliveryLaber)
+//            ConstraintMaker.width.equalTo(6)
+//            ConstraintMaker.height.equalTo(9)
+//        }
+        wiatDeliveryNumberLaber.text = "--"
         wiatDeliveryNumberLaber.textColor = UIColor.black
         wiatDeliveryNumberLaber.font = UIFont.systemFont(ofSize: 16)
         wiatDeliveryLayerView.addSubview(wiatDeliveryNumberLaber)
@@ -389,15 +389,15 @@ class UHomeView: BaseView {
             ConstraintMaker.centerY.equalTo(activistOrderLaber)
             ConstraintMaker.size.equalTo(12)
         }
-        activistOrderRightIcon.image = UIImage.init(named: "right_icon")
-        activistOrderLayerView.addSubview(activistOrderRightIcon)
-        activistOrderRightIcon.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(activistOrderLaber.snp.right).offset(7)
-            ConstraintMaker.centerY.equalTo(activistOrderLaber)
-            ConstraintMaker.width.equalTo(6)
-            ConstraintMaker.height.equalTo(9)
-        }
-        activistOrderNumberLaber.text = "245"
+//        activistOrderRightIcon.image = UIImage.init(named: "right_icon")
+//        activistOrderLayerView.addSubview(activistOrderRightIcon)
+//        activistOrderRightIcon.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalTo(activistOrderLaber.snp.right).offset(7)
+//            ConstraintMaker.centerY.equalTo(activistOrderLaber)
+//            ConstraintMaker.width.equalTo(6)
+//            ConstraintMaker.height.equalTo(9)
+//        }
+        activistOrderNumberLaber.text = "--"
         activistOrderNumberLaber.textColor = UIColor.black
         activistOrderNumberLaber.font = UIFont.systemFont(ofSize: 16)
         activistOrderLayerView.addSubview(activistOrderNumberLaber)

@@ -73,7 +73,7 @@ class UOrderCancleCell : UBaseTableViewCell {
             ConstraintMaker.left.equalToSuperview()
             ConstraintMaker.top.equalToSuperview()
             ConstraintMaker.right.equalToSuperview()
-            ConstraintMaker.height.equalTo(285)
+            ConstraintMaker.height.equalTo(245)
         }
         
         //MARK:订单号
@@ -240,22 +240,22 @@ class UOrderCancleCell : UBaseTableViewCell {
             ConstraintMaker.top.equalTo(commodityLine.snp.bottom).offset(15)
             ConstraintMaker.right.equalTo(freight.snp.left).offset(-6)
         }
-        totalLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
-        contentView.addSubview(totalLine)
-        totalLine.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(whiteBg)
-            ConstraintMaker.top.equalTo(totalCommodity.snp.bottom).offset(15)
-            ConstraintMaker.right.equalTo(whiteBg)
-            ConstraintMaker.height.equalTo(1)
-        }
-
-        contentView.addSubview(recycleBinBtn)
-        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
-            ConstraintMaker.right.equalToSuperview().offset(-15)
-            ConstraintMaker.width.equalTo(95)
-            ConstraintMaker.height.equalTo(30)
-        }
+//        totalLine.backgroundColor = UIColor.hex(hexString: "#F2F2F2")
+//        contentView.addSubview(totalLine)
+//        totalLine.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.left.equalTo(whiteBg)
+//            ConstraintMaker.top.equalTo(totalCommodity.snp.bottom).offset(15)
+//            ConstraintMaker.right.equalTo(whiteBg)
+//            ConstraintMaker.height.equalTo(1)
+//        }
+//
+//        contentView.addSubview(recycleBinBtn)
+//        recycleBinBtn.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.top.equalTo(totalLine.snp.bottom).offset(7)
+//            ConstraintMaker.right.equalToSuperview().offset(-15)
+//            ConstraintMaker.width.equalTo(95)
+//            ConstraintMaker.height.equalTo(30)
+//        }
     }
 
     @objc func tapMoveToRecycleBin() {

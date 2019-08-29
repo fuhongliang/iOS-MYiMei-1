@@ -18,8 +18,9 @@ class UGoodsDescrView: BaseView {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
         self.addSubview(editorView)
         editorView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.left.right.equalToSuperview()
-            ConstraintMaker.bottom.equalToSuperview()
+//            ConstraintMaker.top.left.bottom.equalToSuperview()
+//            ConstraintMaker.width.equalToSuperview()
+            ConstraintMaker.size.equalToSuperview()
         }
     }
 }

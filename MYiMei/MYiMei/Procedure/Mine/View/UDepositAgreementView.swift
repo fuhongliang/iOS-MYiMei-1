@@ -21,7 +21,7 @@ class UDepositAgreementView: BaseView {
     var agreeLabel = UILabel()
     
     var text = "我已阅读并同意以上"
-    var bookName = "《一美一物保证金协议》"
+    var bookName = "《懂家保证金协议》"
     let attributed = NSMutableAttributedString()
     
     var isSelect:Bool = true
