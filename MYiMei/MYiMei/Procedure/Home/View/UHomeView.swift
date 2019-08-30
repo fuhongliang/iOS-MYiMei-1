@@ -86,7 +86,30 @@ class UHomeView: BaseView {
     //分段-支付金额
     var paySegmentedControl = UISegmentedControl.init(items: ["今日","昨日","7日","30日"])
     
-    var chartView = LineChartView()
+    var chartView:LineChartView = {
+        let lineView = LineChartView()
+        //折线图无数据时显示的提示文字
+        lineView.noDataText = "暂无营业数据"
+        lineView.doubleTapToZoomEnabled = false //双击缩放
+        lineView.xAxis.labelPosition = .bottom //x轴单位显示在下方
+        lineView.xAxis.axisLineColor = UIColor.hex(hexString: "#F2F2F2") //x轴颜色
+        lineView.legend.form = .none //设置是否有线的提示说明(右下角)
+        lineView.xAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //x轴对应网格线的颜色
+        lineView.xAxis.forceLabelsEnabled = true
+        lineView.xAxis.granularityEnabled = true
+        
+        lineView.xAxis.labelTextColor = UIColor.hex(hexString: "#999999") //刻度文字颜色
+        lineView.xAxis.labelFont = .systemFont(ofSize: 9) //刻度文字大小
+        
+        lineView.xAxis.drawGridLinesEnabled = false //不绘制纵向的网格线
+        lineView.rightAxis.enabled = false //禁用右侧的Y轴
+        //        lineView.leftAxis.enabled = false
+        lineView.leftAxis.drawAxisLineEnabled = false
+        
+        lineView.leftAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //左Y轴对应网格线的颜色
+        lineView.leftAxis.gridLineWidth = 1 //右Y轴对应网格线的大小
+        return lineView
+    }()
     
     func setView() {
         self.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
