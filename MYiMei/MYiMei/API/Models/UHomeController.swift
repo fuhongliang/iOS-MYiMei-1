@@ -22,6 +22,9 @@ class UHomeController: UBaseViewController {
     
     var depostReview = false
     
+    var requestTime = 0//请求完成的次数
+    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mHomeView.delegate = self
@@ -32,10 +35,25 @@ class UHomeController: UBaseViewController {
     
     override func configUI() {
         mHomeView.setView()
-        view.addSubview(mHomeView)
-        mHomeView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        scrollView.backgroundColor = UIColor.hex(hexString: "#F5F5F5")
+        
+        scrollView.addSubview(mHomeView)
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.uHead = URefreshHeader { [weak self] in
+            self?.requestTime = 0
+            self?.getStoreData()
+            self?.getStoreInfo()
+            self?.getStoreDepost()
+            self?.judgeRequest()
         }
+        mHomeView.snp.updateConstraints { (make) -> Void in
+            make.width.equalTo(screenWidth)
+            make.height.equalTo(screenHeight+30)
+            make.top.leading.trailing.bottom.equalTo(scrollView)
+        }
+        scrollView.contentSize = CGSize(width: screenWidth, height: screenHeight+30)
+        
+        view.addSubview(scrollView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,19 +149,19 @@ class UHomeController: UBaseViewController {
      yAxisMaximum:纵向的最大刻度
      */
     func configCharts(xValues:[String],yAxisMaximum:Double,yAxisMinimum: Double){
-        mHomeView.chartView.delegate = self
+//        mHomeView.chartView.delegate = self
         
         //折线图无数据时显示的提示文字
-        mHomeView.chartView.noDataText = "暂无营业数据"
-        mHomeView.chartView.doubleTapToZoomEnabled = false //双击缩放
-        mHomeView.chartView.xAxis.labelPosition = .bottom //x轴单位显示在下方
-        mHomeView.chartView.xAxis.axisLineColor = UIColor.hex(hexString: "#F2F2F2") //x轴颜色
+//        mHomeView.chartView.noDataText = "暂无营业数据"
+//        mHomeView.chartView.doubleTapToZoomEnabled = false //双击缩放
+//        mHomeView.chartView.xAxis.labelPosition = .bottom //x轴单位显示在下方
+//        mHomeView.chartView.xAxis.axisLineColor = UIColor.hex(hexString: "#F2F2F2") //x轴颜色
         
         //-----动态设置点
         mHomeView.chartView.xAxis.axisMinimum = 0 //最小刻度值 x轴
         mHomeView.chartView.xAxis.axisMaximum = Double(xValues.count-1) //最大刻度值
         mHomeView.chartView.xAxis.granularity = 1 //最小间隔
-        mHomeView.chartView.xAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //x轴对应网格线的颜色
+//        mHomeView.chartView.xAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //x轴对应网格线的颜色
         
         mHomeView.chartView.leftAxis.axisMinimum = 0 //最小刻度值 y轴
         mHomeView.chartView.leftAxis.axisMaximum = yAxisMaximum + 2000 //最大刻度值
@@ -164,16 +182,16 @@ class UHomeController: UBaseViewController {
         mHomeView.chartView.xAxis.granularityEnabled = true
         //----动态设置点
         
-        mHomeView.chartView.xAxis.labelTextColor = UIColor.hex(hexString: "#999999") //刻度文字颜色
-        mHomeView.chartView.xAxis.labelFont = .systemFont(ofSize: 9) //刻度文字大小
-        
-        mHomeView.chartView.xAxis.drawGridLinesEnabled = false //不绘制纵向的网格线
-        mHomeView.chartView.rightAxis.enabled = false //禁用右侧的Y轴
-//        mHomeView.chartView.leftAxis.enabled = false
-        mHomeView.chartView.leftAxis.drawAxisLineEnabled = false
-        
-        mHomeView.chartView.leftAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //左Y轴对应网格线的颜色
-        mHomeView.chartView.leftAxis.gridLineWidth = 1 //右Y轴对应网格线的大小
+//        mHomeView.chartView.xAxis.labelTextColor = UIColor.hex(hexString: "#999999") //刻度文字颜色
+//        mHomeView.chartView.xAxis.labelFont = .systemFont(ofSize: 9) //刻度文字大小
+//
+//        mHomeView.chartView.xAxis.drawGridLinesEnabled = false //不绘制纵向的网格线
+//        mHomeView.chartView.rightAxis.enabled = false //禁用右侧的Y轴
+////        mHomeView.chartView.leftAxis.enabled = false
+//        mHomeView.chartView.leftAxis.drawAxisLineEnabled = false
+//
+//        mHomeView.chartView.leftAxis.gridColor = UIColor.hex(hexString: "#F2F2F2") //左Y轴对应网格线的颜色
+//        mHomeView.chartView.leftAxis.gridLineWidth = 1 //右Y轴对应网格线的大小
         
         //播放y轴方向动画，持续时间1秒
         mHomeView.chartView.animate(yAxisDuration: 1)
@@ -189,7 +207,7 @@ class UHomeController: UBaseViewController {
             dataEntries.append(entry)
         }
         //数据作为1根折线里的所有数据
-        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "营业额")
+        let chartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
         chartDataSet.colors = [UIColor.hex(hexString: "#1C98F6")]//线的颜色
         chartDataSet.drawCirclesEnabled = false //不绘制转折点
         chartDataSet.mode = .linear  //贝塞尔曲线
@@ -210,6 +228,20 @@ class UHomeController: UBaseViewController {
         //设置折现图数据
         mHomeView.chartView.data = chartData
     }
+    
+    //MARK:判断多请求是否请求完成 停止刷新
+    func judgeRequest(){
+        let queue = DispatchQueue(label: "judgeRequest")
+        queue.async {
+            while true {
+                if self.requestTime >= 3 {
+                    self.scrollView.uHead.endRefreshing()
+                    return
+                }
+            }
+        }
+    }
+    
     
     //MARK:获取店铺经营数据
     func getStoreData() {
@@ -232,9 +264,10 @@ class UHomeController: UBaseViewController {
                 self.mHomeView.payOrderNumberLaber.text = String(self.storeData.store?.sell_statistics_total?.order_num ?? 0)
                 self.mHomeView.payAmountNumberLaber.text = self.storeData.store?.sell_statistics_total?.order_price ?? "0"
             }
-            
+            self.requestTime += 1
         }) { (APIErrorModel) in
             showHUDInView(text: String(APIErrorModel.msg ?? ""), inView: self.view)
+            self.requestTime += 1
         }
     }
     
@@ -244,8 +277,9 @@ class UHomeController: UBaseViewController {
             let url = URL(string: StoreInfoModel.data.mch?.logo ?? "")
             self.mHomeView.storeAvatarIcon.kf.setImage(with: url)
             self.mHomeView.storeNameLaber.text = StoreInfoModel.data.mch?.name
+            self.requestTime += 1
         }) { (APIErrorModel) in
-            
+            self.requestTime += 1
         }
     }
     
@@ -264,10 +298,11 @@ class UHomeController: UBaseViewController {
             }
             
             self.mHomeView.depost.menuIcon.image = UIImage.init(named: self.depostPass ? "menu_margin" : "depost_empty")
-
+            self.requestTime += 1
             
         }, { (APIErrorModel) in
             showHUDInView(text: APIErrorModel.msg ?? "网络错误", inView: self.view)
+            self.requestTime += 1
         })
     }
     
